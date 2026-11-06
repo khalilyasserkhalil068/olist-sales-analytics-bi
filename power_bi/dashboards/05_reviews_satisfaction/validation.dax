@@ -1,0 +1,20 @@
+EVALUATE ROW(
+    "Total Valid Reviews", [Total Valid Reviews],
+    "Satisfaction Average Review Score", [Satisfaction Average Review Score],
+    "Positive Review Rate", [Positive Review Rate],
+    "Negative Review Rate", [Negative Review Rate],
+    "Five Star Review Rate", [Five Star Review Rate],
+    "On Time Average Review Score", [On Time Average Review Score],
+    "Late Average Review Score", [Late Average Review Score],
+    "Late vs On Time Review Score", [Late vs On Time Review Score],
+    "Category Average Review Score", [Category Average Review Score],
+    "Category Valid Reviews", [Category Valid Reviews]
+)
+
+EVALUATE SUMMARIZECOLUMNS(DimReviewCreationDate[Year], "Value", [Total Valid Reviews])
+
+EVALUATE SUMMARIZECOLUMNS(DimReviewCreationDate[MonthName], "Value", [Total Valid Reviews])
+
+EVALUATE SUMMARIZECOLUMNS(DimCustomerGeography[ApproximateState], "Value", [Total Valid Reviews])
+
+EVALUATE SUMMARIZECOLUMNS(FactReviews[ReviewScore], "Value", [Total Valid Reviews])

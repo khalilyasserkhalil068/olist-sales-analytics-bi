@@ -1,0 +1,29 @@
+{
+  "executed_utc": "2026-11-02T15:17:22.617134+00:00",
+  "status": "PASS",
+  "screenshots": [
+    {
+      "page": "04_delivery_logistics",
+      "path": "power_bi/dashboards/04_delivery_logistics/screenshot.png",
+      "pixels": [
+        1912,
+        1013
+      ],
+      "sha256": "2e8c29f4344f091afb566b2588cb135f3dcade7d2d14d2c06663541b8180d8eb",
+      "origin": "Unmodified user capture from actual Power BI Desktop; visually checked by the assistant",
+      "captureScope": "Full application window"
+    },
+    {
+      "page": "05_reviews_satisfaction",
+      "path": "power_bi/dashboards/05_reviews_satisfaction/screenshot.png",
+      "pixels": [
+        1357,
+        746
+      ],
+      "sha256": "2f2b7059c60cadc8c328653c54e246f2e0e09a4fa3a9383f804ab9ccfcfe7fcb",
+      "origin": "Unmodified user capture from actual Power BI Desktop; visually checked by the assistant",
+      "captureScope": "Report-canvas region of the application window"
+    }
+  ],
+  "scope": "Two new-page Desktop-window captures; separate from native PDF previews"
+}

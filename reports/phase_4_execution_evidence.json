@@ -1,0 +1,366 @@
+{
+  "server": {
+    "instance": "DESKTOP-GEUMHVT\\SQLEXPRESS",
+    "version": "17.0.1145.4",
+    "edition": "Express Edition (64-bit)",
+    "windows_only": 1,
+    "is_sysadmin": 1,
+    "can_create_database": 1,
+    "transport": "Shared memory",
+    "encrypted": "TRUE",
+    "auth_scheme": "NTLM",
+    "odbc_drivers": [
+      "SQL Server",
+      "ODBC Driver 17 for SQL Server",
+      "ODBC Driver 18 for SQL Server",
+      "Microsoft Access Driver (*.mdb, *.accdb)",
+      "Microsoft Excel Driver (*.xls, *.xlsx, *.xlsm, *.xlsb)",
+      "Microsoft Access Text Driver (*.txt, *.csv)",
+      "Microsoft Access dBASE Driver (*.dbf, *.ndx, *.mdx)"
+    ],
+    "pyodbc": "5.3.0"
+  },
+  "database_status": "already existed; project ownership verified",
+  "successful_load_ids": [
+    "e25d5a0a-afcb-4e41-8ee6-39362f086b89",
+    "4113f3bd-3685-474b-a934-c5910d755e6c"
+  ],
+  "preflight": {
+    "datasets": {
+      "customers": {
+        "rows": 99441,
+        "financial_totals": {},
+        "flags": {
+          "dq_unmatched_zip": 278,
+          "dq_invalid_zip_format": 0
+        }
+      },
+      "orders": {
+        "rows": 99441,
+        "financial_totals": {},
+        "flags": {
+          "dq_invalid_order_purchase_timestamp": 0,
+          "dq_invalid_order_approved_at": 0,
+          "dq_invalid_order_delivered_carrier_date": 0,
+          "dq_invalid_order_delivered_customer_date": 0,
+          "dq_invalid_order_estimated_delivery_date": 0,
+          "dq_no_items": 775,
+          "dq_no_payments": 1,
+          "dq_no_reviews": 768,
+          "dq_missing_order_approved_at": 160,
+          "dq_delivered_missing_order_approved_at": 14,
+          "dq_missing_order_delivered_carrier_date": 1783,
+          "dq_delivered_missing_order_delivered_carrier_date": 2,
+          "dq_missing_order_delivered_customer_date": 2965,
+          "dq_delivered_missing_order_delivered_customer_date": 8,
+          "dq_approval_before_purchase": 0,
+          "dq_carrier_before_purchase": 166,
+          "dq_delivery_before_purchase": 0,
+          "dq_carrier_before_approval": 1359,
+          "dq_delivery_before_carrier": 23
+        }
+      },
+      "order_items": {
+        "rows": 112650,
+        "financial_totals": {
+          "price": "13591643.70",
+          "freight_value": "2251909.54"
+        },
+        "flags": {
+          "dq_invalid_shipping_limit_date": 0,
+          "dq_invalid_price": 0,
+          "dq_invalid_freight_value": 0,
+          "dq_shipping_limit_before_purchase": 0,
+          "dq_shipping_limit_after_purchase_year_range": 4,
+          "dq_negative_price": 0,
+          "dq_zero_price": 0,
+          "dq_negative_freight_value": 0,
+          "dq_zero_freight_value": 383
+        }
+      },
+      "payments": {
+        "rows": 103886,
+        "financial_totals": {
+          "payment_value": "16008872.12"
+        },
+        "flags": {
+          "dq_invalid_payment_installments": 0,
+          "dq_invalid_payment_value": 0,
+          "dq_negative_payment_value": 0,
+          "dq_zero_payment_value": 9,
+          "dq_nonpositive_installments": 2,
+          "dq_noninteger_payment_installments": 0
+        }
+      },
+      "reviews": {
+        "rows": 99224,
+        "financial_totals": {},
+        "flags": {
+          "dq_invalid_review_creation_date": 0,
+          "dq_invalid_review_answer_timestamp": 0,
+          "dq_invalid_review_score": 0,
+          "dq_answer_before_creation": 0,
+          "dq_noninteger_review_score": 0,
+          "dq_score_out_of_range": 0,
+          "dq_repeated_review_id": 1603
+        }
+      },
+      "products": {
+        "rows": 32951,
+        "financial_totals": {},
+        "flags": {
+          "dq_invalid_product_name_lenght": 0,
+          "dq_invalid_product_description_lenght": 0,
+          "dq_invalid_product_photos_qty": 0,
+          "dq_invalid_product_weight_g": 0,
+          "dq_invalid_product_length_cm": 0,
+          "dq_invalid_product_height_cm": 0,
+          "dq_invalid_product_width_cm": 0,
+          "dq_category_missing": 610,
+          "dq_category_untranslated": 13,
+          "dq_missing_attributes": 611,
+          "dq_nonpositive_product_weight_g": 4,
+          "dq_nonpositive_product_length_cm": 0,
+          "dq_nonpositive_product_height_cm": 0,
+          "dq_nonpositive_product_width_cm": 0
+        }
+      },
+      "sellers": {
+        "rows": 3095,
+        "financial_totals": {},
+        "flags": {
+          "dq_unmatched_zip": 7,
+          "dq_invalid_zip_format": 0
+        }
+      },
+      "category_translations": {
+        "rows": 71,
+        "financial_totals": {},
+        "flags": {}
+      },
+      "geolocation": {
+        "rows": 738332,
+        "financial_totals": {},
+        "flags": {
+          "dq_invalid_geolocation_lat": 0,
+          "dq_invalid_geolocation_lng": 0,
+          "dq_invalid_zip_format": 0,
+          "dq_invalid_coordinate": 0
+        }
+      },
+      "geolocation_zip_lookup": {
+        "rows": 19015,
+        "financial_totals": {},
+        "flags": {
+          "dq_conflicting_city_labels": 8555,
+          "dq_conflicting_states": 8,
+          "dq_missing_coordinate": 0
+        }
+      }
+    },
+    "first_date": "2016-09-04",
+    "last_date": "2020-04-09",
+    "protected_files": 83
+  },
+  "table_counts": {
+    "dw.DimCustomer": 99442,
+    "dw.DimDate": 1315,
+    "dw.DimGeography": 19178,
+    "dw.DimOrderStatus": 9,
+    "dw.DimPaymentType": 6,
+    "dw.DimProduct": 32952,
+    "dw.DimSeller": 3096,
+    "dw.FactOrderItems": 112650,
+    "dw.FactOrders": 99441,
+    "dw.FactPayments": 103886,
+    "dw.FactReviews": 99224,
+    "stg.category_translations": 71,
+    "stg.customers": 99441,
+    "stg.geolocation": 738332,
+    "stg.geolocation_zip_lookup": 19015,
+    "stg.order_items": 112650,
+    "stg.orders": 99441,
+    "stg.payments": 103886,
+    "stg.products": 32951,
+    "stg.reviews": 99224,
+    "stg.sellers": 3095
+  },
+  "schema_columns": 321,
+  "actual_plan_files": [
+    "monthly_sales.sqlplan",
+    "category_revenue.sqlplan",
+    "review_grain.sqlplan"
+  ],
+  "snapshot_hashes": {
+    "stg.customers": {
+      "rows": 99441,
+      "sha256": "0887508b6c9163d597ab754999c5679043932713bdda6abf859f91ea01f7eaad"
+    },
+    "stg.orders": {
+      "rows": 99441,
+      "sha256": "834dcde8e62cea10c544eaf61b05c5af3796cbf22259965f8b387540f02a143d"
+    },
+    "stg.order_items": {
+      "rows": 112650,
+      "sha256": "e6086dbc7263fabe64a5a71ede3a52166feec0456d4fa015a37b0354ae9538ed"
+    },
+    "stg.payments": {
+      "rows": 103886,
+      "sha256": "b38238eb98fddcbd111090ad6aa0517fe9b5e4c46a59d055080226a4fc06a794"
+    },
+    "stg.reviews": {
+      "rows": 99224,
+      "sha256": "77083aa75fd803f5a36a6cab2884c14b867e76fb27a5fa4eadbc1c9036822fc5"
+    },
+    "stg.products": {
+      "rows": 32951,
+      "sha256": "256a146b9d079a41ae8907992dcbe5c38734b3df802dfdc567480cac0459e165"
+    },
+    "stg.sellers": {
+      "rows": 3095,
+      "sha256": "533d5779b8be9510b48f155c0a1c1cbf96a5b2add1a986f0da9f624a10a205a7"
+    },
+    "stg.category_translations": {
+      "rows": 71,
+      "sha256": "5785d530665a8ecea6fb753c50e6a592799ffb3d18f89660fde8be05cd5ea786"
+    },
+    "stg.geolocation": {
+      "rows": 738332,
+      "sha256": "6971aa89d975078b43d72a413e005415a82472221e2e2d1c4f420859e12fd0ab"
+    },
+    "stg.geolocation_zip_lookup": {
+      "rows": 19015,
+      "sha256": "00e798455dcc48af75f3630410d1da063fd72719315acf3d4e43a2140649d74a"
+    },
+    "dw.DimDate": {
+      "rows": 1315,
+      "sha256": "bc827218c0d1019435243b5b2ca00d0d807c9cdb484f1504211827fd03e2e7af"
+    },
+    "dw.DimGeography": {
+      "rows": 19178,
+      "sha256": "1c15e56c32bdbb6a15036e3ba140ebe5fcd85d614363e71d0001513bac0b7e29"
+    },
+    "dw.DimCustomer": {
+      "rows": 99442,
+      "sha256": "fc56e30ee1ea3299c2318e55c41e00c0145d587bb976262869fe3b587c634a6f"
+    },
+    "dw.DimProduct": {
+      "rows": 32952,
+      "sha256": "fdf5e35887c30d0517ec828b23bfb1af5b95a93edc303ca4ddd7778acaad0149"
+    },
+    "dw.DimSeller": {
+      "rows": 3096,
+      "sha256": "fc11f7ee9e1f5fe221c2f943ed076d5520ecf2f410c2074d57ebaecb57c40c4d"
+    },
+    "dw.DimPaymentType": {
+      "rows": 6,
+      "sha256": "962c5fd0b598c03d6be6125caa4bfaa5b4a678d019e0978f762bab51979129cb"
+    },
+    "dw.DimOrderStatus": {
+      "rows": 9,
+      "sha256": "094b91b188073b781030cbc3b6ea81beec74b4e03aac49949476438164f42449"
+    },
+    "dw.FactOrders": {
+      "rows": 99441,
+      "sha256": "e38ebbd2740fea0a464e115952a560070434b4ff5e6cdbd17cf4e1ea38548a33"
+    },
+    "dw.FactOrderItems": {
+      "rows": 112650,
+      "sha256": "13d6de6b842a88e2029bb3b1ab453c854bb6ac798a1b67f49780d9203c92e96c"
+    },
+    "dw.FactPayments": {
+      "rows": 103886,
+      "sha256": "e6c4509d35df79b3228302686485c924897402b85dc389be283e14779df05970"
+    },
+    "dw.FactReviews": {
+      "rows": 99224,
+      "sha256": "eb43379fcfcb5b011e13315e88328172978cd89623073841dcefb841106e8c6e"
+    }
+  },
+  "first_snapshot_hashes": {
+    "stg.customers": {
+      "rows": 99441,
+      "sha256": "0887508b6c9163d597ab754999c5679043932713bdda6abf859f91ea01f7eaad"
+    },
+    "stg.orders": {
+      "rows": 99441,
+      "sha256": "834dcde8e62cea10c544eaf61b05c5af3796cbf22259965f8b387540f02a143d"
+    },
+    "stg.order_items": {
+      "rows": 112650,
+      "sha256": "e6086dbc7263fabe64a5a71ede3a52166feec0456d4fa015a37b0354ae9538ed"
+    },
+    "stg.payments": {
+      "rows": 103886,
+      "sha256": "b38238eb98fddcbd111090ad6aa0517fe9b5e4c46a59d055080226a4fc06a794"
+    },
+    "stg.reviews": {
+      "rows": 99224,
+      "sha256": "77083aa75fd803f5a36a6cab2884c14b867e76fb27a5fa4eadbc1c9036822fc5"
+    },
+    "stg.products": {
+      "rows": 32951,
+      "sha256": "256a146b9d079a41ae8907992dcbe5c38734b3df802dfdc567480cac0459e165"
+    },
+    "stg.sellers": {
+      "rows": 3095,
+      "sha256": "533d5779b8be9510b48f155c0a1c1cbf96a5b2add1a986f0da9f624a10a205a7"
+    },
+    "stg.category_translations": {
+      "rows": 71,
+      "sha256": "5785d530665a8ecea6fb753c50e6a592799ffb3d18f89660fde8be05cd5ea786"
+    },
+    "stg.geolocation": {
+      "rows": 738332,
+      "sha256": "6971aa89d975078b43d72a413e005415a82472221e2e2d1c4f420859e12fd0ab"
+    },
+    "stg.geolocation_zip_lookup": {
+      "rows": 19015,
+      "sha256": "00e798455dcc48af75f3630410d1da063fd72719315acf3d4e43a2140649d74a"
+    },
+    "dw.DimDate": {
+      "rows": 1315,
+      "sha256": "bc827218c0d1019435243b5b2ca00d0d807c9cdb484f1504211827fd03e2e7af"
+    },
+    "dw.DimGeography": {
+      "rows": 19178,
+      "sha256": "1c15e56c32bdbb6a15036e3ba140ebe5fcd85d614363e71d0001513bac0b7e29"
+    },
+    "dw.DimCustomer": {
+      "rows": 99442,
+      "sha256": "fc56e30ee1ea3299c2318e55c41e00c0145d587bb976262869fe3b587c634a6f"
+    },
+    "dw.DimProduct": {
+      "rows": 32952,
+      "sha256": "fdf5e35887c30d0517ec828b23bfb1af5b95a93edc303ca4ddd7778acaad0149"
+    },
+    "dw.DimSeller": {
+      "rows": 3096,
+      "sha256": "fc11f7ee9e1f5fe221c2f943ed076d5520ecf2f410c2074d57ebaecb57c40c4d"
+    },
+    "dw.DimPaymentType": {
+      "rows": 6,
+      "sha256": "962c5fd0b598c03d6be6125caa4bfaa5b4a678d019e0978f762bab51979129cb"
+    },
+    "dw.DimOrderStatus": {
+      "rows": 9,
+      "sha256": "094b91b188073b781030cbc3b6ea81beec74b4e03aac49949476438164f42449"
+    },
+    "dw.FactOrders": {
+      "rows": 99441,
+      "sha256": "e38ebbd2740fea0a464e115952a560070434b4ff5e6cdbd17cf4e1ea38548a33"
+    },
+    "dw.FactOrderItems": {
+      "rows": 112650,
+      "sha256": "13d6de6b842a88e2029bb3b1ab453c854bb6ac798a1b67f49780d9203c92e96c"
+    },
+    "dw.FactPayments": {
+      "rows": 103886,
+      "sha256": "e6c4509d35df79b3228302686485c924897402b85dc389be283e14779df05970"
+    },
+    "dw.FactReviews": {
+      "rows": 99224,
+      "sha256": "eb43379fcfcb5b011e13315e88328172978cd89623073841dcefb841106e8c6e"
+    }
+  }
+}

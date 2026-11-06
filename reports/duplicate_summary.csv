@@ -1,0 +1,24 @@
+dataset,check_type,key_columns,candidate_primary_key,total_rows,null_key_rows,distinct_non_null_keys,duplicate_rows_excess,duplicate_rows_all,repeated_key_values,maximum_key_multiplicity,valid_primary_key
+customers,exact_rows,ALL_COLUMNS,False,99441,,,0,0,,,
+geolocation,exact_rows,ALL_COLUMNS,False,1000163,,,261831,390005,,,
+orders,exact_rows,ALL_COLUMNS,False,99441,,,0,0,,,
+order_items,exact_rows,ALL_COLUMNS,False,112650,,,0,0,,,
+order_payments,exact_rows,ALL_COLUMNS,False,103886,,,0,0,,,
+order_reviews,exact_rows,ALL_COLUMNS,False,99224,,,0,0,,,
+products,exact_rows,ALL_COLUMNS,False,32951,,,0,0,,,
+sellers,exact_rows,ALL_COLUMNS,False,3095,,,0,0,,,
+category_translation,exact_rows,ALL_COLUMNS,False,71,,,0,0,,,
+customers,key,customer_id,True,99441,0.0,99441.0,0,0,0.0,1.0,True
+customers,key,customer_unique_id,False,99441,0.0,96096.0,3345,6342,2997.0,17.0,False
+geolocation,key,geolocation_zip_code_prefix,False,1000163,0.0,19015.0,981148,999120,17972.0,1146.0,False
+orders,key,order_id,True,99441,0.0,99441.0,0,0,0.0,1.0,True
+order_items,key,order_id + order_item_id,True,112650,0.0,112650.0,0,0,0.0,1.0,True
+order_items,key,order_id,False,112650,0.0,98666.0,13984,23787,9803.0,21.0,False
+order_payments,key,order_id + payment_sequential,True,103886,0.0,103886.0,0,0,0.0,1.0,True
+order_payments,key,order_id,False,103886,0.0,99440.0,4446,7407,2961.0,29.0,False
+order_reviews,key,review_id,True,99224,0.0,98410.0,814,1603,789.0,3.0,False
+order_reviews,key,review_id + order_id,True,99224,0.0,99224.0,0,0,0.0,1.0,True
+order_reviews,key,order_id,False,99224,0.0,98673.0,551,1098,547.0,3.0,False
+products,key,product_id,True,32951,0.0,32951.0,0,0,0.0,1.0,True
+sellers,key,seller_id,True,3095,0.0,3095.0,0,0,0.0,1.0,True
+category_translation,key,product_category_name,True,71,0.0,71.0,0,0,0.0,1.0,True

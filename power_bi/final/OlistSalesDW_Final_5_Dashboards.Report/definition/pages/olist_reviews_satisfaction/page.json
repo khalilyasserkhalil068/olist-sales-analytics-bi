@@ -1,0 +1,786 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "olist_reviews_satisfaction",
+  "displayName": "05 | Reviews & Customer Satisfaction",
+  "displayOption": "FitToPage",
+  "height": 900,
+  "width": 1600,
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F3F6FA'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "p5_slicer0",
+      "target": "p5_slicer1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer0",
+      "target": "p5_slicer2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer0",
+      "target": "p5_slicer3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer0",
+      "target": "p5_card0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer0",
+      "target": "p5_card1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer0",
+      "target": "p5_card2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer0",
+      "target": "p5_card3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer0",
+      "target": "p5_card4",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer0",
+      "target": "p5_card5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer0",
+      "target": "p5_chart0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer0",
+      "target": "p5_chart1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer0",
+      "target": "p5_chart2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer0",
+      "target": "p5_chart3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer0",
+      "target": "p5_chart4",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer0",
+      "target": "p5_chart5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer1",
+      "target": "p5_slicer0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer1",
+      "target": "p5_slicer2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer1",
+      "target": "p5_slicer3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer1",
+      "target": "p5_card0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer1",
+      "target": "p5_card1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer1",
+      "target": "p5_card2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer1",
+      "target": "p5_card3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer1",
+      "target": "p5_card4",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer1",
+      "target": "p5_card5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer1",
+      "target": "p5_chart0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer1",
+      "target": "p5_chart1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer1",
+      "target": "p5_chart2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer1",
+      "target": "p5_chart3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer1",
+      "target": "p5_chart4",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer1",
+      "target": "p5_chart5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer2",
+      "target": "p5_slicer0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer2",
+      "target": "p5_slicer1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer2",
+      "target": "p5_slicer3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer2",
+      "target": "p5_card0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer2",
+      "target": "p5_card1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer2",
+      "target": "p5_card2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer2",
+      "target": "p5_card3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer2",
+      "target": "p5_card4",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer2",
+      "target": "p5_card5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer2",
+      "target": "p5_chart0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer2",
+      "target": "p5_chart1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer2",
+      "target": "p5_chart2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer2",
+      "target": "p5_chart3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer2",
+      "target": "p5_chart4",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer2",
+      "target": "p5_chart5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer3",
+      "target": "p5_slicer0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer3",
+      "target": "p5_slicer1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer3",
+      "target": "p5_slicer2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer3",
+      "target": "p5_card0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer3",
+      "target": "p5_card1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer3",
+      "target": "p5_card2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer3",
+      "target": "p5_card3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer3",
+      "target": "p5_card4",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer3",
+      "target": "p5_card5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer3",
+      "target": "p5_chart0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer3",
+      "target": "p5_chart1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer3",
+      "target": "p5_chart2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer3",
+      "target": "p5_chart3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer3",
+      "target": "p5_chart4",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_slicer3",
+      "target": "p5_chart5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart0",
+      "target": "p5_slicer0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart0",
+      "target": "p5_slicer1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart0",
+      "target": "p5_slicer2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart0",
+      "target": "p5_slicer3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart0",
+      "target": "p5_card0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart0",
+      "target": "p5_card1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart0",
+      "target": "p5_card2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart0",
+      "target": "p5_card3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart0",
+      "target": "p5_card4",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart0",
+      "target": "p5_card5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart0",
+      "target": "p5_chart1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart0",
+      "target": "p5_chart2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart0",
+      "target": "p5_chart3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart0",
+      "target": "p5_chart4",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart0",
+      "target": "p5_chart5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart1",
+      "target": "p5_slicer0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart1",
+      "target": "p5_slicer1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart1",
+      "target": "p5_slicer2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart1",
+      "target": "p5_slicer3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart1",
+      "target": "p5_card0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart1",
+      "target": "p5_card1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart1",
+      "target": "p5_card2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart1",
+      "target": "p5_card3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart1",
+      "target": "p5_card4",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart1",
+      "target": "p5_card5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart1",
+      "target": "p5_chart0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart1",
+      "target": "p5_chart2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart1",
+      "target": "p5_chart3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart1",
+      "target": "p5_chart4",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart1",
+      "target": "p5_chart5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart2",
+      "target": "p5_slicer0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart2",
+      "target": "p5_slicer1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart2",
+      "target": "p5_slicer2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart2",
+      "target": "p5_slicer3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart2",
+      "target": "p5_card0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart2",
+      "target": "p5_card1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart2",
+      "target": "p5_card2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart2",
+      "target": "p5_card3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart2",
+      "target": "p5_card4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart2",
+      "target": "p5_card5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart2",
+      "target": "p5_chart0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart2",
+      "target": "p5_chart1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart2",
+      "target": "p5_chart3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart2",
+      "target": "p5_chart4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart2",
+      "target": "p5_chart5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart3",
+      "target": "p5_slicer0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart3",
+      "target": "p5_slicer1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart3",
+      "target": "p5_slicer2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart3",
+      "target": "p5_slicer3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart3",
+      "target": "p5_card0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart3",
+      "target": "p5_card1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart3",
+      "target": "p5_card2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart3",
+      "target": "p5_card3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart3",
+      "target": "p5_card4",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart3",
+      "target": "p5_card5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart3",
+      "target": "p5_chart0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart3",
+      "target": "p5_chart1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart3",
+      "target": "p5_chart2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart3",
+      "target": "p5_chart4",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart3",
+      "target": "p5_chart5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart4",
+      "target": "p5_slicer0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart4",
+      "target": "p5_slicer1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart4",
+      "target": "p5_slicer2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart4",
+      "target": "p5_slicer3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart4",
+      "target": "p5_card0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart4",
+      "target": "p5_card1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart4",
+      "target": "p5_card2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart4",
+      "target": "p5_card3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart4",
+      "target": "p5_card4",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart4",
+      "target": "p5_card5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart4",
+      "target": "p5_chart0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart4",
+      "target": "p5_chart1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart4",
+      "target": "p5_chart2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart4",
+      "target": "p5_chart3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart4",
+      "target": "p5_chart5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart5",
+      "target": "p5_slicer0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart5",
+      "target": "p5_slicer1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart5",
+      "target": "p5_slicer2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart5",
+      "target": "p5_slicer3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p5_chart5",
+      "target": "p5_card0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart5",
+      "target": "p5_card1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart5",
+      "target": "p5_card2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart5",
+      "target": "p5_card3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart5",
+      "target": "p5_card4",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart5",
+      "target": "p5_card5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart5",
+      "target": "p5_chart0",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart5",
+      "target": "p5_chart1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart5",
+      "target": "p5_chart2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart5",
+      "target": "p5_chart3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p5_chart5",
+      "target": "p5_chart4",
+      "type": "DataFilter"
+    }
+  ]
+}

@@ -1,0 +1,619 @@
+schema,table,ordinal,column,sql_type,nullable,identity,grain,source_mapping,history
+audit,LoadFile,1,LoadID,uniqueidentifier,False,False,audit metadata,ETL load metadata,snapshot / load audit
+audit,LoadFile,2,FileName,nvarchar(128),False,False,audit metadata,ETL load metadata,snapshot / load audit
+audit,LoadFile,3,SHA256,char(64),False,False,audit metadata,ETL load metadata,snapshot / load audit
+audit,LoadFile,4,SourceRows,bigint,False,False,audit metadata,ETL load metadata,snapshot / load audit
+audit,LoadFile,5,StagedRows,bigint,False,False,audit metadata,ETL load metadata,snapshot / load audit
+audit,LoadRun,1,LoadID,uniqueidentifier,False,False,audit metadata,ETL load metadata,snapshot / load audit
+audit,LoadRun,2,StartedAtUTC,datetime2(3),False,False,audit metadata,ETL load metadata,snapshot / load audit
+audit,LoadRun,3,FinishedAtUTC,datetime2(3),True,False,audit metadata,ETL load metadata,snapshot / load audit
+audit,LoadRun,4,Status,varchar(20),False,False,audit metadata,ETL load metadata,snapshot / load audit
+audit,LoadRun,5,SourceFingerprint,char(64),False,False,audit metadata,ETL load metadata,snapshot / load audit
+audit,LoadRun,6,ErrorMessage,nvarchar(4000),True,False,audit metadata,ETL load metadata,snapshot / load audit
+audit,ValidationResult,1,ValidationID,bigint,False,True,audit metadata,ETL load metadata,snapshot / load audit
+audit,ValidationResult,2,LoadID,uniqueidentifier,False,False,audit metadata,ETL load metadata,snapshot / load audit
+audit,ValidationResult,3,CheckName,nvarchar(200),False,False,audit metadata,ETL load metadata,snapshot / load audit
+audit,ValidationResult,4,Status,varchar(20),False,False,audit metadata,ETL load metadata,snapshot / load audit
+audit,ValidationResult,5,ActualValue,nvarchar(200),True,False,audit metadata,ETL load metadata,snapshot / load audit
+audit,ValidationResult,6,ExpectedValue,nvarchar(200),True,False,audit metadata,ETL load metadata,snapshot / load audit
+audit,ValidationResult,7,Details,nvarchar(2000),True,False,audit metadata,ETL load metadata,snapshot / load audit
+audit,ValidationResult,8,CheckedAtUTC,datetime2(3),False,False,audit metadata,ETL load metadata,snapshot / load audit
+audit,WarehouseMetadata,1,ProjectName,nvarchar(128),False,False,audit metadata,ETL load metadata,snapshot / load audit
+audit,WarehouseMetadata,2,SchemaVersion,int,False,False,audit metadata,ETL load metadata,snapshot / load audit
+audit,WarehouseMetadata,3,CreatedAtUTC,datetime2(3),False,False,audit metadata,ETL load metadata,snapshot / load audit
+dw,DimCustomer,1,CustomerKey,int,False,True,one source customer_id; customer_unique_id is an identity attribute,sql/08_load_warehouse.sql: DimCustomer explicit INSERT/UPDATE mapping,Type 1 source snapshot
+dw,DimCustomer,2,CustomerID,varchar(32),False,False,one source customer_id; customer_unique_id is an identity attribute,s.customer_id; FROM stg.customers s LEFT JOIN dw.DimGeography g ON g.ZipCodePrefix=s.customer_zip_code_prefix,Type 1 source snapshot
+dw,DimCustomer,3,CustomerUniqueID,varchar(32),True,False,one source customer_id; customer_unique_id is an identity attribute,s.customer_unique_id; FROM stg.customers s LEFT JOIN dw.DimGeography g ON g.ZipCodePrefix=s.customer_zip_code_prefix,Type 1 source snapshot
+dw,DimCustomer,4,SourceZipCodePrefix,varchar(5),True,False,one source customer_id; customer_unique_id is an identity attribute,s.customer_zip_code_prefix; FROM stg.customers s LEFT JOIN dw.DimGeography g ON g.ZipCodePrefix=s.customer_zip_code_prefix,Type 1 source snapshot
+dw,DimCustomer,5,SourceCity,nvarchar(128),True,False,one source customer_id; customer_unique_id is an identity attribute,s.customer_city; FROM stg.customers s LEFT JOIN dw.DimGeography g ON g.ZipCodePrefix=s.customer_zip_code_prefix,Type 1 source snapshot
+dw,DimCustomer,6,SourceState,varchar(2),True,False,one source customer_id; customer_unique_id is an identity attribute,s.customer_state; FROM stg.customers s LEFT JOIN dw.DimGeography g ON g.ZipCodePrefix=s.customer_zip_code_prefix,Type 1 source snapshot
+dw,DimCustomer,7,GeographyKey,int,False,False,one source customer_id; customer_unique_id is an identity attribute,"COALESCE(g.GeographyKey,0); FROM stg.customers s LEFT JOIN dw.DimGeography g ON g.ZipCodePrefix=s.customer_zip_code_prefix",Type 1 source snapshot
+dw,DimCustomer,8,UnmatchedZip,bit,False,False,one source customer_id; customer_unique_id is an identity attribute,s.dq_unmatched_zip; FROM stg.customers s LEFT JOIN dw.DimGeography g ON g.ZipCodePrefix=s.customer_zip_code_prefix,Type 1 source snapshot
+dw,DimDate,1,DateKey,int,False,False,one calendar date; key 0 unknown,sql/08_load_warehouse.sql: DimDate explicit INSERT/UPDATE mapping,calendar
+dw,DimDate,2,FullDate,date,True,False,one calendar date; key 0 unknown,sql/08_load_warehouse.sql: DimDate explicit INSERT/UPDATE mapping,calendar
+dw,DimDate,3,Day,tinyint,True,False,one calendar date; key 0 unknown,sql/08_load_warehouse.sql: DimDate explicit INSERT/UPDATE mapping,calendar
+dw,DimDate,4,Month,tinyint,True,False,one calendar date; key 0 unknown,sql/08_load_warehouse.sql: DimDate explicit INSERT/UPDATE mapping,calendar
+dw,DimDate,5,MonthName,varchar(12),False,False,one calendar date; key 0 unknown,sql/08_load_warehouse.sql: DimDate explicit INSERT/UPDATE mapping,calendar
+dw,DimDate,6,Quarter,tinyint,True,False,one calendar date; key 0 unknown,sql/08_load_warehouse.sql: DimDate explicit INSERT/UPDATE mapping,calendar
+dw,DimDate,7,Year,smallint,True,False,one calendar date; key 0 unknown,sql/08_load_warehouse.sql: DimDate explicit INSERT/UPDATE mapping,calendar
+dw,DimDate,8,YearMonth,char(7),True,False,one calendar date; key 0 unknown,sql/08_load_warehouse.sql: DimDate explicit INSERT/UPDATE mapping,calendar
+dw,DimDate,9,DayOfWeek,tinyint,True,False,one calendar date; key 0 unknown,sql/08_load_warehouse.sql: DimDate explicit INSERT/UPDATE mapping,calendar
+dw,DimDate,10,DayName,varchar(12),False,False,one calendar date; key 0 unknown,sql/08_load_warehouse.sql: DimDate explicit INSERT/UPDATE mapping,calendar
+dw,DimDate,11,IsWeekend,bit,True,False,one calendar date; key 0 unknown,sql/08_load_warehouse.sql: DimDate explicit INSERT/UPDATE mapping,calendar
+dw,DimGeography,1,GeographyKey,int,False,True,one ZIP prefix; key 0 unknown,sql/08_load_warehouse.sql: DimGeography explicit INSERT/UPDATE mapping,Type 1 source snapshot
+dw,DimGeography,2,ZipCodePrefix,varchar(5),False,False,one ZIP prefix; key 0 unknown,z.zip; FROM (SELECT zip_code_prefix zip FROM stg.geolocation_zip_lookup UNION SELECT customer_zip_code_prefix FROM stg.customers UNION SELECT seller_zip_code_prefix FROM stg.sellers) z LEFT JOIN stg.geolocation_zip_lookup g ON g.zip_code_prefix=z.zip,Type 1 source snapshot
+dw,DimGeography,3,ApproximateCity,nvarchar(128),True,False,one ZIP prefix; key 0 unknown,g.geolocation_city; FROM (SELECT zip_code_prefix zip FROM stg.geolocation_zip_lookup UNION SELECT customer_zip_code_prefix FROM stg.customers UNION SELECT seller_zip_code_prefix FROM stg.sellers) z LEFT JOIN stg.geolocation_zip_lookup g ON g.zip_code_prefix=z.zip,Type 1 source snapshot
+dw,DimGeography,4,ApproximateState,varchar(2),True,False,one ZIP prefix; key 0 unknown,g.geolocation_state; FROM (SELECT zip_code_prefix zip FROM stg.geolocation_zip_lookup UNION SELECT customer_zip_code_prefix FROM stg.customers UNION SELECT seller_zip_code_prefix FROM stg.sellers) z LEFT JOIN stg.geolocation_zip_lookup g ON g.zip_code_prefix=z.zip,Type 1 source snapshot
+dw,DimGeography,5,Latitude,"decimal(28,20)",True,False,one ZIP prefix; key 0 unknown,g.geolocation_lat; FROM (SELECT zip_code_prefix zip FROM stg.geolocation_zip_lookup UNION SELECT customer_zip_code_prefix FROM stg.customers UNION SELECT seller_zip_code_prefix FROM stg.sellers) z LEFT JOIN stg.geolocation_zip_lookup g ON g.zip_code_prefix=z.zip,Type 1 source snapshot
+dw,DimGeography,6,Longitude,"decimal(28,20)",True,False,one ZIP prefix; key 0 unknown,g.geolocation_lng; FROM (SELECT zip_code_prefix zip FROM stg.geolocation_zip_lookup UNION SELECT customer_zip_code_prefix FROM stg.customers UNION SELECT seller_zip_code_prefix FROM stg.sellers) z LEFT JOIN stg.geolocation_zip_lookup g ON g.zip_code_prefix=z.zip,Type 1 source snapshot
+dw,DimGeography,7,LookupMatched,bit,False,False,one ZIP prefix; key 0 unknown,CAST(CASE WHEN g.zip_code_prefix IS NULL THEN 0 ELSE 1 END AS bit); FROM (SELECT zip_code_prefix zip FROM stg.geolocation_zip_lookup UNION SELECT customer_zip_code_prefix FROM stg.customers UNION SELECT seller_zip_code_prefix FROM stg.sellers) z LEFT JOIN stg.geolocation_zip_lookup g ON g.zip_code_prefix=z.zip,Type 1 source snapshot
+dw,DimGeography,8,ConflictingCities,bit,False,False,one ZIP prefix; key 0 unknown,"COALESCE(g.dq_conflicting_city_labels,0); FROM (SELECT zip_code_prefix zip FROM stg.geolocation_zip_lookup UNION SELECT customer_zip_code_prefix FROM stg.customers UNION SELECT seller_zip_code_prefix FROM stg.sellers) z LEFT JOIN stg.geolocation_zip_lookup g ON g.zip_code_prefix=z.zip",Type 1 source snapshot
+dw,DimGeography,9,ConflictingStates,bit,False,False,one ZIP prefix; key 0 unknown,"COALESCE(g.dq_conflicting_states,0); FROM (SELECT zip_code_prefix zip FROM stg.geolocation_zip_lookup UNION SELECT customer_zip_code_prefix FROM stg.customers UNION SELECT seller_zip_code_prefix FROM stg.sellers) z LEFT JOIN stg.geolocation_zip_lookup g ON g.zip_code_prefix=z.zip",Type 1 source snapshot
+dw,DimGeography,10,DistinctCityLabels,int,True,False,one ZIP prefix; key 0 unknown,g.distinct_city_labels; FROM (SELECT zip_code_prefix zip FROM stg.geolocation_zip_lookup UNION SELECT customer_zip_code_prefix FROM stg.customers UNION SELECT seller_zip_code_prefix FROM stg.sellers) z LEFT JOIN stg.geolocation_zip_lookup g ON g.zip_code_prefix=z.zip,Type 1 source snapshot
+dw,DimGeography,11,DistinctStateLabels,int,True,False,one ZIP prefix; key 0 unknown,g.distinct_states; FROM (SELECT zip_code_prefix zip FROM stg.geolocation_zip_lookup UNION SELECT customer_zip_code_prefix FROM stg.customers UNION SELECT seller_zip_code_prefix FROM stg.sellers) z LEFT JOIN stg.geolocation_zip_lookup g ON g.zip_code_prefix=z.zip,Type 1 source snapshot
+dw,DimOrderStatus,1,OrderStatusKey,int,False,True,one order_status,sql/08_load_warehouse.sql: DimOrderStatus explicit INSERT/UPDATE mapping,Type 1 source snapshot
+dw,DimOrderStatus,2,OrderStatus,varchar(32),False,False,one order_status,order_status; FROM (SELECT DISTINCT order_status FROM stg.orders) s,Type 1 source snapshot
+dw,DimPaymentType,1,PaymentTypeKey,int,False,True,one payment_type,sql/08_load_warehouse.sql: DimPaymentType explicit INSERT/UPDATE mapping,Type 1 source snapshot
+dw,DimPaymentType,2,PaymentType,varchar(32),False,False,one payment_type,payment_type; FROM (SELECT DISTINCT payment_type FROM stg.payments) s,Type 1 source snapshot
+dw,DimProduct,1,ProductKey,int,False,True,one product_id,sql/08_load_warehouse.sql: DimProduct explicit INSERT/UPDATE mapping,Type 1 source snapshot
+dw,DimProduct,2,ProductID,varchar(32),False,False,one product_id,s.product_id; FROM stg.products s,Type 1 source snapshot
+dw,DimProduct,3,SourceCategory,nvarchar(128),True,False,one product_id,s.product_category_name; FROM stg.products s,Type 1 source snapshot
+dw,DimProduct,4,EnglishCategory,nvarchar(128),True,False,one product_id,s.product_category_name_english; FROM stg.products s,Type 1 source snapshot
+dw,DimProduct,5,CategoryLabel,nvarchar(160),False,False,one product_id,CASE WHEN s.dq_category_missing=1 THEN N'Unknown (missing category)' WHEN s.dq_category_untranslated=1 THEN N'Untranslated: '+s.product_category_name ELSE s.product_category_name_english END; FROM stg.products s,Type 1 source snapshot
+dw,DimProduct,6,CategoryMissing,bit,False,False,one product_id,s.dq_category_missing; FROM stg.products s,Type 1 source snapshot
+dw,DimProduct,7,CategoryUntranslated,bit,False,False,one product_id,s.dq_category_untranslated; FROM stg.products s,Type 1 source snapshot
+dw,DimProduct,8,NameLength,int,True,False,one product_id,s.product_name_lenght; FROM stg.products s,Type 1 source snapshot
+dw,DimProduct,9,DescriptionLength,int,True,False,one product_id,s.product_description_lenght; FROM stg.products s,Type 1 source snapshot
+dw,DimProduct,10,PhotosQuantity,int,True,False,one product_id,s.product_photos_qty; FROM stg.products s,Type 1 source snapshot
+dw,DimProduct,11,WeightGrams,int,True,False,one product_id,s.product_weight_g; FROM stg.products s,Type 1 source snapshot
+dw,DimProduct,12,LengthCM,int,True,False,one product_id,s.product_length_cm; FROM stg.products s,Type 1 source snapshot
+dw,DimProduct,13,HeightCM,int,True,False,one product_id,s.product_height_cm; FROM stg.products s,Type 1 source snapshot
+dw,DimProduct,14,WidthCM,int,True,False,one product_id,s.product_width_cm; FROM stg.products s,Type 1 source snapshot
+dw,DimSeller,1,SellerKey,int,False,True,one seller_id,sql/08_load_warehouse.sql: DimSeller explicit INSERT/UPDATE mapping,Type 1 source snapshot
+dw,DimSeller,2,SellerID,varchar(32),False,False,one seller_id,s.seller_id; FROM stg.sellers s LEFT JOIN dw.DimGeography g ON g.ZipCodePrefix=s.seller_zip_code_prefix,Type 1 source snapshot
+dw,DimSeller,3,SourceZipCodePrefix,varchar(5),True,False,one seller_id,s.seller_zip_code_prefix; FROM stg.sellers s LEFT JOIN dw.DimGeography g ON g.ZipCodePrefix=s.seller_zip_code_prefix,Type 1 source snapshot
+dw,DimSeller,4,SourceCity,nvarchar(128),True,False,one seller_id,s.seller_city; FROM stg.sellers s LEFT JOIN dw.DimGeography g ON g.ZipCodePrefix=s.seller_zip_code_prefix,Type 1 source snapshot
+dw,DimSeller,5,SourceState,varchar(2),True,False,one seller_id,s.seller_state; FROM stg.sellers s LEFT JOIN dw.DimGeography g ON g.ZipCodePrefix=s.seller_zip_code_prefix,Type 1 source snapshot
+dw,DimSeller,6,GeographyKey,int,False,False,one seller_id,"COALESCE(g.GeographyKey,0); FROM stg.sellers s LEFT JOIN dw.DimGeography g ON g.ZipCodePrefix=s.seller_zip_code_prefix",Type 1 source snapshot
+dw,DimSeller,7,UnmatchedZip,bit,False,False,one seller_id,s.dq_unmatched_zip; FROM stg.sellers s LEFT JOIN dw.DimGeography g ON g.ZipCodePrefix=s.seller_zip_code_prefix,Type 1 source snapshot
+dw,FactOrderItems,1,OrderID,varchar(32),False,False,"one (order_id,order_item_id)",s.order_id; FROM stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id,snapshot / load audit
+dw,FactOrderItems,2,OrderItemID,varchar(10),False,False,"one (order_id,order_item_id)",s.order_item_id; FROM stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id,snapshot / load audit
+dw,FactOrderItems,3,OrderKey,int,False,False,"one (order_id,order_item_id)",o.OrderKey; FROM stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id,snapshot / load audit
+dw,FactOrderItems,4,SourceProductID,varchar(32),False,False,"one (order_id,order_item_id)",s.product_id; FROM stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id,snapshot / load audit
+dw,FactOrderItems,5,SourceSellerID,varchar(32),False,False,"one (order_id,order_item_id)",s.seller_id; FROM stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id,snapshot / load audit
+dw,FactOrderItems,6,ProductKey,int,False,False,"one (order_id,order_item_id)","COALESCE(p.ProductKey,0); FROM stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id",snapshot / load audit
+dw,FactOrderItems,7,SellerKey,int,False,False,"one (order_id,order_item_id)","COALESCE(v.SellerKey,0); FROM stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id",snapshot / load audit
+dw,FactOrderItems,8,CustomerKey,int,False,False,"one (order_id,order_item_id)",o.CustomerKey; FROM stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id,snapshot / load audit
+dw,FactOrderItems,9,CustomerGeographyKey,int,False,False,"one (order_id,order_item_id)",o.CustomerGeographyKey; FROM stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id,snapshot / load audit
+dw,FactOrderItems,10,SellerGeographyKey,int,False,False,"one (order_id,order_item_id)","COALESCE(v.GeographyKey,0); FROM stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id",snapshot / load audit
+dw,FactOrderItems,11,OrderStatusKey,int,False,False,"one (order_id,order_item_id)",o.OrderStatusKey; FROM stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id,snapshot / load audit
+dw,FactOrderItems,12,PurchaseDateKey,int,False,False,"one (order_id,order_item_id)",o.PurchaseDateKey; FROM stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id,snapshot / load audit
+dw,FactOrderItems,13,ShippingLimitDateKey,int,False,False,"one (order_id,order_item_id)","COALESCE(CONVERT(int,CONVERT(char(8),s.shipping_limit_date,112)),0); FROM stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id",snapshot / load audit
+dw,FactOrderItems,14,ShippingLimitTimestamp,datetime2(0),True,False,"one (order_id,order_item_id)",s.shipping_limit_date; FROM stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id,snapshot / load audit
+dw,FactOrderItems,15,ItemPrice,"decimal(19,2)",False,False,"one (order_id,order_item_id)",s.price; FROM stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id,snapshot / load audit
+dw,FactOrderItems,16,FreightValue,"decimal(19,2)",False,False,"one (order_id,order_item_id)",s.freight_value; FROM stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id,snapshot / load audit
+dw,FactOrderItems,17,SalesEligible,bit,False,False,"one (order_id,order_item_id)",o.SalesEligible; FROM stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id,snapshot / load audit
+dw,FactOrderItems,18,SourceQualityFlagCount,int,False,False,"one (order_id,order_item_id)","CONVERT(int,s.[dq_invalid_shipping_limit_date])+CONVERT(int,s.[dq_invalid_price])+CONVERT(int,s.[dq_invalid_freight_value])+CONVERT(int,s.[dq_shipping_limit_before_purchase])+CONVERT(int,s.[dq_shipping_limit_after_purchase_year_range])+CONVERT(int,s.[dq_negative_price])+CONVERT(int,s.[dq_zero_price])+CONVERT(int,s.[dq_negative_freight_value])+CONVERT(int,s.[dq_zero_freight_value]); FROM stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id",snapshot / load audit
+dw,FactOrderItems,19,LoadID,uniqueidentifier,False,False,"one (order_id,order_item_id)",s.LoadID; FROM stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id,snapshot / load audit
+dw,FactOrders,1,OrderKey,int,False,True,one order_id,sql/08_load_warehouse.sql: FactOrders explicit INSERT/UPDATE mapping,snapshot / load audit
+dw,FactOrders,2,OrderID,varchar(32),False,False,one order_id,"s.order_id; FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactOrders,3,SourceCustomerID,varchar(32),False,False,one order_id,"s.customer_id; FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactOrders,4,CustomerKey,int,False,False,one order_id,"COALESCE(c.CustomerKey,0); FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactOrders,5,CustomerGeographyKey,int,False,False,one order_id,"COALESCE(c.GeographyKey,0); FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactOrders,6,OrderStatusKey,int,False,False,one order_id,"COALESCE(os.OrderStatusKey,0); FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactOrders,7,PurchaseDateKey,int,False,False,one order_id,"COALESCE(CONVERT(int,CONVERT(char(8),s.order_purchase_timestamp,112)),0); FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactOrders,8,ApprovalDateKey,int,False,False,one order_id,"COALESCE(CONVERT(int,CONVERT(char(8),s.order_approved_at,112)),0); FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactOrders,9,CarrierDateKey,int,False,False,one order_id,"COALESCE(CONVERT(int,CONVERT(char(8),s.order_delivered_carrier_date,112)),0); FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactOrders,10,ActualDeliveryDateKey,int,False,False,one order_id,"COALESCE(CONVERT(int,CONVERT(char(8),s.order_delivered_customer_date,112)),0); FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactOrders,11,EstimatedDeliveryDateKey,int,False,False,one order_id,"COALESCE(CONVERT(int,CONVERT(char(8),s.order_estimated_delivery_date,112)),0); FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactOrders,12,PurchaseTimestamp,datetime2(0),True,False,one order_id,"s.order_purchase_timestamp; FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactOrders,13,ApprovalTimestamp,datetime2(0),True,False,one order_id,"s.order_approved_at; FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactOrders,14,CarrierTimestamp,datetime2(0),True,False,one order_id,"s.order_delivered_carrier_date; FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactOrders,15,ActualDeliveryTimestamp,datetime2(0),True,False,one order_id,"s.order_delivered_customer_date; FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactOrders,16,EstimatedDeliveryTimestamp,datetime2(0),True,False,one order_id,"s.order_estimated_delivery_date; FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactOrders,17,MerchandiseRevenue,"decimal(19,2)",True,False,one order_id,"i.Revenue; FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactOrders,18,FreightAmount,"decimal(19,2)",True,False,one order_id,"i.Freight; FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactOrders,19,ItemCount,int,False,False,one order_id,"COALESCE(i.ItemCount,0); FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactOrders,20,PaymentRecordCount,int,False,False,one order_id,"COALESCE(p.PaymentCount,0); FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactOrders,21,ReviewRecordCount,int,False,False,one order_id,"COALESCE(r.ReviewCount,0); FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactOrders,22,SalesEligible,bit,False,False,one order_id,"CONVERT(bit,CASE WHEN s.order_status='delivered' AND i.ItemCount>0 THEN 1 ELSE 0 END); FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactOrders,23,OnTimeEligible,bit,False,False,one order_id,"v.OnTimeEligible; FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactOrders,24,IsOnTime,bit,True,False,one order_id,"CASE WHEN v.OnTimeEligible=1 THEN CASE WHEN CAST(s.order_delivered_customer_date AS date)<=CAST(s.order_estimated_delivery_date AS date) THEN 1 ELSE 0 END END; FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactOrders,25,DurationEligible,bit,False,False,one order_id,"v.DurationEligible; FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactOrders,26,DeliveryDurationDays,"decimal(20,10)",True,False,one order_id,"CASE WHEN v.DurationEligible=1 THEN CONVERT(decimal(20,10),DATEDIFF_BIG(second,s.order_purchase_timestamp,s.order_delivered_customer_date)/86400.0000000000) END; FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactOrders,27,InvalidChronology,bit,False,False,one order_id,"q.InvalidChronology; FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactOrders,28,MissingPurchaseTimestamp,bit,False,False,one order_id,"CONVERT(bit,CASE WHEN s.order_purchase_timestamp IS NULL THEN 1 ELSE 0 END); FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactOrders,29,MissingApprovalTimestamp,bit,False,False,one order_id,"CONVERT(bit,CASE WHEN s.order_approved_at IS NULL THEN 1 ELSE 0 END); FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactOrders,30,MissingCarrierTimestamp,bit,False,False,one order_id,"CONVERT(bit,CASE WHEN s.order_delivered_carrier_date IS NULL THEN 1 ELSE 0 END); FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactOrders,31,MissingActualDeliveryTimestamp,bit,False,False,one order_id,"CONVERT(bit,CASE WHEN s.order_delivered_customer_date IS NULL THEN 1 ELSE 0 END); FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactOrders,32,MissingEstimatedDeliveryTimestamp,bit,False,False,one order_id,"CONVERT(bit,CASE WHEN s.order_estimated_delivery_date IS NULL THEN 1 ELSE 0 END); FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactOrders,33,SourceQualityFlagCount,int,False,False,one order_id,"CONVERT(int,s.[dq_invalid_order_purchase_timestamp])+CONVERT(int,s.[dq_invalid_order_approved_at])+CONVERT(int,s.[dq_invalid_order_delivered_carrier_date])+CONVERT(int,s.[dq_invalid_order_delivered_customer_date])+CONVERT(int,s.[dq_invalid_order_estimated_delivery_date])+CONVERT(int,s.[dq_no_items])+CONVERT(int,s.[dq_no_payments])+CONVERT(int,s.[dq_no_reviews])+CONVERT(int,s.[dq_missing_order_approved_at])+CONVERT(int,s.[dq_delivered_missing_order_approved_at])+CONVERT(int,s.[dq_missing_order_delivered_carrier_date])+CONVERT(int,s.[dq_delivered_missing_order_delivered_carrier_date])+CONVERT(int,s.[dq_missing_order_delivered_customer_date])+CONVERT(int,s.[dq_delivered_missing_order_delivered_customer_date])+CONVERT(int,s.[dq_approval_before_purchase])+CONVERT(int,s.[dq_carrier_before_purchase])+CONVERT(int,s.[dq_delivery_before_purchase])+CONVERT(int,s.[dq_carrier_before_approval])+CONVERT(int,s.[dq_delivery_before_carrier]); FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactOrders,34,LoadID,uniqueidentifier,False,False,one order_id,"s.LoadID; FROM stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v",snapshot / load audit
+dw,FactPayments,1,OrderID,varchar(32),False,False,"one (order_id,payment_sequential)",s.order_id; FROM stg.payments s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimPaymentType p ON p.PaymentType=s.payment_type,snapshot / load audit
+dw,FactPayments,2,PaymentSequential,varchar(10),False,False,"one (order_id,payment_sequential)",s.payment_sequential; FROM stg.payments s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimPaymentType p ON p.PaymentType=s.payment_type,snapshot / load audit
+dw,FactPayments,3,OrderKey,int,False,False,"one (order_id,payment_sequential)",o.OrderKey; FROM stg.payments s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimPaymentType p ON p.PaymentType=s.payment_type,snapshot / load audit
+dw,FactPayments,4,PaymentTypeKey,int,False,False,"one (order_id,payment_sequential)","COALESCE(p.PaymentTypeKey,0); FROM stg.payments s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimPaymentType p ON p.PaymentType=s.payment_type",snapshot / load audit
+dw,FactPayments,5,CustomerKey,int,False,False,"one (order_id,payment_sequential)",o.CustomerKey; FROM stg.payments s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimPaymentType p ON p.PaymentType=s.payment_type,snapshot / load audit
+dw,FactPayments,6,CustomerGeographyKey,int,False,False,"one (order_id,payment_sequential)",o.CustomerGeographyKey; FROM stg.payments s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimPaymentType p ON p.PaymentType=s.payment_type,snapshot / load audit
+dw,FactPayments,7,OrderStatusKey,int,False,False,"one (order_id,payment_sequential)",o.OrderStatusKey; FROM stg.payments s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimPaymentType p ON p.PaymentType=s.payment_type,snapshot / load audit
+dw,FactPayments,8,PurchaseDateKey,int,False,False,"one (order_id,payment_sequential)",o.PurchaseDateKey; FROM stg.payments s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimPaymentType p ON p.PaymentType=s.payment_type,snapshot / load audit
+dw,FactPayments,9,Installments,int,True,False,"one (order_id,payment_sequential)",s.payment_installments; FROM stg.payments s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimPaymentType p ON p.PaymentType=s.payment_type,snapshot / load audit
+dw,FactPayments,10,PaymentAmount,"decimal(19,2)",False,False,"one (order_id,payment_sequential)",s.payment_value; FROM stg.payments s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimPaymentType p ON p.PaymentType=s.payment_type,snapshot / load audit
+dw,FactPayments,11,SalesEligible,bit,False,False,"one (order_id,payment_sequential)",o.SalesEligible; FROM stg.payments s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimPaymentType p ON p.PaymentType=s.payment_type,snapshot / load audit
+dw,FactPayments,12,SourceQualityFlagCount,int,False,False,"one (order_id,payment_sequential)","CONVERT(int,s.[dq_invalid_payment_installments])+CONVERT(int,s.[dq_invalid_payment_value])+CONVERT(int,s.[dq_negative_payment_value])+CONVERT(int,s.[dq_zero_payment_value])+CONVERT(int,s.[dq_nonpositive_installments])+CONVERT(int,s.[dq_noninteger_payment_installments]); FROM stg.payments s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimPaymentType p ON p.PaymentType=s.payment_type",snapshot / load audit
+dw,FactPayments,13,LoadID,uniqueidentifier,False,False,"one (order_id,payment_sequential)",s.LoadID; FROM stg.payments s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimPaymentType p ON p.PaymentType=s.payment_type,snapshot / load audit
+dw,FactReviews,1,ReviewID,varchar(32),False,False,"one (review_id,order_id)",s.review_id; FROM stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id,snapshot / load audit
+dw,FactReviews,2,OrderID,varchar(32),False,False,"one (review_id,order_id)",s.order_id; FROM stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id,snapshot / load audit
+dw,FactReviews,3,OrderKey,int,False,False,"one (review_id,order_id)",o.OrderKey; FROM stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id,snapshot / load audit
+dw,FactReviews,4,CustomerKey,int,False,False,"one (review_id,order_id)",o.CustomerKey; FROM stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id,snapshot / load audit
+dw,FactReviews,5,CustomerGeographyKey,int,False,False,"one (review_id,order_id)",o.CustomerGeographyKey; FROM stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id,snapshot / load audit
+dw,FactReviews,6,OrderStatusKey,int,False,False,"one (review_id,order_id)",o.OrderStatusKey; FROM stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id,snapshot / load audit
+dw,FactReviews,7,PurchaseDateKey,int,False,False,"one (review_id,order_id)",o.PurchaseDateKey; FROM stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id,snapshot / load audit
+dw,FactReviews,8,ReviewCreationDateKey,int,False,False,"one (review_id,order_id)","COALESCE(CONVERT(int,CONVERT(char(8),s.review_creation_date,112)),0); FROM stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id",snapshot / load audit
+dw,FactReviews,9,ReviewAnswerDateKey,int,False,False,"one (review_id,order_id)","COALESCE(CONVERT(int,CONVERT(char(8),s.review_answer_timestamp,112)),0); FROM stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id",snapshot / load audit
+dw,FactReviews,10,ReviewCreationTimestamp,datetime2(0),True,False,"one (review_id,order_id)",s.review_creation_date; FROM stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id,snapshot / load audit
+dw,FactReviews,11,ReviewAnswerTimestamp,datetime2(0),True,False,"one (review_id,order_id)",s.review_answer_timestamp; FROM stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id,snapshot / load audit
+dw,FactReviews,12,ReviewScore,int,True,False,"one (review_id,order_id)",s.review_score; FROM stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id,snapshot / load audit
+dw,FactReviews,13,ValidScore,bit,False,False,"one (review_id,order_id)","CONVERT(bit,CASE WHEN s.review_score BETWEEN 1 AND 5 THEN 1 ELSE 0 END); FROM stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id",snapshot / load audit
+dw,FactReviews,14,HasTitle,bit,False,False,"one (review_id,order_id)","CONVERT(bit,CASE WHEN s.review_comment_title IS NULL THEN 0 ELSE 1 END); FROM stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id",snapshot / load audit
+dw,FactReviews,15,HasMessage,bit,False,False,"one (review_id,order_id)","CONVERT(bit,CASE WHEN s.review_comment_message IS NULL THEN 0 ELSE 1 END); FROM stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id",snapshot / load audit
+dw,FactReviews,16,SalesEligible,bit,False,False,"one (review_id,order_id)",o.SalesEligible; FROM stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id,snapshot / load audit
+dw,FactReviews,17,SourceQualityFlagCount,int,False,False,"one (review_id,order_id)","CONVERT(int,s.[dq_invalid_review_creation_date])+CONVERT(int,s.[dq_invalid_review_answer_timestamp])+CONVERT(int,s.[dq_invalid_review_score])+CONVERT(int,s.[dq_answer_before_creation])+CONVERT(int,s.[dq_noninteger_review_score])+CONVERT(int,s.[dq_score_out_of_range])+CONVERT(int,s.[dq_repeated_review_id]); FROM stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id",snapshot / load audit
+dw,FactReviews,18,LoadID,uniqueidentifier,False,False,"one (review_id,order_id)",s.LoadID; FROM stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id,snapshot / load audit
+stg,category_translations,1,product_category_name,nvarchar(128),False,False,cleaned source snapshot,data/processed/category_translations_clean.csv::product_category_name,snapshot / load audit
+stg,category_translations,2,product_category_name_english,nvarchar(128),False,False,cleaned source snapshot,data/processed/category_translations_clean.csv::product_category_name_english,snapshot / load audit
+stg,category_translations,3,LoadID,uniqueidentifier,False,False,cleaned source snapshot,ETL load metadata,snapshot / load audit
+stg,category_translations,4,SourceRow,bigint,False,False,cleaned source snapshot,ETL load metadata,snapshot / load audit
+stg,category_translations,5,LoadedAtUTC,datetime2(3),False,False,cleaned source snapshot,ETL load metadata,snapshot / load audit
+stg,customers,1,customer_id,varchar(32),False,False,cleaned source snapshot,data/processed/customers_clean.csv::customer_id,snapshot / load audit
+stg,customers,2,customer_unique_id,varchar(32),False,False,cleaned source snapshot,data/processed/customers_clean.csv::customer_unique_id,snapshot / load audit
+stg,customers,3,customer_zip_code_prefix,varchar(5),False,False,cleaned source snapshot,data/processed/customers_clean.csv::customer_zip_code_prefix,snapshot / load audit
+stg,customers,4,customer_city,nvarchar(128),False,False,cleaned source snapshot,data/processed/customers_clean.csv::customer_city,snapshot / load audit
+stg,customers,5,customer_state,varchar(2),False,False,cleaned source snapshot,data/processed/customers_clean.csv::customer_state,snapshot / load audit
+stg,customers,6,dq_unmatched_zip,bit,False,False,cleaned source snapshot,data/processed/customers_clean.csv::dq_unmatched_zip,snapshot / load audit
+stg,customers,7,dq_invalid_zip_format,bit,False,False,cleaned source snapshot,data/processed/customers_clean.csv::dq_invalid_zip_format,snapshot / load audit
+stg,customers,8,LoadID,uniqueidentifier,False,False,cleaned source snapshot,ETL load metadata,snapshot / load audit
+stg,customers,9,SourceRow,bigint,False,False,cleaned source snapshot,ETL load metadata,snapshot / load audit
+stg,customers,10,LoadedAtUTC,datetime2(3),False,False,cleaned source snapshot,ETL load metadata,snapshot / load audit
+stg,geolocation,1,geolocation_zip_code_prefix,varchar(5),False,False,cleaned source snapshot,data/processed/geolocation_clean.csv::geolocation_zip_code_prefix,snapshot / load audit
+stg,geolocation,2,geolocation_lat,"decimal(28,20)",False,False,cleaned source snapshot,data/processed/geolocation_clean.csv::geolocation_lat,snapshot / load audit
+stg,geolocation,3,geolocation_lng,"decimal(28,20)",False,False,cleaned source snapshot,data/processed/geolocation_clean.csv::geolocation_lng,snapshot / load audit
+stg,geolocation,4,geolocation_city,nvarchar(128),False,False,cleaned source snapshot,data/processed/geolocation_clean.csv::geolocation_city,snapshot / load audit
+stg,geolocation,5,geolocation_state,varchar(2),False,False,cleaned source snapshot,data/processed/geolocation_clean.csv::geolocation_state,snapshot / load audit
+stg,geolocation,6,dq_invalid_geolocation_lat,bit,False,False,cleaned source snapshot,data/processed/geolocation_clean.csv::dq_invalid_geolocation_lat,snapshot / load audit
+stg,geolocation,7,dq_invalid_geolocation_lng,bit,False,False,cleaned source snapshot,data/processed/geolocation_clean.csv::dq_invalid_geolocation_lng,snapshot / load audit
+stg,geolocation,8,dq_invalid_zip_format,bit,False,False,cleaned source snapshot,data/processed/geolocation_clean.csv::dq_invalid_zip_format,snapshot / load audit
+stg,geolocation,9,dq_invalid_coordinate,bit,False,False,cleaned source snapshot,data/processed/geolocation_clean.csv::dq_invalid_coordinate,snapshot / load audit
+stg,geolocation,10,LoadID,uniqueidentifier,False,False,cleaned source snapshot,ETL load metadata,snapshot / load audit
+stg,geolocation,11,SourceRow,bigint,False,False,cleaned source snapshot,ETL load metadata,snapshot / load audit
+stg,geolocation,12,LoadedAtUTC,datetime2(3),False,False,cleaned source snapshot,ETL load metadata,snapshot / load audit
+stg,geolocation_zip_lookup,1,zip_code_prefix,varchar(5),False,False,cleaned source snapshot,data/processed/geolocation_zip_lookup.csv::zip_code_prefix,snapshot / load audit
+stg,geolocation_zip_lookup,2,geolocation_state,varchar(2),False,False,cleaned source snapshot,data/processed/geolocation_zip_lookup.csv::geolocation_state,snapshot / load audit
+stg,geolocation_zip_lookup,3,geolocation_city,nvarchar(128),False,False,cleaned source snapshot,data/processed/geolocation_zip_lookup.csv::geolocation_city,snapshot / load audit
+stg,geolocation_zip_lookup,4,geolocation_lat,"decimal(28,20)",False,False,cleaned source snapshot,data/processed/geolocation_zip_lookup.csv::geolocation_lat,snapshot / load audit
+stg,geolocation_zip_lookup,5,geolocation_lng,"decimal(28,20)",False,False,cleaned source snapshot,data/processed/geolocation_zip_lookup.csv::geolocation_lng,snapshot / load audit
+stg,geolocation_zip_lookup,6,distinct_observations,int,False,False,cleaned source snapshot,data/processed/geolocation_zip_lookup.csv::distinct_observations,snapshot / load audit
+stg,geolocation_zip_lookup,7,distinct_city_labels,int,False,False,cleaned source snapshot,data/processed/geolocation_zip_lookup.csv::distinct_city_labels,snapshot / load audit
+stg,geolocation_zip_lookup,8,distinct_states,int,False,False,cleaned source snapshot,data/processed/geolocation_zip_lookup.csv::distinct_states,snapshot / load audit
+stg,geolocation_zip_lookup,9,distinct_coordinate_pairs,int,False,False,cleaned source snapshot,data/processed/geolocation_zip_lookup.csv::distinct_coordinate_pairs,snapshot / load audit
+stg,geolocation_zip_lookup,10,coordinate_repetitions_excess,int,False,False,cleaned source snapshot,data/processed/geolocation_zip_lookup.csv::coordinate_repetitions_excess,snapshot / load audit
+stg,geolocation_zip_lookup,11,source_rows,int,False,False,cleaned source snapshot,data/processed/geolocation_zip_lookup.csv::source_rows,snapshot / load audit
+stg,geolocation_zip_lookup,12,dq_conflicting_city_labels,bit,False,False,cleaned source snapshot,data/processed/geolocation_zip_lookup.csv::dq_conflicting_city_labels,snapshot / load audit
+stg,geolocation_zip_lookup,13,dq_conflicting_states,bit,False,False,cleaned source snapshot,data/processed/geolocation_zip_lookup.csv::dq_conflicting_states,snapshot / load audit
+stg,geolocation_zip_lookup,14,dq_missing_coordinate,bit,False,False,cleaned source snapshot,data/processed/geolocation_zip_lookup.csv::dq_missing_coordinate,snapshot / load audit
+stg,geolocation_zip_lookup,15,LoadID,uniqueidentifier,False,False,cleaned source snapshot,ETL load metadata,snapshot / load audit
+stg,geolocation_zip_lookup,16,SourceRow,bigint,False,False,cleaned source snapshot,ETL load metadata,snapshot / load audit
+stg,geolocation_zip_lookup,17,LoadedAtUTC,datetime2(3),False,False,cleaned source snapshot,ETL load metadata,snapshot / load audit
+stg,order_items,1,order_id,varchar(32),False,False,cleaned source snapshot,data/processed/order_items_clean.csv::order_id,snapshot / load audit
+stg,order_items,2,order_item_id,varchar(10),False,False,cleaned source snapshot,data/processed/order_items_clean.csv::order_item_id,snapshot / load audit
+stg,order_items,3,product_id,varchar(32),False,False,cleaned source snapshot,data/processed/order_items_clean.csv::product_id,snapshot / load audit
+stg,order_items,4,seller_id,varchar(32),False,False,cleaned source snapshot,data/processed/order_items_clean.csv::seller_id,snapshot / load audit
+stg,order_items,5,shipping_limit_date,datetime2(0),True,False,cleaned source snapshot,data/processed/order_items_clean.csv::shipping_limit_date,snapshot / load audit
+stg,order_items,6,price,"decimal(19,2)",False,False,cleaned source snapshot,data/processed/order_items_clean.csv::price,snapshot / load audit
+stg,order_items,7,freight_value,"decimal(19,2)",False,False,cleaned source snapshot,data/processed/order_items_clean.csv::freight_value,snapshot / load audit
+stg,order_items,8,dq_invalid_shipping_limit_date,bit,False,False,cleaned source snapshot,data/processed/order_items_clean.csv::dq_invalid_shipping_limit_date,snapshot / load audit
+stg,order_items,9,dq_invalid_price,bit,False,False,cleaned source snapshot,data/processed/order_items_clean.csv::dq_invalid_price,snapshot / load audit
+stg,order_items,10,dq_invalid_freight_value,bit,False,False,cleaned source snapshot,data/processed/order_items_clean.csv::dq_invalid_freight_value,snapshot / load audit
+stg,order_items,11,dq_shipping_limit_before_purchase,bit,False,False,cleaned source snapshot,data/processed/order_items_clean.csv::dq_shipping_limit_before_purchase,snapshot / load audit
+stg,order_items,12,dq_shipping_limit_after_purchase_year_range,bit,False,False,cleaned source snapshot,data/processed/order_items_clean.csv::dq_shipping_limit_after_purchase_year_range,snapshot / load audit
+stg,order_items,13,dq_negative_price,bit,False,False,cleaned source snapshot,data/processed/order_items_clean.csv::dq_negative_price,snapshot / load audit
+stg,order_items,14,dq_zero_price,bit,False,False,cleaned source snapshot,data/processed/order_items_clean.csv::dq_zero_price,snapshot / load audit
+stg,order_items,15,dq_negative_freight_value,bit,False,False,cleaned source snapshot,data/processed/order_items_clean.csv::dq_negative_freight_value,snapshot / load audit
+stg,order_items,16,dq_zero_freight_value,bit,False,False,cleaned source snapshot,data/processed/order_items_clean.csv::dq_zero_freight_value,snapshot / load audit
+stg,order_items,17,LoadID,uniqueidentifier,False,False,cleaned source snapshot,ETL load metadata,snapshot / load audit
+stg,order_items,18,SourceRow,bigint,False,False,cleaned source snapshot,ETL load metadata,snapshot / load audit
+stg,order_items,19,LoadedAtUTC,datetime2(3),False,False,cleaned source snapshot,ETL load metadata,snapshot / load audit
+stg,orders,1,order_id,varchar(32),False,False,cleaned source snapshot,data/processed/orders_clean.csv::order_id,snapshot / load audit
+stg,orders,2,customer_id,varchar(32),False,False,cleaned source snapshot,data/processed/orders_clean.csv::customer_id,snapshot / load audit
+stg,orders,3,order_status,varchar(32),False,False,cleaned source snapshot,data/processed/orders_clean.csv::order_status,snapshot / load audit
+stg,orders,4,order_purchase_timestamp,datetime2(0),True,False,cleaned source snapshot,data/processed/orders_clean.csv::order_purchase_timestamp,snapshot / load audit
+stg,orders,5,order_approved_at,datetime2(0),True,False,cleaned source snapshot,data/processed/orders_clean.csv::order_approved_at,snapshot / load audit
+stg,orders,6,order_delivered_carrier_date,datetime2(0),True,False,cleaned source snapshot,data/processed/orders_clean.csv::order_delivered_carrier_date,snapshot / load audit
+stg,orders,7,order_delivered_customer_date,datetime2(0),True,False,cleaned source snapshot,data/processed/orders_clean.csv::order_delivered_customer_date,snapshot / load audit
+stg,orders,8,order_estimated_delivery_date,datetime2(0),True,False,cleaned source snapshot,data/processed/orders_clean.csv::order_estimated_delivery_date,snapshot / load audit
+stg,orders,9,dq_invalid_order_purchase_timestamp,bit,False,False,cleaned source snapshot,data/processed/orders_clean.csv::dq_invalid_order_purchase_timestamp,snapshot / load audit
+stg,orders,10,dq_invalid_order_approved_at,bit,False,False,cleaned source snapshot,data/processed/orders_clean.csv::dq_invalid_order_approved_at,snapshot / load audit
+stg,orders,11,dq_invalid_order_delivered_carrier_date,bit,False,False,cleaned source snapshot,data/processed/orders_clean.csv::dq_invalid_order_delivered_carrier_date,snapshot / load audit
+stg,orders,12,dq_invalid_order_delivered_customer_date,bit,False,False,cleaned source snapshot,data/processed/orders_clean.csv::dq_invalid_order_delivered_customer_date,snapshot / load audit
+stg,orders,13,dq_invalid_order_estimated_delivery_date,bit,False,False,cleaned source snapshot,data/processed/orders_clean.csv::dq_invalid_order_estimated_delivery_date,snapshot / load audit
+stg,orders,14,dq_no_items,bit,False,False,cleaned source snapshot,data/processed/orders_clean.csv::dq_no_items,snapshot / load audit
+stg,orders,15,dq_no_payments,bit,False,False,cleaned source snapshot,data/processed/orders_clean.csv::dq_no_payments,snapshot / load audit
+stg,orders,16,dq_no_reviews,bit,False,False,cleaned source snapshot,data/processed/orders_clean.csv::dq_no_reviews,snapshot / load audit
+stg,orders,17,dq_missing_order_approved_at,bit,False,False,cleaned source snapshot,data/processed/orders_clean.csv::dq_missing_order_approved_at,snapshot / load audit
+stg,orders,18,dq_delivered_missing_order_approved_at,bit,False,False,cleaned source snapshot,data/processed/orders_clean.csv::dq_delivered_missing_order_approved_at,snapshot / load audit
+stg,orders,19,dq_missing_order_delivered_carrier_date,bit,False,False,cleaned source snapshot,data/processed/orders_clean.csv::dq_missing_order_delivered_carrier_date,snapshot / load audit
+stg,orders,20,dq_delivered_missing_order_delivered_carrier_date,bit,False,False,cleaned source snapshot,data/processed/orders_clean.csv::dq_delivered_missing_order_delivered_carrier_date,snapshot / load audit
+stg,orders,21,dq_missing_order_delivered_customer_date,bit,False,False,cleaned source snapshot,data/processed/orders_clean.csv::dq_missing_order_delivered_customer_date,snapshot / load audit
+stg,orders,22,dq_delivered_missing_order_delivered_customer_date,bit,False,False,cleaned source snapshot,data/processed/orders_clean.csv::dq_delivered_missing_order_delivered_customer_date,snapshot / load audit
+stg,orders,23,dq_approval_before_purchase,bit,False,False,cleaned source snapshot,data/processed/orders_clean.csv::dq_approval_before_purchase,snapshot / load audit
+stg,orders,24,dq_carrier_before_purchase,bit,False,False,cleaned source snapshot,data/processed/orders_clean.csv::dq_carrier_before_purchase,snapshot / load audit
+stg,orders,25,dq_delivery_before_purchase,bit,False,False,cleaned source snapshot,data/processed/orders_clean.csv::dq_delivery_before_purchase,snapshot / load audit
+stg,orders,26,dq_carrier_before_approval,bit,False,False,cleaned source snapshot,data/processed/orders_clean.csv::dq_carrier_before_approval,snapshot / load audit
+stg,orders,27,dq_delivery_before_carrier,bit,False,False,cleaned source snapshot,data/processed/orders_clean.csv::dq_delivery_before_carrier,snapshot / load audit
+stg,orders,28,LoadID,uniqueidentifier,False,False,cleaned source snapshot,ETL load metadata,snapshot / load audit
+stg,orders,29,SourceRow,bigint,False,False,cleaned source snapshot,ETL load metadata,snapshot / load audit
+stg,orders,30,LoadedAtUTC,datetime2(3),False,False,cleaned source snapshot,ETL load metadata,snapshot / load audit
+stg,payments,1,order_id,varchar(32),False,False,cleaned source snapshot,data/processed/payments_clean.csv::order_id,snapshot / load audit
+stg,payments,2,payment_sequential,varchar(10),False,False,cleaned source snapshot,data/processed/payments_clean.csv::payment_sequential,snapshot / load audit
+stg,payments,3,payment_type,varchar(32),False,False,cleaned source snapshot,data/processed/payments_clean.csv::payment_type,snapshot / load audit
+stg,payments,4,payment_installments,int,True,False,cleaned source snapshot,data/processed/payments_clean.csv::payment_installments,snapshot / load audit
+stg,payments,5,payment_value,"decimal(19,2)",False,False,cleaned source snapshot,data/processed/payments_clean.csv::payment_value,snapshot / load audit
+stg,payments,6,dq_invalid_payment_installments,bit,False,False,cleaned source snapshot,data/processed/payments_clean.csv::dq_invalid_payment_installments,snapshot / load audit
+stg,payments,7,dq_invalid_payment_value,bit,False,False,cleaned source snapshot,data/processed/payments_clean.csv::dq_invalid_payment_value,snapshot / load audit
+stg,payments,8,dq_negative_payment_value,bit,False,False,cleaned source snapshot,data/processed/payments_clean.csv::dq_negative_payment_value,snapshot / load audit
+stg,payments,9,dq_zero_payment_value,bit,False,False,cleaned source snapshot,data/processed/payments_clean.csv::dq_zero_payment_value,snapshot / load audit
+stg,payments,10,dq_nonpositive_installments,bit,False,False,cleaned source snapshot,data/processed/payments_clean.csv::dq_nonpositive_installments,snapshot / load audit
+stg,payments,11,dq_noninteger_payment_installments,bit,False,False,cleaned source snapshot,data/processed/payments_clean.csv::dq_noninteger_payment_installments,snapshot / load audit
+stg,payments,12,LoadID,uniqueidentifier,False,False,cleaned source snapshot,ETL load metadata,snapshot / load audit
+stg,payments,13,SourceRow,bigint,False,False,cleaned source snapshot,ETL load metadata,snapshot / load audit
+stg,payments,14,LoadedAtUTC,datetime2(3),False,False,cleaned source snapshot,ETL load metadata,snapshot / load audit
+stg,products,1,product_id,varchar(32),False,False,cleaned source snapshot,data/processed/products_clean.csv::product_id,snapshot / load audit
+stg,products,2,product_category_name,nvarchar(128),False,False,cleaned source snapshot,data/processed/products_clean.csv::product_category_name,snapshot / load audit
+stg,products,3,product_name_lenght,int,True,False,cleaned source snapshot,data/processed/products_clean.csv::product_name_lenght,snapshot / load audit
+stg,products,4,product_description_lenght,int,True,False,cleaned source snapshot,data/processed/products_clean.csv::product_description_lenght,snapshot / load audit
+stg,products,5,product_photos_qty,int,True,False,cleaned source snapshot,data/processed/products_clean.csv::product_photos_qty,snapshot / load audit
+stg,products,6,product_weight_g,int,True,False,cleaned source snapshot,data/processed/products_clean.csv::product_weight_g,snapshot / load audit
+stg,products,7,product_length_cm,int,True,False,cleaned source snapshot,data/processed/products_clean.csv::product_length_cm,snapshot / load audit
+stg,products,8,product_height_cm,int,True,False,cleaned source snapshot,data/processed/products_clean.csv::product_height_cm,snapshot / load audit
+stg,products,9,product_width_cm,int,True,False,cleaned source snapshot,data/processed/products_clean.csv::product_width_cm,snapshot / load audit
+stg,products,10,dq_invalid_product_name_lenght,bit,False,False,cleaned source snapshot,data/processed/products_clean.csv::dq_invalid_product_name_lenght,snapshot / load audit
+stg,products,11,dq_invalid_product_description_lenght,bit,False,False,cleaned source snapshot,data/processed/products_clean.csv::dq_invalid_product_description_lenght,snapshot / load audit
+stg,products,12,dq_invalid_product_photos_qty,bit,False,False,cleaned source snapshot,data/processed/products_clean.csv::dq_invalid_product_photos_qty,snapshot / load audit
+stg,products,13,dq_invalid_product_weight_g,bit,False,False,cleaned source snapshot,data/processed/products_clean.csv::dq_invalid_product_weight_g,snapshot / load audit
+stg,products,14,dq_invalid_product_length_cm,bit,False,False,cleaned source snapshot,data/processed/products_clean.csv::dq_invalid_product_length_cm,snapshot / load audit
+stg,products,15,dq_invalid_product_height_cm,bit,False,False,cleaned source snapshot,data/processed/products_clean.csv::dq_invalid_product_height_cm,snapshot / load audit
+stg,products,16,dq_invalid_product_width_cm,bit,False,False,cleaned source snapshot,data/processed/products_clean.csv::dq_invalid_product_width_cm,snapshot / load audit
+stg,products,17,dq_category_missing,bit,False,False,cleaned source snapshot,data/processed/products_clean.csv::dq_category_missing,snapshot / load audit
+stg,products,18,dq_category_untranslated,bit,False,False,cleaned source snapshot,data/processed/products_clean.csv::dq_category_untranslated,snapshot / load audit
+stg,products,19,product_category_name_english,nvarchar(128),False,False,cleaned source snapshot,data/processed/products_clean.csv::product_category_name_english,snapshot / load audit
+stg,products,20,dq_missing_attributes,bit,False,False,cleaned source snapshot,data/processed/products_clean.csv::dq_missing_attributes,snapshot / load audit
+stg,products,21,dq_nonpositive_product_weight_g,bit,False,False,cleaned source snapshot,data/processed/products_clean.csv::dq_nonpositive_product_weight_g,snapshot / load audit
+stg,products,22,dq_nonpositive_product_length_cm,bit,False,False,cleaned source snapshot,data/processed/products_clean.csv::dq_nonpositive_product_length_cm,snapshot / load audit
+stg,products,23,dq_nonpositive_product_height_cm,bit,False,False,cleaned source snapshot,data/processed/products_clean.csv::dq_nonpositive_product_height_cm,snapshot / load audit
+stg,products,24,dq_nonpositive_product_width_cm,bit,False,False,cleaned source snapshot,data/processed/products_clean.csv::dq_nonpositive_product_width_cm,snapshot / load audit
+stg,products,25,LoadID,uniqueidentifier,False,False,cleaned source snapshot,ETL load metadata,snapshot / load audit
+stg,products,26,SourceRow,bigint,False,False,cleaned source snapshot,ETL load metadata,snapshot / load audit
+stg,products,27,LoadedAtUTC,datetime2(3),False,False,cleaned source snapshot,ETL load metadata,snapshot / load audit
+stg,reviews,1,review_id,varchar(32),False,False,cleaned source snapshot,data/processed/reviews_clean.csv::review_id,snapshot / load audit
+stg,reviews,2,order_id,varchar(32),False,False,cleaned source snapshot,data/processed/reviews_clean.csv::order_id,snapshot / load audit
+stg,reviews,3,review_score,int,True,False,cleaned source snapshot,data/processed/reviews_clean.csv::review_score,snapshot / load audit
+stg,reviews,4,review_comment_title,nvarchar(200),True,False,cleaned source snapshot,data/processed/reviews_clean.csv::review_comment_title,snapshot / load audit
+stg,reviews,5,review_comment_message,nvarchar(2000),True,False,cleaned source snapshot,data/processed/reviews_clean.csv::review_comment_message,snapshot / load audit
+stg,reviews,6,review_creation_date,datetime2(0),True,False,cleaned source snapshot,data/processed/reviews_clean.csv::review_creation_date,snapshot / load audit
+stg,reviews,7,review_answer_timestamp,datetime2(0),True,False,cleaned source snapshot,data/processed/reviews_clean.csv::review_answer_timestamp,snapshot / load audit
+stg,reviews,8,dq_invalid_review_creation_date,bit,False,False,cleaned source snapshot,data/processed/reviews_clean.csv::dq_invalid_review_creation_date,snapshot / load audit
+stg,reviews,9,dq_invalid_review_answer_timestamp,bit,False,False,cleaned source snapshot,data/processed/reviews_clean.csv::dq_invalid_review_answer_timestamp,snapshot / load audit
+stg,reviews,10,dq_invalid_review_score,bit,False,False,cleaned source snapshot,data/processed/reviews_clean.csv::dq_invalid_review_score,snapshot / load audit
+stg,reviews,11,dq_answer_before_creation,bit,False,False,cleaned source snapshot,data/processed/reviews_clean.csv::dq_answer_before_creation,snapshot / load audit
+stg,reviews,12,dq_noninteger_review_score,bit,False,False,cleaned source snapshot,data/processed/reviews_clean.csv::dq_noninteger_review_score,snapshot / load audit
+stg,reviews,13,dq_score_out_of_range,bit,False,False,cleaned source snapshot,data/processed/reviews_clean.csv::dq_score_out_of_range,snapshot / load audit
+stg,reviews,14,dq_repeated_review_id,bit,False,False,cleaned source snapshot,data/processed/reviews_clean.csv::dq_repeated_review_id,snapshot / load audit
+stg,reviews,15,LoadID,uniqueidentifier,False,False,cleaned source snapshot,ETL load metadata,snapshot / load audit
+stg,reviews,16,SourceRow,bigint,False,False,cleaned source snapshot,ETL load metadata,snapshot / load audit
+stg,reviews,17,LoadedAtUTC,datetime2(3),False,False,cleaned source snapshot,ETL load metadata,snapshot / load audit
+stg,sellers,1,seller_id,varchar(32),False,False,cleaned source snapshot,data/processed/sellers_clean.csv::seller_id,snapshot / load audit
+stg,sellers,2,seller_zip_code_prefix,varchar(5),False,False,cleaned source snapshot,data/processed/sellers_clean.csv::seller_zip_code_prefix,snapshot / load audit
+stg,sellers,3,seller_city,nvarchar(128),False,False,cleaned source snapshot,data/processed/sellers_clean.csv::seller_city,snapshot / load audit
+stg,sellers,4,seller_state,varchar(2),False,False,cleaned source snapshot,data/processed/sellers_clean.csv::seller_state,snapshot / load audit
+stg,sellers,5,dq_unmatched_zip,bit,False,False,cleaned source snapshot,data/processed/sellers_clean.csv::dq_unmatched_zip,snapshot / load audit
+stg,sellers,6,dq_invalid_zip_format,bit,False,False,cleaned source snapshot,data/processed/sellers_clean.csv::dq_invalid_zip_format,snapshot / load audit
+stg,sellers,7,LoadID,uniqueidentifier,False,False,cleaned source snapshot,ETL load metadata,snapshot / load audit
+stg,sellers,8,SourceRow,bigint,False,False,cleaned source snapshot,ETL load metadata,snapshot / load audit
+stg,sellers,9,LoadedAtUTC,datetime2(3),False,False,cleaned source snapshot,ETL load metadata,snapshot / load audit

@@ -1,0 +1,137 @@
+table FactPayments
+	lineageTag: 195fdd47-8f91-4f40-a242-6b2d2e40685a
+
+	/// Payment-grain amount. Includes its own business scope; not product/seller-attributed revenue.
+	measure 'Payment Amount' = SUM(FactPayments[PaymentAmount])
+		formatString: #,0.00
+		displayFolder: Validated KPIs
+		lineageTag: 40cc52f9-f7c4-44bf-aa98-8e9bade9a881
+
+	column OrderID
+		dataType: string
+		lineageTag: bf83f32d-4804-4767-ac85-1a371ffb25cc
+		summarizeBy: none
+		sourceColumn: OrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PaymentSequential
+		dataType: string
+		lineageTag: 224599b2-7128-4bb7-a056-415629558271
+		summarizeBy: none
+		sourceColumn: PaymentSequential
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 4948b4f2-296b-4efd-917d-0e3fe2d057fb
+		summarizeBy: count
+		sourceColumn: OrderKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PaymentTypeKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 8366741e-c081-4b34-9aab-ab61386e65a9
+		summarizeBy: none
+		sourceColumn: PaymentTypeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 7d73d1c6-ee61-4105-b1e7-bf5770c81995
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerGeographyKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 7868401c-7b8e-47e9-acfc-326c239eedf0
+		summarizeBy: count
+		sourceColumn: CustomerGeographyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderStatusKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 95a2dad6-6989-40a3-ac67-1e34f9c306bb
+		summarizeBy: none
+		sourceColumn: OrderStatusKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PurchaseDateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 14eb5ddd-369c-4ce1-b91d-2343449ef2d6
+		summarizeBy: count
+		sourceColumn: PurchaseDateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Installments
+		dataType: int64
+		formatString: 0
+		lineageTag: ed1fd998-63dd-4a87-930e-ac3474c525a4
+		summarizeBy: sum
+		sourceColumn: Installments
+
+		annotation SummarizationSetBy = Automatic
+
+	column PaymentAmount
+		dataType: double
+		lineageTag: 348deb0c-77cb-4621-9915-1e83dba22d49
+		summarizeBy: sum
+		sourceColumn: PaymentAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SalesEligible
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: bf1b0d7a-ecbe-47c3-a3a8-b7e3bd1528c0
+		summarizeBy: none
+		sourceColumn: SalesEligible
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceQualityFlagCount
+		dataType: int64
+		formatString: 0
+		lineageTag: 41a76770-2eb0-4f89-a4aa-765ea13baee9
+		summarizeBy: sum
+		sourceColumn: SourceQualityFlagCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadID
+		dataType: string
+		lineageTag: 8dd60d5d-d8d5-4e5f-9bb1-616dd0f3d128
+		summarizeBy: none
+		sourceColumn: LoadID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactPayments = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("DESKTOP-GEUMHVT\SQLEXPRESS", "OlistSalesDW"),
+				    dw_FactPayments = Source{[Schema="dw",Item="FactPayments"]}[Data]
+				in
+				    dw_FactPayments
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

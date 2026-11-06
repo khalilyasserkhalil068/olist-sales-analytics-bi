@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-02 Africa/Cairo",
+  "method": "User-reported result after detailed manual test instructions; desktop automation was unavailable",
+  "verbatim_user_reply": "تمام اشتغل",
+  "instructed_flow": [
+    "Reviews score slicer = 1: inspect positive 0%, negative 100%, five-star 0%; clear to All",
+    "Select score-5 distribution bar, observe card changes, deselect and restore 99,224 valid reviews",
+    "Navigate between pages 04 and 05 using Ctrl+click"
+  ],
+  "result": "USER-REPORTED WORKING",
+  "scope": "Representative instructed workflow; exact click events and displayed values were not independently captured by automation",
+  "independent_support": "All 86 DAX cases, including each score-slicer population, pass; native-export layout reviewed",
+  "all_filter_combinations_tested": false,
+  "user_closure_reply": "قفلت نوافذ Power BI",
+  "task_windows_observed_closed_before_final_reopen": true
+}

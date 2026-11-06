@@ -1,0 +1,120 @@
+table DateKeyLookup
+	isHidden
+	lineageTag: 988e129e-3fee-4ff8-8768-debae345f738
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 75b15a61-7b83-44fa-956f-b083990dae4c
+		summarizeBy: count
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column FullDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 84288a7e-3ec5-4da9-9c3c-6e36aba23220
+		summarizeBy: none
+		sourceColumn: FullDate
+
+		variation Variation
+			isDefault
+			relationship: bc9522a2-07b2-4fde-9a96-15c71f6d502c
+			defaultHierarchy: LocalDateTable_2c1d9b51-3998-4df9-b3ec-af2dfec737b4.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Day
+		dataType: int64
+		formatString: 0
+		lineageTag: e830b10d-9ec3-4b5e-b5f6-68805cd6fcbc
+		summarizeBy: sum
+		sourceColumn: Day
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: 56b064dc-4be3-47e0-9293-a1ce6eb1a61e
+		summarizeBy: sum
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthName
+		dataType: string
+		lineageTag: 402abcaf-7d0a-4105-8f26-6d9e39fc1c19
+		summarizeBy: none
+		sourceColumn: MonthName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 93067797-a1a3-4ebd-9dad-0a21e3248784
+		summarizeBy: sum
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 490b048d-b261-46a0-afd8-fd58fcd18273
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonth
+		dataType: string
+		lineageTag: 444fd511-4491-4d42-a906-a4fb219c4bb0
+		summarizeBy: none
+		sourceColumn: YearMonth
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayOfWeek
+		dataType: int64
+		formatString: 0
+		lineageTag: 6d61c687-f8bd-4ab0-aa2f-831f45735ca4
+		summarizeBy: sum
+		sourceColumn: DayOfWeek
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayName
+		dataType: string
+		lineageTag: 832bd699-3a46-4544-bd04-45794ce91775
+		summarizeBy: none
+		sourceColumn: DayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsWeekend
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e86ab8dd-eeb3-46cd-a7d6-2361822670d2
+		summarizeBy: none
+		sourceColumn: IsWeekend
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimDate = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("DESKTOP-GEUMHVT\SQLEXPRESS", "OlistSalesDW"),
+				    dw_DimDate = Source{[Schema="dw",Item="DimDate"]}[Data]
+				in
+				    dw_DimDate
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

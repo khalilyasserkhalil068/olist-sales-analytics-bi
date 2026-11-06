@@ -1,0 +1,1276 @@
+{
+  "status": "PREPARED; NOT EXECUTED",
+  "caseCount": 86,
+  "cases": [
+    {
+      "name": "Original KPI regression",
+      "dax": "EVALUATE ROW(\"c0\", [Order Count], \"c1\", [Sales Revenue], \"c2\", [Average Sales Order Value], \"c3\", [Unique Sales Customers], \"c4\", [Repeat Sales Customers], \"c5\", [Repeat Customer Rate], \"c6\", [Item Revenue], \"c7\", [Average Review Score])",
+      "expected": {
+        "c0": 99441,
+        "c1": 13221498.11,
+        "c2": 137.0415857501192,
+        "c3": 93358,
+        "c4": 2801,
+        "c5": 0.03000278497825575,
+        "c6": 13591643.7,
+        "c7": 4.08642062404257
+      },
+      "tolerance": 0.005,
+      "expressions": {
+        "c0": "[Order Count]",
+        "c1": "[Sales Revenue]",
+        "c2": "[Average Sales Order Value]",
+        "c3": "[Unique Sales Customers]",
+        "c4": "[Repeat Sales Customers]",
+        "c5": "[Repeat Customer Rate]",
+        "c6": "[Item Revenue]",
+        "c7": "[Average Review Score]"
+      }
+    },
+    {
+      "name": "Delivery totals",
+      "dax": "EVALUATE ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries], \"c4\", [On Time Delivery Rate], \"c5\", [Late Delivery Rate], \"c6\", [Duration Eligible Orders], \"c7\", [Average Delivery Days], \"c8\", [Average Late Delay Days], \"c9\", [Average Freight per Delivered Order])",
+      "expected": {
+        "c0": 96478,
+        "c1": 96470,
+        "c2": 89936,
+        "c3": 6534,
+        "c4": 0.9322690992018244,
+        "c5": 0.06773090079817559,
+        "c6": 95097,
+        "c7": 12.6184859187,
+        "c8": 10.6201408019,
+        "c9": 22.785253
+      },
+      "tolerance": 1e-05,
+      "expressions": {
+        "c0": "[Delivered Orders]",
+        "c1": "[Timeliness Eligible Orders]",
+        "c2": "[On Time Deliveries]",
+        "c3": "[Late Deliveries]",
+        "c4": "[On Time Delivery Rate]",
+        "c5": "[Late Delivery Rate]",
+        "c6": "[Duration Eligible Orders]",
+        "c7": "[Average Delivery Days]",
+        "c8": "[Average Late Delay Days]",
+        "c9": "[Average Freight per Delivered Order]"
+      }
+    },
+    {
+      "name": "All valid review totals",
+      "dax": "EVALUATE ROW(\"c0\", [Total Valid Reviews], \"c1\", [Satisfaction Average Review Score], \"c2\", [Positive Review Rate], \"c3\", [Negative Review Rate], \"c4\", [Five Star Review Rate])",
+      "expected": {
+        "c0": 99224,
+        "c1": 4.086420624,
+        "c2": 0.7706804805289043,
+        "c3": 0.14688986535515602,
+        "c4": 0.5777634443279852
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Total Valid Reviews]",
+        "c1": "[Satisfaction Average Review Score]",
+        "c2": "[Positive Review Rate]",
+        "c3": "[Negative Review Rate]",
+        "c4": "[Five Star Review Rate]"
+      }
+    },
+    {
+      "name": "Review timeliness: On time",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Total Valid Reviews], \"c1\", [Satisfaction Average Review Score]), TREATAS({\"On time\"}, FactOrders[Delivery Timeliness]))",
+      "expected": {
+        "c0": 89944,
+        "c1": 4.2899804322
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Total Valid Reviews]",
+        "c1": "[Satisfaction Average Review Score]"
+      }
+    },
+    {
+      "name": "Review timeliness: Late",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Total Valid Reviews], \"c1\", [Satisfaction Average Review Score]), TREATAS({\"Late\"}, FactOrders[Delivery Timeliness]))",
+      "expected": {
+        "c0": 6409,
+        "c1": 2.2710251209
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Total Valid Reviews]",
+        "c1": "[Satisfaction Average Review Score]"
+      }
+    },
+    {
+      "name": "Review timeliness: Not eligible",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Total Valid Reviews], \"c1\", [Satisfaction Average Review Score]), TREATAS({\"Not eligible\"}, FactOrders[Delivery Timeliness]))",
+      "expected": {
+        "c0": 2871,
+        "c1": 1.7617554858
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Total Valid Reviews]",
+        "c1": "[Satisfaction Average Review Score]"
+      }
+    },
+    {
+      "name": "Review score slicer 1",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Total Valid Reviews], \"c1\", [Positive Review Rate], \"c2\", [Negative Review Rate], \"c3\", [Five Star Review Rate]), TREATAS({1}, FactReviews[ReviewScore]))",
+      "expected": {
+        "c0": 11424,
+        "c1": 0,
+        "c2": 1,
+        "c3": 0
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Total Valid Reviews]",
+        "c1": "[Positive Review Rate]",
+        "c2": "[Negative Review Rate]",
+        "c3": "[Five Star Review Rate]"
+      }
+    },
+    {
+      "name": "Review score slicer 2",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Total Valid Reviews], \"c1\", [Positive Review Rate], \"c2\", [Negative Review Rate], \"c3\", [Five Star Review Rate]), TREATAS({2}, FactReviews[ReviewScore]))",
+      "expected": {
+        "c0": 3151,
+        "c1": 0,
+        "c2": 1,
+        "c3": 0
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Total Valid Reviews]",
+        "c1": "[Positive Review Rate]",
+        "c2": "[Negative Review Rate]",
+        "c3": "[Five Star Review Rate]"
+      }
+    },
+    {
+      "name": "Review score slicer 3",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Total Valid Reviews], \"c1\", [Positive Review Rate], \"c2\", [Negative Review Rate], \"c3\", [Five Star Review Rate]), TREATAS({3}, FactReviews[ReviewScore]))",
+      "expected": {
+        "c0": 8179,
+        "c1": 0,
+        "c2": 0,
+        "c3": 0
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Total Valid Reviews]",
+        "c1": "[Positive Review Rate]",
+        "c2": "[Negative Review Rate]",
+        "c3": "[Five Star Review Rate]"
+      }
+    },
+    {
+      "name": "Review score slicer 4",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Total Valid Reviews], \"c1\", [Positive Review Rate], \"c2\", [Negative Review Rate], \"c3\", [Five Star Review Rate]), TREATAS({4}, FactReviews[ReviewScore]))",
+      "expected": {
+        "c0": 19142,
+        "c1": 1,
+        "c2": 0,
+        "c3": 0
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Total Valid Reviews]",
+        "c1": "[Positive Review Rate]",
+        "c2": "[Negative Review Rate]",
+        "c3": "[Five Star Review Rate]"
+      }
+    },
+    {
+      "name": "Review score slicer 5",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Total Valid Reviews], \"c1\", [Positive Review Rate], \"c2\", [Negative Review Rate], \"c3\", [Five Star Review Rate]), TREATAS({5}, FactReviews[ReviewScore]))",
+      "expected": {
+        "c0": 57328,
+        "c1": 1,
+        "c2": 0,
+        "c3": 1
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Total Valid Reviews]",
+        "c1": "[Positive Review Rate]",
+        "c2": "[Negative Review Rate]",
+        "c3": "[Five Star Review Rate]"
+      }
+    },
+    {
+      "name": "Duration band 02 | 7 to <14 days",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Duration Eligible Orders]), TREATAS({\"02 | 7 to <14 days\"}, FactOrders[Delivery Duration Band]))",
+      "expected": {
+        "c0": 39671
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Duration Eligible Orders]"
+      }
+    },
+    {
+      "name": "Duration band 03 | 14 to <21 days",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Duration Eligible Orders]), TREATAS({\"03 | 14 to <21 days\"}, FactOrders[Delivery Duration Band]))",
+      "expected": {
+        "c0": 17594
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Duration Eligible Orders]"
+      }
+    },
+    {
+      "name": "Duration band 04 | 21 to <30 days",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Duration Eligible Orders]), TREATAS({\"04 | 21 to <30 days\"}, FactOrders[Delivery Duration Band]))",
+      "expected": {
+        "c0": 7911
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Duration Eligible Orders]"
+      }
+    },
+    {
+      "name": "Duration band 01 | Under 7 days",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Duration Eligible Orders]), TREATAS({\"01 | Under 7 days\"}, FactOrders[Delivery Duration Band]))",
+      "expected": {
+        "c0": 25384
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Duration Eligible Orders]"
+      }
+    },
+    {
+      "name": "Duration band 05 | 30+ days",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Duration Eligible Orders]), TREATAS({\"05 | 30+ days\"}, FactOrders[Delivery Duration Band]))",
+      "expected": {
+        "c0": 4537
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Duration Eligible Orders]"
+      }
+    },
+    {
+      "name": "Approximate state AC",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"AC\"}, DimCustomerGeography[ApproximateState]))",
+      "expected": {
+        "c0": 80,
+        "c1": 80,
+        "c2": 77,
+        "c3": 3
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Delivered Orders]",
+        "c1": "[Timeliness Eligible Orders]",
+        "c2": "[On Time Deliveries]",
+        "c3": "[Late Deliveries]"
+      }
+    },
+    {
+      "name": "Approximate state AL",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"AL\"}, DimCustomerGeography[ApproximateState]))",
+      "expected": {
+        "c0": 396,
+        "c1": 396,
+        "c2": 311,
+        "c3": 85
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Delivered Orders]",
+        "c1": "[Timeliness Eligible Orders]",
+        "c2": "[On Time Deliveries]",
+        "c3": "[Late Deliveries]"
+      }
+    },
+    {
+      "name": "Approximate state AM",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"AM\"}, DimCustomerGeography[ApproximateState]))",
+      "expected": {
+        "c0": 145,
+        "c1": 145,
+        "c2": 141,
+        "c3": 4
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Delivered Orders]",
+        "c1": "[Timeliness Eligible Orders]",
+        "c2": "[On Time Deliveries]",
+        "c3": "[Late Deliveries]"
+      }
+    },
+    {
+      "name": "Approximate state AP",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"AP\"}, DimCustomerGeography[ApproximateState]))",
+      "expected": {
+        "c0": 67,
+        "c1": 67,
+        "c2": 65,
+        "c3": 2
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Delivered Orders]",
+        "c1": "[Timeliness Eligible Orders]",
+        "c2": "[On Time Deliveries]",
+        "c3": "[Late Deliveries]"
+      }
+    },
+    {
+      "name": "Approximate state BA",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"BA\"}, DimCustomerGeography[ApproximateState]))",
+      "expected": {
+        "c0": 3248,
+        "c1": 3248,
+        "c2": 2855,
+        "c3": 393
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Delivered Orders]",
+        "c1": "[Timeliness Eligible Orders]",
+        "c2": "[On Time Deliveries]",
+        "c3": "[Late Deliveries]"
+      }
+    },
+    {
+      "name": "Approximate state CE",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"CE\"}, DimCustomerGeography[ApproximateState]))",
+      "expected": {
+        "c0": 1275,
+        "c1": 1275,
+        "c2": 1099,
+        "c3": 176
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Delivered Orders]",
+        "c1": "[Timeliness Eligible Orders]",
+        "c2": "[On Time Deliveries]",
+        "c3": "[Late Deliveries]"
+      }
+    },
+    {
+      "name": "Approximate state DF",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"DF\"}, DimCustomerGeography[ApproximateState]))",
+      "expected": {
+        "c0": 1917,
+        "c1": 1917,
+        "c2": 1807,
+        "c3": 110
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Delivered Orders]",
+        "c1": "[Timeliness Eligible Orders]",
+        "c2": "[On Time Deliveries]",
+        "c3": "[Late Deliveries]"
+      }
+    },
+    {
+      "name": "Approximate state ES",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"ES\"}, DimCustomerGeography[ApproximateState]))",
+      "expected": {
+        "c0": 1989,
+        "c1": 1989,
+        "c2": 1778,
+        "c3": 211
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Delivered Orders]",
+        "c1": "[Timeliness Eligible Orders]",
+        "c2": "[On Time Deliveries]",
+        "c3": "[Late Deliveries]"
+      }
+    },
+    {
+      "name": "Approximate state GO",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"GO\"}, DimCustomerGeography[ApproximateState]))",
+      "expected": {
+        "c0": 1948,
+        "c1": 1948,
+        "c2": 1820,
+        "c3": 128
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Delivered Orders]",
+        "c1": "[Timeliness Eligible Orders]",
+        "c2": "[On Time Deliveries]",
+        "c3": "[Late Deliveries]"
+      }
+    },
+    {
+      "name": "Approximate state MA",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"MA\"}, DimCustomerGeography[ApproximateState]))",
+      "expected": {
+        "c0": 714,
+        "c1": 714,
+        "c2": 591,
+        "c3": 123
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Delivered Orders]",
+        "c1": "[Timeliness Eligible Orders]",
+        "c2": "[On Time Deliveries]",
+        "c3": "[Late Deliveries]"
+      }
+    },
+    {
+      "name": "Approximate state MG",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"MG\"}, DimCustomerGeography[ApproximateState]))",
+      "expected": {
+        "c0": 11345,
+        "c1": 11345,
+        "c2": 10828,
+        "c3": 517
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Delivered Orders]",
+        "c1": "[Timeliness Eligible Orders]",
+        "c2": "[On Time Deliveries]",
+        "c3": "[Late Deliveries]"
+      }
+    },
+    {
+      "name": "Approximate state MS",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"MS\"}, DimCustomerGeography[ApproximateState]))",
+      "expected": {
+        "c0": 701,
+        "c1": 701,
+        "c2": 633,
+        "c3": 68
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Delivered Orders]",
+        "c1": "[Timeliness Eligible Orders]",
+        "c2": "[On Time Deliveries]",
+        "c3": "[Late Deliveries]"
+      }
+    },
+    {
+      "name": "Approximate state MT",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"MT\"}, DimCustomerGeography[ApproximateState]))",
+      "expected": {
+        "c0": 884,
+        "c1": 884,
+        "c2": 831,
+        "c3": 53
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Delivered Orders]",
+        "c1": "[Timeliness Eligible Orders]",
+        "c2": "[On Time Deliveries]",
+        "c3": "[Late Deliveries]"
+      }
+    },
+    {
+      "name": "Approximate state PA",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"PA\"}, DimCustomerGeography[ApproximateState]))",
+      "expected": {
+        "c0": 944,
+        "c1": 944,
+        "c2": 838,
+        "c3": 106
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Delivered Orders]",
+        "c1": "[Timeliness Eligible Orders]",
+        "c2": "[On Time Deliveries]",
+        "c3": "[Late Deliveries]"
+      }
+    },
+    {
+      "name": "Approximate state PB",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"PB\"}, DimCustomerGeography[ApproximateState]))",
+      "expected": {
+        "c0": 515,
+        "c1": 515,
+        "c2": 461,
+        "c3": 54
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Delivered Orders]",
+        "c1": "[Timeliness Eligible Orders]",
+        "c2": "[On Time Deliveries]",
+        "c3": "[Late Deliveries]"
+      }
+    },
+    {
+      "name": "Approximate state PE",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"PE\"}, DimCustomerGeography[ApproximateState]))",
+      "expected": {
+        "c0": 1589,
+        "c1": 1589,
+        "c2": 1437,
+        "c3": 152
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Delivered Orders]",
+        "c1": "[Timeliness Eligible Orders]",
+        "c2": "[On Time Deliveries]",
+        "c3": "[Late Deliveries]"
+      }
+    },
+    {
+      "name": "Approximate state PI",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"PI\"}, DimCustomerGeography[ApproximateState]))",
+      "expected": {
+        "c0": 473,
+        "c1": 473,
+        "c2": 407,
+        "c3": 66
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Delivered Orders]",
+        "c1": "[Timeliness Eligible Orders]",
+        "c2": "[On Time Deliveries]",
+        "c3": "[Late Deliveries]"
+      }
+    },
+    {
+      "name": "Approximate state PR",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"PR\"}, DimCustomerGeography[ApproximateState]))",
+      "expected": {
+        "c0": 4912,
+        "c1": 4912,
+        "c2": 4715,
+        "c3": 197
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Delivered Orders]",
+        "c1": "[Timeliness Eligible Orders]",
+        "c2": "[On Time Deliveries]",
+        "c3": "[Late Deliveries]"
+      }
+    },
+    {
+      "name": "Approximate state RJ",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"RJ\"}, DimCustomerGeography[ApproximateState]))",
+      "expected": {
+        "c0": 12337,
+        "c1": 12337,
+        "c2": 10842,
+        "c3": 1495
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Delivered Orders]",
+        "c1": "[Timeliness Eligible Orders]",
+        "c2": "[On Time Deliveries]",
+        "c3": "[Late Deliveries]"
+      }
+    },
+    {
+      "name": "Approximate state RN",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"RN\"}, DimCustomerGeography[ApproximateState]))",
+      "expected": {
+        "c0": 472,
+        "c1": 472,
+        "c2": 429,
+        "c3": 43
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Delivered Orders]",
+        "c1": "[Timeliness Eligible Orders]",
+        "c2": "[On Time Deliveries]",
+        "c3": "[Late Deliveries]"
+      }
+    },
+    {
+      "name": "Approximate state RO",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"RO\"}, DimCustomerGeography[ApproximateState]))",
+      "expected": {
+        "c0": 241,
+        "c1": 241,
+        "c2": 234,
+        "c3": 7
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Delivered Orders]",
+        "c1": "[Timeliness Eligible Orders]",
+        "c2": "[On Time Deliveries]",
+        "c3": "[Late Deliveries]"
+      }
+    },
+    {
+      "name": "Approximate state RR",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"RR\"}, DimCustomerGeography[ApproximateState]))",
+      "expected": {
+        "c0": 41,
+        "c1": 41,
+        "c2": 36,
+        "c3": 5
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Delivered Orders]",
+        "c1": "[Timeliness Eligible Orders]",
+        "c2": "[On Time Deliveries]",
+        "c3": "[Late Deliveries]"
+      }
+    },
+    {
+      "name": "Approximate state RS",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"RS\"}, DimCustomerGeography[ApproximateState]))",
+      "expected": {
+        "c0": 5341,
+        "c1": 5340,
+        "c2": 5016,
+        "c3": 324
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Delivered Orders]",
+        "c1": "[Timeliness Eligible Orders]",
+        "c2": "[On Time Deliveries]",
+        "c3": "[Late Deliveries]"
+      }
+    },
+    {
+      "name": "Approximate state SC",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"SC\"}, DimCustomerGeography[ApproximateState]))",
+      "expected": {
+        "c0": 3546,
+        "c1": 3546,
+        "c2": 3255,
+        "c3": 291
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Delivered Orders]",
+        "c1": "[Timeliness Eligible Orders]",
+        "c2": "[On Time Deliveries]",
+        "c3": "[Late Deliveries]"
+      }
+    },
+    {
+      "name": "Approximate state SE",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"SE\"}, DimCustomerGeography[ApproximateState]))",
+      "expected": {
+        "c0": 334,
+        "c1": 334,
+        "c2": 283,
+        "c3": 51
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Delivered Orders]",
+        "c1": "[Timeliness Eligible Orders]",
+        "c2": "[On Time Deliveries]",
+        "c3": "[Late Deliveries]"
+      }
+    },
+    {
+      "name": "Approximate state SP",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"SP\"}, DimCustomerGeography[ApproximateState]))",
+      "expected": {
+        "c0": 40487,
+        "c1": 40480,
+        "c2": 38661,
+        "c3": 1819
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Delivered Orders]",
+        "c1": "[Timeliness Eligible Orders]",
+        "c2": "[On Time Deliveries]",
+        "c3": "[Late Deliveries]"
+      }
+    },
+    {
+      "name": "Approximate state TO",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"TO\"}, DimCustomerGeography[ApproximateState]))",
+      "expected": {
+        "c0": 273,
+        "c1": 273,
+        "c2": 246,
+        "c3": 27
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Delivered Orders]",
+        "c1": "[Timeliness Eligible Orders]",
+        "c2": "[On Time Deliveries]",
+        "c3": "[Late Deliveries]"
+      }
+    },
+    {
+      "name": "Review category semijoin bed_bath_table",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Valid Reviews], \"c1\", [Category Average Review Score]), TREATAS({\"bed_bath_table\"}, DimProduct[CategoryLabel]))",
+      "expected": {
+        "c0": 9432,
+        "c1": 3.9686174724
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Category Valid Reviews]",
+        "c1": "[Category Average Review Score]"
+      }
+    },
+    {
+      "name": "Review category semijoin health_beauty",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Valid Reviews], \"c1\", [Category Average Review Score]), TREATAS({\"health_beauty\"}, DimProduct[CategoryLabel]))",
+      "expected": {
+        "c0": 8826,
+        "c1": 4.182188987
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Category Valid Reviews]",
+        "c1": "[Category Average Review Score]"
+      }
+    },
+    {
+      "name": "Review category semijoin sports_leisure",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Valid Reviews], \"c1\", [Category Average Review Score]), TREATAS({\"sports_leisure\"}, DimProduct[CategoryLabel]))",
+      "expected": {
+        "c0": 7721,
+        "c1": 4.1682424556
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Category Valid Reviews]",
+        "c1": "[Category Average Review Score]"
+      }
+    },
+    {
+      "name": "Review category semijoin computers_accessories",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Valid Reviews], \"c1\", [Category Average Review Score]), TREATAS({\"computers_accessories\"}, DimProduct[CategoryLabel]))",
+      "expected": {
+        "c0": 6702,
+        "c1": 4.02581319
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Category Valid Reviews]",
+        "c1": "[Category Average Review Score]"
+      }
+    },
+    {
+      "name": "Review category semijoin furniture_decor",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Valid Reviews], \"c1\", [Category Average Review Score]), TREATAS({\"furniture_decor\"}, DimProduct[CategoryLabel]))",
+      "expected": {
+        "c0": 6457,
+        "c1": 4.0060399566
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Category Valid Reviews]",
+        "c1": "[Category Average Review Score]"
+      }
+    },
+    {
+      "name": "Review category semijoin housewares",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Valid Reviews], \"c1\", [Category Average Review Score]), TREATAS({\"housewares\"}, DimProduct[CategoryLabel]))",
+      "expected": {
+        "c0": 5865,
+        "c1": 4.1423699914
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Category Valid Reviews]",
+        "c1": "[Category Average Review Score]"
+      }
+    },
+    {
+      "name": "Review category semijoin watches_gifts",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Valid Reviews], \"c1\", [Category Average Review Score]), TREATAS({\"watches_gifts\"}, DimProduct[CategoryLabel]))",
+      "expected": {
+        "c0": 5586,
+        "c1": 4.0656999641
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Category Valid Reviews]",
+        "c1": "[Category Average Review Score]"
+      }
+    },
+    {
+      "name": "Review category semijoin telephony",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Valid Reviews], \"c1\", [Category Average Review Score]), TREATAS({\"telephony\"}, DimProduct[CategoryLabel]))",
+      "expected": {
+        "c0": 4173,
+        "c1": 4.0040738078
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Category Valid Reviews]",
+        "c1": "[Category Average Review Score]"
+      }
+    },
+    {
+      "name": "Review category semijoin auto",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Valid Reviews], \"c1\", [Category Average Review Score]), TREATAS({\"auto\"}, DimProduct[CategoryLabel]))",
+      "expected": {
+        "c0": 3895,
+        "c1": 4.0906290115
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Category Valid Reviews]",
+        "c1": "[Category Average Review Score]"
+      }
+    },
+    {
+      "name": "Review category semijoin toys",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Valid Reviews], \"c1\", [Category Average Review Score]), TREATAS({\"toys\"}, DimProduct[CategoryLabel]))",
+      "expected": {
+        "c0": 3861,
+        "c1": 4.1882931882
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Category Valid Reviews]",
+        "c1": "[Category Average Review Score]"
+      }
+    },
+    {
+      "name": "Delivery category semijoin bed_bath_table",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Eligible Deliveries], \"c1\", [Category On Time Delivery Rate]), TREATAS({\"bed_bath_table\"}, DimProduct[CategoryLabel]))",
+      "expected": {
+        "c0": 9272,
+        "c1": 0.9256902502157032
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Category Eligible Deliveries]",
+        "c1": "[Category On Time Delivery Rate]"
+      }
+    },
+    {
+      "name": "Delivery category semijoin health_beauty",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Eligible Deliveries], \"c1\", [Category On Time Delivery Rate]), TREATAS({\"health_beauty\"}, DimProduct[CategoryLabel]))",
+      "expected": {
+        "c0": 8647,
+        "c1": 0.9249450676535215
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Category Eligible Deliveries]",
+        "c1": "[Category On Time Delivery Rate]"
+      }
+    },
+    {
+      "name": "Delivery category semijoin sports_leisure",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Eligible Deliveries], \"c1\", [Category On Time Delivery Rate]), TREATAS({\"sports_leisure\"}, DimProduct[CategoryLabel]))",
+      "expected": {
+        "c0": 7529,
+        "c1": 0.9342542170274937
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Category Eligible Deliveries]",
+        "c1": "[Category On Time Delivery Rate]"
+      }
+    },
+    {
+      "name": "Delivery category semijoin computers_accessories",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Eligible Deliveries], \"c1\", [Category On Time Delivery Rate]), TREATAS({\"computers_accessories\"}, DimProduct[CategoryLabel]))",
+      "expected": {
+        "c0": 6529,
+        "c1": 0.9361311073671312
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Category Eligible Deliveries]",
+        "c1": "[Category On Time Delivery Rate]"
+      }
+    },
+    {
+      "name": "Delivery category semijoin furniture_decor",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Eligible Deliveries], \"c1\", [Category On Time Delivery Rate]), TREATAS({\"furniture_decor\"}, DimProduct[CategoryLabel]))",
+      "expected": {
+        "c0": 6307,
+        "c1": 0.9288092595528777
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Category Eligible Deliveries]",
+        "c1": "[Category On Time Delivery Rate]"
+      }
+    },
+    {
+      "name": "Delivery category semijoin housewares",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Eligible Deliveries], \"c1\", [Category On Time Delivery Rate]), TREATAS({\"housewares\"}, DimProduct[CategoryLabel]))",
+      "expected": {
+        "c0": 5743,
+        "c1": 0.9463694932961867
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Category Eligible Deliveries]",
+        "c1": "[Category On Time Delivery Rate]"
+      }
+    },
+    {
+      "name": "Delivery category semijoin watches_gifts",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Eligible Deliveries], \"c1\", [Category On Time Delivery Rate]), TREATAS({\"watches_gifts\"}, DimProduct[CategoryLabel]))",
+      "expected": {
+        "c0": 5493,
+        "c1": 0.9260877480429638
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Category Eligible Deliveries]",
+        "c1": "[Category On Time Delivery Rate]"
+      }
+    },
+    {
+      "name": "Delivery category semijoin telephony",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Eligible Deliveries], \"c1\", [Category On Time Delivery Rate]), TREATAS({\"telephony\"}, DimProduct[CategoryLabel]))",
+      "expected": {
+        "c0": 4093,
+        "c1": 0.928903005130711
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Category Eligible Deliveries]",
+        "c1": "[Category On Time Delivery Rate]"
+      }
+    },
+    {
+      "name": "Delivery category semijoin auto",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Eligible Deliveries], \"c1\", [Category On Time Delivery Rate]), TREATAS({\"auto\"}, DimProduct[CategoryLabel]))",
+      "expected": {
+        "c0": 3809,
+        "c1": 0.9270149645576267
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Category Eligible Deliveries]",
+        "c1": "[Category On Time Delivery Rate]"
+      }
+    },
+    {
+      "name": "Delivery category semijoin toys",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Eligible Deliveries], \"c1\", [Category On Time Delivery Rate]), TREATAS({\"toys\"}, DimProduct[CategoryLabel]))",
+      "expected": {
+        "c0": 3803,
+        "c1": 0.936103076518538
+      },
+      "tolerance": 1e-06,
+      "expressions": {
+        "c0": "[Category Eligible Deliveries]",
+        "c1": "[Category On Time Delivery Rate]"
+      }
+    },
+    {
+      "name": "Purchase month regression 2016-09",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2016-09\"}, DimDate[YearMonth]))",
+      "expected": {
+        "c0": 134.97,
+        "c1": 1
+      },
+      "tolerance": 0.005,
+      "expressions": {
+        "c0": "[Sales Revenue]",
+        "c1": "[Sales Order Count]"
+      }
+    },
+    {
+      "name": "Purchase month regression 2016-10",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2016-10\"}, DimDate[YearMonth]))",
+      "expected": {
+        "c0": 40325.11,
+        "c1": 265
+      },
+      "tolerance": 0.005,
+      "expressions": {
+        "c0": "[Sales Revenue]",
+        "c1": "[Sales Order Count]"
+      }
+    },
+    {
+      "name": "Purchase month regression 2016-12",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2016-12\"}, DimDate[YearMonth]))",
+      "expected": {
+        "c0": 10.9,
+        "c1": 1
+      },
+      "tolerance": 0.005,
+      "expressions": {
+        "c0": "[Sales Revenue]",
+        "c1": "[Sales Order Count]"
+      }
+    },
+    {
+      "name": "Purchase month regression 2017-01",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2017-01\"}, DimDate[YearMonth]))",
+      "expected": {
+        "c0": 111798.36,
+        "c1": 750
+      },
+      "tolerance": 0.005,
+      "expressions": {
+        "c0": "[Sales Revenue]",
+        "c1": "[Sales Order Count]"
+      }
+    },
+    {
+      "name": "Purchase month regression 2017-02",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2017-02\"}, DimDate[YearMonth]))",
+      "expected": {
+        "c0": 234223.4,
+        "c1": 1653
+      },
+      "tolerance": 0.005,
+      "expressions": {
+        "c0": "[Sales Revenue]",
+        "c1": "[Sales Order Count]"
+      }
+    },
+    {
+      "name": "Purchase month regression 2017-03",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2017-03\"}, DimDate[YearMonth]))",
+      "expected": {
+        "c0": 359198.85,
+        "c1": 2546
+      },
+      "tolerance": 0.005,
+      "expressions": {
+        "c0": "[Sales Revenue]",
+        "c1": "[Sales Order Count]"
+      }
+    },
+    {
+      "name": "Purchase month regression 2017-04",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2017-04\"}, DimDate[YearMonth]))",
+      "expected": {
+        "c0": 340669.68,
+        "c1": 2303
+      },
+      "tolerance": 0.005,
+      "expressions": {
+        "c0": "[Sales Revenue]",
+        "c1": "[Sales Order Count]"
+      }
+    },
+    {
+      "name": "Purchase month regression 2017-05",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2017-05\"}, DimDate[YearMonth]))",
+      "expected": {
+        "c0": 489338.25,
+        "c1": 3546
+      },
+      "tolerance": 0.005,
+      "expressions": {
+        "c0": "[Sales Revenue]",
+        "c1": "[Sales Order Count]"
+      }
+    },
+    {
+      "name": "Purchase month regression 2017-06",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2017-06\"}, DimDate[YearMonth]))",
+      "expected": {
+        "c0": 421923.37,
+        "c1": 3135
+      },
+      "tolerance": 0.005,
+      "expressions": {
+        "c0": "[Sales Revenue]",
+        "c1": "[Sales Order Count]"
+      }
+    },
+    {
+      "name": "Purchase month regression 2017-07",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2017-07\"}, DimDate[YearMonth]))",
+      "expected": {
+        "c0": 481604.52,
+        "c1": 3872
+      },
+      "tolerance": 0.005,
+      "expressions": {
+        "c0": "[Sales Revenue]",
+        "c1": "[Sales Order Count]"
+      }
+    },
+    {
+      "name": "Purchase month regression 2017-08",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2017-08\"}, DimDate[YearMonth]))",
+      "expected": {
+        "c0": 554699.7,
+        "c1": 4193
+      },
+      "tolerance": 0.005,
+      "expressions": {
+        "c0": "[Sales Revenue]",
+        "c1": "[Sales Order Count]"
+      }
+    },
+    {
+      "name": "Purchase month regression 2017-09",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2017-09\"}, DimDate[YearMonth]))",
+      "expected": {
+        "c0": 607399.67,
+        "c1": 4150
+      },
+      "tolerance": 0.005,
+      "expressions": {
+        "c0": "[Sales Revenue]",
+        "c1": "[Sales Order Count]"
+      }
+    },
+    {
+      "name": "Purchase month regression 2017-10",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2017-10\"}, DimDate[YearMonth]))",
+      "expected": {
+        "c0": 648247.65,
+        "c1": 4478
+      },
+      "tolerance": 0.005,
+      "expressions": {
+        "c0": "[Sales Revenue]",
+        "c1": "[Sales Order Count]"
+      }
+    },
+    {
+      "name": "Purchase month regression 2017-11",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2017-11\"}, DimDate[YearMonth]))",
+      "expected": {
+        "c0": 987765.37,
+        "c1": 7289
+      },
+      "tolerance": 0.005,
+      "expressions": {
+        "c0": "[Sales Revenue]",
+        "c1": "[Sales Order Count]"
+      }
+    },
+    {
+      "name": "Purchase month regression 2017-12",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2017-12\"}, DimDate[YearMonth]))",
+      "expected": {
+        "c0": 726033.19,
+        "c1": 5513
+      },
+      "tolerance": 0.005,
+      "expressions": {
+        "c0": "[Sales Revenue]",
+        "c1": "[Sales Order Count]"
+      }
+    },
+    {
+      "name": "Purchase month regression 2018-01",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2018-01\"}, DimDate[YearMonth]))",
+      "expected": {
+        "c0": 924645.0,
+        "c1": 7069
+      },
+      "tolerance": 0.005,
+      "expressions": {
+        "c0": "[Sales Revenue]",
+        "c1": "[Sales Order Count]"
+      }
+    },
+    {
+      "name": "Purchase month regression 2018-02",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2018-02\"}, DimDate[YearMonth]))",
+      "expected": {
+        "c0": 826437.13,
+        "c1": 6555
+      },
+      "tolerance": 0.005,
+      "expressions": {
+        "c0": "[Sales Revenue]",
+        "c1": "[Sales Order Count]"
+      }
+    },
+    {
+      "name": "Purchase month regression 2018-03",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2018-03\"}, DimDate[YearMonth]))",
+      "expected": {
+        "c0": 953356.25,
+        "c1": 7003
+      },
+      "tolerance": 0.005,
+      "expressions": {
+        "c0": "[Sales Revenue]",
+        "c1": "[Sales Order Count]"
+      }
+    },
+    {
+      "name": "Purchase month regression 2018-04",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2018-04\"}, DimDate[YearMonth]))",
+      "expected": {
+        "c0": 973534.09,
+        "c1": 6798
+      },
+      "tolerance": 0.005,
+      "expressions": {
+        "c0": "[Sales Revenue]",
+        "c1": "[Sales Order Count]"
+      }
+    },
+    {
+      "name": "Purchase month regression 2018-05",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2018-05\"}, DimDate[YearMonth]))",
+      "expected": {
+        "c0": 977544.69,
+        "c1": 6749
+      },
+      "tolerance": 0.005,
+      "expressions": {
+        "c0": "[Sales Revenue]",
+        "c1": "[Sales Order Count]"
+      }
+    },
+    {
+      "name": "Purchase month regression 2018-06",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2018-06\"}, DimDate[YearMonth]))",
+      "expected": {
+        "c0": 856077.86,
+        "c1": 6099
+      },
+      "tolerance": 0.005,
+      "expressions": {
+        "c0": "[Sales Revenue]",
+        "c1": "[Sales Order Count]"
+      }
+    },
+    {
+      "name": "Purchase month regression 2018-07",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2018-07\"}, DimDate[YearMonth]))",
+      "expected": {
+        "c0": 867953.46,
+        "c1": 6159
+      },
+      "tolerance": 0.005,
+      "expressions": {
+        "c0": "[Sales Revenue]",
+        "c1": "[Sales Order Count]"
+      }
+    },
+    {
+      "name": "Purchase month regression 2018-08",
+      "dax": "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2018-08\"}, DimDate[YearMonth]))",
+      "expected": {
+        "c0": 838576.64,
+        "c1": 6351
+      },
+      "tolerance": 0.005,
+      "expressions": {
+        "c0": "[Sales Revenue]",
+        "c1": "[Sales Order Count]"
+      }
+    }
+  ]
+}

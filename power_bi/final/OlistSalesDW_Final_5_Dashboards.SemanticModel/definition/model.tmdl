@@ -1,0 +1,49 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["DimCustomer","DimDate","DimGeography","DimProduct","DimSeller","DimPaymentType","DimOrderStatus","FactOrderItems","FactOrders","FactPayments","FactReviews"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table DimCustomer
+ref table DateKeyLookup
+ref table DateTableTemplate_ade76c06-2098-46f6-b344-a184da758b95
+ref table LocalDateTable_2c1d9b51-3998-4df9-b3ec-af2dfec737b4
+ref table DimCustomerGeography
+ref table DimProduct
+ref table DimSeller
+ref table DimPaymentType
+ref table DimOrderStatus
+ref table FactOrderItems
+ref table LocalDateTable_3fcf8953-9f48-4f1c-9c35-2c2368611446
+ref table FactOrders
+ref table LocalDateTable_49228ef8-33ec-479c-a777-57b2febd464f
+ref table LocalDateTable_5a46a3aa-0b4c-4dea-a844-41ada4eae72a
+ref table LocalDateTable_b9d05030-7fc2-4b27-9911-ca339e7e4056
+ref table LocalDateTable_d93f9290-a870-45af-a9c8-e0d3f006046f
+ref table LocalDateTable_6535d1b8-86a8-44ea-87ee-276b456f1afe
+ref table FactPayments
+ref table FactReviews
+ref table LocalDateTable_8bdc1c6d-451a-4443-9884-17366b89f501
+ref table LocalDateTable_8aa2ded3-4914-4fd4-9537-326ce9e5107b
+ref table DimSellerGeography
+ref table DimDate
+ref table DimApprovalDate
+ref table DimCarrierDate
+ref table DimActualDeliveryDate
+ref table DimEstimatedDeliveryDate
+ref table DimShippingLimitDate
+ref table DimReviewCreationDate
+ref table DimReviewAnswerDate
+ref table DimOrder
+
+ref cultureInfo en-US
+

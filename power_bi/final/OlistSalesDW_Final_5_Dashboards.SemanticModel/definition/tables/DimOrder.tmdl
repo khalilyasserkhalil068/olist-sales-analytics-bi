@@ -1,0 +1,19 @@
+/// One row per order. Shared order selection across all facts, without fact-to-fact relationships.
+table DimOrder
+	lineageTag: 4e9589f7-11a4-40d5-a874-5b493cd00694
+
+	column OrderKey
+		dataType: int64
+		lineageTag: 9eafdbff-12b6-47c4-a691-67892d786383
+		summarizeBy: none
+		sourceColumn: [OrderKey]
+
+	column OrderID
+		dataType: string
+		lineageTag: fa4afce2-9807-4d9d-a13d-822504a4bdb6
+		summarizeBy: none
+		sourceColumn: [OrderID]
+
+	partition DimOrder = calculated
+		source = SELECTCOLUMNS(FactOrders,"OrderKey",FactOrders[OrderKey],"OrderID",FactOrders[OrderID])
+

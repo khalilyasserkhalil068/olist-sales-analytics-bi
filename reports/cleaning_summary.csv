@@ -1,0 +1,253 @@
+dataset,action,column,affected_records,decision,reason,details
+customers,strip_outer_whitespace,customer_id,0,changed,Trim edges only; preserve inner review content and case.,{}
+customers,blank_text_to_missing,customer_id,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+customers,strip_outer_whitespace,customer_unique_id,0,changed,Trim edges only; preserve inner review content and case.,{}
+customers,blank_text_to_missing,customer_unique_id,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+customers,strip_outer_whitespace,customer_zip_code_prefix,0,changed,Trim edges only; preserve inner review content and case.,{}
+customers,blank_text_to_missing,customer_zip_code_prefix,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+customers,strip_outer_whitespace,customer_city,0,changed,Trim edges only; preserve inner review content and case.,{}
+customers,blank_text_to_missing,customer_city,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+customers,strip_outer_whitespace,customer_state,0,changed,Trim edges only; preserve inner review content and case.,{}
+customers,blank_text_to_missing,customer_state,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+orders,strip_outer_whitespace,order_id,0,changed,Trim edges only; preserve inner review content and case.,{}
+orders,blank_text_to_missing,order_id,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+orders,strip_outer_whitespace,customer_id,0,changed,Trim edges only; preserve inner review content and case.,{}
+orders,blank_text_to_missing,customer_id,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+orders,strip_outer_whitespace,order_status,0,changed,Trim edges only; preserve inner review content and case.,{}
+orders,blank_text_to_missing,order_status,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+orders,strip_outer_whitespace,order_purchase_timestamp,0,changed,Trim edges only; preserve inner review content and case.,{}
+orders,blank_text_to_missing,order_purchase_timestamp,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+orders,strip_outer_whitespace,order_approved_at,0,changed,Trim edges only; preserve inner review content and case.,{}
+orders,blank_text_to_missing,order_approved_at,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+orders,strip_outer_whitespace,order_delivered_carrier_date,0,changed,Trim edges only; preserve inner review content and case.,{}
+orders,blank_text_to_missing,order_delivered_carrier_date,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+orders,strip_outer_whitespace,order_delivered_customer_date,0,changed,Trim edges only; preserve inner review content and case.,{}
+orders,blank_text_to_missing,order_delivered_customer_date,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+orders,strip_outer_whitespace,order_estimated_delivery_date,0,changed,Trim edges only; preserve inner review content and case.,{}
+orders,blank_text_to_missing,order_estimated_delivery_date,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+orders,invalid_order_purchase_timestamp,order_purchase_timestamp,0,flagged; retained,Unparseable source date; original text retained in flags and raw data.,{}
+orders,parse_datetime,order_purchase_timestamp,99441,changed,Parse exact source format without imputation or timezone conversion.,"{""invalid"": 0}"
+orders,invalid_order_approved_at,order_approved_at,0,flagged; retained,Unparseable source date; original text retained in flags and raw data.,{}
+orders,parse_datetime,order_approved_at,99281,changed,Parse exact source format without imputation or timezone conversion.,"{""invalid"": 0}"
+orders,invalid_order_delivered_carrier_date,order_delivered_carrier_date,0,flagged; retained,Unparseable source date; original text retained in flags and raw data.,{}
+orders,parse_datetime,order_delivered_carrier_date,97658,changed,Parse exact source format without imputation or timezone conversion.,"{""invalid"": 0}"
+orders,invalid_order_delivered_customer_date,order_delivered_customer_date,0,flagged; retained,Unparseable source date; original text retained in flags and raw data.,{}
+orders,parse_datetime,order_delivered_customer_date,96476,changed,Parse exact source format without imputation or timezone conversion.,"{""invalid"": 0}"
+orders,invalid_order_estimated_delivery_date,order_estimated_delivery_date,0,flagged; retained,Unparseable source date; original text retained in flags and raw data.,{}
+orders,parse_datetime,order_estimated_delivery_date,99441,changed,Parse exact source format without imputation or timezone conversion.,"{""invalid"": 0}"
+order_items,strip_outer_whitespace,order_id,0,changed,Trim edges only; preserve inner review content and case.,{}
+order_items,blank_text_to_missing,order_id,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+order_items,strip_outer_whitespace,order_item_id,0,changed,Trim edges only; preserve inner review content and case.,{}
+order_items,blank_text_to_missing,order_item_id,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+order_items,strip_outer_whitespace,product_id,0,changed,Trim edges only; preserve inner review content and case.,{}
+order_items,blank_text_to_missing,product_id,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+order_items,strip_outer_whitespace,seller_id,0,changed,Trim edges only; preserve inner review content and case.,{}
+order_items,blank_text_to_missing,seller_id,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+order_items,strip_outer_whitespace,shipping_limit_date,0,changed,Trim edges only; preserve inner review content and case.,{}
+order_items,blank_text_to_missing,shipping_limit_date,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+order_items,strip_outer_whitespace,price,0,changed,Trim edges only; preserve inner review content and case.,{}
+order_items,blank_text_to_missing,price,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+order_items,strip_outer_whitespace,freight_value,0,changed,Trim edges only; preserve inner review content and case.,{}
+order_items,blank_text_to_missing,freight_value,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+order_items,invalid_shipping_limit_date,shipping_limit_date,0,flagged; retained,Unparseable source date; original text retained in flags and raw data.,{}
+order_items,parse_datetime,shipping_limit_date,112650,changed,Parse exact source format without imputation or timezone conversion.,"{""invalid"": 0}"
+order_items,invalid_price,price,0,flagged; retained,Non-numeric source value; original text retained in flags and raw data.,{}
+order_items,parse_numeric,price,112650,changed,"Validate numeric values without rounding, imputation or financial adjustment.","{""invalid"": 0}"
+order_items,invalid_freight_value,freight_value,0,flagged; retained,Non-numeric source value; original text retained in flags and raw data.,{}
+order_items,parse_numeric,freight_value,112650,changed,"Validate numeric values without rounding, imputation or financial adjustment.","{""invalid"": 0}"
+payments,strip_outer_whitespace,order_id,0,changed,Trim edges only; preserve inner review content and case.,{}
+payments,blank_text_to_missing,order_id,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+payments,strip_outer_whitespace,payment_sequential,0,changed,Trim edges only; preserve inner review content and case.,{}
+payments,blank_text_to_missing,payment_sequential,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+payments,strip_outer_whitespace,payment_type,0,changed,Trim edges only; preserve inner review content and case.,{}
+payments,blank_text_to_missing,payment_type,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+payments,strip_outer_whitespace,payment_installments,0,changed,Trim edges only; preserve inner review content and case.,{}
+payments,blank_text_to_missing,payment_installments,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+payments,strip_outer_whitespace,payment_value,0,changed,Trim edges only; preserve inner review content and case.,{}
+payments,blank_text_to_missing,payment_value,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+payments,invalid_payment_installments,payment_installments,0,flagged; retained,Non-numeric source value; original text retained in flags and raw data.,{}
+payments,parse_numeric,payment_installments,103886,changed,"Validate numeric values without rounding, imputation or financial adjustment.","{""invalid"": 0}"
+payments,invalid_payment_value,payment_value,0,flagged; retained,Non-numeric source value; original text retained in flags and raw data.,{}
+payments,parse_numeric,payment_value,103886,changed,"Validate numeric values without rounding, imputation or financial adjustment.","{""invalid"": 0}"
+reviews,strip_outer_whitespace,review_id,0,changed,Trim edges only; preserve inner review content and case.,{}
+reviews,blank_text_to_missing,review_id,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+reviews,strip_outer_whitespace,order_id,0,changed,Trim edges only; preserve inner review content and case.,{}
+reviews,blank_text_to_missing,order_id,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+reviews,strip_outer_whitespace,review_score,0,changed,Trim edges only; preserve inner review content and case.,{}
+reviews,blank_text_to_missing,review_score,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+reviews,strip_outer_whitespace,review_comment_title,1998,changed,Trim edges only; preserve inner review content and case.,{}
+reviews,blank_text_to_missing,review_comment_title,2,changed,Whitespace-only fields have no text content; store as missing.,{}
+reviews,strip_outer_whitespace,review_comment_message,9451,changed,Trim edges only; preserve inner review content and case.,{}
+reviews,blank_text_to_missing,review_comment_message,27,changed,Whitespace-only fields have no text content; store as missing.,{}
+reviews,strip_outer_whitespace,review_creation_date,0,changed,Trim edges only; preserve inner review content and case.,{}
+reviews,blank_text_to_missing,review_creation_date,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+reviews,strip_outer_whitespace,review_answer_timestamp,0,changed,Trim edges only; preserve inner review content and case.,{}
+reviews,blank_text_to_missing,review_answer_timestamp,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+reviews,invalid_review_creation_date,review_creation_date,0,flagged; retained,Unparseable source date; original text retained in flags and raw data.,{}
+reviews,parse_datetime,review_creation_date,99224,changed,Parse exact source format without imputation or timezone conversion.,"{""invalid"": 0}"
+reviews,invalid_review_answer_timestamp,review_answer_timestamp,0,flagged; retained,Unparseable source date; original text retained in flags and raw data.,{}
+reviews,parse_datetime,review_answer_timestamp,99224,changed,Parse exact source format without imputation or timezone conversion.,"{""invalid"": 0}"
+reviews,invalid_review_score,review_score,0,flagged; retained,Non-numeric source value; original text retained in flags and raw data.,{}
+reviews,parse_numeric,review_score,99224,changed,"Validate numeric values without rounding, imputation or financial adjustment.","{""invalid"": 0}"
+products,strip_outer_whitespace,product_id,0,changed,Trim edges only; preserve inner review content and case.,{}
+products,blank_text_to_missing,product_id,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+products,strip_outer_whitespace,product_category_name,0,changed,Trim edges only; preserve inner review content and case.,{}
+products,blank_text_to_missing,product_category_name,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+products,strip_outer_whitespace,product_name_lenght,0,changed,Trim edges only; preserve inner review content and case.,{}
+products,blank_text_to_missing,product_name_lenght,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+products,strip_outer_whitespace,product_description_lenght,0,changed,Trim edges only; preserve inner review content and case.,{}
+products,blank_text_to_missing,product_description_lenght,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+products,strip_outer_whitespace,product_photos_qty,0,changed,Trim edges only; preserve inner review content and case.,{}
+products,blank_text_to_missing,product_photos_qty,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+products,strip_outer_whitespace,product_weight_g,0,changed,Trim edges only; preserve inner review content and case.,{}
+products,blank_text_to_missing,product_weight_g,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+products,strip_outer_whitespace,product_length_cm,0,changed,Trim edges only; preserve inner review content and case.,{}
+products,blank_text_to_missing,product_length_cm,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+products,strip_outer_whitespace,product_height_cm,0,changed,Trim edges only; preserve inner review content and case.,{}
+products,blank_text_to_missing,product_height_cm,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+products,strip_outer_whitespace,product_width_cm,0,changed,Trim edges only; preserve inner review content and case.,{}
+products,blank_text_to_missing,product_width_cm,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+products,invalid_product_name_lenght,product_name_lenght,0,flagged; retained,Non-numeric source value; original text retained in flags and raw data.,{}
+products,parse_numeric,product_name_lenght,32341,changed,"Validate numeric values without rounding, imputation or financial adjustment.","{""invalid"": 0}"
+products,invalid_product_description_lenght,product_description_lenght,0,flagged; retained,Non-numeric source value; original text retained in flags and raw data.,{}
+products,parse_numeric,product_description_lenght,32341,changed,"Validate numeric values without rounding, imputation or financial adjustment.","{""invalid"": 0}"
+products,invalid_product_photos_qty,product_photos_qty,0,flagged; retained,Non-numeric source value; original text retained in flags and raw data.,{}
+products,parse_numeric,product_photos_qty,32341,changed,"Validate numeric values without rounding, imputation or financial adjustment.","{""invalid"": 0}"
+products,invalid_product_weight_g,product_weight_g,0,flagged; retained,Non-numeric source value; original text retained in flags and raw data.,{}
+products,parse_numeric,product_weight_g,32949,changed,"Validate numeric values without rounding, imputation or financial adjustment.","{""invalid"": 0}"
+products,invalid_product_length_cm,product_length_cm,0,flagged; retained,Non-numeric source value; original text retained in flags and raw data.,{}
+products,parse_numeric,product_length_cm,32949,changed,"Validate numeric values without rounding, imputation or financial adjustment.","{""invalid"": 0}"
+products,invalid_product_height_cm,product_height_cm,0,flagged; retained,Non-numeric source value; original text retained in flags and raw data.,{}
+products,parse_numeric,product_height_cm,32949,changed,"Validate numeric values without rounding, imputation or financial adjustment.","{""invalid"": 0}"
+products,invalid_product_width_cm,product_width_cm,0,flagged; retained,Non-numeric source value; original text retained in flags and raw data.,{}
+products,parse_numeric,product_width_cm,32949,changed,"Validate numeric values without rounding, imputation or financial adjustment.","{""invalid"": 0}"
+sellers,strip_outer_whitespace,seller_id,0,changed,Trim edges only; preserve inner review content and case.,{}
+sellers,blank_text_to_missing,seller_id,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+sellers,strip_outer_whitespace,seller_zip_code_prefix,0,changed,Trim edges only; preserve inner review content and case.,{}
+sellers,blank_text_to_missing,seller_zip_code_prefix,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+sellers,strip_outer_whitespace,seller_city,0,changed,Trim edges only; preserve inner review content and case.,{}
+sellers,blank_text_to_missing,seller_city,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+sellers,strip_outer_whitespace,seller_state,0,changed,Trim edges only; preserve inner review content and case.,{}
+sellers,blank_text_to_missing,seller_state,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+category_translations,strip_outer_whitespace,product_category_name,0,changed,Trim edges only; preserve inner review content and case.,{}
+category_translations,blank_text_to_missing,product_category_name,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+category_translations,strip_outer_whitespace,product_category_name_english,0,changed,Trim edges only; preserve inner review content and case.,{}
+category_translations,blank_text_to_missing,product_category_name_english,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+geolocation,strip_outer_whitespace,geolocation_zip_code_prefix,0,changed,Trim edges only; preserve inner review content and case.,{}
+geolocation,blank_text_to_missing,geolocation_zip_code_prefix,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+geolocation,strip_outer_whitespace,geolocation_lat,0,changed,Trim edges only; preserve inner review content and case.,{}
+geolocation,blank_text_to_missing,geolocation_lat,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+geolocation,strip_outer_whitespace,geolocation_lng,0,changed,Trim edges only; preserve inner review content and case.,{}
+geolocation,blank_text_to_missing,geolocation_lng,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+geolocation,strip_outer_whitespace,geolocation_city,1,changed,Trim edges only; preserve inner review content and case.,{}
+geolocation,blank_text_to_missing,geolocation_city,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+geolocation,strip_outer_whitespace,geolocation_state,0,changed,Trim edges only; preserve inner review content and case.,{}
+geolocation,blank_text_to_missing,geolocation_state,0,changed,Whitespace-only fields have no text content; store as missing.,{}
+geolocation,invalid_geolocation_lat,geolocation_lat,0,flagged; retained,Non-numeric source value; original text retained in flags and raw data.,{}
+geolocation,parse_numeric,geolocation_lat,1000163,changed,"Validate numeric values without rounding, imputation or financial adjustment.","{""invalid"": 0}"
+geolocation,invalid_geolocation_lng,geolocation_lng,0,flagged; retained,Non-numeric source value; original text retained in flags and raw data.,{}
+geolocation,parse_numeric,geolocation_lng,1000163,changed,"Validate numeric values without rounding, imputation or financial adjustment.","{""invalid"": 0}"
+products,normalize_category_case,product_category_name,0,changed,Category lookup labels use lower case; no translations are invented.,{}
+category_translations,normalize_category_case,product_category_name,0,changed,Category lookup labels use lower case; no translations are invented.,{}
+category_translations,normalize_category_case,product_category_name_english,0,changed,Category lookup labels use lower case; no translations are invented.,{}
+products,category_missing,product_category_name,610,flagged; retained,Missing source category retained as an explicit Unknown display label.,{}
+products,category_untranslated,product_category_name,13,flagged; retained,Source category absent from translations; retain Portuguese label and use Unknown only in English display field.,{}
+products,missing_category_label,product_category_name,610,changed,"Unknown is a missingness label, not an inferred category.",{}
+products,english_category_lookup,product_category_name_english,32328,changed,Map only publisher-provided translations; missing and untranslated labels become Unknown.,"{""unknown_labels"": 623}"
+customers,exact_duplicate_handling,ALL_SOURCE_COLUMNS,0,preserved,Preserve all transactional and entity records; repeated order/review IDs are not a deduplication rule.,"{""raw_exact_duplicates"": 0, ""processed_exact_duplicates_before_removal"": 0}"
+orders,exact_duplicate_handling,ALL_SOURCE_COLUMNS,0,preserved,Preserve all transactional and entity records; repeated order/review IDs are not a deduplication rule.,"{""raw_exact_duplicates"": 0, ""processed_exact_duplicates_before_removal"": 0}"
+order_items,exact_duplicate_handling,ALL_SOURCE_COLUMNS,0,preserved,Preserve all transactional and entity records; repeated order/review IDs are not a deduplication rule.,"{""raw_exact_duplicates"": 0, ""processed_exact_duplicates_before_removal"": 0}"
+payments,exact_duplicate_handling,ALL_SOURCE_COLUMNS,0,preserved,Preserve all transactional and entity records; repeated order/review IDs are not a deduplication rule.,"{""raw_exact_duplicates"": 0, ""processed_exact_duplicates_before_removal"": 0}"
+reviews,exact_duplicate_handling,ALL_SOURCE_COLUMNS,0,preserved,Preserve all transactional and entity records; repeated order/review IDs are not a deduplication rule.,"{""raw_exact_duplicates"": 0, ""processed_exact_duplicates_before_removal"": 0}"
+products,exact_duplicate_handling,ALL_SOURCE_COLUMNS,0,preserved,Preserve all transactional and entity records; repeated order/review IDs are not a deduplication rule.,"{""raw_exact_duplicates"": 0, ""processed_exact_duplicates_before_removal"": 0}"
+sellers,exact_duplicate_handling,ALL_SOURCE_COLUMNS,0,preserved,Preserve all transactional and entity records; repeated order/review IDs are not a deduplication rule.,"{""raw_exact_duplicates"": 0, ""processed_exact_duplicates_before_removal"": 0}"
+category_translations,exact_duplicate_handling,ALL_SOURCE_COLUMNS,0,preserved,Preserve all transactional and entity records; repeated order/review IDs are not a deduplication rule.,"{""raw_exact_duplicates"": 0, ""processed_exact_duplicates_before_removal"": 0}"
+geolocation,exact_duplicate_handling,ALL_SOURCE_COLUMNS,261831,removed from processed copy,Exact repeated geographic observations add no distinct information and would bias the ZIP representative. Raw file is preserved.,"{""raw_exact_duplicates"": 261831, ""processed_exact_duplicates_before_removal"": 261831}"
+geolocation,repeated_zip_prefix_observations,geolocation_zip_code_prefix,737140,investigated; retained,A ZIP prefix may have multiple distinct locations; preserve these observations and use the separate unique lookup for joins.,"{""prefixes_with_multiple_observations"": 17823, ""distinct_prefixes"": 19015}"
+geolocation,repeated_coordinate_pairs_within_zip,"geolocation_zip_code_prefix, geolocation_lat, geolocation_lng",18178,investigated; retained,Same ZIP and coordinates can have different city/state labels. Count excess repetitions without deleting distinct labeled observations.,{}
+geolocation_zip_lookup,representative_zip_lookup,zip_code_prefix,19015,changed,Modal state/city pair among distinct observations; observed coordinate nearest that pair's joint median; deterministic lexical/numeric ties.,{}
+orders,no_items,"order_id, order_status",775,flagged; retained,Missing child-table coverage; preserve order and investigate status/context.,{}
+orders,no_payments,"order_id, order_status",1,flagged; retained,Missing child-table coverage; preserve order and investigate status/context.,{}
+orders,no_reviews,"order_id, order_status",768,flagged; retained,Missing child-table coverage; preserve order and investigate status/context.,{}
+orders,missing_order_approved_at,"order_status, order_approved_at",160,flagged; retained,Missing milestone may depend on status; do not invent timestamps.,{}
+orders,delivered_missing_order_approved_at,"order_status, order_approved_at",14,flagged; retained,"Delivered order lacks a milestone; investigate source completeness, retain record.",{}
+orders,missing_order_delivered_carrier_date,"order_status, order_delivered_carrier_date",1783,flagged; retained,Missing milestone may depend on status; do not invent timestamps.,{}
+orders,delivered_missing_order_delivered_carrier_date,"order_status, order_delivered_carrier_date",2,flagged; retained,"Delivered order lacks a milestone; investigate source completeness, retain record.",{}
+orders,missing_order_delivered_customer_date,"order_status, order_delivered_customer_date",2965,flagged; retained,Missing milestone may depend on status; do not invent timestamps.,{}
+orders,delivered_missing_order_delivered_customer_date,"order_status, order_delivered_customer_date",8,flagged; retained,"Delivered order lacks a milestone; investigate source completeness, retain record.",{}
+orders,approval_before_purchase,"order_purchase_timestamp, order_approved_at",0,flagged; retained,Chronological inconsistency; keep original values pending process/source investigation.,{}
+orders,carrier_before_purchase,"order_purchase_timestamp, order_delivered_carrier_date",166,flagged; retained,Chronological inconsistency; keep original values pending process/source investigation.,{}
+orders,delivery_before_purchase,"order_purchase_timestamp, order_delivered_customer_date",0,flagged; retained,Chronological inconsistency; keep original values pending process/source investigation.,{}
+orders,carrier_before_approval,"order_approved_at, order_delivered_carrier_date",1359,flagged; retained,Chronological inconsistency; keep original values pending process/source investigation.,{}
+orders,delivery_before_carrier,"order_delivered_carrier_date, order_delivered_customer_date",23,flagged; retained,Chronological inconsistency; keep original values pending process/source investigation.,{}
+reviews,answer_before_creation,"review_creation_date, review_answer_timestamp",0,flagged; retained,Chronological inconsistency; keep original values pending process/source investigation.,{}
+order_items,shipping_limit_before_purchase,"order_id, shipping_limit_date",0,flagged; retained,Shipping deadline precedes purchase timestamp; preserve values.,{}
+order_items,shipping_limit_after_purchase_year_range,shipping_limit_date,4,flagged; retained,"Deadline year exceeds the latest observed purchase year; investigate, not automatically invalid.",{}
+products,missing_attributes,"product_name_lenght, product_description_lenght, product_photos_qty, product_weight_g, product_length_cm, product_height_cm, product_width_cm",611,flagged; retained,Missing physical/content attributes remain missing; no dimensional or weight imputation.,{}
+products,nonpositive_product_weight_g,product_weight_g,4,flagged; retained,Non-positive physical measurement retained and flagged; no replacement value is inferred.,{}
+products,nonpositive_product_length_cm,product_length_cm,0,flagged; retained,Non-positive physical measurement retained and flagged; no replacement value is inferred.,{}
+products,nonpositive_product_height_cm,product_height_cm,0,flagged; retained,Non-positive physical measurement retained and flagged; no replacement value is inferred.,{}
+products,nonpositive_product_width_cm,product_width_cm,0,flagged; retained,Non-positive physical measurement retained and flagged; no replacement value is inferred.,{}
+order_items,negative_price,price,0,flagged; retained,Negative monetary value requires investigation; do not silently change financial amounts.,{}
+order_items,zero_price,price,0,flagged; retained,Zero monetary value may be legitimate; retained without adjustment.,{}
+order_items,negative_freight_value,freight_value,0,flagged; retained,Negative monetary value requires investigation; do not silently change financial amounts.,{}
+order_items,zero_freight_value,freight_value,383,flagged; retained,Zero monetary value may be legitimate; retained without adjustment.,{}
+payments,negative_payment_value,payment_value,0,flagged; retained,Negative monetary value requires investigation; do not silently change financial amounts.,{}
+payments,zero_payment_value,payment_value,9,flagged; retained,Zero monetary value may be legitimate; retained without adjustment.,{}
+payments,nonpositive_installments,payment_installments,2,flagged; retained,Non-positive installment count is retained for investigation.,{}
+payments,noninteger_payment_installments,payment_installments,0,flagged; retained,Expected integer-valued numeric field; preserve unexpected fractional values.,{}
+reviews,noninteger_review_score,review_score,0,flagged; retained,Expected integer-valued numeric field; preserve unexpected fractional values.,{}
+reviews,score_out_of_range,review_score,0,flagged; retained,Score outside the observed source rating scale 1–5; retain for review.,{}
+reviews,repeated_review_id,"review_id, order_id",1603,flagged; retained,review_id alone is not a primary key; all distinct review/order pairs are preserved.,{}
+customers,unmatched_zip,customer_zip_code_prefix,278,flagged; retained,No raw geolocation observation for this prefix; retain entity without inventing a location.,{}
+sellers,unmatched_zip,seller_zip_code_prefix,7,flagged; retained,No raw geolocation observation for this prefix; retain entity without inventing a location.,{}
+customers,invalid_zip_format,customer_zip_code_prefix,0,flagged; retained,ZIP prefix should have five digits; preserve source text instead of guessing padding.,{}
+sellers,invalid_zip_format,seller_zip_code_prefix,0,flagged; retained,ZIP prefix should have five digits; preserve source text instead of guessing padding.,{}
+geolocation,invalid_zip_format,geolocation_zip_code_prefix,0,flagged; retained,ZIP prefix should have five digits; preserve source text instead of guessing padding.,{}
+geolocation,invalid_coordinate,"geolocation_lat, geolocation_lng",0,flagged; retained,Check global bounds only; no Brazilian geographic boundary assumption is applied.,{}
+geolocation_zip_lookup,conflicting_city_labels,distinct_city_labels,8555,flagged; retained,"Multiple source city labels; modal pair is representative, not a verified address.",{}
+geolocation_zip_lookup,conflicting_states,distinct_states,8,flagged; retained,ZIP has observations in multiple states; keep ambiguity flag.,{}
+geolocation_zip_lookup,missing_coordinate,"geolocation_lat, geolocation_lng",0,flagged; retained,No valid observed coordinate for chosen pair; leave coordinates missing.,{}
+orders,missing_values_preserved,order_approved_at,160,preserved,Preserve missingness where no justified business value is available.,{}
+orders,missing_values_preserved,order_delivered_carrier_date,1783,preserved,Preserve missingness where no justified business value is available.,{}
+orders,missing_values_preserved,order_delivered_customer_date,2965,preserved,Preserve missingness where no justified business value is available.,{}
+reviews,missing_values_preserved,review_comment_title,87658,preserved,Preserve missingness where no justified business value is available.,{}
+reviews,missing_values_preserved,review_comment_message,58274,preserved,Preserve missingness where no justified business value is available.,{}
+products,missing_values_preserved,product_name_lenght,610,preserved,Preserve missingness where no justified business value is available.,{}
+products,missing_values_preserved,product_description_lenght,610,preserved,Preserve missingness where no justified business value is available.,{}
+products,missing_values_preserved,product_photos_qty,610,preserved,Preserve missingness where no justified business value is available.,{}
+products,missing_values_preserved,product_weight_g,2,preserved,Preserve missingness where no justified business value is available.,{}
+products,missing_values_preserved,product_length_cm,2,preserved,Preserve missingness where no justified business value is available.,{}
+products,missing_values_preserved,product_height_cm,2,preserved,Preserve missingness where no justified business value is available.,{}
+products,missing_values_preserved,product_width_cm,2,preserved,Preserve missingness where no justified business value is available.,{}
+customers,row_count_validation,ALL_ROWS,99441,validated,See structured details for measured validation results.,"{""dataset"": ""customers"", ""rows_before"": 99441, ""rows_after"": 99441, ""rows_removed"": 0}"
+orders,row_count_validation,ALL_ROWS,99441,validated,See structured details for measured validation results.,"{""dataset"": ""orders"", ""rows_before"": 99441, ""rows_after"": 99441, ""rows_removed"": 0}"
+order_items,row_count_validation,ALL_ROWS,112650,validated,See structured details for measured validation results.,"{""dataset"": ""order_items"", ""rows_before"": 112650, ""rows_after"": 112650, ""rows_removed"": 0}"
+payments,row_count_validation,ALL_ROWS,103886,validated,See structured details for measured validation results.,"{""dataset"": ""payments"", ""rows_before"": 103886, ""rows_after"": 103886, ""rows_removed"": 0}"
+reviews,row_count_validation,ALL_ROWS,99224,validated,See structured details for measured validation results.,"{""dataset"": ""reviews"", ""rows_before"": 99224, ""rows_after"": 99224, ""rows_removed"": 0}"
+products,row_count_validation,ALL_ROWS,32951,validated,See structured details for measured validation results.,"{""dataset"": ""products"", ""rows_before"": 32951, ""rows_after"": 32951, ""rows_removed"": 0}"
+sellers,row_count_validation,ALL_ROWS,3095,validated,See structured details for measured validation results.,"{""dataset"": ""sellers"", ""rows_before"": 3095, ""rows_after"": 3095, ""rows_removed"": 0}"
+category_translations,row_count_validation,ALL_ROWS,71,validated,See structured details for measured validation results.,"{""dataset"": ""category_translations"", ""rows_before"": 71, ""rows_after"": 71, ""rows_removed"": 0}"
+geolocation,row_count_validation,ALL_ROWS,738332,validated,See structured details for measured validation results.,"{""dataset"": ""geolocation"", ""rows_before"": 1000163, ""rows_after"": 738332, ""rows_removed"": 261831}"
+geolocation_zip_lookup,row_count_validation,ALL_ROWS,19015,validated,See structured details for measured validation results.,"{""dataset"": ""geolocation_zip_lookup"", ""rows_before"": 0, ""rows_after"": 19015, ""rows_removed"": 0}"
+customers,primary_key_validation,customer_id,0,validated,See structured details for measured validation results.,"{""dataset"": ""customers"", ""key_columns"": ""customer_id"", ""null_key_rows"": 0, ""duplicate_keys_excess"": 0, ""valid"": true}"
+orders,primary_key_validation,order_id,0,validated,See structured details for measured validation results.,"{""dataset"": ""orders"", ""key_columns"": ""order_id"", ""null_key_rows"": 0, ""duplicate_keys_excess"": 0, ""valid"": true}"
+order_items,primary_key_validation,order_id + order_item_id,0,validated,See structured details for measured validation results.,"{""dataset"": ""order_items"", ""key_columns"": ""order_id + order_item_id"", ""null_key_rows"": 0, ""duplicate_keys_excess"": 0, ""valid"": true}"
+payments,primary_key_validation,order_id + payment_sequential,0,validated,See structured details for measured validation results.,"{""dataset"": ""payments"", ""key_columns"": ""order_id + payment_sequential"", ""null_key_rows"": 0, ""duplicate_keys_excess"": 0, ""valid"": true}"
+reviews,primary_key_validation,review_id + order_id,0,validated,See structured details for measured validation results.,"{""dataset"": ""reviews"", ""key_columns"": ""review_id + order_id"", ""null_key_rows"": 0, ""duplicate_keys_excess"": 0, ""valid"": true}"
+products,primary_key_validation,product_id,0,validated,See structured details for measured validation results.,"{""dataset"": ""products"", ""key_columns"": ""product_id"", ""null_key_rows"": 0, ""duplicate_keys_excess"": 0, ""valid"": true}"
+sellers,primary_key_validation,seller_id,0,validated,See structured details for measured validation results.,"{""dataset"": ""sellers"", ""key_columns"": ""seller_id"", ""null_key_rows"": 0, ""duplicate_keys_excess"": 0, ""valid"": true}"
+category_translations,primary_key_validation,product_category_name,0,validated,See structured details for measured validation results.,"{""dataset"": ""category_translations"", ""key_columns"": ""product_category_name"", ""null_key_rows"": 0, ""duplicate_keys_excess"": 0, ""valid"": true}"
+geolocation_zip_lookup,primary_key_validation,zip_code_prefix,0,validated,See structured details for measured validation results.,"{""dataset"": ""geolocation_zip_lookup"", ""key_columns"": ""zip_code_prefix"", ""null_key_rows"": 0, ""duplicate_keys_excess"": 0, ""valid"": true}"
+orders,relationship_validation,customer_id,0,validated,See structured details for measured validation results.,"{""child_dataset"": ""orders"", ""foreign_key"": ""customer_id"", ""parent_dataset"": ""customers"", ""parent_key"": ""customer_id"", ""rows_after_join"": 99441, ""child_rows"": 99441, ""null_foreign_key_rows"": 0, ""matched_rows"": 99441, ""unmatched_rows"": 0, ""unmatched_examples"": ""[]""}"
+order_items,relationship_validation,order_id,0,validated,See structured details for measured validation results.,"{""child_dataset"": ""order_items"", ""foreign_key"": ""order_id"", ""parent_dataset"": ""orders"", ""parent_key"": ""order_id"", ""rows_after_join"": 112650, ""child_rows"": 112650, ""null_foreign_key_rows"": 0, ""matched_rows"": 112650, ""unmatched_rows"": 0, ""unmatched_examples"": ""[]""}"
+order_items,relationship_validation,product_id,0,validated,See structured details for measured validation results.,"{""child_dataset"": ""order_items"", ""foreign_key"": ""product_id"", ""parent_dataset"": ""products"", ""parent_key"": ""product_id"", ""rows_after_join"": 112650, ""child_rows"": 112650, ""null_foreign_key_rows"": 0, ""matched_rows"": 112650, ""unmatched_rows"": 0, ""unmatched_examples"": ""[]""}"
+order_items,relationship_validation,seller_id,0,validated,See structured details for measured validation results.,"{""child_dataset"": ""order_items"", ""foreign_key"": ""seller_id"", ""parent_dataset"": ""sellers"", ""parent_key"": ""seller_id"", ""rows_after_join"": 112650, ""child_rows"": 112650, ""null_foreign_key_rows"": 0, ""matched_rows"": 112650, ""unmatched_rows"": 0, ""unmatched_examples"": ""[]""}"
+payments,relationship_validation,order_id,0,validated,See structured details for measured validation results.,"{""child_dataset"": ""payments"", ""foreign_key"": ""order_id"", ""parent_dataset"": ""orders"", ""parent_key"": ""order_id"", ""rows_after_join"": 103886, ""child_rows"": 103886, ""null_foreign_key_rows"": 0, ""matched_rows"": 103886, ""unmatched_rows"": 0, ""unmatched_examples"": ""[]""}"
+reviews,relationship_validation,order_id,0,validated,See structured details for measured validation results.,"{""child_dataset"": ""reviews"", ""foreign_key"": ""order_id"", ""parent_dataset"": ""orders"", ""parent_key"": ""order_id"", ""rows_after_join"": 99224, ""child_rows"": 99224, ""null_foreign_key_rows"": 0, ""matched_rows"": 99224, ""unmatched_rows"": 0, ""unmatched_examples"": ""[]""}"
+customers,relationship_validation,customer_zip_code_prefix,278,validated,See structured details for measured validation results.,"{""child_dataset"": ""customers"", ""foreign_key"": ""customer_zip_code_prefix"", ""parent_dataset"": ""geolocation_zip_lookup"", ""parent_key"": ""zip_code_prefix"", ""rows_after_join"": 99441, ""child_rows"": 99441, ""null_foreign_key_rows"": 0, ""matched_rows"": 99163, ""unmatched_rows"": 278, ""unmatched_examples"": ""[\""72300\"", \""11547\"", \""64605\"", \""72465\"", \""07729\"", \""72904\"", \""35408\"", \""78554\"", \""73369\"", \""08980\""]""}"
+sellers,relationship_validation,seller_zip_code_prefix,7,validated,See structured details for measured validation results.,"{""child_dataset"": ""sellers"", ""foreign_key"": ""seller_zip_code_prefix"", ""parent_dataset"": ""geolocation_zip_lookup"", ""parent_key"": ""zip_code_prefix"", ""rows_after_join"": 3095, ""child_rows"": 3095, ""null_foreign_key_rows"": 0, ""matched_rows"": 3088, ""unmatched_rows"": 7, ""unmatched_examples"": ""[\""82040\"", \""91901\"", \""72580\"", \""02285\"", \""07412\"", \""71551\"", \""37708\""]""}"
+products,relationship_validation,product_category_name,13,validated,See structured details for measured validation results.,"{""child_dataset"": ""products"", ""foreign_key"": ""product_category_name"", ""parent_dataset"": ""category_translations"", ""parent_key"": ""product_category_name"", ""rows_after_join"": 32951, ""child_rows"": 32951, ""null_foreign_key_rows"": 610, ""matched_rows"": 32328, ""unmatched_rows"": 13, ""unmatched_examples"": ""[\""pc_gamer\"", \""portateis_cozinha_e_preparadores_de_alimentos\""]""}"
+order_items,financial_value_validation,price,112650,validated,See structured details for measured validation results.,"{""dataset"": ""order_items"", ""column"": ""price"", ""rows_checked"": 112650, ""exact_decimal_equality"": true}"
+order_items,financial_value_validation,freight_value,112650,validated,See structured details for measured validation results.,"{""dataset"": ""order_items"", ""column"": ""freight_value"", ""rows_checked"": 112650, ""exact_decimal_equality"": true}"
+payments,financial_value_validation,payment_value,103886,validated,See structured details for measured validation results.,"{""dataset"": ""payments"", ""column"": ""payment_value"", ""rows_checked"": 103886, ""exact_decimal_equality"": true}"

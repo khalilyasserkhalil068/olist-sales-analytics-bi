@@ -1,0 +1,21 @@
+{
+  "data/raw/olist_customers_dataset.csv": "983a422239e1712ded753b3bf9ecf47dc73f144d306029dcfa99e70a226883d2",
+  "data/raw/olist_geolocation_dataset.csv": "b514f6fc991b9566aeba02aa5d67e2c3630f034b60a0e05aa0d082a3b66d88d6",
+  "data/raw/olist_order_items_dataset.csv": "0bc4d068c4fe38cbb01bd90e8746e3c613fe7b4baef75fab7b0e329701c3e279",
+  "data/raw/olist_order_payments_dataset.csv": "4f713964f2815dbbaa40b9488268c55aac3627bfce5aa96cf58d1f3616de3cc0",
+  "data/raw/olist_order_reviews_dataset.csv": "012b61c7593e34f51fa614efdf802b9c7056ce6aae5307ddb93236e7cfc797d7",
+  "data/raw/olist_orders_dataset.csv": "8df58ef3d2d7e9944010f7beecd9b75367f5588ec6e3c91cec19ae3345ef9ecf",
+  "data/raw/olist_products_dataset.csv": "3e6569628a17fbc75fd206ee357b59e20364b9afa90f5b6cd5b4d624c58aa9cc",
+  "data/raw/olist_sellers_dataset.csv": "1f643d2b950373b85735e7794b20986f528d7a000432e7c6f9bcbb44d0846a0e",
+  "data/raw/product_category_name_translation.csv": "a81f0d1f27b27e7293f761bc79e3ce8f348ee39c4b3ed3e49bde38f478586278",
+  "data/processed/category_translations_clean.csv": "5233473346639d5ff3da9b784385ba284778abfaac1062572abe99e8aba8b7e3",
+  "data/processed/customers_clean.csv": "dadd4167d59c0028dbce61ebd7282b6eb665ef776b79d7d0a000fbacb428575d",
+  "data/processed/geolocation_clean.csv": "bb8cd9f785f156b091781677144c33ef7bbbc03fa06a7a14db0c51d8b9b2aec8",
+  "data/processed/geolocation_zip_lookup.csv": "f6bd7c09504f150764f8b0c10ad1288c0a92eee99735e1f94bf192536879172e",
+  "data/processed/order_items_clean.csv": "34037964980e1fdb300d64448eef8dc3e42903bfe67750ecc2ecbd3a622b8770",
+  "data/processed/orders_clean.csv": "495c9c11e5e638d4c576d1a406e51a2180b5565ab9b31495ebcf72bbbedca6eb",
+  "data/processed/payments_clean.csv": "9441054e0298f27da1cb846cb8ac71378c32a1a855a8bdbb6c55fa971428e1c5",
+  "data/processed/products_clean.csv": "2fe1d2904429ff2587266b690a26112446cd3ba4afe74bfe555029b56e823258",
+  "data/processed/reviews_clean.csv": "1e9b833b7d2bc2420da63e63cdd836a741f7eb37a3fe82b3a5e5ec2867e2ea08",
+  "data/processed/sellers_clean.csv": "f12eef90d97555e2c3c0a4634a6ffe0aa277e1511a4a43e4dc32a9fe6ffbca7e"
+}

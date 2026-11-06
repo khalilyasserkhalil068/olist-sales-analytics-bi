@@ -1,0 +1,33 @@
+table DimOrderStatus
+	lineageTag: 704edfa7-73f6-4c36-867c-524f260f3b38
+
+	column OrderStatusKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 24ed0f88-7e08-4cb9-8e54-dedcb42f65c5
+		summarizeBy: none
+		sourceColumn: OrderStatusKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderStatus
+		dataType: string
+		lineageTag: 119f477d-7f5c-43b3-a39e-345b1482c627
+		summarizeBy: none
+		sourceColumn: OrderStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimOrderStatus = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("DESKTOP-GEUMHVT\SQLEXPRESS", "OlistSalesDW"),
+				    dw_DimOrderStatus = Source{[Schema="dw",Item="DimOrderStatus"]}[Data]
+				in
+				    dw_DimOrderStatus
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

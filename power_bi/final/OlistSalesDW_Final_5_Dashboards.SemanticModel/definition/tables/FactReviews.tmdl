@@ -1,0 +1,268 @@
+table FactReviews
+	lineageTag: c4625f09-5aa6-48d3-ba65-e617dd7f50cf
+
+	/// Count of loaded review rows. ReviewID is not unique; no deduplication was applied.
+	measure 'Review Count' = COUNTROWS(FactReviews)
+		formatString: #,0
+		displayFolder: Validated KPIs
+		lineageTag: c7f5ab23-4e2d-4486-b4a2-3e1f5e2af219
+
+	/// Average across valid review rows. Not an average of customer or order averages.
+	measure 'Average Review Score' = CALCULATE(AVERAGE(FactReviews[ReviewScore]), KEEPFILTERS(FactReviews[ValidScore]=TRUE()))
+		formatString: 0.00
+		displayFolder: Validated KPIs
+		lineageTag: 3ee86d6b-f92f-4533-968b-0e2f06467e69
+
+	/// All valid loaded review rows, all order statuses. Retains multiple reviews per order and transfers order timeliness selections without item-row expansion. Referential integrity requires every review order to exist.
+	measure 'Total Valid Reviews' = CALCULATE(COUNTROWS(FactReviews), KEEPFILTERS(FactReviews[ValidScore] = TRUE()), KEEPFILTERS(TREATAS(VALUES(FactOrders[OrderKey]), FactReviews[OrderKey])))
+		formatString: #,0
+		displayFolder: Completion KPIs
+		lineageTag: bfb0a1d2-226b-46e7-9dcd-4f4005faaaa2
+
+	/// Mean valid review row score across all statuses; order-key semijoin makes timeliness cross-filtering explicit. Same unfiltered population as the original Average Review Score.
+	measure 'Satisfaction Average Review Score' = CALCULATE(AVERAGE(FactReviews[ReviewScore]), KEEPFILTERS(FactReviews[ValidScore] = TRUE()), KEEPFILTERS(TREATAS(VALUES(FactOrders[OrderKey]), FactReviews[OrderKey])))
+		formatString: 0.00
+		displayFolder: Completion KPIs
+		lineageTag: 1132c377-a490-415a-8fa1-03142748d30a
+
+	/// Scores 4 or 5 / all valid reviews in current selection. A score slicer intentionally changes the denominator; score 3 is neutral.
+	measure 'Positive Review Rate' = DIVIDE(COALESCE(CALCULATE([Total Valid Reviews], KEEPFILTERS(FactReviews[ReviewScore] >= 4)), 0), [Total Valid Reviews])
+		formatString: 0.00%
+		displayFolder: Completion KPIs
+		lineageTag: 06d7d2ed-5abb-4834-86fe-b86e74c1bb83
+
+	/// Scores 1 or 2 / all valid reviews in current selection. A score slicer intentionally changes the denominator; score 3 is neutral.
+	measure 'Negative Review Rate' = DIVIDE(COALESCE(CALCULATE([Total Valid Reviews], KEEPFILTERS(FactReviews[ReviewScore] <= 2)), 0), [Total Valid Reviews])
+		formatString: 0.00%
+		displayFolder: Completion KPIs
+		lineageTag: 81ba4d55-7154-489f-82ea-194761b3698f
+
+	/// Score 5 / all valid reviews in current selection. A score slicer intentionally changes the denominator; score 3 is neutral.
+	measure 'Five Star Review Rate' = DIVIDE(COALESCE(CALCULATE([Total Valid Reviews], KEEPFILTERS(FactReviews[ReviewScore] = 5)), 0), [Total Valid Reviews])
+		formatString: 0.00%
+		displayFolder: Completion KPIs
+		lineageTag: 17947a80-ff71-49f5-a521-e43a34d2dabe
+
+	/// Average valid review row score for timeliness-eligible on-time orders, retaining review-date/geography/score filters.
+	measure 'On Time Average Review Score' = CALCULATE([Satisfaction Average Review Score], KEEPFILTERS(FactOrders[OnTimeEligible] = TRUE()), KEEPFILTERS(FactOrders[IsOnTime] = TRUE()))
+		formatString: 0.00
+		displayFolder: Completion KPIs
+		lineageTag: 5dc361dc-04ea-4443-b3a7-e2f3412afe16
+
+	/// Average valid review row score for timeliness-eligible late orders, retaining review-date/geography/score filters.
+	measure 'Late Average Review Score' = CALCULATE([Satisfaction Average Review Score], KEEPFILTERS(FactOrders[OnTimeEligible] = TRUE()), KEEPFILTERS(FactOrders[IsOnTime] = FALSE()))
+		formatString: 0.00
+		displayFolder: Completion KPIs
+		lineageTag: 3831891c-a6e9-425c-a237-ff056add87c9
+
+	/// Display late / on-time means; N/A if either comparison group is absent. Association does not establish causation.
+	measure 'Late vs On Time Review Score' = VAR LateScore = [Late Average Review Score] VAR OnTimeScore = [On Time Average Review Score] RETURN IF(ISBLANK(LateScore) || ISBLANK(OnTimeScore), "N/A", FORMAT(LateScore, "0.00") & " / " & FORMAT(OnTimeScore, "0.00"))
+		displayFolder: Completion KPIs
+		lineageTag: 07ec6547-acd3-4d91-85c8-bec1e806ade6
+
+	/// Valid review rows for orders containing a category; each review counted once per category using a distinct order-key semijoin. Multi-category orders can appear in several categories. No item-level attribution is claimed.
+	measure 'Category Average Review Score' = VAR OrdersInCategory = VALUES(FactOrderItems[OrderKey]) RETURN CALCULATE([Satisfaction Average Review Score], KEEPFILTERS(TREATAS(OrdersInCategory, FactReviews[OrderKey])))
+		formatString: 0.00
+		displayFolder: Completion KPIs
+		lineageTag: 9f1a3bc4-936b-4086-823c-600b71a3aa59
+
+	/// Category review denominator using a distinct-order-key semijoin; category totals are non-additive.
+	measure 'Category Valid Reviews' = VAR OrdersInCategory = VALUES(FactOrderItems[OrderKey]) RETURN CALCULATE([Total Valid Reviews], KEEPFILTERS(TREATAS(OrdersInCategory, FactReviews[OrderKey])))
+		formatString: #,0
+		displayFolder: Completion KPIs
+		lineageTag: 81536661-1f7c-4a5d-a181-937093513481
+
+	/// Visual-only exact Top 10 by selected population volume; alphabetical tie-break. Never apply at page/report level.
+	measure 'Show Review Top 10 States' = VAR Candidates = FILTER(ADDCOLUMNS(ALLSELECTED(DimCustomerGeography[ApproximateState]), "__Volume", [Total Valid Reviews]), NOT ISBLANK(DimCustomerGeography[ApproximateState]) && [__Volume] > 0) VAR Leaders = TOPN(10, Candidates, [__Volume], DESC, DimCustomerGeography[ApproximateState], ASC) VAR CurrentGroup = SELECTEDVALUE(DimCustomerGeography[ApproximateState]) RETURN IF(ISINSCOPE(DimCustomerGeography[ApproximateState]) && CONTAINS(Leaders, DimCustomerGeography[ApproximateState], CurrentGroup), 1, 0)
+		formatString: 0
+		displayFolder: Completion KPIs
+		lineageTag: e334ad07-8d46-4973-80f7-64dfe9c146b2
+
+	/// Visual-only exact Top 10 by selected population volume; alphabetical tie-break. Never apply at page/report level.
+	measure 'Show Review Top 10 Categories' = VAR Candidates = FILTER(ADDCOLUMNS(ALLSELECTED(DimProduct[CategoryLabel]), "__Volume", [Category Valid Reviews]), NOT ISBLANK(DimProduct[CategoryLabel]) && [__Volume] > 0) VAR Leaders = TOPN(10, Candidates, [__Volume], DESC, DimProduct[CategoryLabel], ASC) VAR CurrentGroup = SELECTEDVALUE(DimProduct[CategoryLabel]) RETURN IF(ISINSCOPE(DimProduct[CategoryLabel]) && CONTAINS(Leaders, DimProduct[CategoryLabel], CurrentGroup), 1, 0)
+		formatString: 0
+		displayFolder: Completion KPIs
+		lineageTag: 93a7d0d4-4afc-47fe-b787-9989a982dd83
+
+	column ReviewID
+		dataType: string
+		lineageTag: 1ee70a31-5902-414f-b95e-9e514696a0fe
+		summarizeBy: none
+		sourceColumn: ReviewID
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderID
+		dataType: string
+		lineageTag: e255ff29-9dd6-449a-b004-ab03bd13bd77
+		summarizeBy: none
+		sourceColumn: OrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 1c24bf4b-041a-4b12-aac3-e3652b7cc2c7
+		summarizeBy: count
+		sourceColumn: OrderKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 876bb622-48c4-46e5-baac-e6a5552206be
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerGeographyKey
+		dataType: int64
+		formatString: 0
+		lineageTag: bf5af603-9503-4bd9-8203-b9922fc134e9
+		summarizeBy: count
+		sourceColumn: CustomerGeographyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderStatusKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 8e724d8c-b702-4e69-a82b-ba3a15399f90
+		summarizeBy: none
+		sourceColumn: OrderStatusKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PurchaseDateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: d1c1e58a-5cd5-4f6b-a02e-f756046cedad
+		summarizeBy: count
+		sourceColumn: PurchaseDateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReviewCreationDateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 42818955-27a9-4380-a996-f6bed5aefa59
+		summarizeBy: count
+		sourceColumn: ReviewCreationDateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReviewAnswerDateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: ab929b5f-4ca3-4d7a-8ec9-72903da04d8c
+		summarizeBy: count
+		sourceColumn: ReviewAnswerDateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReviewCreationTimestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 08992bf2-796b-469b-a0bc-b970c4ba3b4f
+		summarizeBy: none
+		sourceColumn: ReviewCreationTimestamp
+
+		variation Variation
+			isDefault
+			relationship: 1cadc7a8-cc6b-43b4-999e-37ad4d922bd9
+			defaultHierarchy: LocalDateTable_8bdc1c6d-451a-4443-9884-17366b89f501.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReviewAnswerTimestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: cd13b01f-5dc5-4380-aefa-34f6fd02f1a3
+		summarizeBy: none
+		sourceColumn: ReviewAnswerTimestamp
+
+		variation Variation
+			isDefault
+			relationship: cbe85f20-67eb-4ecc-804b-5fd1ae925dbc
+			defaultHierarchy: LocalDateTable_8aa2ded3-4914-4fd4-9537-326ce9e5107b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReviewScore
+		dataType: int64
+		formatString: 0
+		lineageTag: fe1d381d-b489-4c9d-a4e7-4d1275f7ffc9
+		summarizeBy: sum
+		sourceColumn: ReviewScore
+
+		annotation SummarizationSetBy = Automatic
+
+	column ValidScore
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e54112bc-aea9-45d6-b3d0-e54199317c08
+		summarizeBy: none
+		sourceColumn: ValidScore
+
+		annotation SummarizationSetBy = Automatic
+
+	column HasTitle
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 8b319123-780c-44a0-8ae3-480753fa3abb
+		summarizeBy: none
+		sourceColumn: HasTitle
+
+		annotation SummarizationSetBy = Automatic
+
+	column HasMessage
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f84e1469-84d7-4b90-8a95-f3d981ec862f
+		summarizeBy: none
+		sourceColumn: HasMessage
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesEligible
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f60e0e13-09c2-4422-bc37-04fd254a52b9
+		summarizeBy: none
+		sourceColumn: SalesEligible
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceQualityFlagCount
+		dataType: int64
+		formatString: 0
+		lineageTag: 9e7bb4b7-007d-4379-8aad-5e20f65de93d
+		summarizeBy: sum
+		sourceColumn: SourceQualityFlagCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadID
+		dataType: string
+		lineageTag: 1b25c730-bf71-40eb-bc8f-cef9c1ff19c7
+		summarizeBy: none
+		sourceColumn: LoadID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactReviews = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("DESKTOP-GEUMHVT\SQLEXPRESS", "OlistSalesDW"),
+				    dw_FactReviews = Source{[Schema="dw",Item="FactReviews"]}[Data]
+				in
+				    dw_FactReviews
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

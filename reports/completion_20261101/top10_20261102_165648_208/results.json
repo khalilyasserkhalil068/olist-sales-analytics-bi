@@ -1,0 +1,362 @@
+﻿{
+    "Passed":  4,
+    "Failed":  0,
+    "Cases":  [
+                  {
+                      "Name":  "Delivery states",
+                      "Status":  "PASS",
+                      "Actual":  [
+                                     {
+                                         "label":  "SP",
+                                         "volume":  40487
+                                     },
+                                     {
+                                         "label":  "RJ",
+                                         "volume":  12337
+                                     },
+                                     {
+                                         "label":  "MG",
+                                         "volume":  11345
+                                     },
+                                     {
+                                         "label":  "RS",
+                                         "volume":  5341
+                                     },
+                                     {
+                                         "label":  "PR",
+                                         "volume":  4912
+                                     },
+                                     {
+                                         "label":  "SC",
+                                         "volume":  3546
+                                     },
+                                     {
+                                         "label":  "BA",
+                                         "volume":  3248
+                                     },
+                                     {
+                                         "label":  "ES",
+                                         "volume":  1989
+                                     },
+                                     {
+                                         "label":  "GO",
+                                         "volume":  1948
+                                     },
+                                     {
+                                         "label":  "DF",
+                                         "volume":  1917
+                                     }
+                                 ],
+                      "Expected":  [
+                                       {
+                                           "label":  "SP",
+                                           "volume":  40487
+                                       },
+                                       {
+                                           "label":  "RJ",
+                                           "volume":  12337
+                                       },
+                                       {
+                                           "label":  "MG",
+                                           "volume":  11345
+                                       },
+                                       {
+                                           "label":  "RS",
+                                           "volume":  5341
+                                       },
+                                       {
+                                           "label":  "PR",
+                                           "volume":  4912
+                                       },
+                                       {
+                                           "label":  "SC",
+                                           "volume":  3546
+                                       },
+                                       {
+                                           "label":  "BA",
+                                           "volume":  3248
+                                       },
+                                       {
+                                           "label":  "ES",
+                                           "volume":  1989
+                                       },
+                                       {
+                                           "label":  "GO",
+                                           "volume":  1948
+                                       },
+                                       {
+                                           "label":  "DF",
+                                           "volume":  1917
+                                       }
+                                   ],
+                      "DAX":  "EVALUATE FILTER(SUMMARIZECOLUMNS(DimCustomerGeography[ApproximateState], \"Volume\", [Delivered Orders], \"Gate\", [Show Delivery Top 10 States]), [Gate] = 1) ORDER BY [Volume] DESC, DimCustomerGeography[ApproximateState] ASC"
+                  },
+                  {
+                      "Name":  "Delivery categories",
+                      "Status":  "PASS",
+                      "Actual":  [
+                                     {
+                                         "label":  "bed_bath_table",
+                                         "volume":  9272
+                                     },
+                                     {
+                                         "label":  "health_beauty",
+                                         "volume":  8647
+                                     },
+                                     {
+                                         "label":  "sports_leisure",
+                                         "volume":  7529
+                                     },
+                                     {
+                                         "label":  "computers_accessories",
+                                         "volume":  6529
+                                     },
+                                     {
+                                         "label":  "furniture_decor",
+                                         "volume":  6307
+                                     },
+                                     {
+                                         "label":  "housewares",
+                                         "volume":  5743
+                                     },
+                                     {
+                                         "label":  "watches_gifts",
+                                         "volume":  5493
+                                     },
+                                     {
+                                         "label":  "telephony",
+                                         "volume":  4093
+                                     },
+                                     {
+                                         "label":  "auto",
+                                         "volume":  3809
+                                     },
+                                     {
+                                         "label":  "toys",
+                                         "volume":  3803
+                                     }
+                                 ],
+                      "Expected":  [
+                                       {
+                                           "label":  "bed_bath_table",
+                                           "volume":  9272
+                                       },
+                                       {
+                                           "label":  "health_beauty",
+                                           "volume":  8647
+                                       },
+                                       {
+                                           "label":  "sports_leisure",
+                                           "volume":  7529
+                                       },
+                                       {
+                                           "label":  "computers_accessories",
+                                           "volume":  6529
+                                       },
+                                       {
+                                           "label":  "furniture_decor",
+                                           "volume":  6307
+                                       },
+                                       {
+                                           "label":  "housewares",
+                                           "volume":  5743
+                                       },
+                                       {
+                                           "label":  "watches_gifts",
+                                           "volume":  5493
+                                       },
+                                       {
+                                           "label":  "telephony",
+                                           "volume":  4093
+                                       },
+                                       {
+                                           "label":  "auto",
+                                           "volume":  3809
+                                       },
+                                       {
+                                           "label":  "toys",
+                                           "volume":  3803
+                                       }
+                                   ],
+                      "DAX":  "EVALUATE FILTER(SUMMARIZECOLUMNS(DimProduct[CategoryLabel], \"Volume\", [Category Eligible Deliveries], \"Gate\", [Show Delivery Top 10 Categories]), [Gate] = 1) ORDER BY [Volume] DESC, DimProduct[CategoryLabel] ASC"
+                  },
+                  {
+                      "Name":  "Review states",
+                      "Status":  "PASS",
+                      "Actual":  [
+                                     {
+                                         "label":  "SP",
+                                         "volume":  41675
+                                     },
+                                     {
+                                         "label":  "RJ",
+                                         "volume":  12752
+                                     },
+                                     {
+                                         "label":  "MG",
+                                         "volume":  11614
+                                     },
+                                     {
+                                         "label":  "RS",
+                                         "volume":  5479
+                                     },
+                                     {
+                                         "label":  "PR",
+                                         "volume":  5027
+                                     },
+                                     {
+                                         "label":  "SC",
+                                         "volume":  3623
+                                     },
+                                     {
+                                         "label":  "BA",
+                                         "volume":  3348
+                                     },
+                                     {
+                                         "label":  "GO",
+                                         "volume":  2015
+                                     },
+                                     {
+                                         "label":  "ES",
+                                         "volume":  2010
+                                     },
+                                     {
+                                         "label":  "DF",
+                                         "volume":  1978
+                                     }
+                                 ],
+                      "Expected":  [
+                                       {
+                                           "label":  "SP",
+                                           "volume":  41675
+                                       },
+                                       {
+                                           "label":  "RJ",
+                                           "volume":  12752
+                                       },
+                                       {
+                                           "label":  "MG",
+                                           "volume":  11614
+                                       },
+                                       {
+                                           "label":  "RS",
+                                           "volume":  5479
+                                       },
+                                       {
+                                           "label":  "PR",
+                                           "volume":  5027
+                                       },
+                                       {
+                                           "label":  "SC",
+                                           "volume":  3623
+                                       },
+                                       {
+                                           "label":  "BA",
+                                           "volume":  3348
+                                       },
+                                       {
+                                           "label":  "GO",
+                                           "volume":  2015
+                                       },
+                                       {
+                                           "label":  "ES",
+                                           "volume":  2010
+                                       },
+                                       {
+                                           "label":  "DF",
+                                           "volume":  1978
+                                       }
+                                   ],
+                      "DAX":  "EVALUATE FILTER(SUMMARIZECOLUMNS(DimCustomerGeography[ApproximateState], \"Volume\", [Total Valid Reviews], \"Gate\", [Show Review Top 10 States]), [Gate] = 1) ORDER BY [Volume] DESC, DimCustomerGeography[ApproximateState] ASC"
+                  },
+                  {
+                      "Name":  "Review categories",
+                      "Status":  "PASS",
+                      "Actual":  [
+                                     {
+                                         "label":  "bed_bath_table",
+                                         "volume":  9432
+                                     },
+                                     {
+                                         "label":  "health_beauty",
+                                         "volume":  8826
+                                     },
+                                     {
+                                         "label":  "sports_leisure",
+                                         "volume":  7721
+                                     },
+                                     {
+                                         "label":  "computers_accessories",
+                                         "volume":  6702
+                                     },
+                                     {
+                                         "label":  "furniture_decor",
+                                         "volume":  6457
+                                     },
+                                     {
+                                         "label":  "housewares",
+                                         "volume":  5865
+                                     },
+                                     {
+                                         "label":  "watches_gifts",
+                                         "volume":  5586
+                                     },
+                                     {
+                                         "label":  "telephony",
+                                         "volume":  4173
+                                     },
+                                     {
+                                         "label":  "auto",
+                                         "volume":  3895
+                                     },
+                                     {
+                                         "label":  "toys",
+                                         "volume":  3861
+                                     }
+                                 ],
+                      "Expected":  [
+                                       {
+                                           "label":  "bed_bath_table",
+                                           "volume":  9432
+                                       },
+                                       {
+                                           "label":  "health_beauty",
+                                           "volume":  8826
+                                       },
+                                       {
+                                           "label":  "sports_leisure",
+                                           "volume":  7721
+                                       },
+                                       {
+                                           "label":  "computers_accessories",
+                                           "volume":  6702
+                                       },
+                                       {
+                                           "label":  "furniture_decor",
+                                           "volume":  6457
+                                       },
+                                       {
+                                           "label":  "housewares",
+                                           "volume":  5865
+                                       },
+                                       {
+                                           "label":  "watches_gifts",
+                                           "volume":  5586
+                                       },
+                                       {
+                                           "label":  "telephony",
+                                           "volume":  4173
+                                       },
+                                       {
+                                           "label":  "auto",
+                                           "volume":  3895
+                                       },
+                                       {
+                                           "label":  "toys",
+                                           "volume":  3861
+                                       }
+                                   ],
+                      "DAX":  "EVALUATE FILTER(SUMMARIZECOLUMNS(DimProduct[CategoryLabel], \"Volume\", [Category Valid Reviews], \"Gate\", [Show Review Top 10 Categories]), [Gate] = 1) ORDER BY [Volume] DESC, DimProduct[CategoryLabel] ASC"
+                  }
+              ]
+}

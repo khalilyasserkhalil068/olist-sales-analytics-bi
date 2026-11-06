@@ -1,0 +1,786 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "olist_sales_product",
+  "displayName": "02 | Sales & Product Performance",
+  "displayOption": "FitToPage",
+  "height": 900,
+  "width": 1600,
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F3F6FA'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "p2_sales_year",
+      "target": "p2_sales_category",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_year",
+      "target": "p2_sales_seller_state",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_year",
+      "target": "p2_sales_customer_state",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_year",
+      "target": "p2_sales_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_year",
+      "target": "p2_orders_items",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_year",
+      "target": "p2_items_sold",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_year",
+      "target": "p2_avg_item",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_year",
+      "target": "p2_selling_products",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_year",
+      "target": "p2_active_sellers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_year",
+      "target": "p2_top_categories",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_year",
+      "target": "p2_top_products",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_year",
+      "target": "p2_top_sellers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_year",
+      "target": "p2_category_trend",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_year",
+      "target": "p2_category_contribution",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_year",
+      "target": "p2_seller_comparison",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_category",
+      "target": "p2_sales_year",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_category",
+      "target": "p2_sales_seller_state",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_category",
+      "target": "p2_sales_customer_state",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_category",
+      "target": "p2_sales_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_category",
+      "target": "p2_orders_items",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_category",
+      "target": "p2_items_sold",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_category",
+      "target": "p2_avg_item",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_category",
+      "target": "p2_selling_products",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_category",
+      "target": "p2_active_sellers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_category",
+      "target": "p2_top_categories",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_category",
+      "target": "p2_top_products",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_category",
+      "target": "p2_top_sellers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_category",
+      "target": "p2_category_trend",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_category",
+      "target": "p2_category_contribution",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_category",
+      "target": "p2_seller_comparison",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_seller_state",
+      "target": "p2_sales_year",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_seller_state",
+      "target": "p2_sales_category",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_seller_state",
+      "target": "p2_sales_customer_state",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_seller_state",
+      "target": "p2_sales_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_seller_state",
+      "target": "p2_orders_items",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_seller_state",
+      "target": "p2_items_sold",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_seller_state",
+      "target": "p2_avg_item",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_seller_state",
+      "target": "p2_selling_products",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_seller_state",
+      "target": "p2_active_sellers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_seller_state",
+      "target": "p2_top_categories",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_seller_state",
+      "target": "p2_top_products",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_seller_state",
+      "target": "p2_top_sellers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_seller_state",
+      "target": "p2_category_trend",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_seller_state",
+      "target": "p2_category_contribution",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_seller_state",
+      "target": "p2_seller_comparison",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_customer_state",
+      "target": "p2_sales_year",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_customer_state",
+      "target": "p2_sales_category",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_customer_state",
+      "target": "p2_sales_seller_state",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_customer_state",
+      "target": "p2_sales_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_customer_state",
+      "target": "p2_orders_items",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_customer_state",
+      "target": "p2_items_sold",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_customer_state",
+      "target": "p2_avg_item",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_customer_state",
+      "target": "p2_selling_products",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_customer_state",
+      "target": "p2_active_sellers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_customer_state",
+      "target": "p2_top_categories",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_customer_state",
+      "target": "p2_top_products",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_customer_state",
+      "target": "p2_top_sellers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_customer_state",
+      "target": "p2_category_trend",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_customer_state",
+      "target": "p2_category_contribution",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_sales_customer_state",
+      "target": "p2_seller_comparison",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_categories",
+      "target": "p2_sales_year",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p2_top_categories",
+      "target": "p2_sales_category",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p2_top_categories",
+      "target": "p2_sales_seller_state",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p2_top_categories",
+      "target": "p2_sales_customer_state",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p2_top_categories",
+      "target": "p2_sales_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_categories",
+      "target": "p2_orders_items",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_categories",
+      "target": "p2_items_sold",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_categories",
+      "target": "p2_avg_item",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_categories",
+      "target": "p2_selling_products",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_categories",
+      "target": "p2_active_sellers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_categories",
+      "target": "p2_top_products",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_categories",
+      "target": "p2_top_sellers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_categories",
+      "target": "p2_category_trend",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_categories",
+      "target": "p2_category_contribution",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_categories",
+      "target": "p2_seller_comparison",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_products",
+      "target": "p2_sales_year",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p2_top_products",
+      "target": "p2_sales_category",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p2_top_products",
+      "target": "p2_sales_seller_state",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p2_top_products",
+      "target": "p2_sales_customer_state",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p2_top_products",
+      "target": "p2_sales_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_products",
+      "target": "p2_orders_items",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_products",
+      "target": "p2_items_sold",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_products",
+      "target": "p2_avg_item",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_products",
+      "target": "p2_selling_products",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_products",
+      "target": "p2_active_sellers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_products",
+      "target": "p2_top_categories",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_products",
+      "target": "p2_top_sellers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_products",
+      "target": "p2_category_trend",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_products",
+      "target": "p2_category_contribution",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_products",
+      "target": "p2_seller_comparison",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_sellers",
+      "target": "p2_sales_year",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p2_top_sellers",
+      "target": "p2_sales_category",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p2_top_sellers",
+      "target": "p2_sales_seller_state",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p2_top_sellers",
+      "target": "p2_sales_customer_state",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p2_top_sellers",
+      "target": "p2_sales_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_sellers",
+      "target": "p2_orders_items",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_sellers",
+      "target": "p2_items_sold",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_sellers",
+      "target": "p2_avg_item",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_sellers",
+      "target": "p2_selling_products",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_sellers",
+      "target": "p2_active_sellers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_sellers",
+      "target": "p2_top_categories",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_sellers",
+      "target": "p2_top_products",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_sellers",
+      "target": "p2_category_trend",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_sellers",
+      "target": "p2_category_contribution",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_top_sellers",
+      "target": "p2_seller_comparison",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_category_trend",
+      "target": "p2_sales_year",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p2_category_trend",
+      "target": "p2_sales_category",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p2_category_trend",
+      "target": "p2_sales_seller_state",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p2_category_trend",
+      "target": "p2_sales_customer_state",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p2_category_trend",
+      "target": "p2_sales_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_category_trend",
+      "target": "p2_orders_items",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_category_trend",
+      "target": "p2_items_sold",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_category_trend",
+      "target": "p2_avg_item",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_category_trend",
+      "target": "p2_selling_products",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_category_trend",
+      "target": "p2_active_sellers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_category_trend",
+      "target": "p2_top_categories",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_category_trend",
+      "target": "p2_top_products",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_category_trend",
+      "target": "p2_top_sellers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_category_trend",
+      "target": "p2_category_contribution",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_category_trend",
+      "target": "p2_seller_comparison",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_category_contribution",
+      "target": "p2_sales_year",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p2_category_contribution",
+      "target": "p2_sales_category",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p2_category_contribution",
+      "target": "p2_sales_seller_state",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p2_category_contribution",
+      "target": "p2_sales_customer_state",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p2_category_contribution",
+      "target": "p2_sales_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_category_contribution",
+      "target": "p2_orders_items",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_category_contribution",
+      "target": "p2_items_sold",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_category_contribution",
+      "target": "p2_avg_item",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_category_contribution",
+      "target": "p2_selling_products",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_category_contribution",
+      "target": "p2_active_sellers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_category_contribution",
+      "target": "p2_top_categories",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_category_contribution",
+      "target": "p2_top_products",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_category_contribution",
+      "target": "p2_top_sellers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_category_contribution",
+      "target": "p2_category_trend",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_category_contribution",
+      "target": "p2_seller_comparison",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_seller_comparison",
+      "target": "p2_sales_year",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p2_seller_comparison",
+      "target": "p2_sales_category",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p2_seller_comparison",
+      "target": "p2_sales_seller_state",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p2_seller_comparison",
+      "target": "p2_sales_customer_state",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p2_seller_comparison",
+      "target": "p2_sales_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_seller_comparison",
+      "target": "p2_orders_items",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_seller_comparison",
+      "target": "p2_items_sold",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_seller_comparison",
+      "target": "p2_avg_item",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_seller_comparison",
+      "target": "p2_selling_products",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_seller_comparison",
+      "target": "p2_active_sellers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_seller_comparison",
+      "target": "p2_top_categories",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_seller_comparison",
+      "target": "p2_top_products",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_seller_comparison",
+      "target": "p2_top_sellers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_seller_comparison",
+      "target": "p2_category_trend",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p2_seller_comparison",
+      "target": "p2_category_contribution",
+      "type": "DataFilter"
+    }
+  ]
+}

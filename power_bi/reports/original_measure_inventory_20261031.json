@@ -1,0 +1,106 @@
+[
+    {
+        "Table":  "FactOrderItems",
+        "Name":  "Item Revenue",
+        "Expression":  "SUM(FactOrderItems[ItemPrice])",
+        "FormatString":  "#,0.00",
+        "Description":  "All-status item revenue. Do not add to FactOrders merchandise revenue: they represent the same revenue at different grains.",
+        "LineageTag":  "a46d4a01-c935-4179-a6a7-08825b3e3af7"
+    },
+    {
+        "Table":  "FactOrderItems",
+        "Name":  "Sales Revenue",
+        "Expression":  "CALCULATE([Item Revenue], KEEPFILTERS(FactOrderItems[SalesEligible]=TRUE()))",
+        "FormatString":  "#,0.00",
+        "Description":  "Sales-eligible item revenue. Supports product and seller slicing.",
+        "LineageTag":  "b04ca814-5918-4a71-85d7-f8c0415a873b"
+    },
+    {
+        "Table":  "FactOrderItems",
+        "Name":  "Orders With Items",
+        "Expression":  "DISTINCTCOUNT(FactOrderItems[OrderKey])",
+        "FormatString":  "#,0",
+        "Description":  "Distinct orders represented by the selected items. Supports product and seller filters; nonadditive across these groups.",
+        "LineageTag":  "da0f2676-ab7b-4c4c-8369-c7361ed2e72d"
+    },
+    {
+        "Table":  "FactOrderItems",
+        "Name":  "Sales Orders With Items",
+        "Expression":  "CALCULATE([Orders With Items], KEEPFILTERS(FactOrderItems[SalesEligible]=TRUE()))",
+        "FormatString":  "#,0",
+        "Description":  "Distinct sales-eligible orders with selected items.",
+        "LineageTag":  "e2ff65c0-f301-4cf2-b3df-7d2c990ebd8c"
+    },
+    {
+        "Table":  "FactOrderItems",
+        "Name":  "Average Sales Order Value",
+        "Expression":  "DIVIDE([Sales Revenue],[Sales Orders With Items])",
+        "FormatString":  "#,0.00",
+        "Description":  "Selected eligible item revenue divided by distinct eligible orders with selected items.",
+        "LineageTag":  "a59fdbcb-222e-4fcc-b84a-51ccbae25a86"
+    },
+    {
+        "Table":  "FactOrderItems",
+        "Name":  "Item Freight",
+        "Expression":  "SUM(FactOrderItems[FreightValue])",
+        "FormatString":  "#,0.00",
+        "Description":  "Freight at item grain. Do not add to order-grain FreightAmount.",
+        "LineageTag":  "5f872fe6-8b43-468d-b020-d103f40a1311"
+    },
+    {
+        "Table":  "FactOrders",
+        "Name":  "Order Count",
+        "Expression":  "COUNTROWS(FactOrders)",
+        "FormatString":  "#,0",
+        "Description":  "Order-grain count. Responds to customer, status, purchase date and order; product/seller filters apply only to item measures.",
+        "LineageTag":  "4ffdb9bc-4a12-4505-857b-68fb7ea1a304"
+    },
+    {
+        "Table":  "FactOrders",
+        "Name":  "Sales Order Count",
+        "Expression":  "CALCULATE(COUNTROWS(FactOrders), KEEPFILTERS(FactOrders[SalesEligible]=TRUE()))",
+        "FormatString":  "#,0",
+        "Description":  "Sales-eligible orders at order grain.",
+        "LineageTag":  "81ca6f37-0118-490f-91f1-492e0de75453"
+    },
+    {
+        "Table":  "FactOrders",
+        "Name":  "On Time Delivery Rate",
+        "Expression":  "DIVIDE(CALCULATE(COUNTROWS(FactOrders),KEEPFILTERS(FactOrders[OnTimeEligible]=TRUE()),KEEPFILTERS(FactOrders[IsOnTime]=TRUE())),CALCULATE(COUNTROWS(FactOrders),KEEPFILTERS(FactOrders[OnTimeEligible]=TRUE())))",
+        "FormatString":  "0.00%",
+        "Description":  "Eligible on-time orders divided by eligible delivered orders; excludes missing/ineligible delivery records.",
+        "LineageTag":  "7fd122e3-4077-4f21-9a04-ae4a2a6aa009"
+    },
+    {
+        "Table":  "FactOrders",
+        "Name":  "Average Delivery Days",
+        "Expression":  "CALCULATE(AVERAGE(FactOrders[DeliveryDurationDays]),KEEPFILTERS(FactOrders[DurationEligible]=TRUE()))",
+        "FormatString":  "0.00",
+        "Description":  "Average duration over duration-eligible orders only.",
+        "LineageTag":  "cb299ea2-aeeb-4808-9126-0e43411b5e74"
+    },
+    {
+        "Table":  "FactPayments",
+        "Name":  "Payment Amount",
+        "Expression":  "SUM(FactPayments[PaymentAmount])",
+        "FormatString":  "#,0.00",
+        "Description":  "Payment-grain amount. Includes its own business scope; not product/seller-attributed revenue.",
+        "LineageTag":  "40cc52f9-f7c4-44bf-aa98-8e9bade9a881"
+    },
+    {
+        "Table":  "FactReviews",
+        "Name":  "Review Count",
+        "Expression":  "COUNTROWS(FactReviews)",
+        "FormatString":  "#,0",
+        "Description":  "Count of loaded review rows. ReviewID is not unique; no deduplication was applied.",
+        "LineageTag":  "c7f5ab23-4e2d-4486-b4a2-3e1f5e2af219"
+    },
+    {
+        "Table":  "FactReviews",
+        "Name":  "Average Review Score",
+        "Expression":  "CALCULATE(AVERAGE(FactReviews[ReviewScore]), KEEPFILTERS(FactReviews[ValidScore]=TRUE()))",
+        "FormatString":  "0.00",
+        "Description":  "Average across valid review rows. Not an average of customer or order averages.",
+        "LineageTag":  "3ee86d6b-f92f-4533-968b-0e2f06467e69"
+    }
+]

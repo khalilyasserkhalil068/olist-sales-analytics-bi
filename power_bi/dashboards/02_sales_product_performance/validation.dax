@@ -1,0 +1,126 @@
+-- Prepared validation queries. NOT EXECUTED by this agent.
+-- Run each EVALUATE block separately against the integrated Desktop model.
+-- Execute after installing the nine reviewed measures from measures.json.
+
+-- QUERY 1. Exact baseline counts; money tolerance R$0.005.
+EVALUATE
+ROW(
+    "Sales Revenue", [Sales Revenue],
+    "Sales Revenue Expected", 13221498.11,
+    "Orders With Items - All Statuses", [Orders With Items],
+    "All Statuses Expected", 98666,
+    "Sales Orders With Items", [Sales Orders With Items],
+    "Eligible Orders Expected", 96478,
+    "Total Items Sold", [Total Items Sold],
+    "Items Expected", 110197,
+    "Average Revenue per Item", [Average Revenue per Item],
+    "Average Expected", DIVIDE(13221498.11,110197),
+    "Selling Products", [Selling Products],
+    "Products Expected", 32216,
+    "Active Sellers", [Active Sellers],
+    "Sellers Expected", 2970,
+    "Item Revenue All Statuses", [Item Revenue],
+    "All Statuses Revenue Expected", 13591643.70
+)
+
+-- QUERY 2. Eligible revenue partitions. All differences must be <0.005.
+EVALUATE
+ROW(
+    "By Category Difference", SUMX(VALUES(DimProduct[CategoryLabel]),[Sales Revenue])-[Sales Revenue],
+    "By Product Difference", SUMX(VALUES(DimProduct[ProductKey]),[Sales Revenue])-[Sales Revenue],
+    "By Seller Difference", SUMX(VALUES(DimSeller[SellerKey]),[Sales Revenue])-[Sales Revenue],
+    "By Purchase Month Difference", SUMX(VALUES(DimDate[YearMonth]),[Sales Revenue])-[Sales Revenue],
+    "By Seller Geography Difference", SUMX(VALUES(DimSellerGeography[ApproximateState]),[Sales Revenue])-[Sales Revenue],
+    "By Customer Geography Difference", SUMX(VALUES(DimCustomerGeography[ApproximateState]),[Sales Revenue])-[Sales Revenue]
+)
+
+-- QUERY 3. Exactly min(10, available nonblank categories), stable tie-break.
+EVALUATE
+FILTER(
+    SUMMARIZECOLUMNS(
+        DimProduct[CategoryLabel],
+        "Revenue", [Sales Revenue],
+        "Included", [Show Top 10 Categories]
+    ),
+    [Included]=1
+)
+ORDER BY [Revenue] DESC, DimProduct[CategoryLabel] ASC
+
+-- QUERY 4. Product keys only, matching the actual visual grouping.
+-- Compare to independent TOPN(10,...,[Revenue],DESC,ProductKey,ASC).
+EVALUATE
+FILTER(
+    SUMMARIZECOLUMNS(
+        DimProduct[ProductKey],
+        "Revenue", [Sales Revenue],
+        "Included", [Show Top 10 Products]
+    ),
+    [Included]=1
+)
+ORDER BY [Revenue] DESC, DimProduct[ProductKey] ASC
+
+-- QUERY 5. Seller keys only; expect exactly ten without slicers.
+EVALUATE
+FILTER(
+    SUMMARIZECOLUMNS(
+        DimSeller[SellerKey],
+        "Revenue", [Sales Revenue],
+        "Included", [Show Top 10 Sellers]
+    ),
+    [Included]=1
+)
+ORDER BY [Revenue] DESC, DimSeller[SellerKey] ASC
+
+-- QUERY 6. No Top N restriction on contribution table.
+-- Sum the exported Share values; expected 1 when the selected revenue is nonzero.
+EVALUATE
+SUMMARIZECOLUMNS(
+    DimProduct[CategoryLabel],
+    "Revenue", [Sales Revenue],
+    "Share", [Category Revenue Share]
+)
+ORDER BY [Revenue] DESC, DimProduct[CategoryLabel] ASC
+
+-- QUERY 7. Top 5 trend membership must be constant across selected months.
+-- Omit blank months as chart rendering does. A selected category may have no sales in a month.
+EVALUATE
+FILTER(
+    SUMMARIZECOLUMNS(
+        DimDate[YearMonth],
+        DimProduct[CategoryLabel],
+        "Revenue", [Sales Revenue],
+        "Included", [Show Top 5 Trend Categories]
+    ),
+    [Included]=1 && NOT ISBLANK([Revenue])
+)
+ORDER BY DimDate[YearMonth] ASC, DimProduct[CategoryLabel] ASC
+
+-- QUERY 8. Independent comparison of direct fact filters vs dimension paths.
+-- This checks real slicer semantics without changing model relationships.
+EVALUATE
+VAR SellerKeys = CALCULATETABLE(VALUES(DimSellerGeography[GeographyKey]), DimSellerGeography[ApproximateState]="RJ")
+VAR CustomerKeys = CALCULATETABLE(VALUES(DimCustomerGeography[GeographyKey]), DimCustomerGeography[ApproximateState]="SP")
+VAR ProductKeys = CALCULATETABLE(VALUES(DimProduct[ProductKey]), DimProduct[CategoryLabel]="health_beauty")
+VAR ViaDimensions = CALCULATE([Sales Revenue], DimDate[Year]=2018, DimSellerGeography[ApproximateState]="RJ", DimCustomerGeography[ApproximateState]="SP", DimProduct[CategoryLabel]="health_beauty")
+VAR ViaFacts = CALCULATE(
+    SUM(FactOrderItems[ItemPrice]),
+    FactOrderItems[SalesEligible]=TRUE(),
+    FactOrderItems[PurchaseDateKey]>=20180101,
+    FactOrderItems[PurchaseDateKey]<=20181231,
+    TREATAS(SellerKeys,FactOrderItems[SellerGeographyKey]),
+    TREATAS(CustomerKeys,FactOrderItems[CustomerGeographyKey]),
+    TREATAS(ProductKeys,FactOrderItems[ProductKey])
+)
+RETURN ROW("Dimension Path",ViaDimensions,"Direct Fact",ViaFacts,"Difference",ViaDimensions-ViaFacts)
+
+-- QUERY 9. Repeat this query with fewer-than-10 categories selected.
+-- Exactly the number of available selected categories should remain, with no unrelated category.
+EVALUATE
+CALCULATETABLE(
+    FILTER(
+        SUMMARIZECOLUMNS(DimProduct[CategoryLabel],"Revenue",[Sales Revenue],"Included",[Show Top 10 Categories]),
+        [Included]=1
+    ),
+    TREATAS({"health_beauty","watches_gifts"},DimProduct[CategoryLabel])
+)
+ORDER BY [Revenue] DESC, DimProduct[CategoryLabel] ASC

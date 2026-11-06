@@ -1,0 +1,3 @@
+# Preserve accepted SHA-256 byte fingerprints across Git clones and platforms.
+# Git still detects textual files for normal diffs; line endings are not rewritten.
+* -text

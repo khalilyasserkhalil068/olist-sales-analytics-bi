@@ -1,0 +1,63 @@
+/// Order handed to carrier date. Separate active date role; missing dates appear under the relationship blank member.
+table DimCarrierDate
+	lineageTag: c87933fc-3353-4b13-a98a-b200c37d96b4
+	dataCategory: Time
+
+	column DateKey
+		lineageTag: 2106b5e9-0445-427f-bd69-9ffca03341ff
+		isNameInferred
+		sourceColumn: DateKeyLookup[DateKey]
+
+	column FullDate
+		lineageTag: 87e2bd39-21bb-4c02-9523-f5a9ef46e3cd
+		isNameInferred
+		sourceColumn: DateKeyLookup[FullDate]
+
+	column Day
+		lineageTag: e9dbcb43-3ccb-49a1-a829-43e6adb1a841
+		isNameInferred
+		sourceColumn: DateKeyLookup[Day]
+
+	column Month
+		lineageTag: 2676d3af-f917-4e4b-904c-60dbe1b87e09
+		isNameInferred
+		sourceColumn: DateKeyLookup[Month]
+
+	column MonthName
+		lineageTag: 05e0016f-0414-466c-a44c-7b3efce1a07f
+		isNameInferred
+		sourceColumn: DateKeyLookup[MonthName]
+
+	column Quarter
+		lineageTag: e0681e73-2b6a-46bd-b91f-d2b554984e78
+		isNameInferred
+		sourceColumn: DateKeyLookup[Quarter]
+
+	column Year
+		lineageTag: 8796738c-163d-4cf3-a803-b735b36dc6f9
+		isNameInferred
+		sourceColumn: DateKeyLookup[Year]
+
+	column YearMonth
+		lineageTag: dc9eed17-ff4f-4a8e-ad80-3e0172da152f
+		isNameInferred
+		sourceColumn: DateKeyLookup[YearMonth]
+
+	column DayOfWeek
+		lineageTag: 6a3d201b-145b-4a79-9524-6baf815b43da
+		isNameInferred
+		sourceColumn: DateKeyLookup[DayOfWeek]
+
+	column DayName
+		lineageTag: 2bd9b54e-2537-42e9-a1d5-cffe155f0363
+		isNameInferred
+		sourceColumn: DateKeyLookup[DayName]
+
+	column IsWeekend
+		lineageTag: 7ab6ca17-a1d0-44f7-957c-e0945bde20f6
+		isNameInferred
+		sourceColumn: DateKeyLookup[IsWeekend]
+
+	partition DimCarrierDate = calculated
+		source = FILTER(DateKeyLookup, NOT ISBLANK(DateKeyLookup[FullDate]))
+

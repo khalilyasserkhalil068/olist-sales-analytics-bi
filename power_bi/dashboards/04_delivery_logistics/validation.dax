@@ -1,0 +1,21 @@
+EVALUATE ROW(
+    "Delivered Orders", [Delivered Orders],
+    "Timeliness Eligible Orders", [Timeliness Eligible Orders],
+    "On Time Deliveries", [On Time Deliveries],
+    "Late Deliveries", [Late Deliveries],
+    "Late Delivery Rate", [Late Delivery Rate],
+    "Delivered Freight Amount", [Delivered Freight Amount],
+    "Average Freight per Delivered Order", [Average Freight per Delivered Order],
+    "Average Late Delay Days", [Average Late Delay Days],
+    "Duration Eligible Orders", [Duration Eligible Orders],
+    "Category On Time Delivery Rate", [Category On Time Delivery Rate],
+    "Category Eligible Deliveries", [Category Eligible Deliveries]
+)
+
+EVALUATE SUMMARIZECOLUMNS(DimDate[Year], "Value", [Timeliness Eligible Orders])
+
+EVALUATE SUMMARIZECOLUMNS(DimDate[MonthName], "Value", [Timeliness Eligible Orders])
+
+EVALUATE SUMMARIZECOLUMNS(DimCustomerGeography[ApproximateState], "Value", [Timeliness Eligible Orders])
+
+EVALUATE SUMMARIZECOLUMNS(FactOrders[Delivery Timeliness], "Value", [Timeliness Eligible Orders])

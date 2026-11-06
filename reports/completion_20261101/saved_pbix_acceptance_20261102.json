@@ -1,0 +1,116 @@
+{
+  "executed_utc": "2026-11-02T15:14:44.292988+00:00",
+  "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.pbix",
+  "bytes": 52008563,
+  "sha256": "032044a60cb6d6d8eed3af4b2759d7f7aa03c69f4524a90129b7b500dbefca96",
+  "packageIntegrity": "PASS",
+  "pages": [
+    {
+      "name": "01 | Executive Overview",
+      "visuals": 20,
+      "types": {
+        "card": 6,
+        "clusteredBarChart": 3,
+        "slicer": 4,
+        "textbox": 4,
+        "lineChart": 1,
+        "pageNavigator": 1,
+        "clusteredColumnChart": 1
+      }
+    },
+    {
+      "name": "02 | Sales & Product Performance",
+      "visuals": 21,
+      "types": {
+        "card": 6,
+        "tableEx": 2,
+        "lineChart": 1,
+        "textbox": 4,
+        "pageNavigator": 1,
+        "slicer": 4,
+        "clusteredBarChart": 3
+      }
+    },
+    {
+      "name": "03 | Customer & Geographic Analytics",
+      "visuals": 21,
+      "types": {
+        "slicer": 3,
+        "textbox": 5,
+        "card": 6,
+        "tableEx": 1,
+        "pageNavigator": 1,
+        "donutChart": 1,
+        "clusteredColumnChart": 1,
+        "clusteredBarChart": 3
+      }
+    },
+    {
+      "name": "04 | Delivery & Logistics",
+      "visuals": 21,
+      "types": {
+        "card": 6,
+        "donutChart": 1,
+        "lineChart": 1,
+        "clusteredBarChart": 3,
+        "clusteredColumnChart": 1,
+        "textbox": 4,
+        "pageNavigator": 1,
+        "slicer": 4
+      }
+    },
+    {
+      "name": "05 | Reviews & Customer Satisfaction",
+      "visuals": 21,
+      "types": {
+        "card": 6,
+        "clusteredColumnChart": 2,
+        "lineChart": 2,
+        "clusteredBarChart": 2,
+        "textbox": 4,
+        "pageNavigator": 1,
+        "slicer": 4
+      }
+    }
+  ],
+  "types": {
+    "card": 30,
+    "clusteredBarChart": 14,
+    "slicer": 19,
+    "textbox": 21,
+    "lineChart": 5,
+    "pageNavigator": 5,
+    "clusteredColumnChart": 5,
+    "tableEx": 3,
+    "donutChart": 2
+  },
+  "savedPbixIndependentlyReopened": true,
+  "reopenProvenance": {
+    "DesktopProcessId": 22668,
+    "DesktopCommandLine": "\"C:\\Program Files\\WindowsApps\\Microsoft.MicrosoftPowerBIDesktop_2.159.883.0_x64__8wekyb3d8bbwe\\bin\\pbidesktop.exe\" \"E:\\Projects CV\\Sales Analytics & Business Intelligence\\power_bi\\final\\OlistSalesDW_Final_5_Dashboards.pbix\"",
+    "EngineProcessId": 8936,
+    "Port": 53983,
+    "SourceProjectProcessId": 30136,
+    "AllTaskDesktopWindowsClosedBeforePromotion": true,
+    "UserClosureReply": "\u0642\u0641\u0644\u062a \u0646\u0648\u0627\u0641\u0630 Power BI"
+  },
+  "originalSourceSessionClosed": "PASS: user confirmed closing all task windows; no Desktop process observed before promotion/reopen",
+  "runtimeCasesPassed": 86,
+  "runtimeNumericComparisons": 248,
+  "dashboardBatchesPassed": 39,
+  "top10CasesPassed": 4,
+  "modelRegressionChecksPassed": 7,
+  "newMeasureExpressionsMatchSavedModel": 25,
+  "runtimeEvidence": "reports/completion_20261101/runtime_20261102_165640_295/results.json",
+  "dashboardEvidence": "reports/completion_20261101/dashboard_batches_20261102_165644_157/results.json",
+  "top10Evidence": "reports/completion_20261101/top10_20261102_165648_208/results.json",
+  "regressionEvidence": "reports/completion_20261101/model_regression_20261102_165649_017/comparison.json",
+  "uiRendering": "PASS: all five actual native-export pages visually reviewed; saved bounds match",
+  "interactiveUiTests": "USER-REPORTED PASS for instructed representative flow; not independently observed by automation",
+  "desktopScreenshots": "PASS: two actual new-page Desktop captures supplied by user and visually verified",
+  "visualSpacingMatchesReviewedProject": true,
+  "visualSpacingDifferences": [],
+  "visualReviewEvidence": "reports/completion_20261101/visual_review_20261102.md",
+  "interactiveUiEvidence": "reports/completion_20261101/user_ui_validation_20261102.json",
+  "desktopScreenshotEvidence": "reports/completion_20261101/desktop_screenshots_20261102.json"
+}

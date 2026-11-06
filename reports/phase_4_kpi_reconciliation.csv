@@ -1,0 +1,26 @@
+check,status,actual,expected,details,category,tolerance,difference,basis
+Merchandise Revenue,PASS,13221498.1100000000,13221498.11,,execution,0,0E-10,SQL vs immutable Phase 3 reports / exact source Decimal totals
+Eligible Orders,PASS,96478.0000000000,96478.0,,execution,0,0E-10,SQL vs immutable Phase 3 reports / exact source Decimal totals
+Excluded Orders,PASS,2963.0000000000,2963,,execution,0,0E-10,SQL vs immutable Phase 3 reports / exact source Decimal totals
+Unique Customers,PASS,93358.0000000000,93358.0,,execution,0,0E-10,SQL vs immutable Phase 3 reports / exact source Decimal totals
+Items Sold,PASS,110197.0000000000,110197.0,,execution,0,0E-10,SQL vs immutable Phase 3 reports / exact source Decimal totals
+Freight Total,PASS,2198275.6400000000,2198275.64,,execution,0,0E-10,SQL vs immutable Phase 3 reports / exact source Decimal totals
+Average Freight / Order,PASS,22.7852530110,22.785253011049154,,execution,0.000001,-4.9154E-11,SQL vs immutable Phase 3 reports / exact source Decimal totals
+AOV,PASS,137.0415857501,137.0415857501192,,execution,0.000001,-1.92E-11,SQL vs immutable Phase 3 reports / exact source Decimal totals
+On-Time Eligible Orders,PASS,96470.0000000000,96470,,execution,0,0E-10,SQL vs immutable Phase 3 reports / exact source Decimal totals
+On-Time Orders,PASS,89936.0000000000,89936.0,,execution,0,0E-10,SQL vs immutable Phase 3 reports / exact source Decimal totals
+On-Time Rate,PASS,93.2269099202,93.22690992018244,,execution,0.000001,1.756E-11,SQL vs immutable Phase 3 reports / exact source Decimal totals
+Duration-Eligible Orders,PASS,95097.0000000000,95097,,execution,0,0E-10,SQL vs immutable Phase 3 reports / exact source Decimal totals
+Average Duration,PASS,12.6184859188,12.618485918763646,,execution,0.000001,3.6354E-11,SQL vs immutable Phase 3 reports / exact source Decimal totals
+Valid Review Records,PASS,96361.0000000000,96361,,execution,0,0E-10,SQL vs immutable Phase 3 reports / exact source Decimal totals
+Average Review Score,PASS,4.1557165243,4.155716524320005,,execution,0.000001,-2.0005E-11,SQL vs immutable Phase 3 reports / exact source Decimal totals
+Repeat Customers,PASS,2801.0000000000,2801.0,,execution,0,0E-10,SQL vs immutable Phase 3 reports / exact source Decimal totals
+Repeat Customer Rate,PASS,3.0002784978,3.0002784978255748,,execution,0.000001,-2.55748E-11,SQL vs immutable Phase 3 reports / exact source Decimal totals
+Late Orders,PASS,6534.0000000000,6534.0,,execution,0,0E-10,SQL vs immutable Phase 3 reports / exact source Decimal totals
+Revenue - order totals,PASS,13221498.1100000000,13221498.11,,execution,0,0E-10,SQL vs immutable Phase 3 reports / exact source Decimal totals
+Revenue - monthly totals,PASS,13221498.1100000000,13221498.11,,execution,0,0E-10,SQL vs immutable Phase 3 reports / exact source Decimal totals
+Revenue - categories,PASS,13221498.1100000000,13221498.11,,execution,0,0E-10,SQL vs immutable Phase 3 reports / exact source Decimal totals
+Revenue - customer states,PASS,13221498.1100000000,13221498.11,,execution,0,0E-10,SQL vs immutable Phase 3 reports / exact source Decimal totals
+All Item Price,PASS,13591643.7000000000,13591643.70,,execution,0,0E-10,SQL vs immutable Phase 3 reports / exact source Decimal totals
+All Freight,PASS,2251909.5400000000,2251909.54,,execution,0,0E-10,SQL vs immutable Phase 3 reports / exact source Decimal totals
+All Payments,PASS,16008872.1200000000,16008872.12,,execution,0,0E-10,SQL vs immutable Phase 3 reports / exact source Decimal totals

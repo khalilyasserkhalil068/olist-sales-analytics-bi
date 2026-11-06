@@ -1,0 +1,14 @@
+{
+  "04_delivery_logistics": {
+    "source": "C:\\Users\\hp\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-11-02 170908.png",
+    "target": "power_bi\\dashboards\\04_delivery_logistics\\screenshot.png",
+    "sha256": "2e8c29f4344f091afb566b2588cb135f3dcade7d2d14d2c06663541b8180d8eb",
+    "review": "Actual full Power BI Desktop window; correct final title and delivery page, all baseline KPI values visible. No compositing or editing."
+  },
+  "05_reviews_satisfaction": {
+    "source": "C:\\Users\\hp\\OneDrive\\Pictures\\Screenshots\\Screenshot 2026-11-02 171324.png",
+    "target": "power_bi\\dashboards\\05_reviews_satisfaction\\screenshot.png",
+    "sha256": "2f2b7059c60cadc8c328653c54e246f2e0e09a4fa3a9383f804ab9ccfcfe7fcb",
+    "review": "Actual Power BI Desktop report-canvas capture; all review KPI values and page visuals visible, selected page 05. No compositing, image editing or PDF-render substitution. The alternative partial-window capture with tooltip was not selected."
+  }
+}

@@ -1,0 +1,127 @@
+/// Customer location. Filters all four facts through DimCustomer. Independent from seller location.
+table DimCustomerGeography
+	lineageTag: 19dc6382-7dbf-4a1c-af28-5c75a876e9b9
+
+	column GeographyKey
+		dataType: int64
+		formatString: 0
+		lineageTag: b16f68e5-5745-4aa0-ad44-6847790c2bcf
+		summarizeBy: none
+		sourceColumn: GeographyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ZipCodePrefix
+		dataType: string
+		lineageTag: 903c291b-7759-400b-a5c2-0ad01f3a2a53
+		summarizeBy: none
+		sourceColumn: ZipCodePrefix
+
+		annotation SummarizationSetBy = Automatic
+
+	column ApproximateCity
+		dataType: string
+		lineageTag: dc0d5cee-6b43-4e09-a2b9-14f671ca7af7
+		summarizeBy: none
+		sourceColumn: ApproximateCity
+
+		annotation SummarizationSetBy = Automatic
+
+	column ApproximateState
+		dataType: string
+		lineageTag: f114e15d-3d36-4c20-9fef-27e49339f421
+		summarizeBy: none
+		sourceColumn: ApproximateState
+
+		annotation SummarizationSetBy = Automatic
+
+	column Latitude
+		dataType: double
+		lineageTag: 742275bb-20fe-4a2c-aac0-a9ec279db6ee
+		summarizeBy: sum
+		sourceColumn: Latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Longitude
+		dataType: double
+		lineageTag: 7c0103e2-6da8-4679-ab25-9b4452769bb6
+		summarizeBy: sum
+		sourceColumn: Longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LookupMatched
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b45e6620-ef39-4d26-9051-6b8e5116616f
+		summarizeBy: none
+		sourceColumn: LookupMatched
+
+		annotation SummarizationSetBy = Automatic
+
+	column ConflictingCities
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 33b06da0-4627-4f8c-b931-68a3655bd5ea
+		summarizeBy: none
+		sourceColumn: ConflictingCities
+
+		annotation SummarizationSetBy = Automatic
+
+	column ConflictingStates
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 6df7047e-c5d2-40db-89af-dd59d886a764
+		summarizeBy: none
+		sourceColumn: ConflictingStates
+
+		annotation SummarizationSetBy = Automatic
+
+	column DistinctCityLabels
+		dataType: int64
+		formatString: 0
+		lineageTag: 8359abc8-93f2-4345-b88f-c2cad00334c6
+		summarizeBy: sum
+		sourceColumn: DistinctCityLabels
+
+		annotation SummarizationSetBy = Automatic
+
+	column DistinctStateLabels
+		dataType: int64
+		formatString: 0
+		lineageTag: 57dbe4fd-b345-4b05-b3ed-be02e82322dd
+		summarizeBy: sum
+		sourceColumn: DistinctStateLabels
+
+		annotation SummarizationSetBy = Automatic
+
+	/// IBGE five-region grouping of approximate ZIP-lookup states. Unknown remains explicit. Display-only attribute; no relationship or source-data change.
+	column 'Customer Region' = VAR StateCode = UPPER(TRIM(DimCustomerGeography[ApproximateState])) RETURN SWITCH(TRUE(), StateCode IN {"AC","AP","AM","PA","RO","RR","TO"}, "North", StateCode IN {"AL","BA","CE","MA","PB","PE","PI","RN","SE"}, "Northeast", StateCode IN {"DF","GO","MT","MS"}, "Central-West", StateCode IN {"ES","MG","RJ","SP"}, "Southeast", StateCode IN {"PR","RS","SC"}, "South", "Unknown")
+		dataType: string
+		lineageTag: c8e4754f-ba10-433a-aa5a-6016cb020f03
+		summarizeBy: none
+
+	/// Display label combining approximate city with state, so same-named cities across states are not merged into one category.
+	column 'Customer City State' = COALESCE(DimCustomerGeography[ApproximateCity], "Unknown city") & " / " & COALESCE(DimCustomerGeography[ApproximateState], "Unknown state")
+		dataType: string
+		lineageTag: d25f0ea1-b0c9-458a-9e47-6c0a56bf0a1a
+		summarizeBy: none
+
+	partition DimGeography = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("DESKTOP-GEUMHVT\SQLEXPRESS", "OlistSalesDW"),
+				    dw_DimGeography = Source{[Schema="dw",Item="DimGeography"]}[Data]
+				in
+				    dw_DimGeography
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

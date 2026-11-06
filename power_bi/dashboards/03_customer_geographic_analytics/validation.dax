@@ -1,0 +1,182 @@
+// CUSTOMER VALIDATION — NOT EXECUTED.
+// Run each EVALUATE block separately against the integrated working model.
+// Expectations are supplied by the lead's fresh read-only raw CSV aggregate in
+// power_bi/reports/source_expected_kpis_20261029.json, corroborating phase_4_kpi_reconciliation.csv.
+// Queries do not modify the model or SQL Server.
+
+// 1. Baseline: execute without report filters.
+EVALUATE
+ROW(
+    "Unique Customers", [Unique Sales Customers],
+    "Expected Unique", 93358,
+    "Repeat Customers", [Repeat Sales Customers],
+    "Expected Repeat", 2801,
+    "One-Time Customers", [One-Time Sales Customers],
+    "Expected One-Time", 90557,
+    "Repeat Rate", [Repeat Customer Rate],
+    "Expected Repeat Rate", DIVIDE(2801, 93358),
+    "Eligible Orders", [Sales Order Count],
+    "Expected Eligible Orders", 96478,
+    "Sales Revenue", [Sales Revenue],
+    "Expected Sales Revenue", 13221498.11,
+    "Orders per Customer", [Customer Order Frequency],
+    "Revenue per Customer", [Sales Revenue per Customer],
+    "Top Approximate State", [Top Customer State],
+    "Customer Partition Difference", [Unique Sales Customers] - [Repeat Sales Customers] - [One-Time Sales Customers]
+)
+
+// 2. Independent identity reference from eligible fact rows using RELATED.
+// Compared to the proposed TREATAS/SUMMARIZE measures, this derives distinct
+// customer/order pairs directly before counting them. The two differences must be zero.
+EVALUATE
+VAR EligiblePairs =
+    DISTINCT(
+        SELECTCOLUMNS(
+            FILTER(
+                FactOrders,
+                FactOrders[SalesEligible] = TRUE()
+                    && FactOrders[CustomerKey] <> 0
+                    && NOT ISBLANK(RELATED(DimCustomer[CustomerUniqueID]))
+            ),
+            "Identity", RELATED(DimCustomer[CustomerUniqueID]),
+            "OrderIdentity", FactOrders[OrderKey]
+        )
+    )
+VAR IdentityCounts =
+    GROUPBY(EligiblePairs, [Identity], "OrderTotal", COUNTX(CURRENTGROUP(), 1))
+VAR UniqueReference = COUNTROWS(IdentityCounts)
+VAR RepeatReference = COUNTROWS(FILTER(IdentityCounts, [OrderTotal] >= 2))
+RETURN
+    ROW(
+        "Unique Reference", UniqueReference,
+        "Unique Difference", [Unique Sales Customers] - UniqueReference,
+        "Repeat Reference", RepeatReference,
+        "Repeat Difference", [Repeat Sales Customers] - RepeatReference
+    )
+
+// 3. Known-identity denominator checks.
+// Do not assume the historical frequency/revenue ratios until these gaps are zero.
+EVALUATE
+VAR KnownOrders =
+    CALCULATE(
+        [Sales Order Count],
+        KEEPFILTERS(DimCustomer[CustomerKey] <> 0),
+        KEEPFILTERS(NOT ISBLANK(DimCustomer[CustomerUniqueID]))
+    )
+VAR KnownRevenue =
+    CALCULATE(
+        [Sales Revenue],
+        KEEPFILTERS(DimCustomer[CustomerKey] <> 0),
+        KEEPFILTERS(NOT ISBLANK(DimCustomer[CustomerUniqueID]))
+    )
+RETURN
+    ROW(
+        "Orders Without Known Identity", [Sales Order Count] - KnownOrders,
+        "Revenue Without Known Identity", [Sales Revenue] - KnownRevenue,
+        "Frequency Difference", [Customer Order Frequency] - DIVIDE(KnownOrders, [Unique Sales Customers]),
+        "Revenue per Customer Difference", [Sales Revenue per Customer] - DIVIDE(KnownRevenue, [Unique Sales Customers])
+    )
+
+// 4. Date filter propagation. No numeric expected values fabricated.
+// Compare these rows with year slicer selections and the independent reference query
+// under matching filters. Do not sum unique customers across years.
+EVALUATE
+SUMMARIZECOLUMNS(
+    DimDate[Year],
+    "Unique Customers", [Unique Sales Customers],
+    "Repeat Customers", [Repeat Sales Customers],
+    "One-Time Customers", [One-Time Sales Customers],
+    "Partition Difference", [Unique Sales Customers] - [Repeat Sales Customers] - [One-Time Sales Customers],
+    "Repeat Rate", [Repeat Customer Rate],
+    "Sales Revenue", [Sales Revenue]
+)
+ORDER BY DimDate[Year]
+
+// 5. Status filter propagation. Noneligible statuses should have no eligible
+// purchasing identities/sales; actual results and blank-versus-zero behavior must be recorded.
+EVALUATE
+SUMMARIZECOLUMNS(
+    DimOrderStatus[OrderStatus],
+    "Unique Customers", [Unique Sales Customers],
+    "Repeat Customers", [Repeat Sales Customers],
+    "Repeat Rate", [Repeat Customer Rate],
+    "Sales Revenue", [Sales Revenue]
+)
+ORDER BY DimOrderStatus[OrderStatus]
+
+// 6. Approximate geography. Compare visual values with these model-derived groups,
+// not source-state EDA subtotals. Identity totals are nonadditive across states.
+EVALUATE
+SUMMARIZECOLUMNS(
+    DimCustomerGeography[ApproximateState],
+    "Unique Customers", [Unique Sales Customers],
+    "Repeat Customers", [Repeat Sales Customers],
+    "One-Time Customers", [One-Time Sales Customers],
+    "Repeat Rate", [Repeat Customer Rate],
+    "Sales Revenue", [Sales Revenue]
+)
+ORDER BY [Sales Revenue] DESC
+
+// 7. Revenue partition check, including unknown/blank geography.
+// Absolute difference should be < 0.005 BRL. This does not validate customer additivity.
+EVALUATE
+ROW(
+    "Revenue by State Difference",
+    SUMX(VALUES(DimCustomerGeography[ApproximateState]), [Sales Revenue]) - [Sales Revenue]
+)
+
+// 8. Explicit combined filter vs direct fact/identity reference.
+// Verify both differences are zero. Geography follows model keys, not source-state EDA.
+EVALUATE
+VAR StateKeys = SELECTCOLUMNS(FILTER(ALL(DimCustomerGeography), DimCustomerGeography[ApproximateState] = "SP"), "GeoKey", DimCustomerGeography[GeographyKey])
+VAR EligiblePairs = DISTINCT(SELECTCOLUMNS(FILTER(ALL(FactOrders), FactOrders[SalesEligible] = TRUE() && FactOrders[PurchaseDateKey] >= 20170101 && FactOrders[PurchaseDateKey] <= 20171231 && FactOrders[CustomerGeographyKey] IN StateKeys && FactOrders[CustomerKey] <> 0 && NOT ISBLANK(RELATED(DimCustomer[CustomerUniqueID]))), "Identity", RELATED(DimCustomer[CustomerUniqueID]), "OrderIdentity", FactOrders[OrderKey]))
+VAR IdentityCounts = GROUPBY(EligiblePairs, [Identity], "OrderTotal", COUNTX(CURRENTGROUP(), 1))
+RETURN ROW(
+ "Scenario", "Purchase 2017; approximate customer state SP",
+ "Unique Actual", CALCULATE([Unique Sales Customers], DimDate[Year] = 2017, DimCustomerGeography[ApproximateState] = "SP"),
+ "Unique Reference", COUNTROWS(IdentityCounts),
+ "Unique Difference", CALCULATE([Unique Sales Customers], DimDate[Year] = 2017, DimCustomerGeography[ApproximateState] = "SP") - COUNTROWS(IdentityCounts),
+ "Repeat Actual", CALCULATE([Repeat Sales Customers], DimDate[Year] = 2017, DimCustomerGeography[ApproximateState] = "SP"),
+ "Repeat Reference", COUNTROWS(FILTER(IdentityCounts, [OrderTotal] >= 2)),
+ "Repeat Difference", CALCULATE([Repeat Sales Customers], DimDate[Year] = 2017, DimCustomerGeography[ApproximateState] = "SP") - COUNTROWS(FILTER(IdentityCounts, [OrderTotal] >= 2))
+)
+
+// 9. Region partition: absolute revenue gap below0.005 BRL. No TopN restriction.
+// All regional shares should total1 when eligible revenue is nonzero.
+EVALUATE
+ROW(
+ "Regional Revenue Difference", SUMX(VALUES(DimCustomerGeography[Customer Region]), [Sales Revenue]) - [Sales Revenue],
+ "Regional Revenue Shares", SUMX(VALUES(DimCustomerGeography[Customer Region]), [Customer Region Revenue Share]),
+ "State Count", [Customer States with Sales],
+ "Top State", [Top Customer State],
+ "Top State Revenue", [Top Customer State Revenue]
+)
+
+// 10. Top10 city visual membership: should have10 rows at national baseline,
+// or min(10, positive-revenue city/state groups) for any selected subset.
+// Compare keys and ordering with native city chart; no extra grouping tooltip fields.
+EVALUATE
+FILTER(
+ SUMMARIZECOLUMNS(DimCustomerGeography[Customer City State],
+   "Revenue", [Sales Revenue],
+   "ShowCity", [Show Top 10 Customer Cities],
+   "Customers", [Unique Sales Customers]),
+ [ShowCity] = 1
+)
+ORDER BY [Revenue] DESC, DimCustomerGeography[Customer City State] ASC
+
+// 11. Known-state region mapping coverage. Nonblank standard states should never map
+// to Unknown. Unknown blank geography must remain in the model and revenue partition.
+EVALUATE
+SUMMARIZECOLUMNS(
+ DimCustomerGeography[ApproximateState],
+ DimCustomerGeography[Customer Region],
+ "Sales Revenue", [Sales Revenue],
+ "Customers", [Unique Sales Customers]
+)
+ORDER BY DimCustomerGeography[Customer Region], DimCustomerGeography[ApproximateState]
+
+// UI-only checks (cannot be established by these queries): choose year2017, SP,
+// and a city, independently and together; compare visible values; clear/reset;
+// click state and region native chart data points; verify repeat chart has no
+// outgoing filter; save, close, reopen final PBIX and repeat checks; capture genuine screenshot.

@@ -1,0 +1,53 @@
+{
+  "etl_executed": false,
+  "database_setup_executed": false,
+  "steps": [
+    {
+      "name": "targeted",
+      "command": [
+        "E:\\Projects CV\\Sales Analytics & Business Intelligence\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "pytest",
+        "tests/test_sql_warehouse.py::test_review_record_grain_scores_and_text_availability",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--junitxml=E:\\Projects CV\\Sales Analytics & Business Intelligence\\reports\\phase_4_test_only\\20261026_205348_381062\\targeted.xml",
+        "--basetemp=E:\\Projects CV\\Sales Analytics & Business Intelligence\\reports\\phase_4_test_only\\20261026_205348_381062\\targeted_tmp"
+      ],
+      "exit_code": 0,
+      "counts": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "name": "complete",
+      "command": [
+        "E:\\Projects CV\\Sales Analytics & Business Intelligence\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "pytest",
+        "tests/test_sql_warehouse.py",
+        "tests/test_phase4_safety.py",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--junitxml=E:\\Projects CV\\Sales Analytics & Business Intelligence\\reports\\phase_4_test_only\\20261026_205348_381062\\complete.xml",
+        "--basetemp=E:\\Projects CV\\Sales Analytics & Business Intelligence\\reports\\phase_4_test_only\\20261026_205348_381062\\complete_tmp"
+      ],
+      "exit_code": 0,
+      "counts": {
+        "tests": 80,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    }
+  ],
+  "status": "PASS",
+  "protected_files_unchanged": 83
+}

@@ -1,0 +1,86 @@
+erDiagram
+    DimDate {
+        int DateKey PK "YYYYMMDD; 0 unknown"
+        date FullDate "One calendar day"
+    }
+    DimCustomer {
+        int CustomerKey PK
+        string CustomerID UK "One source customer_id"
+        string CustomerUniqueID "Observed person identity; not unique here"
+        string SourceState "Original customer_state"
+    }
+    DimProduct {
+        int ProductKey PK
+        string ProductID UK
+        string CategoryLabel "Missing and untranslated kept separate"
+    }
+    DimSeller {
+        int SellerKey PK
+        string SellerID UK
+        string SourceState "Original seller_state"
+    }
+    DimGeography {
+        int GeographyKey PK
+        string ZipCodePrefix UK "Lookup plus unmatched source ZIPs"
+        decimal Latitude "Optional approximate coordinate"
+        boolean ConflictingStates
+    }
+    DimPaymentType {
+        int PaymentTypeKey PK
+        string PaymentType UK
+    }
+    DimOrderStatus {
+        int OrderStatusKey PK
+        string OrderStatus UK
+    }
+    FactOrders {
+        int OrderKey PK
+        string OrderID UK "One row per order"
+        decimal MerchandiseRevenue "NULL when no items"
+        boolean SalesEligible
+        boolean OnTimeEligible
+        boolean DurationEligible
+    }
+    FactOrderItems {
+        string OrderID PK
+        string OrderItemID PK "Composite source grain"
+        int OrderKey FK
+        decimal ItemPrice
+        decimal FreightValue
+    }
+    FactPayments {
+        string OrderID PK
+        string PaymentSequential PK "Composite source grain"
+        int OrderKey FK
+        decimal PaymentAmount
+    }
+    FactReviews {
+        string ReviewID PK
+        string OrderID PK "Composite source grain"
+        int OrderKey FK
+        int ReviewScore
+    }
+    DimCustomer ||--o{ FactOrders : customer
+    DimCustomer ||--o{ FactOrderItems : customer
+    DimCustomer ||--o{ FactPayments : customer
+    DimCustomer ||--o{ FactReviews : customer
+    DimDate ||--o{ FactOrders : "purchase plus four other date roles"
+    DimDate ||--o{ FactOrderItems : "purchase and shipping limit"
+    DimDate ||--o{ FactPayments : "order purchase, not payment timestamp"
+    DimDate ||--o{ FactReviews : "purchase, creation, answer"
+    DimOrderStatus ||--o{ FactOrders : status
+    DimOrderStatus ||--o{ FactOrderItems : status
+    DimOrderStatus ||--o{ FactPayments : status
+    DimOrderStatus ||--o{ FactReviews : status
+    DimProduct ||--o{ FactOrderItems : product
+    DimSeller ||--o{ FactOrderItems : seller
+    DimPaymentType ||--o{ FactPayments : method
+    DimGeography ||--o{ FactOrders : "customer ZIP"
+    DimGeography ||--o{ FactOrderItems : "customer and seller ZIP roles"
+    DimGeography ||--o{ FactPayments : "customer ZIP"
+    DimGeography ||--o{ FactReviews : "customer ZIP"
+    DimGeography ||--o{ DimCustomer : "physical lineage FK only"
+    DimGeography ||--o{ DimSeller : "physical lineage FK only"
+    FactOrders ||--o{ FactOrderItems : "physical integrity FK; avoid BI fanout paths"
+    FactOrders ||--o{ FactPayments : "physical integrity FK; avoid BI fanout paths"
+    FactOrders ||--o{ FactReviews : "physical integrity FK; avoid BI fanout paths"

@@ -1,0 +1,63 @@
+/// Estimated order delivery date. Separate active date role; missing dates appear under the relationship blank member.
+table DimEstimatedDeliveryDate
+	lineageTag: 6105921f-4926-40a5-aedc-93cd357c79f2
+	dataCategory: Time
+
+	column DateKey
+		lineageTag: 22153f14-4c9f-4e75-b1d7-4dbd3a0fa726
+		isNameInferred
+		sourceColumn: DateKeyLookup[DateKey]
+
+	column FullDate
+		lineageTag: 9cd23ed2-adf0-4cbe-b075-a74be17d3fad
+		isNameInferred
+		sourceColumn: DateKeyLookup[FullDate]
+
+	column Day
+		lineageTag: a5ec6f9e-26e2-4a86-a497-f182ec4eda0f
+		isNameInferred
+		sourceColumn: DateKeyLookup[Day]
+
+	column Month
+		lineageTag: 165cbbaf-90e6-408a-8588-b1da073091ef
+		isNameInferred
+		sourceColumn: DateKeyLookup[Month]
+
+	column MonthName
+		lineageTag: 28ecd1d0-2c61-4056-a09e-180d26f2159a
+		isNameInferred
+		sourceColumn: DateKeyLookup[MonthName]
+
+	column Quarter
+		lineageTag: a6fb2076-67e2-41ae-bea0-eba292505326
+		isNameInferred
+		sourceColumn: DateKeyLookup[Quarter]
+
+	column Year
+		lineageTag: 7d9c4687-5b0b-41f7-a98e-c9709fc1bb0d
+		isNameInferred
+		sourceColumn: DateKeyLookup[Year]
+
+	column YearMonth
+		lineageTag: 6d559a16-b058-4fed-ae5c-16c6f32e128f
+		isNameInferred
+		sourceColumn: DateKeyLookup[YearMonth]
+
+	column DayOfWeek
+		lineageTag: 13d3b5f8-8217-40c5-9a84-edce79a74bec
+		isNameInferred
+		sourceColumn: DateKeyLookup[DayOfWeek]
+
+	column DayName
+		lineageTag: bb3df37a-d508-4686-a9fa-1c4bd77a316d
+		isNameInferred
+		sourceColumn: DateKeyLookup[DayName]
+
+	column IsWeekend
+		lineageTag: 25ff68e2-fd08-4fac-b90f-454c5a3342b5
+		isNameInferred
+		sourceColumn: DateKeyLookup[IsWeekend]
+
+	partition DimEstimatedDeliveryDate = calculated
+		source = FILTER(DateKeyLookup, NOT ISBLANK(DateKeyLookup[FullDate]))
+

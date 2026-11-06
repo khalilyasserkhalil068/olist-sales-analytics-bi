@@ -1,0 +1,64 @@
+/// Review creation date. Separate active date role; missing dates appear under the relationship blank member.
+table DimReviewCreationDate
+	lineageTag: 80ba1055-f280-47ce-bc98-be90c59e1069
+	dataCategory: Time
+
+	column DateKey
+		lineageTag: 462a74e1-0211-44e6-8d63-a7e95d76e21f
+		isNameInferred
+		sourceColumn: DateKeyLookup[DateKey]
+
+	column FullDate
+		lineageTag: e330a568-f71f-4243-8193-704b4aea96e3
+		isNameInferred
+		sourceColumn: DateKeyLookup[FullDate]
+
+	column Day
+		lineageTag: bb1eb73e-b281-4881-9af2-812d846ae7d7
+		isNameInferred
+		sourceColumn: DateKeyLookup[Day]
+
+	column Month
+		lineageTag: eb51d31e-8292-4457-8863-fc4e8b75205a
+		isNameInferred
+		sourceColumn: DateKeyLookup[Month]
+
+	column MonthName
+		lineageTag: dab633fa-06ec-4cdc-8d62-37c285f834ef
+		isNameInferred
+		sourceColumn: DateKeyLookup[MonthName]
+		sortByColumn: Month
+
+	column Quarter
+		lineageTag: ae403346-2d70-42b4-9ca7-440627613593
+		isNameInferred
+		sourceColumn: DateKeyLookup[Quarter]
+
+	column Year
+		lineageTag: 8a700a79-080d-4794-9390-1995e4390e4a
+		isNameInferred
+		sourceColumn: DateKeyLookup[Year]
+
+	column YearMonth
+		lineageTag: 79e7d002-6919-4572-9554-bb91eba693ae
+		isNameInferred
+		sourceColumn: DateKeyLookup[YearMonth]
+
+	column DayOfWeek
+		lineageTag: 8d37ef0d-9102-4560-8234-789a6227d237
+		isNameInferred
+		sourceColumn: DateKeyLookup[DayOfWeek]
+
+	column DayName
+		lineageTag: cc8a1972-c528-449c-b514-5bc804984428
+		isNameInferred
+		sourceColumn: DateKeyLookup[DayName]
+
+	column IsWeekend
+		lineageTag: 28e335bf-a7c3-46df-9a9a-208ca33cbe09
+		isNameInferred
+		sourceColumn: DateKeyLookup[IsWeekend]
+
+	partition DimReviewCreationDate = calculated
+		source = FILTER(DateKeyLookup, NOT ISBLANK(DateKeyLookup[FullDate]))
+

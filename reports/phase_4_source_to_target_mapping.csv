@@ -1,0 +1,419 @@
+target_table,target_column,source_expression,source_joins
+dw.DimGeography,ZipCodePrefix,z.zip,(SELECT zip_code_prefix zip FROM stg.geolocation_zip_lookup UNION SELECT customer_zip_code_prefix FROM stg.customers UNION SELECT seller_zip_code_prefix FROM stg.sellers) z LEFT JOIN stg.geolocation_zip_lookup g ON g.zip_code_prefix=z.zip
+dw.DimGeography,ApproximateCity,g.geolocation_city,(SELECT zip_code_prefix zip FROM stg.geolocation_zip_lookup UNION SELECT customer_zip_code_prefix FROM stg.customers UNION SELECT seller_zip_code_prefix FROM stg.sellers) z LEFT JOIN stg.geolocation_zip_lookup g ON g.zip_code_prefix=z.zip
+dw.DimGeography,ApproximateState,g.geolocation_state,(SELECT zip_code_prefix zip FROM stg.geolocation_zip_lookup UNION SELECT customer_zip_code_prefix FROM stg.customers UNION SELECT seller_zip_code_prefix FROM stg.sellers) z LEFT JOIN stg.geolocation_zip_lookup g ON g.zip_code_prefix=z.zip
+dw.DimGeography,Latitude,g.geolocation_lat,(SELECT zip_code_prefix zip FROM stg.geolocation_zip_lookup UNION SELECT customer_zip_code_prefix FROM stg.customers UNION SELECT seller_zip_code_prefix FROM stg.sellers) z LEFT JOIN stg.geolocation_zip_lookup g ON g.zip_code_prefix=z.zip
+dw.DimGeography,Longitude,g.geolocation_lng,(SELECT zip_code_prefix zip FROM stg.geolocation_zip_lookup UNION SELECT customer_zip_code_prefix FROM stg.customers UNION SELECT seller_zip_code_prefix FROM stg.sellers) z LEFT JOIN stg.geolocation_zip_lookup g ON g.zip_code_prefix=z.zip
+dw.DimGeography,LookupMatched,CAST(CASE WHEN g.zip_code_prefix IS NULL THEN 0 ELSE 1 END AS bit),(SELECT zip_code_prefix zip FROM stg.geolocation_zip_lookup UNION SELECT customer_zip_code_prefix FROM stg.customers UNION SELECT seller_zip_code_prefix FROM stg.sellers) z LEFT JOIN stg.geolocation_zip_lookup g ON g.zip_code_prefix=z.zip
+dw.DimGeography,ConflictingCities,"COALESCE(g.dq_conflicting_city_labels,0)",(SELECT zip_code_prefix zip FROM stg.geolocation_zip_lookup UNION SELECT customer_zip_code_prefix FROM stg.customers UNION SELECT seller_zip_code_prefix FROM stg.sellers) z LEFT JOIN stg.geolocation_zip_lookup g ON g.zip_code_prefix=z.zip
+dw.DimGeography,ConflictingStates,"COALESCE(g.dq_conflicting_states,0)",(SELECT zip_code_prefix zip FROM stg.geolocation_zip_lookup UNION SELECT customer_zip_code_prefix FROM stg.customers UNION SELECT seller_zip_code_prefix FROM stg.sellers) z LEFT JOIN stg.geolocation_zip_lookup g ON g.zip_code_prefix=z.zip
+dw.DimGeography,DistinctCityLabels,g.distinct_city_labels,(SELECT zip_code_prefix zip FROM stg.geolocation_zip_lookup UNION SELECT customer_zip_code_prefix FROM stg.customers UNION SELECT seller_zip_code_prefix FROM stg.sellers) z LEFT JOIN stg.geolocation_zip_lookup g ON g.zip_code_prefix=z.zip
+dw.DimGeography,DistinctStateLabels,g.distinct_states,(SELECT zip_code_prefix zip FROM stg.geolocation_zip_lookup UNION SELECT customer_zip_code_prefix FROM stg.customers UNION SELECT seller_zip_code_prefix FROM stg.sellers) z LEFT JOIN stg.geolocation_zip_lookup g ON g.zip_code_prefix=z.zip
+dw.DimCustomer,CustomerID,s.customer_id,stg.customers s LEFT JOIN dw.DimGeography g ON g.ZipCodePrefix=s.customer_zip_code_prefix
+dw.DimCustomer,CustomerUniqueID,s.customer_unique_id,stg.customers s LEFT JOIN dw.DimGeography g ON g.ZipCodePrefix=s.customer_zip_code_prefix
+dw.DimCustomer,SourceZipCodePrefix,s.customer_zip_code_prefix,stg.customers s LEFT JOIN dw.DimGeography g ON g.ZipCodePrefix=s.customer_zip_code_prefix
+dw.DimCustomer,SourceCity,s.customer_city,stg.customers s LEFT JOIN dw.DimGeography g ON g.ZipCodePrefix=s.customer_zip_code_prefix
+dw.DimCustomer,SourceState,s.customer_state,stg.customers s LEFT JOIN dw.DimGeography g ON g.ZipCodePrefix=s.customer_zip_code_prefix
+dw.DimCustomer,GeographyKey,"COALESCE(g.GeographyKey,0)",stg.customers s LEFT JOIN dw.DimGeography g ON g.ZipCodePrefix=s.customer_zip_code_prefix
+dw.DimCustomer,UnmatchedZip,s.dq_unmatched_zip,stg.customers s LEFT JOIN dw.DimGeography g ON g.ZipCodePrefix=s.customer_zip_code_prefix
+dw.DimSeller,SellerID,s.seller_id,stg.sellers s LEFT JOIN dw.DimGeography g ON g.ZipCodePrefix=s.seller_zip_code_prefix
+dw.DimSeller,SourceZipCodePrefix,s.seller_zip_code_prefix,stg.sellers s LEFT JOIN dw.DimGeography g ON g.ZipCodePrefix=s.seller_zip_code_prefix
+dw.DimSeller,SourceCity,s.seller_city,stg.sellers s LEFT JOIN dw.DimGeography g ON g.ZipCodePrefix=s.seller_zip_code_prefix
+dw.DimSeller,SourceState,s.seller_state,stg.sellers s LEFT JOIN dw.DimGeography g ON g.ZipCodePrefix=s.seller_zip_code_prefix
+dw.DimSeller,GeographyKey,"COALESCE(g.GeographyKey,0)",stg.sellers s LEFT JOIN dw.DimGeography g ON g.ZipCodePrefix=s.seller_zip_code_prefix
+dw.DimSeller,UnmatchedZip,s.dq_unmatched_zip,stg.sellers s LEFT JOIN dw.DimGeography g ON g.ZipCodePrefix=s.seller_zip_code_prefix
+dw.DimProduct,ProductID,s.product_id,stg.products s
+dw.DimProduct,SourceCategory,s.product_category_name,stg.products s
+dw.DimProduct,EnglishCategory,s.product_category_name_english,stg.products s
+dw.DimProduct,CategoryLabel,CASE WHEN s.dq_category_missing=1 THEN N'Unknown (missing category)' WHEN s.dq_category_untranslated=1 THEN N'Untranslated: '+s.product_category_name ELSE s.product_category_name_english END,stg.products s
+dw.DimProduct,CategoryMissing,s.dq_category_missing,stg.products s
+dw.DimProduct,CategoryUntranslated,s.dq_category_untranslated,stg.products s
+dw.DimProduct,NameLength,s.product_name_lenght,stg.products s
+dw.DimProduct,DescriptionLength,s.product_description_lenght,stg.products s
+dw.DimProduct,PhotosQuantity,s.product_photos_qty,stg.products s
+dw.DimProduct,WeightGrams,s.product_weight_g,stg.products s
+dw.DimProduct,LengthCM,s.product_length_cm,stg.products s
+dw.DimProduct,HeightCM,s.product_height_cm,stg.products s
+dw.DimProduct,WidthCM,s.product_width_cm,stg.products s
+dw.DimPaymentType,PaymentType,payment_type,(SELECT DISTINCT payment_type FROM stg.payments) s
+dw.DimOrderStatus,OrderStatus,order_status,(SELECT DISTINCT order_status FROM stg.orders) s
+dw.FactOrders,OrderID,s.order_id,"stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrders,SourceCustomerID,s.customer_id,"stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrders,CustomerKey,"COALESCE(c.CustomerKey,0)","stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrders,CustomerGeographyKey,"COALESCE(c.GeographyKey,0)","stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrders,OrderStatusKey,"COALESCE(os.OrderStatusKey,0)","stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrders,PurchaseDateKey,"COALESCE(CONVERT(int,CONVERT(char(8),s.order_purchase_timestamp,112)),0)","stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrders,ApprovalDateKey,"COALESCE(CONVERT(int,CONVERT(char(8),s.order_approved_at,112)),0)","stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrders,CarrierDateKey,"COALESCE(CONVERT(int,CONVERT(char(8),s.order_delivered_carrier_date,112)),0)","stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrders,ActualDeliveryDateKey,"COALESCE(CONVERT(int,CONVERT(char(8),s.order_delivered_customer_date,112)),0)","stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrders,EstimatedDeliveryDateKey,"COALESCE(CONVERT(int,CONVERT(char(8),s.order_estimated_delivery_date,112)),0)","stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrders,PurchaseTimestamp,s.order_purchase_timestamp,"stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrders,ApprovalTimestamp,s.order_approved_at,"stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrders,CarrierTimestamp,s.order_delivered_carrier_date,"stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrders,ActualDeliveryTimestamp,s.order_delivered_customer_date,"stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrders,EstimatedDeliveryTimestamp,s.order_estimated_delivery_date,"stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrders,MerchandiseRevenue,i.Revenue,"stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrders,FreightAmount,i.Freight,"stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrders,ItemCount,"COALESCE(i.ItemCount,0)","stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrders,PaymentRecordCount,"COALESCE(p.PaymentCount,0)","stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrders,ReviewRecordCount,"COALESCE(r.ReviewCount,0)","stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrders,SalesEligible,"CONVERT(bit,CASE WHEN s.order_status='delivered' AND i.ItemCount>0 THEN 1 ELSE 0 END)","stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrders,OnTimeEligible,v.OnTimeEligible,"stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrders,IsOnTime,CASE WHEN v.OnTimeEligible=1 THEN CASE WHEN CAST(s.order_delivered_customer_date AS date)<=CAST(s.order_estimated_delivery_date AS date) THEN 1 ELSE 0 END END,"stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrders,DurationEligible,v.DurationEligible,"stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrders,DeliveryDurationDays,"CASE WHEN v.DurationEligible=1 THEN CONVERT(decimal(20,10),DATEDIFF_BIG(second,s.order_purchase_timestamp,s.order_delivered_customer_date)/86400.0000000000) END","stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrders,InvalidChronology,q.InvalidChronology,"stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrders,MissingPurchaseTimestamp,"CONVERT(bit,CASE WHEN s.order_purchase_timestamp IS NULL THEN 1 ELSE 0 END)","stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrders,MissingApprovalTimestamp,"CONVERT(bit,CASE WHEN s.order_approved_at IS NULL THEN 1 ELSE 0 END)","stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrders,MissingCarrierTimestamp,"CONVERT(bit,CASE WHEN s.order_delivered_carrier_date IS NULL THEN 1 ELSE 0 END)","stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrders,MissingActualDeliveryTimestamp,"CONVERT(bit,CASE WHEN s.order_delivered_customer_date IS NULL THEN 1 ELSE 0 END)","stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrders,MissingEstimatedDeliveryTimestamp,"CONVERT(bit,CASE WHEN s.order_estimated_delivery_date IS NULL THEN 1 ELSE 0 END)","stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrders,SourceQualityFlagCount,"CONVERT(int,s.[dq_invalid_order_purchase_timestamp])+CONVERT(int,s.[dq_invalid_order_approved_at])+CONVERT(int,s.[dq_invalid_order_delivered_carrier_date])+CONVERT(int,s.[dq_invalid_order_delivered_customer_date])+CONVERT(int,s.[dq_invalid_order_estimated_delivery_date])+CONVERT(int,s.[dq_no_items])+CONVERT(int,s.[dq_no_payments])+CONVERT(int,s.[dq_no_reviews])+CONVERT(int,s.[dq_missing_order_approved_at])+CONVERT(int,s.[dq_delivered_missing_order_approved_at])+CONVERT(int,s.[dq_missing_order_delivered_carrier_date])+CONVERT(int,s.[dq_delivered_missing_order_delivered_carrier_date])+CONVERT(int,s.[dq_missing_order_delivered_customer_date])+CONVERT(int,s.[dq_delivered_missing_order_delivered_customer_date])+CONVERT(int,s.[dq_approval_before_purchase])+CONVERT(int,s.[dq_carrier_before_purchase])+CONVERT(int,s.[dq_delivery_before_purchase])+CONVERT(int,s.[dq_carrier_before_approval])+CONVERT(int,s.[dq_delivery_before_carrier])","stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrders,LoadID,s.LoadID,"stg.orders s
+LEFT JOIN (SELECT order_id,COUNT(*) ItemCount,SUM(price) Revenue,SUM(freight_value) Freight FROM stg.order_items GROUP BY order_id) i ON i.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) PaymentCount FROM stg.payments GROUP BY order_id) p ON p.order_id=s.order_id
+LEFT JOIN (SELECT order_id,COUNT(*) ReviewCount FROM stg.reviews GROUP BY order_id) r ON r.order_id=s.order_id
+LEFT JOIN dw.DimCustomer c ON c.CustomerID=s.customer_id
+LEFT JOIN dw.DimOrderStatus os ON os.OrderStatus=s.order_status
+CROSS APPLY (SELECT CONVERT(bit,CASE WHEN s.order_approved_at<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_purchase_timestamp OR s.order_delivered_customer_date<s.order_purchase_timestamp OR s.order_delivered_carrier_date<s.order_approved_at OR s.order_delivered_customer_date<s.order_delivered_carrier_date THEN 1 ELSE 0 END) InvalidChronology) q
+CROSS APPLY (SELECT
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_delivered_customer_date IS NOT NULL AND s.order_estimated_delivery_date IS NOT NULL THEN 1 ELSE 0 END) OnTimeEligible,
+ CONVERT(bit,CASE WHEN s.order_status='delivered' AND s.order_purchase_timestamp IS NOT NULL AND s.order_delivered_customer_date>=s.order_purchase_timestamp AND q.InvalidChronology=0 THEN 1 ELSE 0 END) DurationEligible) v"
+dw.FactOrderItems,OrderID,s.order_id,stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id
+dw.FactOrderItems,OrderKey,o.OrderKey,stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id
+dw.FactOrderItems,CustomerKey,o.CustomerKey,stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id
+dw.FactOrderItems,CustomerGeographyKey,o.CustomerGeographyKey,stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id
+dw.FactOrderItems,OrderStatusKey,o.OrderStatusKey,stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id
+dw.FactOrderItems,PurchaseDateKey,o.PurchaseDateKey,stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id
+dw.FactOrderItems,SalesEligible,o.SalesEligible,stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id
+dw.FactOrderItems,LoadID,s.LoadID,stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id
+dw.FactOrderItems,OrderItemID,s.order_item_id,stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id
+dw.FactOrderItems,SourceProductID,s.product_id,stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id
+dw.FactOrderItems,SourceSellerID,s.seller_id,stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id
+dw.FactOrderItems,ProductKey,"COALESCE(p.ProductKey,0)",stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id
+dw.FactOrderItems,SellerKey,"COALESCE(v.SellerKey,0)",stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id
+dw.FactOrderItems,SellerGeographyKey,"COALESCE(v.GeographyKey,0)",stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id
+dw.FactOrderItems,ShippingLimitDateKey,"COALESCE(CONVERT(int,CONVERT(char(8),s.shipping_limit_date,112)),0)",stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id
+dw.FactOrderItems,ShippingLimitTimestamp,s.shipping_limit_date,stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id
+dw.FactOrderItems,ItemPrice,s.price,stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id
+dw.FactOrderItems,FreightValue,s.freight_value,stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id
+dw.FactOrderItems,SourceQualityFlagCount,"CONVERT(int,s.[dq_invalid_shipping_limit_date])+CONVERT(int,s.[dq_invalid_price])+CONVERT(int,s.[dq_invalid_freight_value])+CONVERT(int,s.[dq_shipping_limit_before_purchase])+CONVERT(int,s.[dq_shipping_limit_after_purchase_year_range])+CONVERT(int,s.[dq_negative_price])+CONVERT(int,s.[dq_zero_price])+CONVERT(int,s.[dq_negative_freight_value])+CONVERT(int,s.[dq_zero_freight_value])",stg.order_items s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimProduct p ON p.ProductID=s.product_id LEFT JOIN dw.DimSeller v ON v.SellerID=s.seller_id
+dw.FactPayments,OrderID,s.order_id,stg.payments s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimPaymentType p ON p.PaymentType=s.payment_type
+dw.FactPayments,OrderKey,o.OrderKey,stg.payments s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimPaymentType p ON p.PaymentType=s.payment_type
+dw.FactPayments,CustomerKey,o.CustomerKey,stg.payments s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimPaymentType p ON p.PaymentType=s.payment_type
+dw.FactPayments,CustomerGeographyKey,o.CustomerGeographyKey,stg.payments s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimPaymentType p ON p.PaymentType=s.payment_type
+dw.FactPayments,OrderStatusKey,o.OrderStatusKey,stg.payments s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimPaymentType p ON p.PaymentType=s.payment_type
+dw.FactPayments,PurchaseDateKey,o.PurchaseDateKey,stg.payments s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimPaymentType p ON p.PaymentType=s.payment_type
+dw.FactPayments,SalesEligible,o.SalesEligible,stg.payments s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimPaymentType p ON p.PaymentType=s.payment_type
+dw.FactPayments,LoadID,s.LoadID,stg.payments s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimPaymentType p ON p.PaymentType=s.payment_type
+dw.FactPayments,PaymentSequential,s.payment_sequential,stg.payments s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimPaymentType p ON p.PaymentType=s.payment_type
+dw.FactPayments,PaymentTypeKey,"COALESCE(p.PaymentTypeKey,0)",stg.payments s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimPaymentType p ON p.PaymentType=s.payment_type
+dw.FactPayments,Installments,s.payment_installments,stg.payments s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimPaymentType p ON p.PaymentType=s.payment_type
+dw.FactPayments,PaymentAmount,s.payment_value,stg.payments s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimPaymentType p ON p.PaymentType=s.payment_type
+dw.FactPayments,SourceQualityFlagCount,"CONVERT(int,s.[dq_invalid_payment_installments])+CONVERT(int,s.[dq_invalid_payment_value])+CONVERT(int,s.[dq_negative_payment_value])+CONVERT(int,s.[dq_zero_payment_value])+CONVERT(int,s.[dq_nonpositive_installments])+CONVERT(int,s.[dq_noninteger_payment_installments])",stg.payments s JOIN dw.FactOrders o ON o.OrderID=s.order_id LEFT JOIN dw.DimPaymentType p ON p.PaymentType=s.payment_type
+dw.FactReviews,OrderID,s.order_id,stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id
+dw.FactReviews,OrderKey,o.OrderKey,stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id
+dw.FactReviews,CustomerKey,o.CustomerKey,stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id
+dw.FactReviews,CustomerGeographyKey,o.CustomerGeographyKey,stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id
+dw.FactReviews,OrderStatusKey,o.OrderStatusKey,stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id
+dw.FactReviews,PurchaseDateKey,o.PurchaseDateKey,stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id
+dw.FactReviews,SalesEligible,o.SalesEligible,stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id
+dw.FactReviews,LoadID,s.LoadID,stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id
+dw.FactReviews,ReviewID,s.review_id,stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id
+dw.FactReviews,ReviewCreationDateKey,"COALESCE(CONVERT(int,CONVERT(char(8),s.review_creation_date,112)),0)",stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id
+dw.FactReviews,ReviewAnswerDateKey,"COALESCE(CONVERT(int,CONVERT(char(8),s.review_answer_timestamp,112)),0)",stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id
+dw.FactReviews,ReviewCreationTimestamp,s.review_creation_date,stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id
+dw.FactReviews,ReviewAnswerTimestamp,s.review_answer_timestamp,stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id
+dw.FactReviews,ReviewScore,s.review_score,stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id
+dw.FactReviews,ValidScore,"CONVERT(bit,CASE WHEN s.review_score BETWEEN 1 AND 5 THEN 1 ELSE 0 END)",stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id
+dw.FactReviews,HasTitle,"CONVERT(bit,CASE WHEN s.review_comment_title IS NULL THEN 0 ELSE 1 END)",stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id
+dw.FactReviews,HasMessage,"CONVERT(bit,CASE WHEN s.review_comment_message IS NULL THEN 0 ELSE 1 END)",stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id
+dw.FactReviews,SourceQualityFlagCount,"CONVERT(int,s.[dq_invalid_review_creation_date])+CONVERT(int,s.[dq_invalid_review_answer_timestamp])+CONVERT(int,s.[dq_invalid_review_score])+CONVERT(int,s.[dq_answer_before_creation])+CONVERT(int,s.[dq_noninteger_review_score])+CONVERT(int,s.[dq_score_out_of_range])+CONVERT(int,s.[dq_repeated_review_id])",stg.reviews s JOIN dw.FactOrders o ON o.OrderID=s.order_id

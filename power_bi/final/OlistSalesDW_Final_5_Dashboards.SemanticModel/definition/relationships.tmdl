@@ -1,0 +1,161 @@
+relationship bc9522a2-07b2-4fde-9a96-15c71f6d502c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DateKeyLookup.FullDate
+	toColumn: LocalDateTable_2c1d9b51-3998-4df9-b3ec-af2dfec737b4.Date
+
+relationship 1783317f-b2c6-44ac-88ed-47d4d21ac035
+	fromColumn: DimSeller.GeographyKey
+	toColumn: DimSellerGeography.GeographyKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship 4a1c9f94-6934-4f14-bbc9-68967ab4dfb1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactOrderItems.ShippingLimitTimestamp
+	toColumn: LocalDateTable_3fcf8953-9f48-4f1c-9c35-2c2368611446.Date
+
+relationship 30ce5bbc-26cf-4611-b28e-3cc979971952
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactOrders.PurchaseTimestamp
+	toColumn: LocalDateTable_49228ef8-33ec-479c-a777-57b2febd464f.Date
+
+relationship de980fa5-2ad6-4ba2-8274-994720d3652a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactOrders.ApprovalTimestamp
+	toColumn: LocalDateTable_5a46a3aa-0b4c-4dea-a844-41ada4eae72a.Date
+
+relationship 9a1e1109-aeb1-40ea-83f6-911db369d615
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactOrders.CarrierTimestamp
+	toColumn: LocalDateTable_b9d05030-7fc2-4b27-9911-ca339e7e4056.Date
+
+relationship 73d6a815-1a15-4eae-b56c-41ee9910c0dc
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactOrders.ActualDeliveryTimestamp
+	toColumn: LocalDateTable_d93f9290-a870-45af-a9c8-e0d3f006046f.Date
+
+relationship 13fb722a-ee65-45ca-943d-f1cea51514c7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactOrders.EstimatedDeliveryTimestamp
+	toColumn: LocalDateTable_6535d1b8-86a8-44ea-87ee-276b456f1afe.Date
+
+relationship 1cadc7a8-cc6b-43b4-999e-37ad4d922bd9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactReviews.ReviewCreationTimestamp
+	toColumn: LocalDateTable_8bdc1c6d-451a-4443-9884-17366b89f501.Date
+
+relationship cbe85f20-67eb-4ecc-804b-5fd1ae925dbc
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactReviews.ReviewAnswerTimestamp
+	toColumn: LocalDateTable_8aa2ded3-4914-4fd4-9537-326ce9e5107b.Date
+
+relationship b4fd3f92-0d3f-47cb-b270-d8d4bcac4916
+	fromColumn: DimCustomer.GeographyKey
+	toColumn: DimCustomerGeography.GeographyKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship 3c8c8d82-6201-0063-9005-b8e1a7e00f2f
+	fromColumn: FactOrderItems.CustomerKey
+	toColumn: DimCustomer.CustomerKey
+
+relationship 1e171a25-5038-117c-9710-8cc8e7b74c19
+	fromColumn: FactOrders.CustomerKey
+	toColumn: DimCustomer.CustomerKey
+
+relationship 45fbb898-874d-10d5-5a13-3634632c8f46
+	fromColumn: FactPayments.CustomerKey
+	toColumn: DimCustomer.CustomerKey
+
+relationship c3eb4fba-1992-3514-d069-cd1f1a9e07d1
+	fromColumn: FactReviews.CustomerKey
+	toColumn: DimCustomer.CustomerKey
+
+relationship 1876a27c-6ce9-0196-77c8-766a7b481a63
+	fromColumn: FactOrderItems.ProductKey
+	toColumn: DimProduct.ProductKey
+
+relationship bb53a06e-0dad-ca09-7961-d6bef9919081
+	fromColumn: FactOrderItems.SellerKey
+	toColumn: DimSeller.SellerKey
+
+relationship b2691b4a-295d-cf20-ac1d-64be676f4064
+	fromColumn: FactPayments.PaymentTypeKey
+	toColumn: DimPaymentType.PaymentTypeKey
+
+relationship 0e49d96f-d574-6233-26ad-5a41217134b3
+	fromColumn: FactOrderItems.OrderStatusKey
+	toColumn: DimOrderStatus.OrderStatusKey
+
+relationship d5931180-b45b-4c9f-639e-e74646362c26
+	fromColumn: FactOrders.OrderStatusKey
+	toColumn: DimOrderStatus.OrderStatusKey
+
+relationship 9e07f558-edbf-38f0-6b14-35afb0508203
+	fromColumn: FactPayments.OrderStatusKey
+	toColumn: DimOrderStatus.OrderStatusKey
+
+relationship 738f2e78-0e3f-082a-9ea7-f789e8c091f2
+	fromColumn: FactReviews.OrderStatusKey
+	toColumn: DimOrderStatus.OrderStatusKey
+
+relationship FactOrders_PurchaseDateKey__DimDate
+	fromColumn: FactOrders.PurchaseDateKey
+	toColumn: DimDate.DateKey
+
+relationship FactOrderItems_PurchaseDateKey__DimDate
+	fromColumn: FactOrderItems.PurchaseDateKey
+	toColumn: DimDate.DateKey
+
+relationship FactPayments_PurchaseDateKey__DimDate
+	fromColumn: FactPayments.PurchaseDateKey
+	toColumn: DimDate.DateKey
+
+relationship FactReviews_PurchaseDateKey__DimDate
+	fromColumn: FactReviews.PurchaseDateKey
+	toColumn: DimDate.DateKey
+
+relationship FactOrders_ApprovalDateKey__DimApprovalDate
+	fromColumn: FactOrders.ApprovalDateKey
+	toColumn: DimApprovalDate.DateKey
+
+relationship FactOrders_CarrierDateKey__DimCarrierDate
+	fromColumn: FactOrders.CarrierDateKey
+	toColumn: DimCarrierDate.DateKey
+
+relationship FactOrders_ActualDeliveryDateKey__DimActualDeliveryDate
+	fromColumn: FactOrders.ActualDeliveryDateKey
+	toColumn: DimActualDeliveryDate.DateKey
+
+relationship FactOrders_EstimatedDeliveryDateKey__DimEstimatedDeliveryDate
+	fromColumn: FactOrders.EstimatedDeliveryDateKey
+	toColumn: DimEstimatedDeliveryDate.DateKey
+
+relationship FactOrderItems_ShippingLimitDateKey__DimShippingLimitDate
+	fromColumn: FactOrderItems.ShippingLimitDateKey
+	toColumn: DimShippingLimitDate.DateKey
+
+relationship FactReviews_ReviewCreationDateKey__DimReviewCreationDate
+	fromColumn: FactReviews.ReviewCreationDateKey
+	toColumn: DimReviewCreationDate.DateKey
+
+relationship FactReviews_ReviewAnswerDateKey__DimReviewAnswerDate
+	fromColumn: FactReviews.ReviewAnswerDateKey
+	toColumn: DimReviewAnswerDate.DateKey
+
+relationship FactOrders_OrderKey__DimOrder
+	fromColumn: FactOrders.OrderKey
+	toColumn: DimOrder.OrderKey
+
+relationship FactOrderItems_OrderKey__DimOrder
+	fromColumn: FactOrderItems.OrderKey
+	toColumn: DimOrder.OrderKey
+
+relationship FactPayments_OrderKey__DimOrder
+	fromColumn: FactPayments.OrderKey
+	toColumn: DimOrder.OrderKey
+
+relationship FactReviews_OrderKey__DimOrder
+	fromColumn: FactReviews.OrderKey
+	toColumn: DimOrder.OrderKey
+

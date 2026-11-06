@@ -1,0 +1,12 @@
+{
+  "review_date": "2026-11-02 Africa/Cairo",
+  "publisher_page": "https://www.kaggle.com/olistbr/brazilian-ecommerce/home/",
+  "canonical_dataset_page": "https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce",
+  "publisher_license_label_observed": "CC BY-NC-SA 4.0",
+  "evidence_method": "Web search returned the publisher's dataset page with its License section. Direct open redirected to the dataset page but returned no readable lines.",
+  "license_terms_source": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+  "publisher_metadata_review": "COMPLETE with stated retrieval limitation",
+  "exact_local_package_license_notice": "NOT VERIFIED",
+  "public_release_performed": false,
+  "original_code_license_assigned": false
+}

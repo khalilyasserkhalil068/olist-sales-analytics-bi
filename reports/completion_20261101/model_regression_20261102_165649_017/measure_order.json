@@ -1,0 +1,101 @@
+﻿[
+    {
+        "name":  "Item Revenue"
+    },
+    {
+        "name":  "Sales Revenue"
+    },
+    {
+        "name":  "Orders With Items"
+    },
+    {
+        "name":  "Sales Orders With Items"
+    },
+    {
+        "name":  "Average Sales Order Value"
+    },
+    {
+        "name":  "Item Freight"
+    },
+    {
+        "name":  "Total Items Sold"
+    },
+    {
+        "name":  "Average Revenue per Item"
+    },
+    {
+        "name":  "Selling Products"
+    },
+    {
+        "name":  "Active Sellers"
+    },
+    {
+        "name":  "Category Revenue Share"
+    },
+    {
+        "name":  "Show Top 10 Categories"
+    },
+    {
+        "name":  "Show Top 10 Products"
+    },
+    {
+        "name":  "Show Top 10 Sellers"
+    },
+    {
+        "name":  "Show Top 5 Trend Categories"
+    },
+    {
+        "name":  "Order Count"
+    },
+    {
+        "name":  "Sales Order Count"
+    },
+    {
+        "name":  "On Time Delivery Rate"
+    },
+    {
+        "name":  "Average Delivery Days"
+    },
+    {
+        "name":  "Unique Sales Customers"
+    },
+    {
+        "name":  "Repeat Sales Customers"
+    },
+    {
+        "name":  "One-Time Sales Customers"
+    },
+    {
+        "name":  "Repeat Customer Rate"
+    },
+    {
+        "name":  "Customer Order Frequency"
+    },
+    {
+        "name":  "Sales Revenue per Customer"
+    },
+    {
+        "name":  "Customer States with Sales"
+    },
+    {
+        "name":  "Top Customer State"
+    },
+    {
+        "name":  "Top Customer State Revenue"
+    },
+    {
+        "name":  "Customer Region Revenue Share"
+    },
+    {
+        "name":  "Show Top 10 Customer Cities"
+    },
+    {
+        "name":  "Payment Amount"
+    },
+    {
+        "name":  "Review Count"
+    },
+    {
+        "name":  "Average Review Score"
+    }
+]

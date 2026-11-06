@@ -1,0 +1,86 @@
+table DimCustomer
+	lineageTag: 952fe199-d6f9-48d8-957b-f2da1d199f17
+
+	column CustomerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 010567b3-f846-475d-8f84-2d0fff6b25cb
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerID
+		dataType: string
+		lineageTag: 56326038-2c91-4cde-8240-40b409b65b2e
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerUniqueID
+		dataType: string
+		lineageTag: 5c25dc0f-d6d2-4b07-9914-28fc523d0ac8
+		summarizeBy: none
+		sourceColumn: CustomerUniqueID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceZipCodePrefix
+		dataType: string
+		lineageTag: 4d0fc370-ab64-4fd8-a067-97b0828c9d67
+		summarizeBy: none
+		sourceColumn: SourceZipCodePrefix
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceCity
+		dataType: string
+		lineageTag: 868a53c6-7152-467b-a471-6c7144c52cdd
+		summarizeBy: none
+		sourceColumn: SourceCity
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceState
+		dataType: string
+		lineageTag: c384cda4-b785-4003-a121-e49e892aed54
+		summarizeBy: none
+		sourceColumn: SourceState
+
+		annotation SummarizationSetBy = Automatic
+
+	column GeographyKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 7533bf48-e26e-4375-8565-85bfb488faff
+		summarizeBy: none
+		sourceColumn: GeographyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnmatchedZip
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 76d513df-6e7e-44b8-b9f1-bc2d84cb924a
+		summarizeBy: none
+		sourceColumn: UnmatchedZip
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimCustomer = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(
+				        "DESKTOP-GEUMHVT\SQLEXPRESS",
+				        "OlistSalesDW"
+				    ),
+				    dw_DimCustomer = Source{[Schema="dw",Item="DimCustomer"]}[Data]
+				in
+				    dw_DimCustomer
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

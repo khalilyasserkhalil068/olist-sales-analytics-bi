@@ -1,0 +1,283 @@
+table FactOrderItems
+	lineageTag: 9f8a1cfb-4108-4cc9-968b-216a6fafeb4b
+
+	/// All-status item revenue. Do not add to FactOrders merchandise revenue: they represent the same revenue at different grains.
+	measure 'Item Revenue' = SUM(FactOrderItems[ItemPrice])
+		formatString: #,0.00
+		displayFolder: Validated KPIs
+		lineageTag: a46d4a01-c935-4179-a6a7-08825b3e3af7
+
+	/// Sales-eligible item revenue. Supports product and seller slicing.
+	measure 'Sales Revenue' = CALCULATE([Item Revenue], KEEPFILTERS(FactOrderItems[SalesEligible]=TRUE()))
+		formatString: #,0.00
+		displayFolder: Validated KPIs
+		lineageTag: b04ca814-5918-4a71-85d7-f8c0415a873b
+
+	/// Distinct orders represented by the selected items. Supports product and seller filters; nonadditive across these groups.
+	measure 'Orders With Items' = DISTINCTCOUNT(FactOrderItems[OrderKey])
+		formatString: #,0
+		displayFolder: Validated KPIs
+		lineageTag: da0f2676-ab7b-4c4c-8369-c7361ed2e72d
+
+	/// Distinct sales-eligible orders with selected items.
+	measure 'Sales Orders With Items' = CALCULATE([Orders With Items], KEEPFILTERS(FactOrderItems[SalesEligible]=TRUE()))
+		formatString: #,0
+		displayFolder: Validated KPIs
+		lineageTag: e2ff65c0-f301-4cf2-b3df-7d2c990ebd8c
+
+	/// Selected eligible item revenue divided by distinct eligible orders with selected items.
+	measure 'Average Sales Order Value' = DIVIDE([Sales Revenue],[Sales Orders With Items])
+		formatString: #,0.00
+		displayFolder: Validated KPIs
+		lineageTag: a59fdbcb-222e-4fcc-b84a-51ccbae25a86
+
+	/// Freight at item grain. Do not add to order-grain FreightAmount.
+	measure 'Item Freight' = SUM(FactOrderItems[FreightValue])
+		formatString: #,0.00
+		displayFolder: Validated KPIs
+		lineageTag: 5f872fe6-8b43-468d-b020-d103f40a1311
+
+	/// Eligible order-item records in the current context. One source row is one item; no invented quantity. Supports product, seller and customer geography filters.
+	measure 'Total Items Sold' = CALCULATE(COUNTROWS(FactOrderItems), KEEPFILTERS(FactOrderItems[SalesEligible] = TRUE()))
+		formatString: #,0
+		displayFolder: Dashboard KPIs\Sales
+		lineageTag: a244041b-f30d-4427-9e1d-5167f58fb14c
+
+	/// Eligible merchandise revenue divided by eligible item records. Excludes freight and is not average order value.
+	measure 'Average Revenue per Item' = DIVIDE([Sales Revenue], [Total Items Sold])
+		formatString: "R$" #,0.00
+		displayFolder: Dashboard KPIs\Sales
+		lineageTag: 7763336a-751c-409b-8b8a-3e60374294e3
+
+	/// Distinct known products present in eligible selected item records. Excludes ProductKey=0, the source warehouse unknown dimension member; does not exclude its revenue from Sales Revenue.
+	measure 'Selling Products' = CALCULATE(DISTINCTCOUNT(FactOrderItems[ProductKey]), KEEPFILTERS(FactOrderItems[SalesEligible] = TRUE()), KEEPFILTERS(FactOrderItems[ProductKey] > 0))
+		formatString: #,0
+		displayFolder: Dashboard KPIs\Sales
+		lineageTag: 4fb78088-e696-478a-bf17-e1f23866f814
+
+	/// Distinct known sellers present in eligible selected item records. Excludes SellerKey=0, the source warehouse unknown dimension member. This is observed sales activity, not registered sellers.
+	measure 'Active Sellers' = CALCULATE(DISTINCTCOUNT(FactOrderItems[SellerKey]), KEEPFILTERS(FactOrderItems[SalesEligible] = TRUE()), KEEPFILTERS(FactOrderItems[SellerKey] > 0))
+		formatString: #,0
+		displayFolder: Dashboard KPIs\Sales
+		lineageTag: 1a81542a-68e6-44f8-844e-8da30bf1a912
+
+	/// Category revenue divided by all selected category revenue, preserving year and geography. Use in the all-category contribution table without a Top N visual filter, so the denominator is not renormalized to only winners.
+	measure 'Category Revenue Share' = DIVIDE([Sales Revenue], CALCULATE([Sales Revenue], ALLSELECTED(DimProduct[CategoryLabel])))
+		formatString: 0.0%
+		displayFolder: Dashboard KPIs\Sales
+		lineageTag: 6f101352-ce03-4359-adef-d8d4f927d433
+
+	/// Visual inclusion flag. Top min(10, available) categories by revenue, with category ascending as deterministic tie-breaker. Apply equals 1 only on the Top 10 category chart.
+	measure 'Show Top 10 Categories' = VAR CurrentCategory = SELECTEDVALUE(DimProduct[CategoryLabel]) VAR Candidates = FILTER(ADDCOLUMNS(ALLSELECTED(DimProduct[CategoryLabel]), "__Revenue", [Sales Revenue]), NOT ISBLANK([__Revenue])) VAR Winners = TOPN(10, Candidates, [__Revenue], DESC, DimProduct[CategoryLabel], ASC) RETURN IF(NOT ISBLANK(CurrentCategory) && CONTAINS(Winners, DimProduct[CategoryLabel], CurrentCategory), 1, 0)
+		formatString: 0
+		isHidden
+		displayFolder: Dashboard Helpers\Sales
+		lineageTag: 62e34ee9-4358-4aa1-a7ad-40a5a7c5cc3f
+
+	/// Visual inclusion flag. Top min(10, available) products by eligible revenue with ProductKey ascending tie-breaker. ProductKey is the categorical axis; use measure-only tooltips to avoid raw ProductID grouping filters.
+	measure 'Show Top 10 Products' = VAR CurrentProduct = SELECTEDVALUE(DimProduct[ProductKey]) VAR Candidates = FILTER(ADDCOLUMNS(ALLSELECTED(DimProduct[ProductKey]), "__Revenue", [Sales Revenue]), NOT ISBLANK([__Revenue])) VAR Winners = TOPN(10, Candidates, [__Revenue], DESC, DimProduct[ProductKey], ASC) RETURN IF(NOT ISBLANK(CurrentProduct) && CONTAINS(Winners, DimProduct[ProductKey], CurrentProduct), 1, 0)
+		formatString: 0
+		isHidden
+		displayFolder: Dashboard Helpers\Sales
+		lineageTag: bcc01552-a026-4224-851e-23abc0d14273
+
+	/// Visual inclusion flag. Top min(10, available) sellers by eligible revenue with SellerKey ascending tie-breaker. Use the same equals-1 flag on the seller bar chart and comparison table.
+	measure 'Show Top 10 Sellers' = VAR CurrentSeller = SELECTEDVALUE(DimSeller[SellerKey]) VAR Candidates = FILTER(ADDCOLUMNS(ALLSELECTED(DimSeller[SellerKey]), "__Revenue", [Sales Revenue]), NOT ISBLANK([__Revenue])) VAR Winners = TOPN(10, Candidates, [__Revenue], DESC, DimSeller[SellerKey], ASC) RETURN IF(NOT ISBLANK(CurrentSeller) && CONTAINS(Winners, DimSeller[SellerKey], CurrentSeller), 1, 0)
+		formatString: 0
+		isHidden
+		displayFolder: Dashboard Helpers\Sales
+		lineageTag: 827a823d-febe-461f-8b54-924bcf66e6a3
+
+	/// Trend inclusion flag; ranks categories over the current selected period and removes the individual month axis filter. Requires YearMonth on the axis. Verify constant category membership across months after integration.
+	measure 'Show Top 5 Trend Categories' = VAR CurrentCategory = SELECTEDVALUE(DimProduct[CategoryLabel]) VAR Candidates = FILTER(ADDCOLUMNS(ALLSELECTED(DimProduct[CategoryLabel]), "__PeriodRevenue", CALCULATE([Sales Revenue], ALLSELECTED(DimDate[YearMonth]))), NOT ISBLANK([__PeriodRevenue])) VAR Winners = TOPN(5, Candidates, [__PeriodRevenue], DESC, DimProduct[CategoryLabel], ASC) RETURN IF(NOT ISBLANK(CurrentCategory) && CONTAINS(Winners, DimProduct[CategoryLabel], CurrentCategory), 1, 0)
+		formatString: 0
+		isHidden
+		displayFolder: Dashboard Helpers\Sales
+		lineageTag: 079f8c01-85a7-4196-89f1-2f61ffdaaaec
+
+	column OrderID
+		dataType: string
+		lineageTag: f28476c4-3706-40a9-a8e8-84bf892283f4
+		summarizeBy: none
+		sourceColumn: OrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderItemID
+		dataType: string
+		lineageTag: 21ab4d4f-e1dc-4ea6-b9a8-19c50e0639ea
+		summarizeBy: none
+		sourceColumn: OrderItemID
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderKey
+		dataType: int64
+		formatString: 0
+		lineageTag: eed54384-bc95-48c6-9b50-6f257329d925
+		summarizeBy: count
+		sourceColumn: OrderKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceProductID
+		dataType: string
+		lineageTag: 5dc0839e-4b2f-4297-bebc-810ad3d9508f
+		summarizeBy: none
+		sourceColumn: SourceProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceSellerID
+		dataType: string
+		lineageTag: 08e10c0b-316b-46e0-bdf6-dabb55552fc6
+		summarizeBy: none
+		sourceColumn: SourceSellerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 55cb5a21-6b5c-4bf8-af40-3d7c10c1544c
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SellerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: dc2f97ea-9e26-482c-85bf-3ceebe4e5910
+		summarizeBy: count
+		sourceColumn: SellerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 6e2de6d6-ccc1-4c16-a686-a7c480d26e03
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerGeographyKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 308080c5-f464-4c20-9d5b-78b40c391199
+		summarizeBy: count
+		sourceColumn: CustomerGeographyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SellerGeographyKey
+		dataType: int64
+		formatString: 0
+		lineageTag: bc6d9eed-d562-4c76-bb10-788192ed217c
+		summarizeBy: count
+		sourceColumn: SellerGeographyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderStatusKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 3ab1649d-8b94-49a4-bf7f-3d9da8fcbd7b
+		summarizeBy: none
+		sourceColumn: OrderStatusKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PurchaseDateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: b9f0a8b2-b42a-4196-9e8c-8eebac9fcfbf
+		summarizeBy: count
+		sourceColumn: PurchaseDateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShippingLimitDateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 8e3f476c-8d46-47e5-9de5-bd5ecd52d642
+		summarizeBy: count
+		sourceColumn: ShippingLimitDateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShippingLimitTimestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2872e47c-1728-408f-b1fc-c5953d6b61fd
+		summarizeBy: none
+		sourceColumn: ShippingLimitTimestamp
+
+		variation Variation
+			isDefault
+			relationship: 4a1c9f94-6934-4f14-bbc9-68967ab4dfb1
+			defaultHierarchy: LocalDateTable_3fcf8953-9f48-4f1c-9c35-2c2368611446.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemPrice
+		dataType: double
+		lineageTag: 379a5581-338c-44a1-aaf5-8e5156d66cfc
+		summarizeBy: sum
+		sourceColumn: ItemPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FreightValue
+		dataType: double
+		lineageTag: f8220ebe-20fa-43fe-9628-a8729d18dbec
+		summarizeBy: sum
+		sourceColumn: FreightValue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SalesEligible
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e00fa0bb-23bb-4de0-8623-98adf57f8196
+		summarizeBy: none
+		sourceColumn: SalesEligible
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceQualityFlagCount
+		dataType: int64
+		formatString: 0
+		lineageTag: 1cdb38da-62a2-45d4-ab37-b20ac8bcb878
+		summarizeBy: sum
+		sourceColumn: SourceQualityFlagCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadID
+		dataType: string
+		lineageTag: 3f998733-278a-4eee-82a8-bcf6bb88c735
+		summarizeBy: none
+		sourceColumn: LoadID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactOrderItems = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("DESKTOP-GEUMHVT\SQLEXPRESS", "OlistSalesDW"),
+				    dw_FactOrderItems = Source{[Schema="dw",Item="FactOrderItems"]}[Data]
+				in
+				    dw_FactOrderItems
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

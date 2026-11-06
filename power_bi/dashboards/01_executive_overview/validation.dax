@@ -1,0 +1,139 @@
+// Executive Overview validation query batches — NOT RUN / NOT VERIFIED.
+// Execute each EVALUATE batch separately against the integrated model.
+// Batch 1 requires the shared new Unique Sales Customers measure.
+
+EVALUATE
+ROW(
+    "Sales Revenue", [Sales Revenue],
+    "Sales Revenue Expected", 13221498.11,
+    "Sales Revenue Difference", [Sales Revenue] - 13221498.11,
+    "Total Orders", [Order Count],
+    "Total Orders Expected", 99441,
+    "Average Order Value", [Average Sales Order Value],
+    "Average Order Value Expected", 13221498.11 / 96478,
+    "Unique Sales Customers", [Unique Sales Customers],
+    "Unique Customers Expected", 93358,
+    "On-Time Delivery", [On Time Delivery Rate],
+    "On-Time Delivery Expected", 89936.0 / 96470,
+    "Review Score All Valid Rows", [Average Review Score],
+    "Review Score Expected", 4.08642062404257,
+    "Full Population Item Revenue", [Item Revenue],
+    "Full Population Expected", 13591643.70
+)
+
+// Batch 2: additive partitions. Include blank/unknown members.
+// Expected differences: approximately zero; use a 0.005 currency tolerance.
+// Partition equality checks do not alone prove absence of every modeling error.
+EVALUATE
+ROW(
+    "Category Revenue Difference",
+        SUMX(VALUES(DimProduct[CategoryLabel]), [Sales Revenue]) - [Sales Revenue],
+    "State Revenue Difference",
+        SUMX(VALUES(DimCustomerGeography[ApproximateState]), [Sales Revenue]) - [Sales Revenue],
+    "Month Revenue Difference",
+        SUMX(VALUES(DimDate[YearMonth]), [Sales Revenue]) - [Sales Revenue],
+    "Status Order Difference",
+        SUMX(VALUES(DimOrderStatus[OrderStatus]), [Order Count]) - [Order Count]
+)
+
+// Batch 3: independent query result for the 2018 UI slicer scenario.
+// Record returned values; do not invent filtered baselines.
+EVALUATE
+CALCULATETABLE(
+    ROW(
+        "Year", 2018,
+        "Revenue", [Sales Revenue],
+        "Orders", [Order Count],
+        "AOV", [Average Sales Order Value],
+        "Customers", [Unique Sales Customers],
+        "On-Time Delivery", [On Time Delivery Rate],
+        "Review Score", [Average Review Score]
+    ),
+    TREATAS({2018}, DimDate[Year])
+)
+
+// Batch 4: all-status chart and status-slicer comparison.
+// Historical expected Order Count: delivered 96478; canceled 625.
+// Canceled must have no eligible Sales Revenue; preserve BLANK vs zero semantics.
+EVALUATE
+SUMMARIZECOLUMNS(
+    DimOrderStatus[OrderStatus],
+    "Orders", [Order Count],
+    "Eligible Revenue", [Sales Revenue],
+    "AOV", [Average Sales Order Value]
+)
+ORDER BY DimOrderStatus[OrderStatus]
+
+// Batch 5: native chart baseline, all approximate states (including unknown).
+// Use this model geography, not a different source-state grouping.
+EVALUATE
+SUMMARIZECOLUMNS(
+    DimCustomerGeography[ApproximateState],
+    "Sales Revenue", [Sales Revenue],
+    "Orders", [Order Count]
+)
+ORDER BY [Sales Revenue] DESC
+
+// Batch 6: monthly trend. Compare native axis order and values.
+EVALUATE
+SUMMARIZECOLUMNS(
+    DimDate[YearMonth],
+    "Sales Revenue", [Sales Revenue]
+)
+ORDER BY DimDate[YearMonth]
+
+// Batch 7: independent fact-column comparison for UI purchase-year 2018 selection.
+// Each Difference should be zero (currency tolerance 0.005; rates tolerance 1e-10).
+// Do not apply additional report filters when comparing this isolated scenario.
+EVALUATE
+VAR Orders2018 = FILTER(ALL(FactOrders), FactOrders[PurchaseDateKey] >= 20180101 && FactOrders[PurchaseDateKey] <= 20181231)
+VAR EligibleOrders2018 = FILTER(Orders2018, FactOrders[SalesEligible] = TRUE())
+VAR Items2018 = FILTER(ALL(FactOrderItems), FactOrderItems[PurchaseDateKey] >= 20180101 && FactOrderItems[PurchaseDateKey] <= 20181231 && FactOrderItems[SalesEligible] = TRUE())
+VAR Reviews2018 = FILTER(ALL(FactReviews), FactReviews[PurchaseDateKey] >= 20180101 && FactReviews[PurchaseDateKey] <= 20181231 && FactReviews[ValidScore] = TRUE())
+VAR ExpectedRevenue = SUMX(Items2018, FactOrderItems[ItemPrice])
+VAR ExpectedAOV = DIVIDE(ExpectedRevenue, COUNTROWS(EligibleOrders2018))
+VAR ExpectedOnTime = DIVIDE(COUNTROWS(FILTER(Orders2018, FactOrders[OnTimeEligible] = TRUE() && FactOrders[IsOnTime] = TRUE())), COUNTROWS(FILTER(Orders2018, FactOrders[OnTimeEligible] = TRUE())))
+VAR ExpectedReviews = AVERAGEX(Reviews2018, FactReviews[ReviewScore])
+RETURN ROW(
+    "Year", 2018,
+    "Revenue Actual", CALCULATE([Sales Revenue], TREATAS({2018}, DimDate[Year])),
+    "Revenue Expected", ExpectedRevenue,
+    "Revenue Difference", CALCULATE([Sales Revenue], TREATAS({2018}, DimDate[Year])) - ExpectedRevenue,
+    "Orders Actual", CALCULATE([Order Count], TREATAS({2018}, DimDate[Year])),
+    "Orders Expected", COUNTROWS(Orders2018),
+    "Order Difference", CALCULATE([Order Count], TREATAS({2018}, DimDate[Year])) - COUNTROWS(Orders2018),
+    "AOV Difference", CALCULATE([Average Sales Order Value], TREATAS({2018}, DimDate[Year])) - ExpectedAOV,
+    "On-Time Difference", CALCULATE([On Time Delivery Rate], TREATAS({2018}, DimDate[Year])) - ExpectedOnTime,
+    "Review Difference", CALCULATE([Average Review Score], TREATAS({2018}, DimDate[Year])) - ExpectedReviews
+)
+
+// Batch 8: test approximate-state filter via dimension path against direct fact geography keys.
+// These expected values deliberately use model ZIP geography, not SourceState from EDA.
+EVALUATE
+VAR SPKeys = CALCULATETABLE(VALUES(DimCustomerGeography[GeographyKey]), DimCustomerGeography[ApproximateState] = "SP")
+VAR ExpectedRevenue = CALCULATE(SUM(FactOrderItems[ItemPrice]), FactOrderItems[SalesEligible] = TRUE(), TREATAS(SPKeys, FactOrderItems[CustomerGeographyKey]))
+VAR ExpectedOrders = CALCULATE(COUNTROWS(FactOrders), TREATAS(SPKeys, FactOrders[CustomerGeographyKey]))
+RETURN ROW(
+    "Approximate State", "SP",
+    "Revenue Actual", CALCULATE([Sales Revenue], DimCustomerGeography[ApproximateState] = "SP"),
+    "Revenue Expected", ExpectedRevenue,
+    "Revenue Difference", CALCULATE([Sales Revenue], DimCustomerGeography[ApproximateState] = "SP") - ExpectedRevenue,
+    "Orders Actual", CALCULATE([Order Count], DimCustomerGeography[ApproximateState] = "SP"),
+    "Orders Expected", ExpectedOrders,
+    "Order Difference", CALCULATE([Order Count], DimCustomerGeography[ApproximateState] = "SP") - ExpectedOrders
+)
+
+// Batch 9: category restriction affects items, not the independent order/review measures.
+// In the UI set category-chart -> order/review/unique-customer cards interaction to None.
+// This query validates model scope, not whether UI interactions were correctly configured.
+EVALUATE
+VAR SelectedCategory = "health_beauty"
+VAR CategoryProductKeys = CALCULATETABLE(VALUES(DimProduct[ProductKey]), DimProduct[CategoryLabel] = SelectedCategory)
+RETURN ROW(
+    "Selected Category", SelectedCategory,
+    "Sales Revenue Actual", CALCULATE([Sales Revenue], DimProduct[CategoryLabel] = SelectedCategory),
+    "Sales Revenue Expected", CALCULATE(SUM(FactOrderItems[ItemPrice]), FactOrderItems[SalesEligible] = TRUE(), TREATAS(CategoryProductKeys, FactOrderItems[ProductKey])),
+    "Order Scope Difference", CALCULATE([Order Count], DimProduct[CategoryLabel] = SelectedCategory) - [Order Count],
+    "Review Scope Difference", CALCULATE([Average Review Score], DimProduct[CategoryLabel] = SelectedCategory) - [Average Review Score],
+    "Customer Scope Difference", CALCULATE([Unique Sales Customers], DimProduct[CategoryLabel] = SelectedCategory) - [Unique Sales Customers]
+)

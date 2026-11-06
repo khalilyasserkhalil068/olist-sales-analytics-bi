@@ -1,0 +1,666 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "olist_customer_geography",
+  "displayName": "03 | Customer & Geographic Analytics",
+  "displayOption": "FitToPage",
+  "height": 900,
+  "width": 1600,
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F3F6FA'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "p3_year",
+      "target": "p3_state",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_year",
+      "target": "p3_city",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_year",
+      "target": "p3_unique",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_year",
+      "target": "p3_repeat_rate",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_year",
+      "target": "p3_frequency",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_year",
+      "target": "p3_revenue_customer",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_year",
+      "target": "p3_states",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_year",
+      "target": "p3_top_state",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_year",
+      "target": "p3_state_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_year",
+      "target": "p3_state_customers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_year",
+      "target": "p3_top_cities",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_year",
+      "target": "p3_repeat_split",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_year",
+      "target": "p3_region_contribution",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_year",
+      "target": "p3_geographic_comparison",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state",
+      "target": "p3_year",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state",
+      "target": "p3_city",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state",
+      "target": "p3_unique",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state",
+      "target": "p3_repeat_rate",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state",
+      "target": "p3_frequency",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state",
+      "target": "p3_revenue_customer",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state",
+      "target": "p3_states",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state",
+      "target": "p3_top_state",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state",
+      "target": "p3_state_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state",
+      "target": "p3_state_customers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state",
+      "target": "p3_top_cities",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state",
+      "target": "p3_repeat_split",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state",
+      "target": "p3_region_contribution",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state",
+      "target": "p3_geographic_comparison",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_city",
+      "target": "p3_year",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_city",
+      "target": "p3_state",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_city",
+      "target": "p3_unique",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_city",
+      "target": "p3_repeat_rate",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_city",
+      "target": "p3_frequency",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_city",
+      "target": "p3_revenue_customer",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_city",
+      "target": "p3_states",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_city",
+      "target": "p3_top_state",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_city",
+      "target": "p3_state_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_city",
+      "target": "p3_state_customers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_city",
+      "target": "p3_top_cities",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_city",
+      "target": "p3_repeat_split",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_city",
+      "target": "p3_region_contribution",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_city",
+      "target": "p3_geographic_comparison",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state_revenue",
+      "target": "p3_year",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_state_revenue",
+      "target": "p3_state",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_state_revenue",
+      "target": "p3_city",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_state_revenue",
+      "target": "p3_unique",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state_revenue",
+      "target": "p3_repeat_rate",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state_revenue",
+      "target": "p3_frequency",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state_revenue",
+      "target": "p3_revenue_customer",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state_revenue",
+      "target": "p3_states",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state_revenue",
+      "target": "p3_top_state",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state_revenue",
+      "target": "p3_state_customers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state_revenue",
+      "target": "p3_top_cities",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state_revenue",
+      "target": "p3_repeat_split",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state_revenue",
+      "target": "p3_region_contribution",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state_revenue",
+      "target": "p3_geographic_comparison",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state_customers",
+      "target": "p3_year",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_state_customers",
+      "target": "p3_state",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_state_customers",
+      "target": "p3_city",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_state_customers",
+      "target": "p3_unique",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state_customers",
+      "target": "p3_repeat_rate",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state_customers",
+      "target": "p3_frequency",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state_customers",
+      "target": "p3_revenue_customer",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state_customers",
+      "target": "p3_states",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state_customers",
+      "target": "p3_top_state",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state_customers",
+      "target": "p3_state_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state_customers",
+      "target": "p3_top_cities",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state_customers",
+      "target": "p3_repeat_split",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state_customers",
+      "target": "p3_region_contribution",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_state_customers",
+      "target": "p3_geographic_comparison",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_top_cities",
+      "target": "p3_year",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_top_cities",
+      "target": "p3_state",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_top_cities",
+      "target": "p3_city",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_top_cities",
+      "target": "p3_unique",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_top_cities",
+      "target": "p3_repeat_rate",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_top_cities",
+      "target": "p3_frequency",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_top_cities",
+      "target": "p3_revenue_customer",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_top_cities",
+      "target": "p3_states",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_top_cities",
+      "target": "p3_top_state",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_top_cities",
+      "target": "p3_state_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_top_cities",
+      "target": "p3_state_customers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_top_cities",
+      "target": "p3_repeat_split",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_top_cities",
+      "target": "p3_region_contribution",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_top_cities",
+      "target": "p3_geographic_comparison",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_repeat_split",
+      "target": "p3_year",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_repeat_split",
+      "target": "p3_state",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_repeat_split",
+      "target": "p3_city",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_repeat_split",
+      "target": "p3_unique",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_repeat_split",
+      "target": "p3_repeat_rate",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_repeat_split",
+      "target": "p3_frequency",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_repeat_split",
+      "target": "p3_revenue_customer",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_repeat_split",
+      "target": "p3_states",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_repeat_split",
+      "target": "p3_top_state",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_repeat_split",
+      "target": "p3_state_revenue",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_repeat_split",
+      "target": "p3_state_customers",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_repeat_split",
+      "target": "p3_top_cities",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_repeat_split",
+      "target": "p3_region_contribution",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_repeat_split",
+      "target": "p3_geographic_comparison",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_region_contribution",
+      "target": "p3_year",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_region_contribution",
+      "target": "p3_state",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_region_contribution",
+      "target": "p3_city",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_region_contribution",
+      "target": "p3_unique",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_region_contribution",
+      "target": "p3_repeat_rate",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_region_contribution",
+      "target": "p3_frequency",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_region_contribution",
+      "target": "p3_revenue_customer",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_region_contribution",
+      "target": "p3_states",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_region_contribution",
+      "target": "p3_top_state",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_region_contribution",
+      "target": "p3_state_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_region_contribution",
+      "target": "p3_state_customers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_region_contribution",
+      "target": "p3_top_cities",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_region_contribution",
+      "target": "p3_repeat_split",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_region_contribution",
+      "target": "p3_geographic_comparison",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_geographic_comparison",
+      "target": "p3_year",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_geographic_comparison",
+      "target": "p3_state",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_geographic_comparison",
+      "target": "p3_city",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p3_geographic_comparison",
+      "target": "p3_unique",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_geographic_comparison",
+      "target": "p3_repeat_rate",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_geographic_comparison",
+      "target": "p3_frequency",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_geographic_comparison",
+      "target": "p3_revenue_customer",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_geographic_comparison",
+      "target": "p3_states",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_geographic_comparison",
+      "target": "p3_top_state",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_geographic_comparison",
+      "target": "p3_state_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_geographic_comparison",
+      "target": "p3_state_customers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_geographic_comparison",
+      "target": "p3_top_cities",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_geographic_comparison",
+      "target": "p3_repeat_split",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p3_geographic_comparison",
+      "target": "p3_region_contribution",
+      "type": "DataFilter"
+    }
+  ]
+}

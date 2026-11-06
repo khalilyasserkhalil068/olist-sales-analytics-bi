@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.0.0/schema.json",
+  "pageOrder": [
+    "1f87365916881db24fa0",
+    "olist_sales_product",
+    "olist_customer_geography",
+    "olist_delivery_logistics",
+    "olist_reviews_satisfaction"
+  ],
+  "activePageName": "1f87365916881db24fa0"
+}

@@ -1,0 +1,10 @@
+child_dataset,foreign_key,parent_dataset,parent_key,child_rows,null_foreign_key_rows,matched_child_rows,unmatched_child_rows,matched_percentage_non_null,distinct_unmatched_foreign_keys,unmatched_key_examples,parent_key_unique_and_non_null,parent_repeated_key_values,parent_null_key_rows,parent_keys_without_child,parent_rows_without_child,maximum_child_rows_per_matched_key,observed_parent_to_child,lookup_note
+orders,customer_id,customers,customer_id,99441,0,99441,0,100.0,0,[],True,0,0,0,0,1,one-to-one,unique parent lookup
+order_items,order_id,orders,order_id,112650,0,112650,0,100.0,0,[],True,0,0,775,775,21,one-to-many,unique parent lookup
+order_items,product_id,products,product_id,112650,0,112650,0,100.0,0,[],True,0,0,0,0,527,one-to-many,unique parent lookup
+order_items,seller_id,sellers,seller_id,112650,0,112650,0,100.0,0,[],True,0,0,0,0,2033,one-to-many,unique parent lookup
+order_payments,order_id,orders,order_id,103886,0,103886,0,100.0,0,[],True,0,0,1,1,29,one-to-many,unique parent lookup
+order_reviews,order_id,orders,order_id,99224,0,99224,0,100.0,0,[],True,0,0,768,768,3,one-to-many,unique parent lookup
+products,product_category_name,category_translation,product_category_name,32951,610,32328,13,99.95980334559847,2,"[""portateis_cozinha_e_preparadores_de_alimentos"", ""pc_gamer""]",True,0,0,0,0,3029,one-to-many,unique parent lookup
+customers,customer_zip_code_prefix,geolocation,geolocation_zip_code_prefix,99441,0,99163,278,99.72043724419505,157,"[""70686"", ""72005"", ""71919"", ""73255"", ""72300"", ""73369"", ""71884"", ""72002"", ""73401"", ""71676""]",False,17972,0,4178,31864,142,many-to-many,repeated parent lookup; direct join can multiply rows
+sellers,seller_zip_code_prefix,geolocation,geolocation_zip_code_prefix,3095,0,3088,7,99.77382875605817,7,"[""82040"", ""91901"", ""72580"", ""02285"", ""07412"", ""71551"", ""37708""]",False,17972,0,16776,731347,49,many-to-many,repeated parent lookup; direct join can multiply rows

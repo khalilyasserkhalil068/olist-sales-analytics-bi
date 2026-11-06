@@ -1,0 +1,1592 @@
+{
+  "accepted_local_date": "2026-11-06",
+  "scope": "Curated code, documentation, input data and report assets; generated reports/evidence excluded",
+  "finalPbixSHA256": "032044a60cb6d6d8eed3af4b2759d7f7aa03c69f4524a90129b7b500dbefca96",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "sha256": "d918d5eb21772cce363c7c61abeec412df85ca0666690d60e3a5e3c75e9ce6be",
+      "bytes": 171,
+      "local_only": false
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 959,
+      "sha256": "ebd67e2610450eadc827a561c23119174db0bb09fef2e7481a55fc6b6108c58e",
+      "local_only": false
+    },
+    {
+      "path": "README.md",
+      "bytes": 9874,
+      "sha256": "e9f42e8422c0dea4dcf31819ddff2a2b4bc4903f57fabfa652b92ac73a92c98f",
+      "local_only": false
+    },
+    {
+      "path": "RUN_PHASE4.bat",
+      "bytes": 1746,
+      "sha256": "e79f6cd77c2e7f2f0245b4bd597b7a811cb2591cbb340d5786a9b677bdb16b9d",
+      "local_only": false
+    },
+    {
+      "path": "RUN_PHASE4_TESTS_ONLY.bat",
+      "bytes": 474,
+      "sha256": "a270e3ff521d3cdc167f8f234666a8c8c7beae52f34511713974d3e17187c8f3",
+      "local_only": false
+    },
+    {
+      "path": "data/DATASET_MANIFEST.json",
+      "bytes": 3305,
+      "sha256": "384404059af1201779532e954cd6b2aaaeea4344f34d8522e5e0a6fa9ef69577",
+      "local_only": false
+    },
+    {
+      "path": "data/processed/category_translations_clean.csv",
+      "bytes": 2540,
+      "sha256": "5233473346639d5ff3da9b784385ba284778abfaac1062572abe99e8aba8b7e3",
+      "local_only": true
+    },
+    {
+      "path": "data/processed/customers_clean.csv",
+      "bytes": 9779318,
+      "sha256": "dadd4167d59c0028dbce61ebd7282b6eb665ef776b79d7d0a000fbacb428575d",
+      "local_only": true
+    },
+    {
+      "path": "data/processed/geolocation_clean.csv",
+      "bytes": 61477686,
+      "sha256": "bb8cd9f785f156b091781677144c33ef7bbbc03fa06a7a14db0c51d8b9b2aec8",
+      "local_only": true
+    },
+    {
+      "path": "data/processed/geolocation_zip_lookup.csv",
+      "bytes": 1736166,
+      "sha256": "f6bd7c09504f150764f8b0c10ad1288c0a92eee99735e1f94bf192536879172e",
+      "local_only": true
+    },
+    {
+      "path": "data/processed/order_items_clean.csv",
+      "bytes": 20994520,
+      "sha256": "34037964980e1fdb300d64448eef8dc3e42903bfe67750ecc2ecbd3a622b8770",
+      "local_only": true
+    },
+    {
+      "path": "data/processed/orders_clean.csv",
+      "bytes": 28735749,
+      "sha256": "495c9c11e5e638d4c576d1a406e51a2180b5565ab9b31495ebcf72bbbedca6eb",
+      "local_only": true
+    },
+    {
+      "path": "data/processed/payments_clean.csv",
+      "bytes": 9373415,
+      "sha256": "9441054e0298f27da1cb846cb8ac71378c32a1a855a8bdbb6c55fa971428e1c5",
+      "local_only": true
+    },
+    {
+      "path": "data/processed/products_clean.csv",
+      "bytes": 6022937,
+      "sha256": "2fe1d2904429ff2587266b690a26112446cd3ba4afe74bfe555029b56e823258",
+      "local_only": true
+    },
+    {
+      "path": "data/processed/reviews_clean.csv",
+      "bytes": 18106274,
+      "sha256": "1e9b833b7d2bc2420da63e63cdd836a741f7eb37a3fe82b3a5e5ec2867e2ea08",
+      "local_only": true
+    },
+    {
+      "path": "data/processed/sellers_clean.csv",
+      "bytes": 201789,
+      "sha256": "f12eef90d97555e2c3c0a4634a6ffe0aa277e1511a4a43e4dc32a9fe6ffbca7e",
+      "local_only": true
+    },
+    {
+      "path": "data/raw/olist_customers_dataset.csv",
+      "bytes": 9033957,
+      "sha256": "983a422239e1712ded753b3bf9ecf47dc73f144d306029dcfa99e70a226883d2",
+      "local_only": true
+    },
+    {
+      "path": "data/raw/olist_geolocation_dataset.csv",
+      "bytes": 61273883,
+      "sha256": "b514f6fc991b9566aeba02aa5d67e2c3630f034b60a0e05aa0d082a3b66d88d6",
+      "local_only": true
+    },
+    {
+      "path": "data/raw/olist_order_items_dataset.csv",
+      "bytes": 15438671,
+      "sha256": "0bc4d068c4fe38cbb01bd90e8746e3c613fe7b4baef75fab7b0e329701c3e279",
+      "local_only": true
+    },
+    {
+      "path": "data/raw/olist_order_payments_dataset.csv",
+      "bytes": 5777138,
+      "sha256": "4f713964f2815dbbaa40b9488268c55aac3627bfce5aa96cf58d1f3616de3cc0",
+      "local_only": true
+    },
+    {
+      "path": "data/raw/olist_order_reviews_dataset.csv",
+      "bytes": 14451670,
+      "sha256": "012b61c7593e34f51fa614efdf802b9c7056ce6aae5307ddb93236e7cfc797d7",
+      "local_only": true
+    },
+    {
+      "path": "data/raw/olist_orders_dataset.csv",
+      "bytes": 17654914,
+      "sha256": "8df58ef3d2d7e9944010f7beecd9b75367f5588ec6e3c91cec19ae3345ef9ecf",
+      "local_only": true
+    },
+    {
+      "path": "data/raw/olist_products_dataset.csv",
+      "bytes": 2379446,
+      "sha256": "3e6569628a17fbc75fd206ee357b59e20364b9afa90f5b6cd5b4d624c58aa9cc",
+      "local_only": true
+    },
+    {
+      "path": "data/raw/olist_sellers_dataset.csv",
+      "bytes": 174703,
+      "sha256": "1f643d2b950373b85735e7794b20986f528d7a000432e7c6f9bcbb44d0846a0e",
+      "local_only": true
+    },
+    {
+      "path": "data/raw/product_category_name_translation.csv",
+      "bytes": 2613,
+      "sha256": "a81f0d1f27b27e7293f761bc79e3ce8f348ee39c4b3ed3e49bde38f478586278",
+      "local_only": true
+    },
+    {
+      "path": "docs/README.md",
+      "bytes": 2209,
+      "sha256": "859c12172c8e1cd5a1dc559ec5aa5a72787146309de30820a35ce927011e22b5",
+      "local_only": false
+    },
+    {
+      "path": "docs/analysis_methodology.md",
+      "bytes": 5722,
+      "sha256": "d68be405af9642ba09fe463b0c81fffd121ee02a67d682789628f63dd06355e2",
+      "local_only": false
+    },
+    {
+      "path": "docs/architecture.md",
+      "bytes": 5845,
+      "sha256": "4dbede2bd9005ae40439c7078e61c754b8512d7637e414ad5a5b65fbbc3c2861",
+      "local_only": false
+    },
+    {
+      "path": "docs/business_insights.md",
+      "bytes": 7457,
+      "sha256": "7c2ee66084c2016e0e173f5d2a7edf88c75e008e06719adef745b0a085c74cf0",
+      "local_only": false
+    },
+    {
+      "path": "docs/dashboard_guide.md",
+      "bytes": 6477,
+      "sha256": "254e4f2ffed0b5c183363d6a02aa135e12544973f58c212a7c77fcca091fc5f2",
+      "local_only": false
+    },
+    {
+      "path": "docs/data_dictionary.md",
+      "bytes": 82569,
+      "sha256": "78fa8bd2ddcd2bfeb57f290521723853240697ebe7643356174cf983fff95aaa",
+      "local_only": false
+    },
+    {
+      "path": "docs/data_quality.md",
+      "bytes": 6841,
+      "sha256": "86a9226230d2dbe5c325d99c877f83b82307caa19b8f7d4e12e0c8fa833bce22",
+      "local_only": false
+    },
+    {
+      "path": "docs/dataset_attribution.md",
+      "bytes": 2943,
+      "sha256": "bd014b24730489ee5ec532a08745f1e86b5b91cd957a1e883c89acc001ca7f60",
+      "local_only": false
+    },
+    {
+      "path": "docs/dax_reference.md",
+      "bytes": 25556,
+      "sha256": "dbcfe70c2cc47090bf59ad25d9b6890d88ce3312a254c589494f2a9eff81cfa4",
+      "local_only": false
+    },
+    {
+      "path": "docs/kpi_definitions.md",
+      "bytes": 7460,
+      "sha256": "0ebab441be044f2099d1644ca3bd0d4ed7f5aa4e18d42bb96a6aeb9ae25a4c09",
+      "local_only": false
+    },
+    {
+      "path": "docs/maintenance.md",
+      "bytes": 5365,
+      "sha256": "812513d77154f41b3bbe68f640fccce2241609e9407e29766cd4cc50b86fd0d2",
+      "local_only": false
+    },
+    {
+      "path": "docs/portfolio.md",
+      "bytes": 6004,
+      "sha256": "1e68b206847765059347f8f23276e26d40281cf156807b045b02be79da3f4b09",
+      "local_only": false
+    },
+    {
+      "path": "docs/reproduction_guide.md",
+      "bytes": 10070,
+      "sha256": "9ac6cc0f2d14e51cc1c21b7c660a572deb69ef713501fa1bb0c1a2c1f464aac1",
+      "local_only": false
+    },
+    {
+      "path": "docs/validation.md",
+      "bytes": 8233,
+      "sha256": "069376be5c07864a15cbd72a93392d8a0f51fa5a5fd828eaaaa6599f31cf7f59",
+      "local_only": false
+    },
+    {
+      "path": "notebooks/01_data_understanding.ipynb",
+      "bytes": 249499,
+      "sha256": "c7c22cc89d24ad99ccb281f479f7fe9bcfbde66356b80be6f7e14edb297d173f",
+      "local_only": false
+    },
+    {
+      "path": "notebooks/02_data_cleaning.ipynb",
+      "bytes": 198316,
+      "sha256": "54e9d340b4ead9082816abe93746bda29d057f7aeab82182e8be490261658f7a",
+      "local_only": false
+    },
+    {
+      "path": "notebooks/03_exploratory_analysis.ipynb",
+      "bytes": 4573336,
+      "sha256": "bfb0e0c508573d9997cae6b1d02dbbee071d5ff85bc4eb4d736d532733393566",
+      "local_only": false
+    },
+    {
+      "path": "notebooks/04_customer_analysis.ipynb",
+      "bytes": 186906,
+      "sha256": "0fe1cbaf0257a18881149c29020971072a69105648140c9fa318f6eb725005ee",
+      "local_only": false
+    },
+    {
+      "path": "notebooks/05_cohort_analysis.ipynb",
+      "bytes": 342594,
+      "sha256": "6dea139c585015192fded468f8afa4836e63c244e9fbf0238fb7325ff8244758",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/dashboards/01_executive_overview/native_export.png",
+      "bytes": 223021,
+      "sha256": "628183750e2a6c64630e2e546d9be1bfb5f62b77ca0ede75d2fd75a943a62be2",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/dashboards/01_executive_overview/screenshot.png",
+      "bytes": 758817,
+      "sha256": "71e46a9eefe8e623c0a5bd70046b474c903ebaaed5d046ea4e83d11ee6b7a429",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/dashboards/01_executive_overview/validation.dax",
+      "bytes": 7403,
+      "sha256": "3855135bea83c42f426d3d8db1cb4e212bbbfe5d3d974a2256eab756aece15d5",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/dashboards/02_sales_product_performance/native_export.png",
+      "bytes": 269637,
+      "sha256": "bcff7f715a2c2717615d3aae3d0336c10de782f65ce794e5b97fccd9efa4f7e7",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/dashboards/02_sales_product_performance/screenshot.png",
+      "bytes": 819409,
+      "sha256": "0a4347587b80cf1bfc24281d5ca95e0d359c16d102d23362d6a69dd77074c4d4",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/dashboards/02_sales_product_performance/validation.dax",
+      "bytes": 5169,
+      "sha256": "4f9982dc75ec0ae4b12b1ee3cb5b23db74b0704f1905107468ee3e8991bad23e",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/dashboards/03_customer_geographic_analytics/native_export.png",
+      "bytes": 255382,
+      "sha256": "23da05ebd8fccc52ac04c4652c0fd2c7f3016999bdd8612096397c41ead99967",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/dashboards/03_customer_geographic_analytics/screenshot.png",
+      "bytes": 802047,
+      "sha256": "559d9baf8c1ef6096a3ae1aa2339aa4cfb60c2d7070f60fc29aa5e9c5b2bc1ad",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/dashboards/03_customer_geographic_analytics/validation.dax",
+      "bytes": 8631,
+      "sha256": "462db9f951246a6aafda49b221584f314f82340b34bd5590bb148105ec00cdf3",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/dashboards/04_delivery_logistics/native_export.png",
+      "bytes": 223346,
+      "sha256": "7fa3f802915b15c25561862e4b3ce0e28f883590d5b25dc219f1f8af9f0b5e74",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/dashboards/04_delivery_logistics/screenshot.png",
+      "bytes": 293004,
+      "sha256": "2e8c29f4344f091afb566b2588cb135f3dcade7d2d14d2c06663541b8180d8eb",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/dashboards/04_delivery_logistics/validation.dax",
+      "bytes": 1054,
+      "sha256": "0b1ba237dba3777b04ed166d2dcbfc7f151aea01c19df19ba3fde037b680fa75",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/dashboards/05_reviews_satisfaction/native_export.png",
+      "bytes": 207843,
+      "sha256": "2eb489e027fd068ca910bc147a7f1c9e46ed672bf6213ada082a8ca5b322d6dc",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/dashboards/05_reviews_satisfaction/screenshot.png",
+      "bytes": 113126,
+      "sha256": "2f2b7059c60cadc8c328653c54e246f2e0e09a4fa3a9383f804ab9ccfcfe7fcb",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/dashboards/05_reviews_satisfaction/validation.dax",
+      "bytes": 1010,
+      "sha256": "e5311550b9ab78b49cee3da27eda3da9980b73faf38cbafd6d9cfe8cc8cf9ba4",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/.platform",
+      "bytes": 318,
+      "sha256": "9acb1d5d451cfc3e25d9b4e3d918bcc014cdd7fc45bf968108c838238328108e",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/StaticResources/RegisteredResources/Olist_Professional6679177611945769.json",
+      "bytes": 8182,
+      "sha256": "ef8e1c420345654038b22e96a64b6aef6ae69692e0814ff3e1774152df548211",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/StaticResources/SharedResources/BaseThemes/Fluent2-CY26SU10.json",
+      "bytes": 99783,
+      "sha256": "781f98416b262f95d1f7860f5037bb8bd4dd00ceef17f56382864ac3aed5d3e8",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition.pbir",
+      "bytes": 267,
+      "sha256": "5a0f144af00f613733d205a8dc41e44888bc4e9248e0ed779067f47dcfa610f3",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/1f87365916881db24fa0/page.json",
+      "bytes": 15400,
+      "sha256": "2c06a87b0fccdc5f9d0b11c4e5e42f54fbeb56e5b2b17ab602c231af0900df10",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/1f87365916881db24fa0/visuals/p1_aov/visual.json",
+      "bytes": 7743,
+      "sha256": "fbfbaa58dc30950ca4af9c1b60a861d3e7e5a5e0ad038f0653affe83361113b2",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/1f87365916881db24fa0/visuals/p1_category_revenue/visual.json",
+      "bytes": 14656,
+      "sha256": "67e4499d7b0147d7c2f7e79d537b66cf7fcb37ade0ec08e193b5b1ffecfb34f8",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/1f87365916881db24fa0/visuals/p1_customer_state/visual.json",
+      "bytes": 8953,
+      "sha256": "97670cc80c0855fd47644b9643457d20b6c3bb24f18f552ba567653f8228f5d6",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/1f87365916881db24fa0/visuals/p1_footer/visual.json",
+      "bytes": 5533,
+      "sha256": "0969ef411017a0065d0f2b93decfa604be4940375cd7538a2b53d1b027fcd426",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/1f87365916881db24fa0/visuals/p1_header_bg/visual.json",
+      "bytes": 5378,
+      "sha256": "cf480ccdd6ddceed38a885fd42735554713506dcf9b0b6c51bff81b8cbff07ff",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/1f87365916881db24fa0/visuals/p1_monthly_sales/visual.json",
+      "bytes": 13118,
+      "sha256": "fa554329f39adfdb1565e5630a1cdde1d226d1ba0e706aed5b2d3f81c7f7dbd2",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/1f87365916881db24fa0/visuals/p1_nav/visual.json",
+      "bytes": 6954,
+      "sha256": "46a69b6301e075dcaba9ebf6ea10088a13bdf7bffb623bcb5c6bcd154921616c",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/1f87365916881db24fa0/visuals/p1_on_time_rate/visual.json",
+      "bytes": 7692,
+      "sha256": "4a68da7d7510ed30b75a11a99abb500768bf61b2bbcb824011b1ac47a238cb54",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/1f87365916881db24fa0/visuals/p1_order_status/visual.json",
+      "bytes": 8886,
+      "sha256": "fc9c68c157651e590c40168ec5957c98ca732374785d22583ad07c5ef93e048a",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/1f87365916881db24fa0/visuals/p1_orders_status/visual.json",
+      "bytes": 12805,
+      "sha256": "40c92c22fe761d485a70347d13cf22d303336f12341eb95eb90909a75cc1ebbc",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/1f87365916881db24fa0/visuals/p1_purchase_month/visual.json",
+      "bytes": 8861,
+      "sha256": "acf6a531fb498df8fcda77b2249e033184b997dc9c3c9186e70b982a803c6b63",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/1f87365916881db24fa0/visuals/p1_purchase_year/visual.json",
+      "bytes": 8838,
+      "sha256": "490a3f7ccad1e7dc223fd18d29370f6460ca3f847416bb81a7999a256fe09375",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/1f87365916881db24fa0/visuals/p1_review_score/visual.json",
+      "bytes": 7697,
+      "sha256": "1371625a7208bc399dd3fc2dc230c25e207657c055fedc6b6d961e5f83276151",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/1f87365916881db24fa0/visuals/p1_sales_revenue/visual.json",
+      "bytes": 7710,
+      "sha256": "73b934b064c3558273c82cd5771bc6228edc1adcd6abde433a7f0c16ffc13a67",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/1f87365916881db24fa0/visuals/p1_state_sales/visual.json",
+      "bytes": 12746,
+      "sha256": "0aa5cf0ea8dbc836bd002d59f48be32644863f7ccdad028be17c61e7dcd8eeb5",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/1f87365916881db24fa0/visuals/p1_subtitle/visual.json",
+      "bytes": 5433,
+      "sha256": "769ff4bfd2f93d869c21ef2d03531719bc318546c39df713aed7485615c5654a",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/1f87365916881db24fa0/visuals/p1_title/visual.json",
+      "bytes": 5390,
+      "sha256": "ffed66140f5b784ee1bd352cd27eb374cb57636dc95e6bcd857b7e83fb6e5a9b",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/1f87365916881db24fa0/visuals/p1_total_orders/visual.json",
+      "bytes": 7638,
+      "sha256": "7a6581fcb1a9f943a87c0cb577c98429222b3fa5f07c08310dd4c98bd5a889f1",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/1f87365916881db24fa0/visuals/p1_unique_customers/visual.json",
+      "bytes": 7697,
+      "sha256": "9ea0fcecec7e6c64b2d95ce05a7d7b2d4a171e4da74d381716778948ad9bb521",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/1f87365916881db24fa0/visuals/p1_year_sales/visual.json",
+      "bytes": 13404,
+      "sha256": "72ebafa13a003cefb46737090e475a975a40c1c2e7544cfbd382e594a5e00e40",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_customer_geography/page.json",
+      "bytes": 15024,
+      "sha256": "bc35b687d719268360b5a0bbcae1234c76b006928233ec1879fbd79fdec0ae30",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_customer_geography/visuals/p3_city/visual.json",
+      "bytes": 8946,
+      "sha256": "cb8384d9e517bffcaf8dce0af14760b36ffc904bb6c3efa7d1691887b9c2bfe2",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_customer_geography/visuals/p3_definition_note/visual.json",
+      "bytes": 5435,
+      "sha256": "4c8e44459b4de72d7f69635ba1ffcfd22436a89a493b488163f9295882989e30",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_customer_geography/visuals/p3_footer/visual.json",
+      "bytes": 5574,
+      "sha256": "8cd996c65d19b124e0f36625c6d0134aa86fd1901331996bd30a83258ede8c30",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_customer_geography/visuals/p3_frequency/visual.json",
+      "bytes": 7703,
+      "sha256": "e1e22da77a5fd6ea0c7d45eb91b37563726aa608cdd77242e39648593ae0362b",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_customer_geography/visuals/p3_geographic_comparison/visual.json",
+      "bytes": 11920,
+      "sha256": "cbcc8364e5d9664187e4daaf8b904dd7afb3d349d3e86395af22f1f4c9901a6d",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_customer_geography/visuals/p3_header_bg/visual.json",
+      "bytes": 5378,
+      "sha256": "0d7b603aefd18290ec95aabeb3201e59d31df3201751a8eb916305797316a452",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_customer_geography/visuals/p3_nav/visual.json",
+      "bytes": 6954,
+      "sha256": "7c75b67fb8da1e4b46b0977b25a836a4bb2a9465672f7237e0906f4bebe42910",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_customer_geography/visuals/p3_region_contribution/visual.json",
+      "bytes": 13831,
+      "sha256": "5e6896894be1baf16a6155c82cc8bacb5c52d3b7b9164aac58b64334156ae561",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_customer_geography/visuals/p3_repeat_rate/visual.json",
+      "bytes": 7688,
+      "sha256": "618298a84fdfaf60a1b1b318a94a02dc74abcdb0cf152b94d001273c0d17ced6",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_customer_geography/visuals/p3_repeat_split/visual.json",
+      "bytes": 12385,
+      "sha256": "3751adf9c4819d2567f22f80037aed52e89645f7c5e421d4dba269791b7974ec",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_customer_geography/visuals/p3_revenue_customer/visual.json",
+      "bytes": 7753,
+      "sha256": "92e7d6e3fb89269a6390dd17dc3dd940e1685aa6eb3a0dce4d2a7e526c7f8aaa",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_customer_geography/visuals/p3_state/visual.json",
+      "bytes": 8928,
+      "sha256": "ec844bb45357fbb24f98377fc86bf05090146b8959e8bd6586d76c92348168d7",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_customer_geography/visuals/p3_state_customers/visual.json",
+      "bytes": 13892,
+      "sha256": "a5d1ba08a2d49e24f15a421d3622e9df3d0fa5e54200e724448ca6aa70fde5b5",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_customer_geography/visuals/p3_state_revenue/visual.json",
+      "bytes": 13887,
+      "sha256": "2960383125bd29f0c732e85d2b658952e835958cc8240a18ccdd91ada614e25a",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_customer_geography/visuals/p3_states/visual.json",
+      "bytes": 7700,
+      "sha256": "8790bd51dcc27f5e8eb71f8011aa53ea3ac79f8c34f6d65493ad52c9c6efce76",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_customer_geography/visuals/p3_subtitle/visual.json",
+      "bytes": 5449,
+      "sha256": "2eea7ff4c048f64d8d3f30c476304d4c2767d2819ca57069668a9c5a6bf949de",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_customer_geography/visuals/p3_title/visual.json",
+      "bytes": 5403,
+      "sha256": "4ba71736fad4aefd2afeda0490078236da2bf192a3f3300b4a9ddcff8e6727cf",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_customer_geography/visuals/p3_top_cities/visual.json",
+      "bytes": 15280,
+      "sha256": "df3687614eca6be593a80a51c0f8df2025e052ca1d93100a97e4779141c98321",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_customer_geography/visuals/p3_top_state/visual.json",
+      "bytes": 7677,
+      "sha256": "ed0b31381e4d129aca79bc5d6ecd15b390194d2c820537eb87aa3d32a1c733d2",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_customer_geography/visuals/p3_unique/visual.json",
+      "bytes": 7686,
+      "sha256": "c62495472b08253b117872e683321b62a7b5f60f29b346024d679eda3a526aea",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_customer_geography/visuals/p3_year/visual.json",
+      "bytes": 8829,
+      "sha256": "de8f47152bd08852aec44e8b457154b5355273125c1bf02815cc278e4a25cc5c",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_delivery_logistics/page.json",
+      "bytes": 16242,
+      "sha256": "e53a633bd7d1078e77dbac16981fedcbf5b961523f8f8b73a908db1a56ae13fd",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_delivery_logistics/visuals/p4_card0/visual.json",
+      "bytes": 7677,
+      "sha256": "9cf74637c65a4f4b11def571f1e3f1ac0d5cbb23fa432f44237e73d2dbdfe69d",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_delivery_logistics/visuals/p4_card1/visual.json",
+      "bytes": 7679,
+      "sha256": "de8a09a00e0b0db13f2f91c7e68c31d624a30a15e2866b523abf08f9bae7900b",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_delivery_logistics/visuals/p4_card2/visual.json",
+      "bytes": 7765,
+      "sha256": "75ed8f6e8f1b42348527650eb8bdb8de22946911a4c45479eb8ee49b33fae1c8",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_delivery_logistics/visuals/p4_card3/visual.json",
+      "bytes": 7660,
+      "sha256": "d8aafaf68395ed26bda2a436c67133f2bb89be95b8c8ee16b0194d7270522bb9",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_delivery_logistics/visuals/p4_card4/visual.json",
+      "bytes": 7672,
+      "sha256": "d64e37a1632ce410feb55c31ff8bb94add3fc6f9275a9b5bbb5334af3f81c4b3",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_delivery_logistics/visuals/p4_card5/visual.json",
+      "bytes": 7686,
+      "sha256": "4b7f885397a30a4056330abb5f2bd82a970ad43f90139999eaafac0e92450216",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_delivery_logistics/visuals/p4_chart0/visual.json",
+      "bytes": 12803,
+      "sha256": "d75600f08a0b2d71a20f5258efd5ff6daec86690fff500110fac741c0c760fdc",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_delivery_logistics/visuals/p4_chart1/visual.json",
+      "bytes": 12571,
+      "sha256": "d591ec8b1ed1d6d0fe51be546f4cbb6b8c0caeb2b205a59ae4baefd82f5b9c6a",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_delivery_logistics/visuals/p4_chart2/visual.json",
+      "bytes": 13869,
+      "sha256": "bc52b9600f0e20b69e8c073ac53db56b0bc025020a4a915df988c47f6b412aa2",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_delivery_logistics/visuals/p4_chart3/visual.json",
+      "bytes": 14779,
+      "sha256": "0c2a55f69e8d025517f9022787f3ee32b55281895330ec82c8b4cdc6a6b27347",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_delivery_logistics/visuals/p4_chart4/visual.json",
+      "bytes": 12898,
+      "sha256": "16862f22df04327dee490e4b45dabf9b8eb8cf29ace5ae1685d2f1c292d0df99",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_delivery_logistics/visuals/p4_chart5/visual.json",
+      "bytes": 13899,
+      "sha256": "666c83ed1837af9724ea62348d749dfbd66ca0559f73e67b0a442726b177bc33",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_delivery_logistics/visuals/p4_footer/visual.json",
+      "bytes": 5536,
+      "sha256": "3809a83020a7681c9aba5d6867c8d561e7db0de91996331479fdf61437e6c3f1",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_delivery_logistics/visuals/p4_header_bg/visual.json",
+      "bytes": 5378,
+      "sha256": "e3135fe0b1977ee3532096ca606150b76f767cdc70c99849908de3802a4eb5f5",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_delivery_logistics/visuals/p4_nav/visual.json",
+      "bytes": 7399,
+      "sha256": "6b9e9c65c868bd3245c57b510fa0238592e392523c82f1a7662defd79139b110",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_delivery_logistics/visuals/p4_slicer0/visual.json",
+      "bytes": 8832,
+      "sha256": "ca177433873c636f71311bc0759551cbc05e45140011c4e37a80cdfca577ea0e",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_delivery_logistics/visuals/p4_slicer1/visual.json",
+      "bytes": 8854,
+      "sha256": "71436e808db9a5fd12dd7fb9f1b122fae23dbb457a6ee4f66a888365a948d991",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_delivery_logistics/visuals/p4_slicer2/visual.json",
+      "bytes": 8930,
+      "sha256": "7af7ad71d5466b706e608fa2d948af56e8b9ee0fa7648d6e27487068c141d816",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_delivery_logistics/visuals/p4_slicer3/visual.json",
+      "bytes": 8908,
+      "sha256": "0c0878a26c8135ef923f6f9c99e0f3d1432d9ba4e5caf62037b45545b48c9a69",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_delivery_logistics/visuals/p4_subtitle/visual.json",
+      "bytes": 5443,
+      "sha256": "10ddcac6ae4aabd8d6f2604de59700241d8badfe11db3d0d8d2952ad4f15b5c4",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_delivery_logistics/visuals/p4_title/visual.json",
+      "bytes": 5398,
+      "sha256": "7ac77e305871af98bb54f585cd2d94043b997bb3eeff9084ca2fcc01814676f9",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_reviews_satisfaction/page.json",
+      "bytes": 16255,
+      "sha256": "2683bfafbf56686f3dd036f1f34936ec2b40d9f91e77f3740e07f2e43b148f03",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_reviews_satisfaction/visuals/p5_card0/visual.json",
+      "bytes": 7715,
+      "sha256": "b5aef1df39cdaa00c044ced19d4de5158ba60a4424ea92a68cc2f0f8b7a761da",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_reviews_satisfaction/visuals/p5_card1/visual.json",
+      "bytes": 7677,
+      "sha256": "09da3bce6c0a3bb69ba7ba2fb55435a1f107e9d58d44e081d7dc553a1c6bbf31",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_reviews_satisfaction/visuals/p5_card2/visual.json",
+      "bytes": 7681,
+      "sha256": "855b4e1372e43dfc23937ddca24ce514e814cbbc18d53c4ce603964f2c0480ca",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_reviews_satisfaction/visuals/p5_card3/visual.json",
+      "bytes": 7681,
+      "sha256": "8404a545cdb0174fbe388fdddfa6bff75e29dd510fb47a479f828fc61ca6c954",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_reviews_satisfaction/visuals/p5_card4/visual.json",
+      "bytes": 7681,
+      "sha256": "88521db272959f672971545384539b20dce6b2794bf8f32c10638654d114a510",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_reviews_satisfaction/visuals/p5_card5/visual.json",
+      "bytes": 7705,
+      "sha256": "84e193d728198b08af8fd2e9334838537afc796f3688a6b958d6b15a4af5be4e",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_reviews_satisfaction/visuals/p5_chart0/visual.json",
+      "bytes": 12826,
+      "sha256": "199aa26fbd5d42eb591bb26c0096781e9172d34df5100c5ad57f71a73036a213",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_reviews_satisfaction/visuals/p5_chart1/visual.json",
+      "bytes": 12622,
+      "sha256": "31a3806ca94e691fa5d9d938c7782145ceef4369ff203f87d12a0748737e5676",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_reviews_satisfaction/visuals/p5_chart2/visual.json",
+      "bytes": 13877,
+      "sha256": "5ec78ee74a38553c1a58cd6a8ba86f78f09d369a75d2d3d20157418b4cc03bae",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_reviews_satisfaction/visuals/p5_chart3/visual.json",
+      "bytes": 13882,
+      "sha256": "59789180e9874bbeac6f696e1adae9213cfa79e4b0edab9323900756d2076336",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_reviews_satisfaction/visuals/p5_chart4/visual.json",
+      "bytes": 12209,
+      "sha256": "7adbc65b7d47cdf526c632cc5bf4bd645db7ccfe911a4840ab4fc8d025dd5136",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_reviews_satisfaction/visuals/p5_chart5/visual.json",
+      "bytes": 12042,
+      "sha256": "ee3cce191c6eaa456530d8d697b0002a21ac98139dc448d58684499d3b111cca",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_reviews_satisfaction/visuals/p5_footer/visual.json",
+      "bytes": 5534,
+      "sha256": "e48433e9320001c6983036ae6fe0a5317e185a6b1a93fa554ecafd357d96c110",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_reviews_satisfaction/visuals/p5_header_bg/visual.json",
+      "bytes": 5378,
+      "sha256": "e132149c6d50b63a67ec33e05ea85d3ba819586409f1a06f016a3d4722f0d3d3",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_reviews_satisfaction/visuals/p5_nav/visual.json",
+      "bytes": 7399,
+      "sha256": "9b7f1290e44a07dec55d88b414d4a085a0c21300a7fbe2dcc623cddac50287fe",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_reviews_satisfaction/visuals/p5_slicer0/visual.json",
+      "bytes": 8881,
+      "sha256": "72b25f84847923be8ce5bbcb95b967b69c01e8eda8a29aa13150f34e3ba44fb7",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_reviews_satisfaction/visuals/p5_slicer1/visual.json",
+      "bytes": 8903,
+      "sha256": "69105f890706826a4b6c57e21ab87eb9f655e141f2e105e81ad81bbcb1b3455c",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_reviews_satisfaction/visuals/p5_slicer2/visual.json",
+      "bytes": 8930,
+      "sha256": "a6e3cd34dd3abaf1787b9642cf4adedcb4b484ecdb9304301665d675c9ce9872",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_reviews_satisfaction/visuals/p5_slicer3/visual.json",
+      "bytes": 8872,
+      "sha256": "36f7f2d44bde05aadaa6b509463aee5433aa3cf295a3a62b90cb9bb29c24699f",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_reviews_satisfaction/visuals/p5_subtitle/visual.json",
+      "bytes": 5454,
+      "sha256": "52884f75cc3a918cad8773381809c224c555cb49b0746d83e6ace6a6fbee6200",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_reviews_satisfaction/visuals/p5_title/visual.json",
+      "bytes": 5409,
+      "sha256": "daa14a7750e0e501a389d13d75163ddf1f88e3b4b9d918f37e347e68c4b66a4a",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_sales_product/page.json",
+      "bytes": 18784,
+      "sha256": "5d8f75d18532a19132f40f833409c58c1952d6bcafcdaba89b73438c021b6926",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_sales_product/visuals/p2_active_sellers/visual.json",
+      "bytes": 7672,
+      "sha256": "377f65012ba8d51571ad15b72ab414cf0a848c322881b0879d5cf4a4868489de",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_sales_product/visuals/p2_avg_item/visual.json",
+      "bytes": 7722,
+      "sha256": "4e760d88f12afccc981f6b58ee89f7956c90a0b397ca39fa4db351bf5d96c3a1",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_sales_product/visuals/p2_category_contribution/visual.json",
+      "bytes": 11447,
+      "sha256": "3e164cbddff4195bb5016d7e3b415da180b70789459cac7acc28fd0b933f3e38",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_sales_product/visuals/p2_category_trend/visual.json",
+      "bytes": 14482,
+      "sha256": "996bf7b92d1f69e2e7c349e37e8036f4af6a5220e882102ff0bb308bc7641e49",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_sales_product/visuals/p2_footer/visual.json",
+      "bytes": 5490,
+      "sha256": "75f8cffdaffb686580ebfe6874e3c2b4914d2f55b712ce8a48b22a318f908c5b",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_sales_product/visuals/p2_header_bg/visual.json",
+      "bytes": 5378,
+      "sha256": "3a4136912300ffabc6eedbe23d722ec71deeac64eb96f7f3ed4095d94cf9efc0",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_sales_product/visuals/p2_items_sold/visual.json",
+      "bytes": 7666,
+      "sha256": "89aea18163a09a3da8fe2045288212a430f507fe996521b7d01023474e432549",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_sales_product/visuals/p2_nav/visual.json",
+      "bytes": 6954,
+      "sha256": "dbbbf699f4286e156484a4c04afb3bfdf10785a859d9f466987d2e99d2955332",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_sales_product/visuals/p2_orders_items/visual.json",
+      "bytes": 7669,
+      "sha256": "c359b142f71cbd7cffff87c055608de71a2efe79be55e539a0d5d50a10e7cfd8",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_sales_product/visuals/p2_sales_category/visual.json",
+      "bytes": 8887,
+      "sha256": "785d2d9908e3760cf45a4fc18aa82cfe58f65bfa02d964014603ad680e264c9d",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_sales_product/visuals/p2_sales_customer_state/visual.json",
+      "bytes": 8948,
+      "sha256": "1e8a51144ee21519d0d9b04d3386d98d7c01d0a5dce9f5a4b74bf99929e4e088",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_sales_product/visuals/p2_sales_revenue/visual.json",
+      "bytes": 7690,
+      "sha256": "1f35b6ab2f70e33355be9f52b9521fd81d77c495f6949c44974e2dbf171ef515",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_sales_product/visuals/p2_sales_seller_state/visual.json",
+      "bytes": 8937,
+      "sha256": "3d8c4f372ed21cfa00d00523ab83cf890bed0ae5a788558c938450be08e1dd23",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_sales_product/visuals/p2_sales_year/visual.json",
+      "bytes": 8835,
+      "sha256": "d49fe5fea37ad9287777dceeaa3c4d19ab07a7e3d890054dc5fc90526303b478",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_sales_product/visuals/p2_seller_comparison/visual.json",
+      "bytes": 13284,
+      "sha256": "6947a2c336562ff88161a605f15f29b60d6b806cb5e62a952910f66acf3618c5",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_sales_product/visuals/p2_selling_products/visual.json",
+      "bytes": 7683,
+      "sha256": "912dd5a4d45f281b4d4e240c1aee1781e8508022b572539d9662585739a4ae45",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_sales_product/visuals/p2_subtitle/visual.json",
+      "bytes": 5435,
+      "sha256": "fbeb4c4b1a0af62eeaad6def208e710bb4c040cc1a4078b91c087eaca92d5061",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_sales_product/visuals/p2_title/visual.json",
+      "bytes": 5399,
+      "sha256": "d351df5db0be3ab5f366fa2a836f6bfd157e50b39149d2a312e88161f6dde138",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_sales_product/visuals/p2_top_categories/visual.json",
+      "bytes": 16079,
+      "sha256": "6225b7d743f7f8194c676b4f119c5b69be4a27ddb0bb98fc7c57ad8984a71cf7",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_sales_product/visuals/p2_top_products/visual.json",
+      "bytes": 16094,
+      "sha256": "121aedbb2e6bf1537ff0acd5e63dfe14143d60da66b9e11961d375123b20ff0a",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/olist_sales_product/visuals/p2_top_sellers/visual.json",
+      "bytes": 16082,
+      "sha256": "c8b116d50c927784ea2d9e391c3c44787d0c78f6126855fb75e492d1a41e94a0",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/pages/pages.json",
+      "bytes": 355,
+      "sha256": "a8d4f2281a08d008c889408cf550a01a5850ceb9333edec1bf012507368ce338",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/report.json",
+      "bytes": 1983,
+      "sha256": "eb98bfce78c0a8fe721d2759f34c928fd50daa596bee5eb7b1cd00bd9baf96ce",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.Report/definition/version.json",
+      "bytes": 152,
+      "sha256": "c8bdd966a85f1eaab4312d2096b6d7b508243e4d7bc5a4d25af3cfcb1056a4e7",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/.pbi/cache.abf",
+      "bytes": 51863392,
+      "sha256": "74bc7115f34cc5acc64e5e0425023fc22e3cf1baef60500c72e25be9ab5b0848",
+      "local_only": true
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/.platform",
+      "bytes": 325,
+      "sha256": "d56eff2b5c14957ebe573c9e7513fe1ae9a3a7523a2b8ecbec29c57b7f8d091c",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition.pbism",
+      "bytes": 170,
+      "sha256": "73a1ae4c89d7488f553788adc772a04c805d1c9e0d7333e2b2b5476aad8e5a5f",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/cultures/en-US.tmdl",
+      "bytes": 5438,
+      "sha256": "f311ac476ef59b695120ef328e8639f2a672d284de584e0267b577718d44e439",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/database.tmdl",
+      "bytes": 39,
+      "sha256": "822c914b643bca32bb20abd8a762df8204a1b9ef02acc2bc7348727f6699cb96",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/model.tmdl",
+      "bytes": 1705,
+      "sha256": "f29bf00b1e37ebec0feb695cedd59147384749b0c6ec9bcbcb01b7a287fb9820",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/relationships.tmdl",
+      "bytes": 5660,
+      "sha256": "c548e962fa41c3456d4e2277321a7d2ed902d9c6a569d4c575e1be71b6890b3d",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/tables/DateKeyLookup.tmdl",
+      "bytes": 2824,
+      "sha256": "b17486be95bc36a069e57b084135afd640b03b8874c9b2b28f7689cba27d77b7",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/tables/DateTableTemplate_ade76c06-2098-46f6-b344-a184da758b95.tmdl",
+      "bytes": 2746,
+      "sha256": "f555d25475bb0f867a37aa6168a624dd70885ab8afb517379b6330cd282528ee",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/tables/DimActualDeliveryDate.tmdl",
+      "bytes": 1761,
+      "sha256": "dd13ffde5bdc4b266a477a79bb1f4b0257a36b85ac04c2e8d9cf1af4c7dc2e79",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/tables/DimApprovalDate.tmdl",
+      "bytes": 1742,
+      "sha256": "4450144a23ae3ea1301b0a3695b82623fda26fb1872dc1996d66bfc881209565",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/tables/DimCarrierDate.tmdl",
+      "bytes": 1749,
+      "sha256": "2fc2ca8bdce93b86d4ba5526147a4de69c6e4630efc8fc784613c8ad41a6519e",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/tables/DimCustomer.tmdl",
+      "bytes": 2094,
+      "sha256": "e1eefc6938713d8ac52effa904e75a1873dc1fad3929debe3f54994ff3e12e0b",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/tables/DimCustomerGeography.tmdl",
+      "bytes": 4047,
+      "sha256": "4ff100654459b1a0c47405a1316b8e3fe266fd9c9299cd5639a40b7ef723714f",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/tables/DimDate.tmdl",
+      "bytes": 1757,
+      "sha256": "810c639689937d84d70b79805e6f91aecedb20cd977b5a02fede04b29b8d7a9d",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/tables/DimEstimatedDeliveryDate.tmdl",
+      "bytes": 1770,
+      "sha256": "7e37260920085e56ecb039c6db054fdc7d5ce79caee3d514dd9acd650ffd5d24",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/tables/DimOrder.tmdl",
+      "bytes": 585,
+      "sha256": "ec66acef801d6af38bcaf2faf88e3acbebc880ddddb34e281102ddd32f2c1ed8",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/tables/DimOrderStatus.tmdl",
+      "bytes": 810,
+      "sha256": "7571d8ebd2f96cba075886c7a9acbb58df23c81e74930b55f774d0f32988bb53",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/tables/DimPaymentType.tmdl",
+      "bytes": 810,
+      "sha256": "ea5ec8bc672a4ffb50874a165beb6d5489d503ef0ec5b50830e89d3ab37ab612",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/tables/DimProduct.tmdl",
+      "bytes": 3344,
+      "sha256": "393b15af19770c0adafbd6d3cea98ae181fb87be929f11b4cc27794985bfa8e0",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/tables/DimReviewAnswerDate.tmdl",
+      "bytes": 1749,
+      "sha256": "dd6b3e0c8d37e89e471e25d906c510e818fd160e88af78bd55787075fdac2db9",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/tables/DimReviewCreationDate.tmdl",
+      "bytes": 1778,
+      "sha256": "23ce0c9c91acbcd4bf81a75c51c8d3f56c2bc4c1441ae38bb4efdb207f16dc5b",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/tables/DimSeller.tmdl",
+      "bytes": 1814,
+      "sha256": "18e282ce41a63e59a75b9c5f04cd49d096fe4c5ecbd493eca1a3e10a5672b607",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/tables/DimSellerGeography.tmdl",
+      "bytes": 2277,
+      "sha256": "3e4b6f1253d104f633c54eb41b46fdd16830b224a1c7bc4a603a52e7aa15f583",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/tables/DimShippingLimitDate.tmdl",
+      "bytes": 1766,
+      "sha256": "96928475ef18fe255dcd06a91e22890d06a817da1b980bbbe7d218cecdf8473f",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/tables/FactOrderItems.tmdl",
+      "bytes": 11658,
+      "sha256": "af78f6a19e8f13ed72429038aab43e25501fffee117218f8fbc0a98bcb34697c",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/tables/FactOrders.tmdl",
+      "bytes": 23173,
+      "sha256": "2d8c4b9ca038eb04638bccd5610a10b490e843420057dfefc4a169799a62d373",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/tables/FactPayments.tmdl",
+      "bytes": 3469,
+      "sha256": "951bdf24db28ab91c8db9297f3ca55ead82a9cd9372081266d75db15233aa3d6",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/tables/FactReviews.tmdl",
+      "bytes": 11273,
+      "sha256": "03a0ed2e1462fcd0935b7ba621824674837583557a99e3c1943a21ed59b0dbba",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/tables/LocalDateTable_2c1d9b51-3998-4df9-b3ec-af2dfec737b4.tmdl",
+      "bytes": 2763,
+      "sha256": "4c6bb474db0b3cec42452b60b176ad686d3468b10c4897224c0f901bf371137f",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/tables/LocalDateTable_3fcf8953-9f48-4f1c-9c35-2c2368611446.tmdl",
+      "bytes": 2805,
+      "sha256": "704c57ece91158e55fe36f49fe9dafc13487c62db7acc74713484b6d8333a409",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/tables/LocalDateTable_49228ef8-33ec-479c-a777-57b2febd464f.tmdl",
+      "bytes": 2787,
+      "sha256": "b85f7205b781e1f787ce30fe26452c95a21e1bfa8d29ecb23b81632b8031622f",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/tables/LocalDateTable_5a46a3aa-0b4c-4dea-a844-41ada4eae72a.tmdl",
+      "bytes": 2787,
+      "sha256": "2b82d45dbc2f72ca3d024aece7cb07b7ad1aa9594d99c3daa7725b978992c687",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/tables/LocalDateTable_6535d1b8-86a8-44ea-87ee-276b456f1afe.tmdl",
+      "bytes": 2805,
+      "sha256": "d21daf89b4e43a79077de5b41fa45a9c255e026cc6532cff2fd6c34373c59a72",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/tables/LocalDateTable_8aa2ded3-4914-4fd4-9537-326ce9e5107b.tmdl",
+      "bytes": 2797,
+      "sha256": "33b912454a5d4d8b45b241eeaa1b7f3c4db7206abd5dce8514e60fadc3a8ef79",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/tables/LocalDateTable_8bdc1c6d-451a-4443-9884-17366b89f501.tmdl",
+      "bytes": 2801,
+      "sha256": "743b980840faeb9fe493149662f87114adbe363a9b0bfd21dc3a6b71cd258a63",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/tables/LocalDateTable_b9d05030-7fc2-4b27-9911-ca339e7e4056.tmdl",
+      "bytes": 2785,
+      "sha256": "798ccce602caedf804900a9e002ef208c374d66afe754450bf3537a82f7c61bb",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/definition/tables/LocalDateTable_d93f9290-a870-45af-a9c8-e0d3f006046f.tmdl",
+      "bytes": 2799,
+      "sha256": "1be8940451b3a3cdf7f4ac9e5f0a4b61de46414995eb60f9913aeb89fc318261",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.SemanticModel/diagramLayout.json",
+      "bytes": 3373,
+      "sha256": "3f47c7b9fefdac93bbc7e40d843053c2759b5efcbbcacf59f7b6e2bfeabd1c8c",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.pbip",
+      "bytes": 312,
+      "sha256": "9a4289e01f26f7348ca7837cc38f39481e3dcbbd06007f07e77ad9592fad7116",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.pbix",
+      "bytes": 52009365,
+      "sha256": "aebe9d764dd19cfa43dce3a094c4b2f3c79125a019a2b21c30165e8647dfbb3e",
+      "local_only": true
+    },
+    {
+      "path": "power_bi/final/OlistSalesDW_Final_5_Dashboards.pdf",
+      "bytes": 528053,
+      "sha256": "4f260968094db03a913f10eb2069f4f6ccaa12ad68a0a29fd9e07166d7fbdef0",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/reports/final_reopened_model_20261031.json",
+      "bytes": 414171,
+      "sha256": "539aea75475889378c2814b32484d31a8ddcffea79779b20d132d82982b98104",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/reports/original_measure_inventory_20261031.json",
+      "bytes": 5113,
+      "sha256": "98ba4d3ceb18b412507963be76173fcd160ff8fee01ea23465412d5147197009",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/scripts/compare_runtime_models_20261102.py",
+      "bytes": 2375,
+      "sha256": "d75071adb45b16e13fc0a1cf5723179b2024aac3eedb5e59e7fcdf1b6e56be2e",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/scripts/inspect_baseline_runtime_20261102.ps1",
+      "bytes": 2945,
+      "sha256": "e21e6dbd56c14fed6562543b629df73b65846fe9c15a4be116801c86355c376a",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/scripts/prepare_completion_runtime_qa.py",
+      "bytes": 9336,
+      "sha256": "3c00e66fa6ffe874c99f9144b30dbd337fb677edc7facd95804a0c30312a3959",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/scripts/prepare_top10_checks_20261102.py",
+      "bytes": 2221,
+      "sha256": "a827326757527fb9de521fef2b4fcd9840c2e950d0f7d4fcf6e8c46d41d005c1",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/scripts/run_completion_runtime_validation.ps1",
+      "bytes": 5896,
+      "sha256": "cdd2f13b4b651152dac5445e38a0cc4a50af6a849de53beaa8e8e0f4524daa6a",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/scripts/run_dashboard_batches_20261102.ps1",
+      "bytes": 2929,
+      "sha256": "bc1f3313b4dfa236e64252934e169db7a35e2fe01fdf25b374212dee0a593bd5",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/scripts/run_top10_checks_20261102.ps1",
+      "bytes": 2118,
+      "sha256": "8a391a13dc47f765bba6e28b6293906009b4168671f18f8ec9a5b414b65f0d26",
+      "local_only": false
+    },
+    {
+      "path": "power_bi/theme/olist_professional_theme.json",
+      "bytes": 427,
+      "sha256": "2f405cb748a5c5023a6e31ffe3a05ae52821c54752b5cc183e8dfe50149f5839",
+      "local_only": false
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 2211,
+      "sha256": "a0e5bf50c2eca3aa0bfffe0e519943da9044ec01680efb54d33b9e1d3462e45a",
+      "local_only": false
+    },
+    {
+      "path": "run_phase4_tests_only.py",
+      "bytes": 4140,
+      "sha256": "47595f1af6f1d6cc4845f93624d783dd7b2ec09a3f0a8162e3401a9f1b9be6f3",
+      "local_only": false
+    },
+    {
+      "path": "scripts/complete_customer_analytics.py",
+      "bytes": 13833,
+      "sha256": "7c8e95a3911abc065d38db010533bdc982886f3258c0be9a49618c08d1a9260f",
+      "local_only": false
+    },
+    {
+      "path": "scripts/phase4/fingerprints.json",
+      "bytes": 2123,
+      "sha256": "1dec0a50458393be5eaf11630d90e954ae39acffbf7f443ffa4b85e33e59fd50",
+      "local_only": false
+    },
+    {
+      "path": "scripts/phase4/launch_phase4.py",
+      "bytes": 7557,
+      "sha256": "0891481f207c26bed6253a47c957cc40a811afd03d20ba71f3daed7cb75b5097",
+      "local_only": false
+    },
+    {
+      "path": "scripts/phase4/probe_python.py",
+      "bytes": 2423,
+      "sha256": "4f0ae477f46d0842d9689a0f925b62eb75c7a9eb7cc3fa3fa19e22a7263c66c5",
+      "local_only": false
+    },
+    {
+      "path": "scripts/phase4/run_in_windows_terminal.py",
+      "bytes": 8762,
+      "sha256": "eb7999cbc83b87847ed6035c6d5c5bb6623c9a68cb313cd3813a0b5c1d7f2302",
+      "local_only": false
+    },
+    {
+      "path": "scripts/phase4/verify_additional_kpis.py",
+      "bytes": 6214,
+      "sha256": "50e0fbc09ca7fc353ebd119d91dc1fa36479da5c11e0198aa3c0899da5bf4787",
+      "local_only": false
+    },
+    {
+      "path": "scripts/validate_project.py",
+      "bytes": 9392,
+      "sha256": "c25189f97d7fbd7f5e2afdff452cda449b2eb0f13c8db1a917f73130f31292c7",
+      "local_only": false
+    },
+    {
+      "path": "scripts/validate_warehouse.py",
+      "bytes": 9021,
+      "sha256": "377aa1e1f2baf03746efb86315f55ae1b15dc0c43ff64bce09147b0e18088213",
+      "local_only": false
+    },
+    {
+      "path": "sql/01_create_database.sql",
+      "bytes": 2565,
+      "sha256": "3d69193ed5553480299ddc184e22ee1cf8c69c5a42fd3fbe450a260ff25089c8",
+      "local_only": false
+    },
+    {
+      "path": "sql/02_create_staging_tables.sql",
+      "bytes": 9614,
+      "sha256": "77140e6aef1ec9c30a6b06c6310fdf2048cceffcaf65aaa551047fa66bfee8e5",
+      "local_only": false
+    },
+    {
+      "path": "sql/03_create_dimensions.sql",
+      "bytes": 2612,
+      "sha256": "06f23d406fc6e39f395b26e37a9963c52f587ec328a7fcb65e2983f705c7df1c",
+      "local_only": false
+    },
+    {
+      "path": "sql/04_create_fact_tables.sql",
+      "bytes": 5272,
+      "sha256": "faa258d41dc56b3ac7cdc2f7dd5632ca0ae0e710d25c39c4ebc375c9369d57c0",
+      "local_only": false
+    },
+    {
+      "path": "sql/05_create_indexes.sql",
+      "bytes": 3935,
+      "sha256": "e22d36a664f55b9485405d24bb2ab6d5ba249a33a4d8d68b4a239bd5d76d8979",
+      "local_only": false
+    },
+    {
+      "path": "sql/06_kpi_validation.sql",
+      "bytes": 5370,
+      "sha256": "1acbf4f85cd2376bd4d7d559ff6726b87e7ac18a887cfd0f442e6f5b82aab396",
+      "local_only": false
+    },
+    {
+      "path": "sql/07_data_quality_checks.sql",
+      "bytes": 1982,
+      "sha256": "03c0ef352c822950b81540aa6fda509c5230e7da2c358373fd4f50377175b0da",
+      "local_only": false
+    },
+    {
+      "path": "sql/08_load_warehouse.sql",
+      "bytes": 22485,
+      "sha256": "913c2ce9821e68771e2dbed7537b73df1922ebd6b3662d9fc4eac7c2ce302173",
+      "local_only": false
+    },
+    {
+      "path": "sql/schema/olist_sales_dw.mmd",
+      "bytes": 3159,
+      "sha256": "fd19637eb1c6782d6eb57e9f5dcba3cd82cfca70cefcbd9e92889198c4195d24",
+      "local_only": false
+    },
+    {
+      "path": "src/__init__.py",
+      "bytes": 68,
+      "sha256": "881ab09de25e45e1fac1dee95d2988ececb2ea5ae5261b5bbe495df58941796d",
+      "local_only": false
+    },
+    {
+      "path": "src/analysis/__init__.py",
+      "bytes": 68,
+      "sha256": "881ab09de25e45e1fac1dee95d2988ececb2ea5ae5261b5bbe495df58941796d",
+      "local_only": false
+    },
+    {
+      "path": "src/analysis/customer_analytics.py",
+      "bytes": 8988,
+      "sha256": "d16aeebdfe666a9ca9b11b3d26234b1c0cd83b4b4c59287a5e5acb6a53c02025",
+      "local_only": false
+    },
+    {
+      "path": "src/analysis/eda.py",
+      "bytes": 51514,
+      "sha256": "0bee46d6394634a90c5391d6e9e7a924704802fe1b5850276130486780d7c5b4",
+      "local_only": false
+    },
+    {
+      "path": "src/analysis/eda_charts.py",
+      "bytes": 14432,
+      "sha256": "f68e27bbdea7e3e2e9da64d395476c216b7b568f9365a35338af03131d34260a",
+      "local_only": false
+    },
+    {
+      "path": "src/config.py",
+      "bytes": 335,
+      "sha256": "f7a4fdec56180ef3bb0bfe43c0d76f5100e326e9bcf26e925cc075abc2a5e398",
+      "local_only": false
+    },
+    {
+      "path": "src/data_processing/__init__.py",
+      "bytes": 68,
+      "sha256": "881ab09de25e45e1fac1dee95d2988ececb2ea5ae5261b5bbe495df58941796d",
+      "local_only": false
+    },
+    {
+      "path": "src/data_processing/cleaning.py",
+      "bytes": 31016,
+      "sha256": "92bc7905760bc3ed1e5138fafee0b025726f83f51c563ecaacd700b1e288a90c",
+      "local_only": false
+    },
+    {
+      "path": "src/data_processing/sql_server_etl.py",
+      "bytes": 39829,
+      "sha256": "2fc2afb5e21a8c7bee04b6c09d5d26b5f25a0421d038d515aac61e6c73a72e23",
+      "local_only": false
+    },
+    {
+      "path": "src/data_processing/warehouse_contract.json",
+      "bytes": 17540,
+      "sha256": "8588d52a849dbdabdfb3b8baa2936959b1c7bd75c64cbafff9f553c7e529e5cf",
+      "local_only": false
+    },
+    {
+      "path": "src/utils/__init__.py",
+      "bytes": 68,
+      "sha256": "881ab09de25e45e1fac1dee95d2988ececb2ea5ae5261b5bbe495df58941796d",
+      "local_only": false
+    },
+    {
+      "path": "tests/phase_2_audit.py",
+      "bytes": 73719,
+      "sha256": "9479480e5a7b12b6f5d9b7f89194173341da98c91a8d5f8e891f415995fbaa53",
+      "local_only": false
+    },
+    {
+      "path": "tests/test_cleaning.py",
+      "bytes": 9147,
+      "sha256": "877c44873fdf7e05069ad40d53421de88979f04ce1bac428fafe23e41cf9f0fe",
+      "local_only": false
+    },
+    {
+      "path": "tests/test_customer_analytics_completion.py",
+      "bytes": 1774,
+      "sha256": "4bedef02abbf704ea738afce59ac402408fd44c7890f15315dda52ac19e00eeb",
+      "local_only": false
+    },
+    {
+      "path": "tests/test_eda.py",
+      "bytes": 16832,
+      "sha256": "6196b7d8b9338a6a6c47f7400ad36ff7472cf04e2da65be287aa5455e93297bf",
+      "local_only": false
+    },
+    {
+      "path": "tests/test_phase4_safety.py",
+      "bytes": 28847,
+      "sha256": "51f2e35f43636afa188ed18bc5552250005fac55ed838dab43d5f17ce9cf5d2a",
+      "local_only": false
+    },
+    {
+      "path": "tests/test_phase_2_audit.py",
+      "bytes": 1059,
+      "sha256": "fdf4d5bd3365d6ef11004cbffb2149b63201624f6ea70bbd01cde8819bfa2b03",
+      "local_only": false
+    },
+    {
+      "path": "tests/test_sql_warehouse.py",
+      "bytes": 18349,
+      "sha256": "101e67aa5d0283920e1807d4a3ea7d4ad654bc9296ce1f6c2dad7a4a7dd89111",
+      "local_only": false
+    }
+  ],
+  "publication_scope": "Source edition excludes only explicit local_only entries"
+}

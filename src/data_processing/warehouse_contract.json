@@ -1,0 +1,753 @@
+{
+  "customers": {
+    "filename": "customers_clean.csv",
+    "columns": [
+      {
+        "name": "customer_id",
+        "type": "varchar(32)",
+        "nullable": false
+      },
+      {
+        "name": "customer_unique_id",
+        "type": "varchar(32)",
+        "nullable": false
+      },
+      {
+        "name": "customer_zip_code_prefix",
+        "type": "varchar(5)",
+        "nullable": false
+      },
+      {
+        "name": "customer_city",
+        "type": "nvarchar(128)",
+        "nullable": false
+      },
+      {
+        "name": "customer_state",
+        "type": "varchar(2)",
+        "nullable": false
+      },
+      {
+        "name": "dq_unmatched_zip",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_invalid_zip_format",
+        "type": "bit",
+        "nullable": false
+      }
+    ],
+    "key": [
+      "customer_id"
+    ],
+    "rows": 99441,
+    "sha256": "dadd4167d59c0028dbce61ebd7282b6eb665ef776b79d7d0a000fbacb428575d"
+  },
+  "orders": {
+    "filename": "orders_clean.csv",
+    "columns": [
+      {
+        "name": "order_id",
+        "type": "varchar(32)",
+        "nullable": false
+      },
+      {
+        "name": "customer_id",
+        "type": "varchar(32)",
+        "nullable": false
+      },
+      {
+        "name": "order_status",
+        "type": "varchar(32)",
+        "nullable": false
+      },
+      {
+        "name": "order_purchase_timestamp",
+        "type": "datetime2(0)",
+        "nullable": true
+      },
+      {
+        "name": "order_approved_at",
+        "type": "datetime2(0)",
+        "nullable": true
+      },
+      {
+        "name": "order_delivered_carrier_date",
+        "type": "datetime2(0)",
+        "nullable": true
+      },
+      {
+        "name": "order_delivered_customer_date",
+        "type": "datetime2(0)",
+        "nullable": true
+      },
+      {
+        "name": "order_estimated_delivery_date",
+        "type": "datetime2(0)",
+        "nullable": true
+      },
+      {
+        "name": "dq_invalid_order_purchase_timestamp",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_invalid_order_approved_at",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_invalid_order_delivered_carrier_date",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_invalid_order_delivered_customer_date",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_invalid_order_estimated_delivery_date",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_no_items",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_no_payments",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_no_reviews",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_missing_order_approved_at",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_delivered_missing_order_approved_at",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_missing_order_delivered_carrier_date",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_delivered_missing_order_delivered_carrier_date",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_missing_order_delivered_customer_date",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_delivered_missing_order_delivered_customer_date",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_approval_before_purchase",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_carrier_before_purchase",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_delivery_before_purchase",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_carrier_before_approval",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_delivery_before_carrier",
+        "type": "bit",
+        "nullable": false
+      }
+    ],
+    "key": [
+      "order_id"
+    ],
+    "rows": 99441,
+    "sha256": "495c9c11e5e638d4c576d1a406e51a2180b5565ab9b31495ebcf72bbbedca6eb"
+  },
+  "order_items": {
+    "filename": "order_items_clean.csv",
+    "columns": [
+      {
+        "name": "order_id",
+        "type": "varchar(32)",
+        "nullable": false
+      },
+      {
+        "name": "order_item_id",
+        "type": "varchar(10)",
+        "nullable": false
+      },
+      {
+        "name": "product_id",
+        "type": "varchar(32)",
+        "nullable": false
+      },
+      {
+        "name": "seller_id",
+        "type": "varchar(32)",
+        "nullable": false
+      },
+      {
+        "name": "shipping_limit_date",
+        "type": "datetime2(0)",
+        "nullable": true
+      },
+      {
+        "name": "price",
+        "type": "decimal(19,2)",
+        "nullable": false
+      },
+      {
+        "name": "freight_value",
+        "type": "decimal(19,2)",
+        "nullable": false
+      },
+      {
+        "name": "dq_invalid_shipping_limit_date",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_invalid_price",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_invalid_freight_value",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_shipping_limit_before_purchase",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_shipping_limit_after_purchase_year_range",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_negative_price",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_zero_price",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_negative_freight_value",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_zero_freight_value",
+        "type": "bit",
+        "nullable": false
+      }
+    ],
+    "key": [
+      "order_id",
+      "order_item_id"
+    ],
+    "rows": 112650,
+    "sha256": "34037964980e1fdb300d64448eef8dc3e42903bfe67750ecc2ecbd3a622b8770"
+  },
+  "payments": {
+    "filename": "payments_clean.csv",
+    "columns": [
+      {
+        "name": "order_id",
+        "type": "varchar(32)",
+        "nullable": false
+      },
+      {
+        "name": "payment_sequential",
+        "type": "varchar(10)",
+        "nullable": false
+      },
+      {
+        "name": "payment_type",
+        "type": "varchar(32)",
+        "nullable": false
+      },
+      {
+        "name": "payment_installments",
+        "type": "int",
+        "nullable": true
+      },
+      {
+        "name": "payment_value",
+        "type": "decimal(19,2)",
+        "nullable": false
+      },
+      {
+        "name": "dq_invalid_payment_installments",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_invalid_payment_value",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_negative_payment_value",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_zero_payment_value",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_nonpositive_installments",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_noninteger_payment_installments",
+        "type": "bit",
+        "nullable": false
+      }
+    ],
+    "key": [
+      "order_id",
+      "payment_sequential"
+    ],
+    "rows": 103886,
+    "sha256": "9441054e0298f27da1cb846cb8ac71378c32a1a855a8bdbb6c55fa971428e1c5"
+  },
+  "reviews": {
+    "filename": "reviews_clean.csv",
+    "columns": [
+      {
+        "name": "review_id",
+        "type": "varchar(32)",
+        "nullable": false
+      },
+      {
+        "name": "order_id",
+        "type": "varchar(32)",
+        "nullable": false
+      },
+      {
+        "name": "review_score",
+        "type": "int",
+        "nullable": true
+      },
+      {
+        "name": "review_comment_title",
+        "type": "nvarchar(200)",
+        "nullable": true
+      },
+      {
+        "name": "review_comment_message",
+        "type": "nvarchar(2000)",
+        "nullable": true
+      },
+      {
+        "name": "review_creation_date",
+        "type": "datetime2(0)",
+        "nullable": true
+      },
+      {
+        "name": "review_answer_timestamp",
+        "type": "datetime2(0)",
+        "nullable": true
+      },
+      {
+        "name": "dq_invalid_review_creation_date",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_invalid_review_answer_timestamp",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_invalid_review_score",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_answer_before_creation",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_noninteger_review_score",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_score_out_of_range",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_repeated_review_id",
+        "type": "bit",
+        "nullable": false
+      }
+    ],
+    "key": [
+      "review_id",
+      "order_id"
+    ],
+    "rows": 99224,
+    "sha256": "1e9b833b7d2bc2420da63e63cdd836a741f7eb37a3fe82b3a5e5ec2867e2ea08"
+  },
+  "products": {
+    "filename": "products_clean.csv",
+    "columns": [
+      {
+        "name": "product_id",
+        "type": "varchar(32)",
+        "nullable": false
+      },
+      {
+        "name": "product_category_name",
+        "type": "nvarchar(128)",
+        "nullable": false
+      },
+      {
+        "name": "product_name_lenght",
+        "type": "int",
+        "nullable": true
+      },
+      {
+        "name": "product_description_lenght",
+        "type": "int",
+        "nullable": true
+      },
+      {
+        "name": "product_photos_qty",
+        "type": "int",
+        "nullable": true
+      },
+      {
+        "name": "product_weight_g",
+        "type": "int",
+        "nullable": true
+      },
+      {
+        "name": "product_length_cm",
+        "type": "int",
+        "nullable": true
+      },
+      {
+        "name": "product_height_cm",
+        "type": "int",
+        "nullable": true
+      },
+      {
+        "name": "product_width_cm",
+        "type": "int",
+        "nullable": true
+      },
+      {
+        "name": "dq_invalid_product_name_lenght",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_invalid_product_description_lenght",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_invalid_product_photos_qty",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_invalid_product_weight_g",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_invalid_product_length_cm",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_invalid_product_height_cm",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_invalid_product_width_cm",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_category_missing",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_category_untranslated",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "product_category_name_english",
+        "type": "nvarchar(128)",
+        "nullable": false
+      },
+      {
+        "name": "dq_missing_attributes",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_nonpositive_product_weight_g",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_nonpositive_product_length_cm",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_nonpositive_product_height_cm",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_nonpositive_product_width_cm",
+        "type": "bit",
+        "nullable": false
+      }
+    ],
+    "key": [
+      "product_id"
+    ],
+    "rows": 32951,
+    "sha256": "2fe1d2904429ff2587266b690a26112446cd3ba4afe74bfe555029b56e823258"
+  },
+  "sellers": {
+    "filename": "sellers_clean.csv",
+    "columns": [
+      {
+        "name": "seller_id",
+        "type": "varchar(32)",
+        "nullable": false
+      },
+      {
+        "name": "seller_zip_code_prefix",
+        "type": "varchar(5)",
+        "nullable": false
+      },
+      {
+        "name": "seller_city",
+        "type": "nvarchar(128)",
+        "nullable": false
+      },
+      {
+        "name": "seller_state",
+        "type": "varchar(2)",
+        "nullable": false
+      },
+      {
+        "name": "dq_unmatched_zip",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_invalid_zip_format",
+        "type": "bit",
+        "nullable": false
+      }
+    ],
+    "key": [
+      "seller_id"
+    ],
+    "rows": 3095,
+    "sha256": "f12eef90d97555e2c3c0a4634a6ffe0aa277e1511a4a43e4dc32a9fe6ffbca7e"
+  },
+  "category_translations": {
+    "filename": "category_translations_clean.csv",
+    "columns": [
+      {
+        "name": "product_category_name",
+        "type": "nvarchar(128)",
+        "nullable": false
+      },
+      {
+        "name": "product_category_name_english",
+        "type": "nvarchar(128)",
+        "nullable": false
+      }
+    ],
+    "key": [
+      "product_category_name"
+    ],
+    "rows": 71,
+    "sha256": "5233473346639d5ff3da9b784385ba284778abfaac1062572abe99e8aba8b7e3"
+  },
+  "geolocation": {
+    "filename": "geolocation_clean.csv",
+    "columns": [
+      {
+        "name": "geolocation_zip_code_prefix",
+        "type": "varchar(5)",
+        "nullable": false
+      },
+      {
+        "name": "geolocation_lat",
+        "type": "decimal(28,20)",
+        "nullable": false
+      },
+      {
+        "name": "geolocation_lng",
+        "type": "decimal(28,20)",
+        "nullable": false
+      },
+      {
+        "name": "geolocation_city",
+        "type": "nvarchar(128)",
+        "nullable": false
+      },
+      {
+        "name": "geolocation_state",
+        "type": "varchar(2)",
+        "nullable": false
+      },
+      {
+        "name": "dq_invalid_geolocation_lat",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_invalid_geolocation_lng",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_invalid_zip_format",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_invalid_coordinate",
+        "type": "bit",
+        "nullable": false
+      }
+    ],
+    "key": [],
+    "rows": 738332,
+    "sha256": "bb8cd9f785f156b091781677144c33ef7bbbc03fa06a7a14db0c51d8b9b2aec8"
+  },
+  "geolocation_zip_lookup": {
+    "filename": "geolocation_zip_lookup.csv",
+    "columns": [
+      {
+        "name": "zip_code_prefix",
+        "type": "varchar(5)",
+        "nullable": false
+      },
+      {
+        "name": "geolocation_state",
+        "type": "varchar(2)",
+        "nullable": false
+      },
+      {
+        "name": "geolocation_city",
+        "type": "nvarchar(128)",
+        "nullable": false
+      },
+      {
+        "name": "geolocation_lat",
+        "type": "decimal(28,20)",
+        "nullable": false
+      },
+      {
+        "name": "geolocation_lng",
+        "type": "decimal(28,20)",
+        "nullable": false
+      },
+      {
+        "name": "distinct_observations",
+        "type": "int",
+        "nullable": false
+      },
+      {
+        "name": "distinct_city_labels",
+        "type": "int",
+        "nullable": false
+      },
+      {
+        "name": "distinct_states",
+        "type": "int",
+        "nullable": false
+      },
+      {
+        "name": "distinct_coordinate_pairs",
+        "type": "int",
+        "nullable": false
+      },
+      {
+        "name": "coordinate_repetitions_excess",
+        "type": "int",
+        "nullable": false
+      },
+      {
+        "name": "source_rows",
+        "type": "int",
+        "nullable": false
+      },
+      {
+        "name": "dq_conflicting_city_labels",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_conflicting_states",
+        "type": "bit",
+        "nullable": false
+      },
+      {
+        "name": "dq_missing_coordinate",
+        "type": "bit",
+        "nullable": false
+      }
+    ],
+    "key": [
+      "zip_code_prefix"
+    ],
+    "rows": 19015,
+    "sha256": "f6bd7c09504f150764f8b0c10ad1288c0a92eee99735e1f94bf192536879172e"
+  }
+}

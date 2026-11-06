@@ -1,0 +1,3185 @@
+﻿{
+    "Scope":  "Executed page validation query batches and numeric Difference checks; UI rendering not tested",
+    "Passed":  39,
+    "Failed":  0,
+    "Batches":  [
+                    {
+                        "Page":  "01_executive_overview",
+                        "Batch":  1,
+                        "Status":  "PASS",
+                        "Milliseconds":  162,
+                        "RowCount":  1,
+                        "DifferenceChecks":  [
+                                                 {
+                                                     "Column":  "[Sales Revenue Difference]",
+                                                     "Value":  1.862645149230957E-08,
+                                                     "Status":  "PASS"
+                                                 }
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "[Sales Revenue]":  13221498.110000018,
+                                         "[Sales Revenue Expected]":  13221498.11,
+                                         "[Sales Revenue Difference]":  1.862645149230957E-08,
+                                         "[Total Orders]":  99441,
+                                         "[Total Orders Expected]":  99441,
+                                         "[Average Order Value]":  137.0415857501194,
+                                         "[Average Order Value Expected]":  137.0415857501192,
+                                         "[Unique Sales Customers]":  93358,
+                                         "[Unique Customers Expected]":  93358,
+                                         "[On-Time Delivery]":  0.93226909920182444,
+                                         "[On-Time Delivery Expected]":  0.93226909920182444,
+                                         "[Review Score All Valid Rows]":  4.08642062404257,
+                                         "[Review Score Expected]":  4.08642062404257,
+                                         "[Full Population Item Revenue]":  13591643.700000037,
+                                         "[Full Population Expected]":  13591643.7
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "01_executive_overview",
+                        "Batch":  2,
+                        "Status":  "PASS",
+                        "Milliseconds":  27,
+                        "RowCount":  1,
+                        "DifferenceChecks":  [
+                                                 {
+                                                     "Column":  "[Category Revenue Difference]",
+                                                     "Value":  3.3527612686157227E-08,
+                                                     "Status":  "PASS"
+                                                 },
+                                                 {
+                                                     "Column":  "[State Revenue Difference]",
+                                                     "Value":  1.8607825040817261E-06,
+                                                     "Status":  "PASS"
+                                                 },
+                                                 {
+                                                     "Column":  "[Month Revenue Difference]",
+                                                     "Value":  1.6763806343078613E-07,
+                                                     "Status":  "PASS"
+                                                 },
+                                                 {
+                                                     "Column":  "[Status Order Difference]",
+                                                     "Value":  0,
+                                                     "Status":  "PASS"
+                                                 }
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "[Category Revenue Difference]":  3.3527612686157227E-08,
+                                         "[State Revenue Difference]":  1.8607825040817261E-06,
+                                         "[Month Revenue Difference]":  1.6763806343078613E-07,
+                                         "[Status Order Difference]":  0
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "01_executive_overview",
+                        "Batch":  3,
+                        "Status":  "PASS",
+                        "Milliseconds":  75,
+                        "RowCount":  1,
+                        "DifferenceChecks":  [
+
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "[Year]":  2018,
+                                         "[Revenue]":  7218125.1199999331,
+                                         "[Orders]":  54011,
+                                         "[AOV]":  136.75094481177524,
+                                         "[Customers]":  51612,
+                                         "[On-Time Delivery]":  0.92273149288515832,
+                                         "[Review Score]":  4.0889998885876633
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "01_executive_overview",
+                        "Batch":  4,
+                        "Status":  "PASS",
+                        "Milliseconds":  17,
+                        "RowCount":  8,
+                        "DifferenceChecks":  [
+
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "DimOrderStatus[OrderStatus]":  "approved",
+                                         "[Orders]":  2,
+                                         "[Eligible Revenue]":  null,
+                                         "[AOV]":  null
+                                     },
+                                     {
+                                         "DimOrderStatus[OrderStatus]":  "canceled",
+                                         "[Orders]":  625,
+                                         "[Eligible Revenue]":  null,
+                                         "[AOV]":  null
+                                     },
+                                     {
+                                         "DimOrderStatus[OrderStatus]":  "created",
+                                         "[Orders]":  5,
+                                         "[Eligible Revenue]":  null,
+                                         "[AOV]":  null
+                                     },
+                                     {
+                                         "DimOrderStatus[OrderStatus]":  "delivered",
+                                         "[Orders]":  96478,
+                                         "[Eligible Revenue]":  13221498.110000018,
+                                         "[AOV]":  137.0415857501194
+                                     },
+                                     {
+                                         "DimOrderStatus[OrderStatus]":  "invoiced",
+                                         "[Orders]":  314,
+                                         "[Eligible Revenue]":  null,
+                                         "[AOV]":  null
+                                     },
+                                     {
+                                         "DimOrderStatus[OrderStatus]":  "processing",
+                                         "[Orders]":  301,
+                                         "[Eligible Revenue]":  null,
+                                         "[AOV]":  null
+                                     },
+                                     {
+                                         "DimOrderStatus[OrderStatus]":  "shipped",
+                                         "[Orders]":  1107,
+                                         "[Eligible Revenue]":  null,
+                                         "[AOV]":  null
+                                     },
+                                     {
+                                         "DimOrderStatus[OrderStatus]":  "unavailable",
+                                         "[Orders]":  609,
+                                         "[Eligible Revenue]":  null,
+                                         "[AOV]":  null
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "01_executive_overview",
+                        "Batch":  5,
+                        "Status":  "PASS",
+                        "Milliseconds":  15,
+                        "RowCount":  28,
+                        "DifferenceChecks":  [
+
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "SP",
+                                         "[Sales Revenue]":  5065820.0200021015,
+                                         "[Orders]":  41731
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "RJ",
+                                         "[Sales Revenue]":  1758005.0099998715,
+                                         "[Orders]":  12839
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "MG",
+                                         "[Sales Revenue]":  1551718.0599998864,
+                                         "[Orders]":  11624
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "RS",
+                                         "[Sales Revenue]":  728648.9300000103,
+                                         "[Orders]":  5462
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "PR",
+                                         "[Sales Revenue]":  665378.58000000962,
+                                         "[Orders]":  5034
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "SC",
+                                         "[Sales Revenue]":  507012.13000000478,
+                                         "[Orders]":  3637
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "BA",
+                                         "[Sales Revenue]":  492582.58000000211,
+                                         "[Orders]":  3371
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "GO",
+                                         "[Sales Revenue]":  282293.03999999841,
+                                         "[Orders]":  2011
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "DF",
+                                         "[Sales Revenue]":  273069.60999999824,
+                                         "[Orders]":  1969
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "ES",
+                                         "[Sales Revenue]":  268270.43999999721,
+                                         "[Orders]":  2027
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "PE",
+                                         "[Sales Revenue]":  251576.22999999765,
+                                         "[Orders]":  1648
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "CE",
+                                         "[Sales Revenue]":  218794.67999999816,
+                                         "[Orders]":  1332
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "PA",
+                                         "[Sales Revenue]":  174110.699999999,
+                                         "[Orders]":  972
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "MT",
+                                         "[Sales Revenue]":  152012.8199999996,
+                                         "[Orders]":  905
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "MA",
+                                         "[Sales Revenue]":  116181.59,
+                                         "[Orders]":  743
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "MS",
+                                         "[Sales Revenue]":  115429.96999999978,
+                                         "[Orders]":  715
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "PB",
+                                         "[Sales Revenue]":  111267.81999999988,
+                                         "[Orders]":  534
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "PI",
+                                         "[Sales Revenue]":  84168.100000000035,
+                                         "[Orders]":  492
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "RN",
+                                         "[Sales Revenue]":  81881.760000000082,
+                                         "[Orders]":  483
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "AL",
+                                         "[Sales Revenue]":  78725.729999999981,
+                                         "[Orders]":  412
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "SE",
+                                         "[Sales Revenue]":  56484.290000000052,
+                                         "[Orders]":  349
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "TO",
+                                         "[Sales Revenue]":  48222.520000000062,
+                                         "[Orders]":  279
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "RO",
+                                         "[Sales Revenue]":  45492.960000000028,
+                                         "[Orders]":  251
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  null,
+                                         "[Sales Revenue]":  35831.45000000007,
+                                         "[Orders]":  278
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "AM",
+                                         "[Sales Revenue]":  22155.840000000007,
+                                         "[Orders]":  148
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "AC",
+                                         "[Sales Revenue]":  15930.969999999987,
+                                         "[Orders]":  81
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "AP",
+                                         "[Sales Revenue]":  13374.809999999989,
+                                         "[Orders]":  68
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "RR",
+                                         "[Sales Revenue]":  7057.4699999999966,
+                                         "[Orders]":  46
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "01_executive_overview",
+                        "Batch":  6,
+                        "Status":  "PASS",
+                        "Milliseconds":  5,
+                        "RowCount":  23,
+                        "DifferenceChecks":  [
+
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "DimDate[YearMonth]":  "2016-09",
+                                         "[Sales Revenue]":  134.97
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2016-10",
+                                         "[Sales Revenue]":  40325.110000000161
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2016-12",
+                                         "[Sales Revenue]":  10.9
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-01",
+                                         "[Sales Revenue]":  111798.35999999962
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-02",
+                                         "[Sales Revenue]":  234223.39999999688
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-03",
+                                         "[Sales Revenue]":  359198.85000000172
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-04",
+                                         "[Sales Revenue]":  340669.68000000209
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-05",
+                                         "[Sales Revenue]":  489338.25000000582
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-06",
+                                         "[Sales Revenue]":  421923.37000000448
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-07",
+                                         "[Sales Revenue]":  481604.5200000066
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-08",
+                                         "[Sales Revenue]":  554699.7000000081
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-09",
+                                         "[Sales Revenue]":  607399.67000000924
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-10",
+                                         "[Sales Revenue]":  648247.65000000887
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-11",
+                                         "[Sales Revenue]":  987765.37000001676
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-12",
+                                         "[Sales Revenue]":  726033.1900000117
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-01",
+                                         "[Sales Revenue]":  924645.00000002107
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-02",
+                                         "[Sales Revenue]":  826437.13000001444
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-03",
+                                         "[Sales Revenue]":  953356.2500000163
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-04",
+                                         "[Sales Revenue]":  973534.0900000179
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-05",
+                                         "[Sales Revenue]":  977544.690000014
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-06",
+                                         "[Sales Revenue]":  856077.86000001023
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-07",
+                                         "[Sales Revenue]":  867953.46000000858
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-08",
+                                         "[Sales Revenue]":  838576.64000000909
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "01_executive_overview",
+                        "Batch":  7,
+                        "Status":  "PASS",
+                        "Milliseconds":  31,
+                        "RowCount":  1,
+                        "DifferenceChecks":  [
+                                                 {
+                                                     "Column":  "[Revenue Difference]",
+                                                     "Value":  0,
+                                                     "Status":  "PASS"
+                                                 },
+                                                 {
+                                                     "Column":  "[Order Difference]",
+                                                     "Value":  0,
+                                                     "Status":  "PASS"
+                                                 },
+                                                 {
+                                                     "Column":  "[AOV Difference]",
+                                                     "Value":  0,
+                                                     "Status":  "PASS"
+                                                 },
+                                                 {
+                                                     "Column":  "[On-Time Difference]",
+                                                     "Value":  0,
+                                                     "Status":  "PASS"
+                                                 },
+                                                 {
+                                                     "Column":  "[Review Difference]",
+                                                     "Value":  0,
+                                                     "Status":  "PASS"
+                                                 }
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "[Year]":  2018,
+                                         "[Revenue Actual]":  7218125.1199999331,
+                                         "[Revenue Expected]":  7218125.1199999331,
+                                         "[Revenue Difference]":  0,
+                                         "[Orders Actual]":  54011,
+                                         "[Orders Expected]":  54011,
+                                         "[Order Difference]":  0,
+                                         "[AOV Difference]":  0,
+                                         "[On-Time Difference]":  0,
+                                         "[Review Difference]":  0
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "01_executive_overview",
+                        "Batch":  8,
+                        "Status":  "PASS",
+                        "Milliseconds":  33,
+                        "RowCount":  1,
+                        "DifferenceChecks":  [
+                                                 {
+                                                     "Column":  "[Revenue Difference]",
+                                                     "Value":  0,
+                                                     "Status":  "PASS"
+                                                 },
+                                                 {
+                                                     "Column":  "[Order Difference]",
+                                                     "Value":  0,
+                                                     "Status":  "PASS"
+                                                 }
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "[Approximate State]":  "SP",
+                                         "[Revenue Actual]":  5065820.0199999763,
+                                         "[Revenue Expected]":  5065820.0199999763,
+                                         "[Revenue Difference]":  0,
+                                         "[Orders Actual]":  41731,
+                                         "[Orders Expected]":  41731,
+                                         "[Order Difference]":  0
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "01_executive_overview",
+                        "Batch":  9,
+                        "Status":  "PASS",
+                        "Milliseconds":  151,
+                        "RowCount":  1,
+                        "DifferenceChecks":  [
+                                                 {
+                                                     "Column":  "[Order Scope Difference]",
+                                                     "Value":  0,
+                                                     "Status":  "PASS"
+                                                 },
+                                                 {
+                                                     "Column":  "[Review Scope Difference]",
+                                                     "Value":  0,
+                                                     "Status":  "PASS"
+                                                 },
+                                                 {
+                                                     "Column":  "[Customer Scope Difference]",
+                                                     "Value":  0,
+                                                     "Status":  "PASS"
+                                                 }
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "[Selected Category]":  "health_beauty",
+                                         "[Sales Revenue Actual]":  1233131.7200000014,
+                                         "[Sales Revenue Expected]":  1233131.7200000014,
+                                         "[Order Scope Difference]":  0,
+                                         "[Review Scope Difference]":  0,
+                                         "[Customer Scope Difference]":  0
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "02_sales_product_performance",
+                        "Batch":  1,
+                        "Status":  "PASS",
+                        "Milliseconds":  16,
+                        "RowCount":  1,
+                        "DifferenceChecks":  [
+
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "[Sales Revenue]":  13221498.110000018,
+                                         "[Sales Revenue Expected]":  13221498.11,
+                                         "[Orders With Items - All Statuses]":  98666,
+                                         "[All Statuses Expected]":  98666,
+                                         "[Sales Orders With Items]":  96478,
+                                         "[Eligible Orders Expected]":  96478,
+                                         "[Total Items Sold]":  110197,
+                                         "[Items Expected]":  110197,
+                                         "[Average Revenue per Item]":  119.98056308247972,
+                                         "[Average Expected]":  119.98056308247955,
+                                         "[Selling Products]":  32216,
+                                         "[Products Expected]":  32216,
+                                         "[Active Sellers]":  2970,
+                                         "[Sellers Expected]":  2970,
+                                         "[Item Revenue All Statuses]":  13591643.700000037,
+                                         "[All Statuses Revenue Expected]":  13591643.7
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "02_sales_product_performance",
+                        "Batch":  2,
+                        "Status":  "PASS",
+                        "Milliseconds":  24,
+                        "RowCount":  1,
+                        "DifferenceChecks":  [
+                                                 {
+                                                     "Column":  "[By Category Difference]",
+                                                     "Value":  3.3527612686157227E-08,
+                                                     "Status":  "PASS"
+                                                 },
+                                                 {
+                                                     "Column":  "[By Product Difference]",
+                                                     "Value":  1.0114163160324097E-06,
+                                                     "Status":  "PASS"
+                                                 },
+                                                 {
+                                                     "Column":  "[By Seller Difference]",
+                                                     "Value":  5.9604644775390625E-08,
+                                                     "Status":  "PASS"
+                                                 },
+                                                 {
+                                                     "Column":  "[By Purchase Month Difference]",
+                                                     "Value":  1.6763806343078613E-07,
+                                                     "Status":  "PASS"
+                                                 },
+                                                 {
+                                                     "Column":  "[By Seller Geography Difference]",
+                                                     "Value":  3.8854777812957764E-06,
+                                                     "Status":  "PASS"
+                                                 },
+                                                 {
+                                                     "Column":  "[By Customer Geography Difference]",
+                                                     "Value":  1.8607825040817261E-06,
+                                                     "Status":  "PASS"
+                                                 }
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "[By Category Difference]":  3.3527612686157227E-08,
+                                         "[By Product Difference]":  1.0114163160324097E-06,
+                                         "[By Seller Difference]":  5.9604644775390625E-08,
+                                         "[By Purchase Month Difference]":  1.6763806343078613E-07,
+                                         "[By Seller Geography Difference]":  3.8854777812957764E-06,
+                                         "[By Customer Geography Difference]":  1.8607825040817261E-06
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "02_sales_product_performance",
+                        "Batch":  3,
+                        "Status":  "PASS",
+                        "Milliseconds":  9,
+                        "RowCount":  10,
+                        "DifferenceChecks":  [
+
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  1233131.7199999578,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  1166176.9799999925,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  1023434.7600000405,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  954852.55000002019,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  888724.61000002036,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "furniture_decor",
+                                         "[Revenue]":  711927.69000002544,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "housewares",
+                                         "[Revenue]":  615628.69000002043,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "cool_stuff",
+                                         "[Revenue]":  610204.099999996,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "auto",
+                                         "[Revenue]":  578966.65000000549,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "toys",
+                                         "[Revenue]":  471286.47999999928,
+                                         "[Included]":  1
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "02_sales_product_performance",
+                        "Batch":  4,
+                        "Status":  "PASS",
+                        "Milliseconds":  68,
+                        "RowCount":  10,
+                        "DifferenceChecks":  [
+
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "DimProduct[ProductKey]":  89989,
+                                         "[Revenue]":  63560,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimProduct[ProductKey]":  79971,
+                                         "[Revenue]":  53652.3,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimProduct[ProductKey]":  93516,
+                                         "[Revenue]":  45949.350000000006,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimProduct[ProductKey]":  92942,
+                                         "[Revenue]":  45620.560000000063,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimProduct[ProductKey]":  85645,
+                                         "[Revenue]":  42049.660000000076,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimProduct[ProductKey]":  73954,
+                                         "[Revenue]":  40782.800000000032,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimProduct[ProductKey]":  70899,
+                                         "[Revenue]":  38907.320000000007,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimProduct[ProductKey]":  78254,
+                                         "[Revenue]":  37733.900000000009,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimProduct[ProductKey]":  76770,
+                                         "[Revenue]":  37454.630000000019,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimProduct[ProductKey]":  88015,
+                                         "[Revenue]":  37104.3000000001,
+                                         "[Included]":  1
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "02_sales_product_performance",
+                        "Batch":  5,
+                        "Status":  "PASS",
+                        "Milliseconds":  13,
+                        "RowCount":  10,
+                        "DifferenceChecks":  [
+
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "DimSeller[SellerKey]":  7048,
+                                         "[Revenue]":  226987.92999999775,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimSeller[SellerKey]":  7204,
+                                         "[Revenue]":  217940.43999999962,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimSeller[SellerKey]":  7072,
+                                         "[Revenue]":  196882.11999999921,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimSeller[SellerKey]":  9215,
+                                         "[Revenue]":  190917.13999999841,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimSeller[SellerKey]":  7726,
+                                         "[Revenue]":  186570.05000000063,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimSeller[SellerKey]":  7751,
+                                         "[Revenue]":  165981.49000000008,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimSeller[SellerKey]":  8834,
+                                         "[Revenue]":  159816.86999999962,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimSeller[SellerKey]":  7696,
+                                         "[Revenue]":  139658.69000000047,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimSeller[SellerKey]":  6383,
+                                         "[Revenue]":  138208.55999999962,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimSeller[SellerKey]":  8015,
+                                         "[Revenue]":  131836.70999999956,
+                                         "[Included]":  1
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "02_sales_product_performance",
+                        "Batch":  6,
+                        "Status":  "PASS",
+                        "Milliseconds":  7,
+                        "RowCount":  74,
+                        "DifferenceChecks":  [
+
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  1233131.7199999578,
+                                         "[Share]":  0.093267170614144038
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  1166176.9799999925,
+                                         "[Share]":  0.0882030894152575
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  1023434.7600000405,
+                                         "[Share]":  0.077406868078434152
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  954852.55000002019,
+                                         "[Share]":  0.072219694172010629
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  888724.61000002036,
+                                         "[Share]":  0.067218147490248126
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "furniture_decor",
+                                         "[Revenue]":  711927.69000002544,
+                                         "[Share]":  0.053846219549172
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "housewares",
+                                         "[Revenue]":  615628.69000002043,
+                                         "[Share]":  0.046562703021860358
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "cool_stuff",
+                                         "[Revenue]":  610204.099999996,
+                                         "[Share]":  0.046152417443411309
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "auto",
+                                         "[Revenue]":  578966.65000000549,
+                                         "[Share]":  0.043789791836229615
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "toys",
+                                         "[Revenue]":  471286.47999999928,
+                                         "[Share]":  0.035645467410651652
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "garden_tools",
+                                         "[Revenue]":  470495.28000001312,
+                                         "[Share]":  0.035585625477959647
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "baby",
+                                         "[Revenue]":  400421.84000000043,
+                                         "[Share]":  0.030285663293870023
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "perfumery",
+                                         "[Revenue]":  390144.65000000049,
+                                         "[Share]":  0.029508354254115531
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "telephony",
+                                         "[Revenue]":  309860.22999998636,
+                                         "[Share]":  0.023436090783511457
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "office_furniture",
+                                         "[Revenue]":  268154.30999999843,
+                                         "[Share]":  0.020281688789652398
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "stationery",
+                                         "[Revenue]":  223788.68999999663,
+                                         "[Share]":  0.016926121997531771
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "computers",
+                                         "[Revenue]":  218684.13999999984,
+                                         "[Share]":  0.016540042450605395
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "pet_shop",
+                                         "[Revenue]":  211695.63999999789,
+                                         "[Share]":  0.016011471486720733
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "musical_instruments",
+                                         "[Revenue]":  184315.73999999926,
+                                         "[Share]":  0.013940609336894467
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "small_appliances",
+                                         "[Revenue]":  182754.11999999938,
+                                         "[Share]":  0.013822497154219892
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "Unknown (missing category)",
+                                         "[Revenue]":  170726.62999999741,
+                                         "[Share]":  0.012912805234292528
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "electronics",
+                                         "[Revenue]":  155043.92999999502,
+                                         "[Share]":  0.01172665372033203
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "fashion_bags_accessories",
+                                         "[Revenue]":  149329.38999999751,
+                                         "[Share]":  0.011294437949285986
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "consoles_games",
+                                         "[Revenue]":  148003.36999999912,
+                                         "[Share]":  0.011194145229885643
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "construction_tools_construction",
+                                         "[Revenue]":  142108.48999999976,
+                                         "[Share]":  0.010748289552188969
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "luggage_accessories",
+                                         "[Revenue]":  138701.62999999989,
+                                         "[Share]":  0.010490613759956084
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "home_appliances_2",
+                                         "[Revenue]":  107953.95,
+                                         "[Share]":  0.00816503161002226
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "home_construction",
+                                         "[Revenue]":  81407.569999999629,
+                                         "[Share]":  0.0061572122404515706
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "home_appliances",
+                                         "[Revenue]":  78832.4799999997,
+                                         "[Share]":  0.0059624468682845351
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "agro_industry_and_commerce",
+                                         "[Revenue]":  70566.100000000035,
+                                         "[Share]":  0.0053372242247364931
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "furniture_living_room",
+                                         "[Revenue]":  67350.7000000001,
+                                         "[Share]":  0.0050940293936176219
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "home_confort",
+                                         "[Revenue]":  58008.4500000001,
+                                         "[Share]":  0.0043874339743788593
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "fixed_telephony",
+                                         "[Revenue]":  55315.210000000021,
+                                         "[Share]":  0.00418373239853678
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "air_conditioning",
+                                         "[Revenue]":  53323.560000000063,
+                                         "[Share]":  0.0040330951573232764
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "audio",
+                                         "[Revenue]":  50570.600000000217,
+                                         "[Share]":  0.0038248766954594392
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "small_appliances_home_oven_and_coffee",
+                                         "[Revenue]":  46589.560000000019,
+                                         "[Share]":  0.0035237731467633085
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "kitchen_dining_laundry_garden_furniture",
+                                         "[Revenue]":  45531.980000000105,
+                                         "[Share]":  0.0034437837241425833
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "books_general_interest",
+                                         "[Revenue]":  45302.150000000081,
+                                         "[Share]":  0.00342640067132301
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "construction_tools_lights",
+                                         "[Revenue]":  39956.999999999985,
+                                         "[Share]":  0.003022123489151248
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "construction_tools_safety",
+                                         "[Revenue]":  38773.220000000038,
+                                         "[Share]":  0.0029325890059821585
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "industry_commerce_and_business",
+                                         "[Revenue]":  38498.810000000019,
+                                         "[Share]":  0.0029118341718690358
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "food",
+                                         "[Revenue]":  28731.150000000111,
+                                         "[Share]":  0.002173063124992573
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "market_place",
+                                         "[Revenue]":  27795.770000000102,
+                                         "[Share]":  0.0021023162253433923
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "costruction_tools_garden",
+                                         "[Revenue]":  25096.280000000024,
+                                         "[Share]":  0.0018981419345375473
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "art",
+                                         "[Revenue]":  23657.300000000021,
+                                         "[Share]":  0.0017893055539679632
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "fashion_shoes",
+                                         "[Revenue]":  23001.460000000094,
+                                         "[Share]":  0.001739701492874169
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "drinks",
+                                         "[Revenue]":  21529.84,
+                                         "[Share]":  0.0016283964056778067
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "signaling_and_security",
+                                         "[Revenue]":  21315.050000000014,
+                                         "[Share]":  0.0016121508941470423
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "furniture_bedroom",
+                                         "[Revenue]":  19051.8,
+                                         "[Share]":  0.0014409713514681223
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "books_technical",
+                                         "[Revenue]":  18702.230000000018,
+                                         "[Share]":  0.0014145318362867388
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "costruction_tools_tools",
+                                         "[Revenue]":  15903.949999999988,
+                                         "[Share]":  0.0012028856236776277
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "food_drink",
+                                         "[Revenue]":  14942.879999999983,
+                                         "[Share]":  0.0011301956764413837
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "fashion_male_clothing",
+                                         "[Revenue]":  10452.329999999989,
+                                         "[Share]":  0.00079055564755512776
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "fashion_underwear_beach",
+                                         "[Revenue]":  9305.949999999988,
+                                         "[Share]":  0.00070384989072920967
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "christmas_supplies",
+                                         "[Revenue]":  8737.8399999999965,
+                                         "[Share]":  0.00066088123503880015
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "tablets_printing_image",
+                                         "[Revenue]":  7528.4099999999962,
+                                         "[Share]":  0.00056940672965841133
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "cine_photo",
+                                         "[Revenue]":  6674.4699999999957,
+                                         "[Share]":  0.00050481949507308669
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "music",
+                                         "[Revenue]":  6034.3499999999976,
+                                         "[Share]":  0.00045640440665615118
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "dvds_blu_ray",
+                                         "[Revenue]":  4542.5899999999983,
+                                         "[Share]":  0.00034357604276055677
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "party_supplies",
+                                         "[Revenue]":  4465.1899999999987,
+                                         "[Share]":  0.00033772194064927953
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "books_imported",
+                                         "[Revenue]":  4418.8599999999979,
+                                         "[Share]":  0.00033421779916587534
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "furniture_mattress_and_upholstery",
+                                         "[Revenue]":  4323.38,
+                                         "[Share]":  0.00032699622720741615
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "Untranslated: portateis_cozinha_e_preparadores_de_alimentos",
+                                         "[Revenue]":  3933.630000000001,
+                                         "[Share]":  0.00029751772206697275
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "fashio_female_clothing",
+                                         "[Revenue]":  2634.9399999999982,
+                                         "[Share]":  0.00019929209066006423
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "fashion_sport",
+                                         "[Revenue]":  2094.5200000000004,
+                                         "[Share]":  0.00015841775134512289
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "la_cuisine",
+                                         "[Revenue]":  2054.99,
+                                         "[Share]":  0.00015542792374229609
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "arts_and_craftmanship",
+                                         "[Revenue]":  1814.0100000000002,
+                                         "[Share]":  0.00013720154742736585
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "diapers_and_hygiene",
+                                         "[Revenue]":  1500.79,
+                                         "[Share]":  0.00011351134247524345
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "Untranslated: pc_gamer",
+                                         "[Revenue]":  1306.95,
+                                         "[Share]":  9.885037150302137E-05
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "flowers",
+                                         "[Revenue]":  1110.0399999999997,
+                                         "[Share]":  8.3957202940597428E-05
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "home_comfort_2",
+                                         "[Revenue]":  760.26999999999987,
+                                         "[Share]":  5.7502560880371891E-05
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "cds_dvds_musicals",
+                                         "[Revenue]":  730,
+                                         "[Share]":  5.5213107767860745E-05
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "fashion_childrens_clothes",
+                                         "[Revenue]":  519.94999999999993,
+                                         "[Share]":  3.9326103265615327E-05
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "security_and_services",
+                                         "[Revenue]":  283.28999999999996,
+                                         "[Share]":  2.1426467533640093E-05
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "02_sales_product_performance",
+                        "Batch":  7,
+                        "Status":  "PASS",
+                        "Milliseconds":  15,
+                        "RowCount":  106,
+                        "DifferenceChecks":  [
+
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "DimDate[YearMonth]":  "2016-09",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  134.97,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2016-10",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  478.99,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2016-10",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  669.02,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2016-10",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  3439.2500000000005,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2016-10",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  2012.1500000000005,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2016-10",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  2711.07,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-01",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  3804.360000000001,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-01",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  3924.14,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-01",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  12366.439999999979,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-01",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  9212.139999999994,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-01",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  8086.5199999999995,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-02",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  15572.129999999965,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-02",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  11319.089999999989,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-02",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  22059.920000000067,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-02",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  15629.979999999981,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-02",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  10992.389999999998,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-03",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  25120.0200000001,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-03",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  28078.800000000105,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-03",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  25652.450000000095,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-03",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  25472.890000000076,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-03",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  24892.380000000005,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-04",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  24092.890000000058,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-04",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  18353.460000000021,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-04",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  22156.340000000109,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-04",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  22997.060000000078,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-04",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  23336.090000000011,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-05",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  32684.60000000017,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-05",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  44759.390000000145,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-05",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  46340.060000000012,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-05",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  34101.730000000156,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-05",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  36619.480000000025,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-06",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  33803.230000000156,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-06",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  36193.700000000128,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-06",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  31676.810000000209,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-06",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  32066.930000000164,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-06",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  27337.630000000016,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-07",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  62786.960000000261,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-07",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  38176.220000000227,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-07",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  34239.450000000164,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-07",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  36618.830000000249,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-07",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  33702.420000000042,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-08",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  56580.630000000208,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-08",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  33826.470000000227,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-08",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  49030.229999999974,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-08",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  40624.770000000251,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-08",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  36170.950000000077,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-09",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  52105.610000000241,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-09",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  28040.650000000136,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-09",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  50649.16000000004,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-09",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  48972.110000000241,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-09",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  44748.960000000086,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-10",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  46007.700000000164,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-10",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  42009.380000000187,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-10",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  40698.990000000042,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-10",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  48568.980000000134,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-10",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  64874.630000000048,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-11",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  87957.629999999452,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-11",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  69676.32,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-11",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  78274.4,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-11",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  62686.240000000282,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-11",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  95292.339999999822,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-12",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  50081.160000000265,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-12",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  37428.670000000151,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-12",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  60688.75000000008,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-12",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  58722.480000000258,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-12",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  69556.920000000071,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-01",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  75408.1300000002,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-01",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  80503.870000000054,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-01",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  71405.6,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-01",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  86172.829999999332,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-01",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  73521.239999999947,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-02",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  60366.290000000306,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-02",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  100131.98999999938,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-02",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  84576.5499999996,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-02",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  74540.949999999808,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-02",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  60725.310000000034,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-03",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  67786.350000000341,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-03",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  84708.389999999956,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-03",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  84488.569999999629,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-03",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  81656.959999999512,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-03",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  95661.179999999717,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-04",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  71379.610000000248,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-04",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  57370.900000000081,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-04",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  91058.450000000186,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-04",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  65793.52000000015,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-04",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  88623.069999999672,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-05",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  71265.070000000211,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-05",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  50631.830000000169,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-05",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  94534.380000000368,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-05",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  59209.920000000115,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-05",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  119364.97999999968,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-06",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  70857.08000000022,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-06",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  41806.370000000141,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-06",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  106745.72000000053,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-06",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  44916.0100000002,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-06",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  85027.569999999672,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-07",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  54405.230000000171,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-07",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  41063.310000000121,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-07",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  103524.22000000042,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-07",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  54015.890000000138,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-07",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  95164.789999999688,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-08",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  60891.090000000091,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-08",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  40052.640000000094,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-08",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  119391.00999999995,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-08",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  50860.180000000168,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-08",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  69767.060000000012,
+                                         "[Included]":  1
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "02_sales_product_performance",
+                        "Batch":  8,
+                        "Status":  "PASS",
+                        "Milliseconds":  21,
+                        "RowCount":  1,
+                        "DifferenceChecks":  [
+                                                 {
+                                                     "Column":  "[Difference]",
+                                                     "Value":  0,
+                                                     "Status":  "PASS"
+                                                 }
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "[Dimension Path]":  41980.54,
+                                         "[Direct Fact]":  41980.54,
+                                         "[Difference]":  0
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "02_sales_product_performance",
+                        "Batch":  9,
+                        "Status":  "PASS",
+                        "Milliseconds":  12,
+                        "RowCount":  2,
+                        "DifferenceChecks":  [
+
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  1233131.7199999578,
+                                         "[Included]":  1
+                                     },
+                                     {
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  1166176.9799999925,
+                                         "[Included]":  1
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "03_customer_geographic_analytics",
+                        "Batch":  1,
+                        "Status":  "PASS",
+                        "Milliseconds":  111,
+                        "RowCount":  1,
+                        "DifferenceChecks":  [
+                                                 {
+                                                     "Column":  "[Customer Partition Difference]",
+                                                     "Value":  0,
+                                                     "Status":  "PASS"
+                                                 }
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "[Unique Customers]":  93358,
+                                         "[Expected Unique]":  93358,
+                                         "[Repeat Customers]":  2801,
+                                         "[Expected Repeat]":  2801,
+                                         "[One-Time Customers]":  90557,
+                                         "[Expected One-Time]":  90557,
+                                         "[Repeat Rate]":  0.030002784978255748,
+                                         "[Expected Repeat Rate]":  0.030002784978255748,
+                                         "[Eligible Orders]":  96478,
+                                         "[Expected Eligible Orders]":  96478,
+                                         "[Sales Revenue]":  13221498.110000018,
+                                         "[Expected Sales Revenue]":  13221498.11,
+                                         "[Orders per Customer]":  1.0334197390689603,
+                                         "[Revenue per Customer]":  141.62147978748493,
+                                         "[Top Approximate State]":  "SP",
+                                         "[Customer Partition Difference]":  0
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "03_customer_geographic_analytics",
+                        "Batch":  2,
+                        "Status":  "PASS",
+                        "Milliseconds":  144,
+                        "RowCount":  1,
+                        "DifferenceChecks":  [
+                                                 {
+                                                     "Column":  "[Unique Difference]",
+                                                     "Value":  0,
+                                                     "Status":  "PASS"
+                                                 },
+                                                 {
+                                                     "Column":  "[Repeat Difference]",
+                                                     "Value":  0,
+                                                     "Status":  "PASS"
+                                                 }
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "[Unique Reference]":  93358,
+                                         "[Unique Difference]":  0,
+                                         "[Repeat Reference]":  2801,
+                                         "[Repeat Difference]":  0
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "03_customer_geographic_analytics",
+                        "Batch":  3,
+                        "Status":  "PASS",
+                        "Milliseconds":  60,
+                        "RowCount":  1,
+                        "DifferenceChecks":  [
+                                                 {
+                                                     "Column":  "[Frequency Difference]",
+                                                     "Value":  0,
+                                                     "Status":  "PASS"
+                                                 },
+                                                 {
+                                                     "Column":  "[Revenue per Customer Difference]",
+                                                     "Value":  0,
+                                                     "Status":  "PASS"
+                                                 }
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "[Orders Without Known Identity]":  0,
+                                         "[Revenue Without Known Identity]":  0,
+                                         "[Frequency Difference]":  0,
+                                         "[Revenue per Customer Difference]":  0
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "03_customer_geographic_analytics",
+                        "Batch":  4,
+                        "Status":  "PASS",
+                        "Milliseconds":  349,
+                        "RowCount":  5,
+                        "DifferenceChecks":  [
+                                                 {
+                                                     "Column":  "[Partition Difference]",
+                                                     "Value":  0,
+                                                     "Status":  "PASS"
+                                                 },
+                                                 {
+                                                     "Column":  "[Partition Difference]",
+                                                     "Value":  0,
+                                                     "Status":  "PASS"
+                                                 },
+                                                 {
+                                                     "Column":  "[Partition Difference]",
+                                                     "Value":  0,
+                                                     "Status":  "PASS"
+                                                 },
+                                                 {
+                                                     "Column":  "[Partition Difference]",
+                                                     "Value":  0,
+                                                     "Status":  "PASS"
+                                                 },
+                                                 {
+                                                     "Column":  "[Partition Difference]",
+                                                     "Value":  0,
+                                                     "Status":  "PASS"
+                                                 }
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "DimDate[Year]":  2016,
+                                         "[Unique Customers]":  264,
+                                         "[Repeat Customers]":  3,
+                                         "[One-Time Customers]":  261,
+                                         "[Partition Difference]":  0,
+                                         "[Repeat Rate]":  0.011363636363636364,
+                                         "[Sales Revenue]":  40470.980000000156
+                                     },
+                                     {
+                                         "DimDate[Year]":  2017,
+                                         "[Unique Customers]":  42136,
+                                         "[Repeat Customers]":  1170,
+                                         "[One-Time Customers]":  40966,
+                                         "[Partition Difference]":  0,
+                                         "[Repeat Rate]":  0.027767229922156824,
+                                         "[Sales Revenue]":  5962902.0100029269
+                                     },
+                                     {
+                                         "DimDate[Year]":  2018,
+                                         "[Unique Customers]":  51612,
+                                         "[Repeat Customers]":  1086,
+                                         "[One-Time Customers]":  50526,
+                                         "[Partition Difference]":  0,
+                                         "[Repeat Rate]":  0.021041618228318997,
+                                         "[Sales Revenue]":  7218125.1200032448
+                                     },
+                                     {
+                                         "DimDate[Year]":  2019,
+                                         "[Unique Customers]":  0,
+                                         "[Repeat Customers]":  0,
+                                         "[One-Time Customers]":  0,
+                                         "[Partition Difference]":  0,
+                                         "[Repeat Rate]":  null,
+                                         "[Sales Revenue]":  null
+                                     },
+                                     {
+                                         "DimDate[Year]":  2020,
+                                         "[Unique Customers]":  0,
+                                         "[Repeat Customers]":  0,
+                                         "[One-Time Customers]":  0,
+                                         "[Partition Difference]":  0,
+                                         "[Repeat Rate]":  null,
+                                         "[Sales Revenue]":  null
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "03_customer_geographic_analytics",
+                        "Batch":  5,
+                        "Status":  "PASS",
+                        "Milliseconds":  269,
+                        "RowCount":  9,
+                        "DifferenceChecks":  [
+
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "DimOrderStatus[OrderStatus]":  "~UNKNOWN",
+                                         "[Unique Customers]":  0,
+                                         "[Repeat Customers]":  0,
+                                         "[Repeat Rate]":  null,
+                                         "[Sales Revenue]":  null
+                                     },
+                                     {
+                                         "DimOrderStatus[OrderStatus]":  "approved",
+                                         "[Unique Customers]":  0,
+                                         "[Repeat Customers]":  0,
+                                         "[Repeat Rate]":  null,
+                                         "[Sales Revenue]":  null
+                                     },
+                                     {
+                                         "DimOrderStatus[OrderStatus]":  "canceled",
+                                         "[Unique Customers]":  0,
+                                         "[Repeat Customers]":  0,
+                                         "[Repeat Rate]":  null,
+                                         "[Sales Revenue]":  null
+                                     },
+                                     {
+                                         "DimOrderStatus[OrderStatus]":  "created",
+                                         "[Unique Customers]":  0,
+                                         "[Repeat Customers]":  0,
+                                         "[Repeat Rate]":  null,
+                                         "[Sales Revenue]":  null
+                                     },
+                                     {
+                                         "DimOrderStatus[OrderStatus]":  "delivered",
+                                         "[Unique Customers]":  93358,
+                                         "[Repeat Customers]":  2801,
+                                         "[Repeat Rate]":  0.030002784978255748,
+                                         "[Sales Revenue]":  13221498.110000018
+                                     },
+                                     {
+                                         "DimOrderStatus[OrderStatus]":  "invoiced",
+                                         "[Unique Customers]":  0,
+                                         "[Repeat Customers]":  0,
+                                         "[Repeat Rate]":  null,
+                                         "[Sales Revenue]":  null
+                                     },
+                                     {
+                                         "DimOrderStatus[OrderStatus]":  "processing",
+                                         "[Unique Customers]":  0,
+                                         "[Repeat Customers]":  0,
+                                         "[Repeat Rate]":  null,
+                                         "[Sales Revenue]":  null
+                                     },
+                                     {
+                                         "DimOrderStatus[OrderStatus]":  "shipped",
+                                         "[Unique Customers]":  0,
+                                         "[Repeat Customers]":  0,
+                                         "[Repeat Rate]":  null,
+                                         "[Sales Revenue]":  null
+                                     },
+                                     {
+                                         "DimOrderStatus[OrderStatus]":  "unavailable",
+                                         "[Unique Customers]":  0,
+                                         "[Repeat Customers]":  0,
+                                         "[Repeat Rate]":  null,
+                                         "[Sales Revenue]":  null
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "03_customer_geographic_analytics",
+                        "Batch":  6,
+                        "Status":  "PASS",
+                        "Milliseconds":  962,
+                        "RowCount":  28,
+                        "DifferenceChecks":  [
+
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "SP",
+                                         "[Unique Customers]":  39142,
+                                         "[Repeat Customers]":  1213,
+                                         "[One-Time Customers]":  37929,
+                                         "[Repeat Rate]":  0.030989729702110266,
+                                         "[Sales Revenue]":  5065820.0200021015
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "RJ",
+                                         "[Unique Customers]":  11905,
+                                         "[Repeat Customers]":  386,
+                                         "[One-Time Customers]":  11519,
+                                         "[Repeat Rate]":  0.032423351532969338,
+                                         "[Sales Revenue]":  1758005.0099998715
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "MG",
+                                         "[Unique Customers]":  10992,
+                                         "[Repeat Customers]":  318,
+                                         "[One-Time Customers]":  10674,
+                                         "[Repeat Rate]":  0.028930131004366814,
+                                         "[Sales Revenue]":  1551718.0599998864
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "RS",
+                                         "[Unique Customers]":  5164,
+                                         "[Repeat Customers]":  157,
+                                         "[One-Time Customers]":  5007,
+                                         "[Repeat Rate]":  0.030402788536018591,
+                                         "[Sales Revenue]":  728648.9300000103
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "PR",
+                                         "[Unique Customers]":  4758,
+                                         "[Repeat Customers]":  138,
+                                         "[One-Time Customers]":  4620,
+                                         "[Repeat Rate]":  0.029003783102143757,
+                                         "[Sales Revenue]":  665378.58000000962
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "SC",
+                                         "[Unique Customers]":  3449,
+                                         "[Repeat Customers]":  90,
+                                         "[One-Time Customers]":  3359,
+                                         "[Repeat Rate]":  0.026094520150768338,
+                                         "[Sales Revenue]":  507012.13000000478
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "BA",
+                                         "[Unique Customers]":  3150,
+                                         "[Repeat Customers]":  88,
+                                         "[One-Time Customers]":  3062,
+                                         "[Repeat Rate]":  0.027936507936507936,
+                                         "[Sales Revenue]":  492582.58000000211
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "GO",
+                                         "[Unique Customers]":  1887,
+                                         "[Repeat Customers]":  57,
+                                         "[One-Time Customers]":  1830,
+                                         "[Repeat Rate]":  0.030206677265500796,
+                                         "[Sales Revenue]":  282293.03999999841
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "DF",
+                                         "[Unique Customers]":  1860,
+                                         "[Repeat Customers]":  54,
+                                         "[One-Time Customers]":  1806,
+                                         "[Repeat Rate]":  0.02903225806451613,
+                                         "[Sales Revenue]":  273069.60999999824
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "ES",
+                                         "[Unique Customers]":  1923,
+                                         "[Repeat Customers]":  55,
+                                         "[One-Time Customers]":  1868,
+                                         "[Repeat Rate]":  0.02860114404576183,
+                                         "[Sales Revenue]":  268270.43999999721
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "PE",
+                                         "[Unique Customers]":  1547,
+                                         "[Repeat Customers]":  32,
+                                         "[One-Time Customers]":  1515,
+                                         "[Repeat Rate]":  0.02068519715578539,
+                                         "[Sales Revenue]":  251576.22999999765
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "CE",
+                                         "[Unique Customers]":  1255,
+                                         "[Repeat Customers]":  19,
+                                         "[One-Time Customers]":  1236,
+                                         "[Repeat Rate]":  0.015139442231075698,
+                                         "[Sales Revenue]":  218794.67999999816
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "PA",
+                                         "[Unique Customers]":  920,
+                                         "[Repeat Customers]":  22,
+                                         "[One-Time Customers]":  898,
+                                         "[Repeat Rate]":  0.02391304347826087,
+                                         "[Sales Revenue]":  174110.699999999
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "MT",
+                                         "[Unique Customers]":  855,
+                                         "[Repeat Customers]":  27,
+                                         "[One-Time Customers]":  828,
+                                         "[Repeat Rate]":  0.031578947368421054,
+                                         "[Sales Revenue]":  152012.8199999996
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "MA",
+                                         "[Unique Customers]":  697,
+                                         "[Repeat Customers]":  14,
+                                         "[One-Time Customers]":  683,
+                                         "[Repeat Rate]":  0.020086083213773313,
+                                         "[Sales Revenue]":  116181.59
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "MS",
+                                         "[Unique Customers]":  681,
+                                         "[Repeat Customers]":  17,
+                                         "[One-Time Customers]":  664,
+                                         "[Repeat Rate]":  0.024963289280469897,
+                                         "[Sales Revenue]":  115429.96999999978
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "PB",
+                                         "[Unique Customers]":  502,
+                                         "[Repeat Customers]":  10,
+                                         "[One-Time Customers]":  492,
+                                         "[Repeat Rate]":  0.0199203187250996,
+                                         "[Sales Revenue]":  111267.81999999988
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "PI",
+                                         "[Unique Customers]":  461,
+                                         "[Repeat Customers]":  10,
+                                         "[One-Time Customers]":  451,
+                                         "[Repeat Rate]":  0.021691973969631236,
+                                         "[Sales Revenue]":  84168.100000000035
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "RN",
+                                         "[Unique Customers]":  462,
+                                         "[Repeat Customers]":  10,
+                                         "[One-Time Customers]":  452,
+                                         "[Repeat Rate]":  0.021645021645021644,
+                                         "[Sales Revenue]":  81881.760000000082
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "AL",
+                                         "[Unique Customers]":  386,
+                                         "[Repeat Customers]":  10,
+                                         "[One-Time Customers]":  376,
+                                         "[Repeat Rate]":  0.025906735751295335,
+                                         "[Sales Revenue]":  78725.729999999981
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "SE",
+                                         "[Unique Customers]":  328,
+                                         "[Repeat Customers]":  6,
+                                         "[One-Time Customers]":  322,
+                                         "[Repeat Rate]":  0.018292682926829267,
+                                         "[Sales Revenue]":  56484.290000000052
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "TO",
+                                         "[Unique Customers]":  266,
+                                         "[Repeat Customers]":  7,
+                                         "[One-Time Customers]":  259,
+                                         "[Repeat Rate]":  0.026315789473684209,
+                                         "[Sales Revenue]":  48222.520000000062
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "RO",
+                                         "[Unique Customers]":  229,
+                                         "[Repeat Customers]":  9,
+                                         "[One-Time Customers]":  220,
+                                         "[Repeat Rate]":  0.039301310043668124,
+                                         "[Sales Revenue]":  45492.960000000028
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  null,
+                                         "[Unique Customers]":  255,
+                                         "[Repeat Customers]":  9,
+                                         "[One-Time Customers]":  246,
+                                         "[Repeat Rate]":  0.035294117647058823,
+                                         "[Sales Revenue]":  35831.45000000007
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "AM",
+                                         "[Unique Customers]":  140,
+                                         "[Repeat Customers]":  3,
+                                         "[One-Time Customers]":  137,
+                                         "[Repeat Rate]":  0.021428571428571429,
+                                         "[Sales Revenue]":  22155.840000000007
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "AC",
+                                         "[Unique Customers]":  76,
+                                         "[Repeat Customers]":  4,
+                                         "[One-Time Customers]":  72,
+                                         "[Repeat Rate]":  0.052631578947368418,
+                                         "[Sales Revenue]":  15930.969999999987
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "AP",
+                                         "[Unique Customers]":  66,
+                                         "[Repeat Customers]":  1,
+                                         "[One-Time Customers]":  65,
+                                         "[Repeat Rate]":  0.015151515151515152,
+                                         "[Sales Revenue]":  13374.809999999989
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "RR",
+                                         "[Unique Customers]":  40,
+                                         "[Repeat Customers]":  1,
+                                         "[One-Time Customers]":  39,
+                                         "[Repeat Rate]":  0.025,
+                                         "[Sales Revenue]":  7057.4699999999966
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "03_customer_geographic_analytics",
+                        "Batch":  7,
+                        "Status":  "PASS",
+                        "Milliseconds":  5,
+                        "RowCount":  1,
+                        "DifferenceChecks":  [
+                                                 {
+                                                     "Column":  "[Revenue by State Difference]",
+                                                     "Value":  1.8607825040817261E-06,
+                                                     "Status":  "PASS"
+                                                 }
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "[Revenue by State Difference]":  1.8607825040817261E-06
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "03_customer_geographic_analytics",
+                        "Batch":  8,
+                        "Status":  "PASS",
+                        "Milliseconds":  220,
+                        "RowCount":  1,
+                        "DifferenceChecks":  [
+                                                 {
+                                                     "Column":  "[Unique Difference]",
+                                                     "Value":  0,
+                                                     "Status":  "PASS"
+                                                 },
+                                                 {
+                                                     "Column":  "[Repeat Difference]",
+                                                     "Value":  0,
+                                                     "Status":  "PASS"
+                                                 }
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "[Scenario]":  "Purchase 2017; approximate customer state SP",
+                                         "[Unique Actual]":  16549,
+                                         "[Unique Reference]":  16549,
+                                         "[Unique Difference]":  0,
+                                         "[Repeat Actual]":  475,
+                                         "[Repeat Reference]":  475,
+                                         "[Repeat Difference]":  0
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "03_customer_geographic_analytics",
+                        "Batch":  9,
+                        "Status":  "PASS",
+                        "Milliseconds":  114,
+                        "RowCount":  1,
+                        "DifferenceChecks":  [
+                                                 {
+                                                     "Column":  "[Regional Revenue Difference]",
+                                                     "Value":  4.8913061618804932E-06,
+                                                     "Status":  "PASS"
+                                                 }
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "[Regional Revenue Difference]":  4.8913061618804932E-06,
+                                         "[Regional Revenue Shares]":  1,
+                                         "[State Count]":  27,
+                                         "[Top State]":  "SP",
+                                         "[Top State Revenue]":  5065820.0200021015
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "03_customer_geographic_analytics",
+                        "Batch":  10,
+                        "Status":  "PASS",
+                        "Milliseconds":  133,
+                        "RowCount":  10,
+                        "DifferenceChecks":  [
+
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "DimCustomerGeography[Customer City State]":  "sao paulo / SP",
+                                         "[Revenue]":  1858305.7799995916,
+                                         "[ShowCity]":  1,
+                                         "[Customers]":  14519
+                                     },
+                                     {
+                                         "DimCustomerGeography[Customer City State]":  "rio de janeiro / RJ",
+                                         "[Revenue]":  955573.97000003967,
+                                         "[ShowCity]":  1,
+                                         "[Customers]":  6361
+                                     },
+                                     {
+                                         "DimCustomerGeography[Customer City State]":  "belo horizonte / MG",
+                                         "[Revenue]":  346039.040000009,
+                                         "[ShowCity]":  1,
+                                         "[Customers]":  2606
+                                     },
+                                     {
+                                         "DimCustomerGeography[Customer City State]":  "brasilia / DF",
+                                         "[Revenue]":  262519.52999999438,
+                                         "[ShowCity]":  1,
+                                         "[Customers]":  1765
+                                     },
+                                     {
+                                         "DimCustomerGeography[Customer City State]":  "curitiba / PR",
+                                         "[Revenue]":  205999.32999999583,
+                                         "[ShowCity]":  1,
+                                         "[Customers]":  1434
+                                     },
+                                     {
+                                         "DimCustomerGeography[Customer City State]":  "campinas / SP",
+                                         "[Revenue]":  184657.86999999598,
+                                         "[ShowCity]":  1,
+                                         "[Customers]":  1363
+                                     },
+                                     {
+                                         "DimCustomerGeography[Customer City State]":  "porto alegre / RS",
+                                         "[Revenue]":  182319.5499999969,
+                                         "[ShowCity]":  1,
+                                         "[Customers]":  1292
+                                     },
+                                     {
+                                         "DimCustomerGeography[Customer City State]":  "salvador / BA",
+                                         "[Revenue]":  172817.25999999786,
+                                         "[ShowCity]":  1,
+                                         "[Customers]":  1151
+                                     },
+                                     {
+                                         "DimCustomerGeography[Customer City State]":  "guarulhos / SP",
+                                         "[Revenue]":  139008.18999999895,
+                                         "[ShowCity]":  1,
+                                         "[Customers]":  1111
+                                     },
+                                     {
+                                         "DimCustomerGeography[Customer City State]":  "niteroi / RJ",
+                                         "[Revenue]":  115890.25999999934,
+                                         "[ShowCity]":  1,
+                                         "[Customers]":  788
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "03_customer_geographic_analytics",
+                        "Batch":  11,
+                        "Status":  "PASS",
+                        "Milliseconds":  107,
+                        "RowCount":  28,
+                        "DifferenceChecks":  [
+
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "DF",
+                                         "DimCustomerGeography[Customer Region]":  "Central-West",
+                                         "[Sales Revenue]":  273069.60999999556,
+                                         "[Customers]":  1860
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "GO",
+                                         "DimCustomerGeography[Customer Region]":  "Central-West",
+                                         "[Sales Revenue]":  282293.03999999596,
+                                         "[Customers]":  1887
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "MS",
+                                         "DimCustomerGeography[Customer Region]":  "Central-West",
+                                         "[Sales Revenue]":  115429.9699999992,
+                                         "[Customers]":  681
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "MT",
+                                         "DimCustomerGeography[Customer Region]":  "Central-West",
+                                         "[Sales Revenue]":  152012.81999999908,
+                                         "[Customers]":  855
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "AC",
+                                         "DimCustomerGeography[Customer Region]":  "North",
+                                         "[Sales Revenue]":  15930.969999999987,
+                                         "[Customers]":  76
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "AM",
+                                         "DimCustomerGeography[Customer Region]":  "North",
+                                         "[Sales Revenue]":  22155.840000000051,
+                                         "[Customers]":  140
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "AP",
+                                         "DimCustomerGeography[Customer Region]":  "North",
+                                         "[Sales Revenue]":  13374.809999999989,
+                                         "[Customers]":  66
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "PA",
+                                         "DimCustomerGeography[Customer Region]":  "North",
+                                         "[Sales Revenue]":  174110.69999999777,
+                                         "[Customers]":  920
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "RO",
+                                         "DimCustomerGeography[Customer Region]":  "North",
+                                         "[Sales Revenue]":  45492.960000000065,
+                                         "[Customers]":  229
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "RR",
+                                         "DimCustomerGeography[Customer Region]":  "North",
+                                         "[Sales Revenue]":  7057.4699999999966,
+                                         "[Customers]":  40
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "TO",
+                                         "DimCustomerGeography[Customer Region]":  "North",
+                                         "[Sales Revenue]":  48222.520000000062,
+                                         "[Customers]":  266
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "AL",
+                                         "DimCustomerGeography[Customer Region]":  "Northeast",
+                                         "[Sales Revenue]":  78725.729999999792,
+                                         "[Customers]":  386
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "BA",
+                                         "DimCustomerGeography[Customer Region]":  "Northeast",
+                                         "[Sales Revenue]":  492582.58000001288,
+                                         "[Customers]":  3150
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "CE",
+                                         "DimCustomerGeography[Customer Region]":  "Northeast",
+                                         "[Sales Revenue]":  218794.67999999647,
+                                         "[Customers]":  1255
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "MA",
+                                         "DimCustomerGeography[Customer Region]":  "Northeast",
+                                         "[Sales Revenue]":  116181.58999999962,
+                                         "[Customers]":  697
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "PB",
+                                         "DimCustomerGeography[Customer Region]":  "Northeast",
+                                         "[Sales Revenue]":  111267.81999999963,
+                                         "[Customers]":  502
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "PE",
+                                         "DimCustomerGeography[Customer Region]":  "Northeast",
+                                         "[Sales Revenue]":  251576.22999999524,
+                                         "[Customers]":  1547
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "PI",
+                                         "DimCustomerGeography[Customer Region]":  "Northeast",
+                                         "[Sales Revenue]":  84168.09999999986,
+                                         "[Customers]":  461
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "RN",
+                                         "DimCustomerGeography[Customer Region]":  "Northeast",
+                                         "[Sales Revenue]":  81881.7599999998,
+                                         "[Customers]":  462
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "SE",
+                                         "DimCustomerGeography[Customer Region]":  "Northeast",
+                                         "[Sales Revenue]":  56484.2900000001,
+                                         "[Customers]":  328
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "PR",
+                                         "DimCustomerGeography[Customer Region]":  "South",
+                                         "[Sales Revenue]":  665378.58000002778,
+                                         "[Customers]":  4758
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "RS",
+                                         "DimCustomerGeography[Customer Region]":  "South",
+                                         "[Sales Revenue]":  728648.93000003148,
+                                         "[Customers]":  5164
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "SC",
+                                         "DimCustomerGeography[Customer Region]":  "South",
+                                         "[Sales Revenue]":  507012.13000001805,
+                                         "[Customers]":  3449
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "ES",
+                                         "DimCustomerGeography[Customer Region]":  "Southeast",
+                                         "[Sales Revenue]":  268270.43999999471,
+                                         "[Customers]":  1923
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "MG",
+                                         "DimCustomerGeography[Customer Region]":  "Southeast",
+                                         "[Sales Revenue]":  1551718.0599997344,
+                                         "[Customers]":  10992
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "RJ",
+                                         "DimCustomerGeography[Customer Region]":  "Southeast",
+                                         "[Sales Revenue]":  1758005.009999688,
+                                         "[Customers]":  11905
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "SP",
+                                         "DimCustomerGeography[Customer Region]":  "Southeast",
+                                         "[Sales Revenue]":  5065820.0200031726,
+                                         "[Customers]":  39142
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  null,
+                                         "DimCustomerGeography[Customer Region]":  "Unknown",
+                                         "[Sales Revenue]":  35831.45000000015,
+                                         "[Customers]":  255
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "04_delivery_logistics",
+                        "Batch":  1,
+                        "Status":  "PASS",
+                        "Milliseconds":  36,
+                        "RowCount":  1,
+                        "DifferenceChecks":  [
+
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "[Delivered Orders]":  96478,
+                                         "[Timeliness Eligible Orders]":  96470,
+                                         "[On Time Deliveries]":  89936,
+                                         "[Late Deliveries]":  6534,
+                                         "[Late Delivery Rate]":  0.067730900798175592,
+                                         "[Delivered Freight Amount]":  2198275.6400000011,
+                                         "[Average Freight per Delivered Order]":  22.785253011049161,
+                                         "[Average Late Delay Days]":  10.620140801958984,
+                                         "[Duration Eligible Orders]":  95097,
+                                         "[Category On Time Delivery Rate]":  0.93226909920182444,
+                                         "[Category Eligible Deliveries]":  96470
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "04_delivery_logistics",
+                        "Batch":  2,
+                        "Status":  "PASS",
+                        "Milliseconds":  5,
+                        "RowCount":  3,
+                        "DifferenceChecks":  [
+
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "DimDate[Year]":  2016,
+                                         "[Value]":  267
+                                     },
+                                     {
+                                         "DimDate[Year]":  2017,
+                                         "[Value]":  43426
+                                     },
+                                     {
+                                         "DimDate[Year]":  2018,
+                                         "[Value]":  52777
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "04_delivery_logistics",
+                        "Batch":  3,
+                        "Status":  "PASS",
+                        "Milliseconds":  5,
+                        "RowCount":  12,
+                        "DifferenceChecks":  [
+
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "DimDate[MonthName]":  "October",
+                                         "[Value]":  4743
+                                     },
+                                     {
+                                         "DimDate[MonthName]":  "November",
+                                         "[Value]":  7288
+                                     },
+                                     {
+                                         "DimDate[MonthName]":  "December",
+                                         "[Value]":  5514
+                                     },
+                                     {
+                                         "DimDate[MonthName]":  "February",
+                                         "[Value]":  8208
+                                     },
+                                     {
+                                         "DimDate[MonthName]":  "March",
+                                         "[Value]":  9549
+                                     },
+                                     {
+                                         "DimDate[MonthName]":  "January",
+                                         "[Value]":  7819
+                                     },
+                                     {
+                                         "DimDate[MonthName]":  "September",
+                                         "[Value]":  4151
+                                     },
+                                     {
+                                         "DimDate[MonthName]":  "August",
+                                         "[Value]":  10544
+                                     },
+                                     {
+                                         "DimDate[MonthName]":  "July",
+                                         "[Value]":  10028
+                                     },
+                                     {
+                                         "DimDate[MonthName]":  "June",
+                                         "[Value]":  9231
+                                     },
+                                     {
+                                         "DimDate[MonthName]":  "April",
+                                         "[Value]":  9101
+                                     },
+                                     {
+                                         "DimDate[MonthName]":  "May",
+                                         "[Value]":  10294
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "04_delivery_logistics",
+                        "Batch":  4,
+                        "Status":  "PASS",
+                        "Milliseconds":  14,
+                        "RowCount":  28,
+                        "DifferenceChecks":  [
+
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  null,
+                                         "[Value]":  264
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "SP",
+                                         "[Value]":  40480
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "RJ",
+                                         "[Value]":  12337
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "ES",
+                                         "[Value]":  1989
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "MG",
+                                         "[Value]":  11345
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "BA",
+                                         "[Value]":  3248
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "SE",
+                                         "[Value]":  334
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "PE",
+                                         "[Value]":  1589
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "RN",
+                                         "[Value]":  472
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "AL",
+                                         "[Value]":  396
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "PB",
+                                         "[Value]":  515
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "CE",
+                                         "[Value]":  1275
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "PI",
+                                         "[Value]":  473
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "MA",
+                                         "[Value]":  714
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "PA",
+                                         "[Value]":  944
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "AP",
+                                         "[Value]":  67
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "AM",
+                                         "[Value]":  145
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "RR",
+                                         "[Value]":  41
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "AC",
+                                         "[Value]":  80
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "DF",
+                                         "[Value]":  1917
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "GO",
+                                         "[Value]":  1948
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "RO",
+                                         "[Value]":  241
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "TO",
+                                         "[Value]":  273
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "MT",
+                                         "[Value]":  884
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "MS",
+                                         "[Value]":  701
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "PR",
+                                         "[Value]":  4912
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "SC",
+                                         "[Value]":  3546
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "RS",
+                                         "[Value]":  5340
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "04_delivery_logistics",
+                        "Batch":  5,
+                        "Status":  "PASS",
+                        "Milliseconds":  3,
+                        "RowCount":  2,
+                        "DifferenceChecks":  [
+
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "FactOrders[Delivery Timeliness]":  "On time",
+                                         "[Value]":  89936
+                                     },
+                                     {
+                                         "FactOrders[Delivery Timeliness]":  "Late",
+                                         "[Value]":  6534
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "05_reviews_satisfaction",
+                        "Batch":  1,
+                        "Status":  "PASS",
+                        "Milliseconds":  67,
+                        "RowCount":  1,
+                        "DifferenceChecks":  [
+
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "[Total Valid Reviews]":  99224,
+                                         "[Satisfaction Average Review Score]":  4.08642062404257,
+                                         "[Positive Review Rate]":  0.77068048052890425,
+                                         "[Negative Review Rate]":  0.14688986535515602,
+                                         "[Five Star Review Rate]":  0.57776344432798521,
+                                         "[On Time Average Review Score]":  4.2899804322689672,
+                                         "[Late Average Review Score]":  2.2710251209237011,
+                                         "[Late vs On Time Review Score]":  "2.27 / 4.29",
+                                         "[Category Average Review Score]":  4.1046158533489061,
+                                         "[Category Valid Reviews]":  98465
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "05_reviews_satisfaction",
+                        "Batch":  2,
+                        "Status":  "PASS",
+                        "Milliseconds":  10,
+                        "RowCount":  3,
+                        "DifferenceChecks":  [
+
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "DimReviewCreationDate[Year]":  2016,
+                                         "[Value]":  325
+                                     },
+                                     {
+                                         "DimReviewCreationDate[Year]":  2017,
+                                         "[Value]":  42735
+                                     },
+                                     {
+                                         "DimReviewCreationDate[Year]":  2018,
+                                         "[Value]":  56164
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "05_reviews_satisfaction",
+                        "Batch":  3,
+                        "Status":  "PASS",
+                        "Milliseconds":  11,
+                        "RowCount":  12,
+                        "DifferenceChecks":  [
+
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "DimReviewCreationDate[MonthName]":  "October",
+                                         "[Value]":  4603
+                                     },
+                                     {
+                                         "DimReviewCreationDate[MonthName]":  "November",
+                                         "[Value]":  4887
+                                     },
+                                     {
+                                         "DimReviewCreationDate[MonthName]":  "December",
+                                         "[Value]":  8027
+                                     },
+                                     {
+                                         "DimReviewCreationDate[MonthName]":  "February",
+                                         "[Value]":  7514
+                                     },
+                                     {
+                                         "DimReviewCreationDate[MonthName]":  "March",
+                                         "[Value]":  10284
+                                     },
+                                     {
+                                         "DimReviewCreationDate[MonthName]":  "January",
+                                         "[Value]":  6418
+                                     },
+                                     {
+                                         "DimReviewCreationDate[MonthName]":  "September",
+                                         "[Value]":  4199
+                                     },
+                                     {
+                                         "DimReviewCreationDate[MonthName]":  "August",
+                                         "[Value]":  13490
+                                     },
+                                     {
+                                         "DimReviewCreationDate[MonthName]":  "July",
+                                         "[Value]":  9137
+                                     },
+                                     {
+                                         "DimReviewCreationDate[MonthName]":  "June",
+                                         "[Value]":  10155
+                                     },
+                                     {
+                                         "DimReviewCreationDate[MonthName]":  "April",
+                                         "[Value]":  9342
+                                     },
+                                     {
+                                         "DimReviewCreationDate[MonthName]":  "May",
+                                         "[Value]":  11168
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "05_reviews_satisfaction",
+                        "Batch":  4,
+                        "Status":  "PASS",
+                        "Milliseconds":  96,
+                        "RowCount":  28,
+                        "DifferenceChecks":  [
+
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  null,
+                                         "[Value]":  279
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "SP",
+                                         "[Value]":  41675
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "RJ",
+                                         "[Value]":  12752
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "ES",
+                                         "[Value]":  2010
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "MG",
+                                         "[Value]":  11614
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "BA",
+                                         "[Value]":  3348
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "SE",
+                                         "[Value]":  348
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "PE",
+                                         "[Value]":  1642
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "RN",
+                                         "[Value]":  480
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "AL",
+                                         "[Value]":  413
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "PB",
+                                         "[Value]":  529
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "CE",
+                                         "[Value]":  1323
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "PI",
+                                         "[Value]":  488
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "MA",
+                                         "[Value]":  742
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "PA",
+                                         "[Value]":  965
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "AP",
+                                         "[Value]":  67
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "AM",
+                                         "[Value]":  147
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "RR",
+                                         "[Value]":  46
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "AC",
+                                         "[Value]":  81
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "DF",
+                                         "[Value]":  1978
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "GO",
+                                         "[Value]":  2015
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "RO",
+                                         "[Value]":  250
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "TO",
+                                         "[Value]":  278
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "MT",
+                                         "[Value]":  901
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "MS",
+                                         "[Value]":  724
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "PR",
+                                         "[Value]":  5027
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "SC",
+                                         "[Value]":  3623
+                                     },
+                                     {
+                                         "DimCustomerGeography[ApproximateState]":  "RS",
+                                         "[Value]":  5479
+                                     }
+                                 ]
+                    },
+                    {
+                        "Page":  "05_reviews_satisfaction",
+                        "Batch":  5,
+                        "Status":  "PASS",
+                        "Milliseconds":  9,
+                        "RowCount":  5,
+                        "DifferenceChecks":  [
+
+                                             ],
+                        "Rows":  [
+                                     {
+                                         "FactReviews[ReviewScore]":  5,
+                                         "[Value]":  57328
+                                     },
+                                     {
+                                         "FactReviews[ReviewScore]":  4,
+                                         "[Value]":  19142
+                                     },
+                                     {
+                                         "FactReviews[ReviewScore]":  1,
+                                         "[Value]":  11424
+                                     },
+                                     {
+                                         "FactReviews[ReviewScore]":  3,
+                                         "[Value]":  8179
+                                     },
+                                     {
+                                         "FactReviews[ReviewScore]":  2,
+                                         "[Value]":  3151
+                                     }
+                                 ]
+                    }
+                ]
+}

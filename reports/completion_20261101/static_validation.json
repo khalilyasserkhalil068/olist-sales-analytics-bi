@@ -1,0 +1,205 @@
+{
+  "scope": "OFFLINE STATIC CHECKS ONLY; no DAX compilation, Desktop rendering or interaction execution",
+  "checks": [
+    {
+      "name": "Microsoft PBIR JSON schema validation",
+      "status": "PASS",
+      "details": {
+        "files": 112,
+        "errors": []
+      }
+    },
+    {
+      "name": "All 33 previous measures and formats preserved",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "name": "13 original validated measures preserved",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "name": "31 original model tables preserved",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "Relationship definitions byte-identical to retained source",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "37 relationship declarations preserved",
+      "status": "PASS",
+      "details": 37
+    },
+    {
+      "name": "All partition definitions preserved",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "name": "Cached model copied byte-identically",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "Unchanged relationship graph has historical no-ambiguity proof",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "Five unique report pages exist",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "All native field bindings resolve",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "name": "All interaction references resolve",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "name": "No duplicate visual identifiers within pages",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "name": "16:9 bounds and non-overlapping data visuals",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "name": "30 cards and 19 slicers authored",
+      "status": "PASS",
+      "details": {
+        "card": 30,
+        "clusteredBarChart": 14,
+        "slicer": 19,
+        "textbox": 21,
+        "lineChart": 5,
+        "pageNavigator": 5,
+        "clusteredColumnChart": 5,
+        "tableEx": 3,
+        "donutChart": 2
+      }
+    },
+    {
+      "name": "29 charts and tables authored",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "Five native page navigators authored",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "Original three-page content preserved; navigator/text/slicer bounds adjusted",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "name": "Original and existing report binaries unchanged during extension",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "25 new measures declared once, two calculated columns",
+      "status": "PASS",
+      "details": {
+        "totalMeasures": 58
+      }
+    }
+  ],
+  "pages": [
+    {
+      "page": "01 | Executive Overview",
+      "types": {
+        "card": 6,
+        "clusteredBarChart": 3,
+        "slicer": 4,
+        "textbox": 4,
+        "lineChart": 1,
+        "pageNavigator": 1,
+        "clusteredColumnChart": 1
+      },
+      "visuals": 20
+    },
+    {
+      "page": "02 | Sales & Product Performance",
+      "types": {
+        "card": 6,
+        "tableEx": 2,
+        "lineChart": 1,
+        "textbox": 4,
+        "pageNavigator": 1,
+        "slicer": 4,
+        "clusteredBarChart": 3
+      },
+      "visuals": 21
+    },
+    {
+      "page": "03 | Customer & Geographic Analytics",
+      "types": {
+        "slicer": 3,
+        "textbox": 5,
+        "card": 6,
+        "tableEx": 1,
+        "pageNavigator": 1,
+        "donutChart": 1,
+        "clusteredColumnChart": 1,
+        "clusteredBarChart": 3
+      },
+      "visuals": 21
+    },
+    {
+      "page": "04 | Delivery & Logistics",
+      "types": {
+        "card": 6,
+        "donutChart": 1,
+        "lineChart": 1,
+        "clusteredBarChart": 3,
+        "clusteredColumnChart": 1,
+        "textbox": 4,
+        "pageNavigator": 1,
+        "slicer": 4
+      },
+      "visuals": 21
+    },
+    {
+      "page": "05 | Reviews & Customer Satisfaction",
+      "types": {
+        "card": 6,
+        "clusteredColumnChart": 2,
+        "lineChart": 2,
+        "clusteredBarChart": 2,
+        "textbox": 4,
+        "pageNavigator": 1,
+        "slicer": 4
+      },
+      "visuals": 21
+    }
+  ],
+  "visualTypes": {
+    "card": 30,
+    "clusteredBarChart": 14,
+    "slicer": 19,
+    "textbox": 21,
+    "lineChart": 5,
+    "pageNavigator": 5,
+    "clusteredColumnChart": 5,
+    "tableEx": 3,
+    "donutChart": 2
+  },
+  "schemaFilesChecked": 112,
+  "passed": 20,
+  "failed": 0,
+  "runtimeStatus": "NOT VERIFIED",
+  "finalPbixStatus": "BLOCKED"
+}

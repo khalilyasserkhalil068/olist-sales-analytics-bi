@@ -1,0 +1,138 @@
+table DimProduct
+	lineageTag: 08d20154-8766-4852-b861-caab4d2b6d25
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 836c7b6c-1e89-4b73-9c8c-d9b35d56cf63
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductID
+		dataType: string
+		lineageTag: 6eb11606-7147-44fd-bdcc-e912e02eb685
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceCategory
+		dataType: string
+		lineageTag: 513b36a8-0a00-4c74-9701-1adb030d4106
+		summarizeBy: none
+		sourceColumn: SourceCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column EnglishCategory
+		dataType: string
+		lineageTag: a5145c0c-965a-48aa-a71a-be13391f8beb
+		summarizeBy: none
+		sourceColumn: EnglishCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column CategoryLabel
+		dataType: string
+		lineageTag: b5ead5a8-2dc3-4958-bd9e-6cf31c60651f
+		summarizeBy: none
+		sourceColumn: CategoryLabel
+
+		annotation SummarizationSetBy = Automatic
+
+	column CategoryMissing
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 50e9c85b-4043-4a76-b072-fe01cea62cc0
+		summarizeBy: none
+		sourceColumn: CategoryMissing
+
+		annotation SummarizationSetBy = Automatic
+
+	column CategoryUntranslated
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 9d9f5c7e-35ce-4aa3-bff7-85e4f147034e
+		summarizeBy: none
+		sourceColumn: CategoryUntranslated
+
+		annotation SummarizationSetBy = Automatic
+
+	column NameLength
+		dataType: int64
+		formatString: 0
+		lineageTag: 4c2f7027-80e7-4017-bce4-a4bc7e84017b
+		summarizeBy: none
+		sourceColumn: NameLength
+
+		annotation SummarizationSetBy = Automatic
+
+	column DescriptionLength
+		dataType: int64
+		formatString: 0
+		lineageTag: fdb413e3-a145-4027-8a55-bde0252c0e26
+		summarizeBy: none
+		sourceColumn: DescriptionLength
+
+		annotation SummarizationSetBy = Automatic
+
+	column PhotosQuantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 3ab93e16-ed6c-4999-a796-b001df35ee64
+		summarizeBy: none
+		sourceColumn: PhotosQuantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column WeightGrams
+		dataType: int64
+		formatString: 0
+		lineageTag: 0e74f655-1aa3-4bae-af7f-f6ec08c207da
+		summarizeBy: none
+		sourceColumn: WeightGrams
+
+		annotation SummarizationSetBy = Automatic
+
+	column LengthCM
+		dataType: int64
+		formatString: 0
+		lineageTag: e3945cce-c3d7-411c-a75e-37cb9f73c1e7
+		summarizeBy: none
+		sourceColumn: LengthCM
+
+		annotation SummarizationSetBy = Automatic
+
+	column HeightCM
+		dataType: int64
+		formatString: 0
+		lineageTag: 186ecd1c-2b90-4abe-b2c0-ca75ab70f1df
+		summarizeBy: none
+		sourceColumn: HeightCM
+
+		annotation SummarizationSetBy = Automatic
+
+	column WidthCM
+		dataType: int64
+		formatString: 0
+		lineageTag: e21f5fd2-2dca-40d7-b14a-01801808966b
+		summarizeBy: none
+		sourceColumn: WidthCM
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimProduct = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("DESKTOP-GEUMHVT\SQLEXPRESS", "OlistSalesDW"),
+				    dw_DimProduct = Source{[Schema="dw",Item="DimProduct"]}[Data]
+				in
+				    dw_DimProduct
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

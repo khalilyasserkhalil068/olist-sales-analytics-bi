@@ -1,0 +1,63 @@
+/// Order approval date. Separate active date role; missing dates appear under the relationship blank member.
+table DimApprovalDate
+	lineageTag: 448409cf-8243-45f9-bce0-35ebe4159933
+	dataCategory: Time
+
+	column DateKey
+		lineageTag: 3d6f0866-3991-47ba-bf1e-d3eebf387b0b
+		isNameInferred
+		sourceColumn: DateKeyLookup[DateKey]
+
+	column FullDate
+		lineageTag: 1b5f2fcc-bda9-480a-a7e6-68b331acd94e
+		isNameInferred
+		sourceColumn: DateKeyLookup[FullDate]
+
+	column Day
+		lineageTag: 5f4172b7-ad38-43fc-b704-761a2e91de66
+		isNameInferred
+		sourceColumn: DateKeyLookup[Day]
+
+	column Month
+		lineageTag: cb6e60be-e2cc-4587-8aee-edca6129e8bb
+		isNameInferred
+		sourceColumn: DateKeyLookup[Month]
+
+	column MonthName
+		lineageTag: e8dbdad6-c3ef-4b12-b16b-e2546823666b
+		isNameInferred
+		sourceColumn: DateKeyLookup[MonthName]
+
+	column Quarter
+		lineageTag: 1f38299d-4489-4b1e-a551-0fef1f46a130
+		isNameInferred
+		sourceColumn: DateKeyLookup[Quarter]
+
+	column Year
+		lineageTag: 94f0a896-3473-4baa-bc3a-e5fc535dced9
+		isNameInferred
+		sourceColumn: DateKeyLookup[Year]
+
+	column YearMonth
+		lineageTag: 9fe958e5-57d4-4109-ba7e-35c8820379c2
+		isNameInferred
+		sourceColumn: DateKeyLookup[YearMonth]
+
+	column DayOfWeek
+		lineageTag: 5a20de3a-ee36-453f-9b36-793fb3fc81da
+		isNameInferred
+		sourceColumn: DateKeyLookup[DayOfWeek]
+
+	column DayName
+		lineageTag: eb185561-cb4d-4760-87fc-2140a9aa3c96
+		isNameInferred
+		sourceColumn: DateKeyLookup[DayName]
+
+	column IsWeekend
+		lineageTag: 285e7d6a-afe6-4f1d-a2a8-1351405d7cdd
+		isNameInferred
+		sourceColumn: DateKeyLookup[IsWeekend]
+
+	partition DimApprovalDate = calculated
+		source = FILTER(DateKeyLookup, NOT ISBLANK(DateKeyLookup[FullDate]))
+

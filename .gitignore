@@ -1,0 +1,58 @@
+# Local Python environment, build outputs and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.ipython/
+.coverage
+htmlcov/
+
+# Private configuration and credentials
+.env
+.env.*
+!.env.example
+credentials*
+secrets*
+kaggle.json
+*.pem
+*.key
+*.pfx
+*.p12
+
+# Data inputs and exports: download/reproduce locally
+/olist_*.csv
+/product_category_name_translation.csv
+/data/raw/*
+/data/processed/*
+/data/exports/*
+
+# Database files and backups
+*.bak
+*.trn
+*.mdf
+*.ndf
+*.ldf
+
+# Power BI data-bearing binaries, imported caches and local settings
+*.pbix
+*.pbit
+*.abf
+*.pbip.user
+**/.pbi/
+/power_bi/backups/
+/power_bi/workspaces/
+
+# Temporary test fixtures and local editor settings
+/reports/phase_4_test_only/**/complete_tmp/
+/reports/phase_4_test_only/**/targeted_tmp/
+/reports/completion_20261101/qa/pytest_tmp*/
+/.vscode/
+*.tmp
+*.log
+~$*
+.DS_Store
+Thumbs.db

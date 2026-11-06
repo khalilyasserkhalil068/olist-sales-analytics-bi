@@ -1,0 +1,73 @@
+check,status,actual,expected,details,category
+Staging rows: customers,PASS,99441,99441,,execution
+Staging rows: orders,PASS,99441,99441,,execution
+Staging rows: order_items,PASS,112650,112650,,execution
+Staging rows: payments,PASS,103886,103886,,execution
+Staging rows: reviews,PASS,99224,99224,,execution
+Staging rows: products,PASS,32951,32951,,execution
+Staging rows: sellers,PASS,3095,3095,,execution
+Staging rows: category_translations,PASS,71,71,,execution
+Staging rows: geolocation,PASS,738332,738332,,execution
+Staging rows: geolocation_zip_lookup,PASS,19015,19015,,execution
+Fact rows: FactOrders,PASS,99441,99441,,execution
+Fact rows: FactOrderItems,PASS,112650,112650,,execution
+Fact rows: FactPayments,PASS,103886,103886,,execution
+Fact rows: FactReviews,PASS,99224,99224,,execution
+Unknown member: DimDate,PASS,1,1,,execution
+Unknown member: DimGeography,PASS,1,1,,execution
+Unknown member: DimCustomer,PASS,1,1,,execution
+Unknown member: DimProduct,PASS,1,1,,execution
+Unknown member: DimSeller,PASS,1,1,,execution
+Unknown member: DimPaymentType,PASS,1,1,,execution
+Unknown member: DimOrderStatus,PASS,1,1,,execution
+Dimension rows: DimCustomer,PASS,99441,99441,,execution
+Dimension rows: DimProduct,PASS,32951,32951,,execution
+Dimension rows: DimSeller,PASS,3095,3095,,execution
+All constraints enabled and trusted,PASS,0,0,,execution
+Referential and CHECK constraint violations,PASS,0,0,,execution
+Item amounts preserved per business key,PASS,0,0,,execution
+Payment amounts/installments preserved per business key,PASS,0,0,,execution
+Review scores and optional text indicators preserved,PASS,0,0,,execution
+Order totals reconciled for every order,PASS,0,0,,execution
+Sales flags independently derived,PASS,0,0,,execution
+Source customer states preserved,PASS,0,0,,execution
+Source seller states preserved,PASS,0,0,,execution
+Unmatched customer geography retained,PASS,0,0,,execution
+Complete date range without gaps,PASS,0,0,,execution
+Unknown core references in actual snapshot,PASS,0,0,,source_quality
+Exact business-key set: FactOrders,PASS,0,0,,execution
+Exact business-key set: FactOrderItems,PASS,0,0,,execution
+Exact business-key set: FactPayments,PASS,0,0,,execution
+Exact business-key set: FactReviews,PASS,0,0,,execution
+Customers with unmatched ZIP,WARN,278,0,Retained source condition; no record deletion.,source_quality
+Delivered payment amount differs from merchandise plus freight,WARN,569,0,Retained source condition; no record deletion.,source_quality
+Invalid chronology,WARN,1382,0,Retained source condition; no record deletion.,source_quality
+Missing actual delivery timestamp,WARN,2965,0,Retained source condition; no record deletion.,source_quality
+Missing product category,WARN,610,0,Retained source condition; no record deletion.,source_quality
+Nonpositive installments,WARN,2,0,Retained source condition; no record deletion.,source_quality
+Orders without items,WARN,775,0,Retained source condition; no record deletion.,source_quality
+Orders without payments,WARN,1,0,Retained source condition; no record deletion.,source_quality
+Orders without reviews,WARN,768,0,Retained source condition; no record deletion.,source_quality
+Repeated review ID excess,WARN,814,0,Retained source condition; no record deletion.,source_quality
+Sellers with unmatched ZIP,WARN,7,0,Retained source condition; no record deletion.,source_quality
+Untranslated product category,WARN,13,0,Retained source condition; no record deletion.,source_quality
+ZIP prefixes with conflicting cities,WARN,8555,0,Retained source condition; no record deletion.,source_quality
+ZIP prefixes with conflicting states,WARN,8,0,Retained source condition; no record deletion.,source_quality
+Zero payment amounts,WARN,9,0,Retained source condition; no record deletion.,source_quality
+All source fields round trip: customers,PASS,0,0,"99,441 records compared; exact Decimal, Unicode, null and timestamp equality.",execution
+All source fields round trip: orders,PASS,0,0,"99,441 records compared; exact Decimal, Unicode, null and timestamp equality.",execution
+All source fields round trip: order_items,PASS,0,0,"112,650 records compared; exact Decimal, Unicode, null and timestamp equality.",execution
+All source fields round trip: payments,PASS,0,0,"103,886 records compared; exact Decimal, Unicode, null and timestamp equality.",execution
+All source fields round trip: reviews,PASS,0,0,"99,224 records compared; exact Decimal, Unicode, null and timestamp equality.",execution
+All source fields round trip: products,PASS,0,0,"32,951 records compared; exact Decimal, Unicode, null and timestamp equality.",execution
+All source fields round trip: sellers,PASS,0,0,"3,095 records compared; exact Decimal, Unicode, null and timestamp equality.",execution
+All source fields round trip: category_translations,PASS,0,0,"71 records compared; exact Decimal, Unicode, null and timestamp equality.",execution
+All source fields round trip: geolocation,PASS,0,0,"738,332 records compared; exact Decimal, Unicode, null and timestamp equality.",execution
+All source fields round trip: geolocation_zip_lookup,PASS,0,0,"19,015 records compared; exact Decimal, Unicode, null and timestamp equality.",execution
+Idempotent rerun including all surrogate keys,PASS,1,1,Exact row counts and content hashes match for all 21 staging/dimension/fact tables; only load metadata excluded.,execution
+Failed ETL restores previous complete snapshot,PASS,1,1,Compared with latest committed load; FAIL audit entry is intentionally retained.,execution
+Unknown product fallback preserves source record,PASS,1,1,Synthetic missing product exercised inside a rolled-back transaction; actual source CSVs unchanged.,execution
+Unknown-member simulation rolled back completely,PASS,1,1,,execution
+Executed SQL Server actual plans,PASS,3,3,,execution
+Previous phase files unchanged,PASS,83,83,,execution
+Raw and processed CSV hashes unchanged,PASS,19,19,All 19 are covered by protected-file and source-contract verification.,execution

@@ -1,0 +1,195 @@
+{
+  "measures": [
+    {
+      "table": "FactOrders",
+      "name": "Delivered Orders",
+      "expression": "CALCULATE(COUNTROWS(FactOrders), KEEPFILTERS(DimOrderStatus[OrderStatus] = \"delivered\"))",
+      "formatString": "#,0",
+      "description": "All orders whose status is delivered. This includes delivered orders missing actual delivery dates; SLA eligibility is a separate denominator."
+    },
+    {
+      "table": "FactOrders",
+      "name": "Timeliness Eligible Orders",
+      "expression": "CALCULATE(COUNTROWS(FactOrders), KEEPFILTERS(FactOrders[OnTimeEligible] = TRUE()))",
+      "formatString": "#,0",
+      "description": "Delivered orders with actual and estimated delivery timestamps, using the preserved warehouse eligibility contract."
+    },
+    {
+      "table": "FactOrders",
+      "name": "On Time Deliveries",
+      "expression": "CALCULATE([Timeliness Eligible Orders], KEEPFILTERS(FactOrders[IsOnTime] = TRUE()))",
+      "formatString": "#,0",
+      "description": "Eligible orders delivered on or before estimated calendar date; preserves the original KPI."
+    },
+    {
+      "table": "FactOrders",
+      "name": "Late Deliveries",
+      "expression": "CALCULATE([Timeliness Eligible Orders], KEEPFILTERS(FactOrders[IsOnTime] = FALSE()))",
+      "formatString": "#,0",
+      "description": "Eligible delivered orders after the estimated calendar date. Undelivered orders never enter this count."
+    },
+    {
+      "table": "FactOrders",
+      "name": "Late Delivery Rate",
+      "expression": "DIVIDE([Late Deliveries], [Timeliness Eligible Orders])",
+      "formatString": "0.00%",
+      "description": "Late deliveries / timeliness-eligible deliveries under the current filters."
+    },
+    {
+      "table": "FactOrders",
+      "name": "Delivered Freight Amount",
+      "expression": "CALCULATE(SUM(FactOrders[FreightAmount]), KEEPFILTERS(DimOrderStatus[OrderStatus] = \"delivered\"))",
+      "formatString": "\"R$\" #,0.00",
+      "description": "Sum the once-per-order aggregated freight for delivered orders. Never join freight to reviews or items for this measure."
+    },
+    {
+      "table": "FactOrders",
+      "name": "Average Freight per Delivered Order",
+      "expression": "DIVIDE([Delivered Freight Amount], [Delivered Orders])",
+      "formatString": "\"R$\" #,0.00",
+      "description": "Delivered order freight divided by all delivered orders, including zero-freight orders."
+    },
+    {
+      "table": "FactOrders",
+      "name": "Average Late Delay Days",
+      "expression": "AVERAGEX(FILTER(FactOrders, FactOrders[OnTimeEligible] = TRUE() && FactOrders[IsOnTime] = FALSE()), INT(FactOrders[ActualDeliveryTimestamp]) - INT(FactOrders[EstimatedDeliveryTimestamp]))",
+      "formatString": "0.00",
+      "description": "Mean calendar-day lateness among eligible late orders. Different from elapsed purchase-to-delivery duration."
+    },
+    {
+      "table": "FactOrders",
+      "name": "Duration Eligible Orders",
+      "expression": "CALCULATE(COUNTROWS(FactOrders), KEEPFILTERS(FactOrders[DurationEligible] = TRUE()))",
+      "formatString": "#,0",
+      "description": "Delivered orders with valid chronology and usable purchase and actual timestamps, matching the existing duration contract."
+    },
+    {
+      "table": "FactOrders",
+      "name": "Category On Time Delivery Rate",
+      "expression": "VAR OrdersInCategory = VALUES(FactOrderItems[OrderKey]) RETURN CALCULATE([On Time Delivery Rate], KEEPFILTERS(TREATAS(OrdersInCategory, FactOrders[OrderKey])))",
+      "formatString": "0.00%",
+      "description": "Distinct order-key semijoin from items to orders. A multi-category order contributes once to each applicable category; categories are non-additive."
+    },
+    {
+      "table": "FactOrders",
+      "name": "Category Eligible Deliveries",
+      "expression": "VAR OrdersInCategory = VALUES(FactOrderItems[OrderKey]) RETURN CALCULATE([Timeliness Eligible Orders], KEEPFILTERS(TREATAS(OrdersInCategory, FactOrders[OrderKey])))",
+      "formatString": "#,0",
+      "description": "Timeliness denominator within each category using a distinct order-key semijoin."
+    },
+    {
+      "table": "FactReviews",
+      "name": "Total Valid Reviews",
+      "expression": "CALCULATE(COUNTROWS(FactReviews), KEEPFILTERS(FactReviews[ValidScore] = TRUE()), KEEPFILTERS(TREATAS(VALUES(FactOrders[OrderKey]), FactReviews[OrderKey])))",
+      "formatString": "#,0",
+      "description": "All valid loaded review rows, all order statuses. Retains multiple reviews per order and transfers order timeliness selections without item-row expansion. Referential integrity requires every review order to exist."
+    },
+    {
+      "table": "FactReviews",
+      "name": "Satisfaction Average Review Score",
+      "expression": "CALCULATE(AVERAGE(FactReviews[ReviewScore]), KEEPFILTERS(FactReviews[ValidScore] = TRUE()), KEEPFILTERS(TREATAS(VALUES(FactOrders[OrderKey]), FactReviews[OrderKey])))",
+      "formatString": "0.00",
+      "description": "Mean valid review row score across all statuses; order-key semijoin makes timeliness cross-filtering explicit. Same unfiltered population as the original Average Review Score."
+    },
+    {
+      "table": "FactReviews",
+      "name": "Positive Review Rate",
+      "expression": "DIVIDE(COALESCE(CALCULATE([Total Valid Reviews], KEEPFILTERS(FactReviews[ReviewScore] >= 4)), 0), [Total Valid Reviews])",
+      "formatString": "0.00%",
+      "description": "Scores 4 or 5 / all valid reviews in current selection. Zero matching numerator rows returns 0%; an empty denominator remains undefined. A score slicer intentionally changes the denominator; score 3 is neutral."
+    },
+    {
+      "table": "FactReviews",
+      "name": "Negative Review Rate",
+      "expression": "DIVIDE(COALESCE(CALCULATE([Total Valid Reviews], KEEPFILTERS(FactReviews[ReviewScore] <= 2)), 0), [Total Valid Reviews])",
+      "formatString": "0.00%",
+      "description": "Scores 1 or 2 / all valid reviews in current selection. Zero matching numerator rows returns 0%; an empty denominator remains undefined. A score slicer intentionally changes the denominator; score 3 is neutral."
+    },
+    {
+      "table": "FactReviews",
+      "name": "Five Star Review Rate",
+      "expression": "DIVIDE(COALESCE(CALCULATE([Total Valid Reviews], KEEPFILTERS(FactReviews[ReviewScore] = 5)), 0), [Total Valid Reviews])",
+      "formatString": "0.00%",
+      "description": "Score 5 / all valid reviews in current selection. Zero matching numerator rows returns 0%; an empty denominator remains undefined. A score slicer intentionally changes the denominator; score 3 is neutral."
+    },
+    {
+      "table": "FactReviews",
+      "name": "On Time Average Review Score",
+      "expression": "CALCULATE([Satisfaction Average Review Score], KEEPFILTERS(FactOrders[OnTimeEligible] = TRUE()), KEEPFILTERS(FactOrders[IsOnTime] = TRUE()))",
+      "formatString": "0.00",
+      "description": "Average valid review row score for timeliness-eligible on-time orders, retaining review-date/geography/score filters."
+    },
+    {
+      "table": "FactReviews",
+      "name": "Late Average Review Score",
+      "expression": "CALCULATE([Satisfaction Average Review Score], KEEPFILTERS(FactOrders[OnTimeEligible] = TRUE()), KEEPFILTERS(FactOrders[IsOnTime] = FALSE()))",
+      "formatString": "0.00",
+      "description": "Average valid review row score for timeliness-eligible late orders, retaining review-date/geography/score filters."
+    },
+    {
+      "table": "FactReviews",
+      "name": "Late vs On Time Review Score",
+      "expression": "VAR LateScore = [Late Average Review Score] VAR OnTimeScore = [On Time Average Review Score] RETURN IF(ISBLANK(LateScore) || ISBLANK(OnTimeScore), \"N/A\", FORMAT(LateScore, \"0.00\") & \" / \" & FORMAT(OnTimeScore, \"0.00\"))",
+      "formatString": "",
+      "description": "Display late / on-time means; N/A if either comparison group is absent. Association does not establish causation."
+    },
+    {
+      "table": "FactReviews",
+      "name": "Category Average Review Score",
+      "expression": "VAR OrdersInCategory = VALUES(FactOrderItems[OrderKey]) RETURN CALCULATE([Satisfaction Average Review Score], KEEPFILTERS(TREATAS(OrdersInCategory, FactReviews[OrderKey])))",
+      "formatString": "0.00",
+      "description": "Valid review rows for orders containing a category; each review counted once per category using a distinct order-key semijoin. Multi-category orders can appear in several categories. No item-level attribution is claimed."
+    },
+    {
+      "table": "FactReviews",
+      "name": "Category Valid Reviews",
+      "expression": "VAR OrdersInCategory = VALUES(FactOrderItems[OrderKey]) RETURN CALCULATE([Total Valid Reviews], KEEPFILTERS(TREATAS(OrdersInCategory, FactReviews[OrderKey])))",
+      "formatString": "#,0",
+      "description": "Category review denominator using a distinct-order-key semijoin; category totals are non-additive."
+    },
+    {
+      "table": "FactOrders",
+      "name": "Show Delivery Top 10 States",
+      "expression": "VAR Candidates = FILTER(ADDCOLUMNS(ALLSELECTED(DimCustomerGeography[ApproximateState]), \"__Volume\", [Delivered Orders]), NOT ISBLANK(DimCustomerGeography[ApproximateState]) && [__Volume] > 0) VAR Leaders = TOPN(10, Candidates, [__Volume], DESC, DimCustomerGeography[ApproximateState], ASC) VAR CurrentGroup = SELECTEDVALUE(DimCustomerGeography[ApproximateState]) RETURN IF(ISINSCOPE(DimCustomerGeography[ApproximateState]) && CONTAINS(Leaders, DimCustomerGeography[ApproximateState], CurrentGroup), 1, 0)",
+      "formatString": "0",
+      "description": "Visual-only exact Top 10 by selected population volume; alphabetical tie-break. Never apply at page/report level."
+    },
+    {
+      "table": "FactOrders",
+      "name": "Show Delivery Top 10 Categories",
+      "expression": "VAR Candidates = FILTER(ADDCOLUMNS(ALLSELECTED(DimProduct[CategoryLabel]), \"__Volume\", [Category Eligible Deliveries]), NOT ISBLANK(DimProduct[CategoryLabel]) && [__Volume] > 0) VAR Leaders = TOPN(10, Candidates, [__Volume], DESC, DimProduct[CategoryLabel], ASC) VAR CurrentGroup = SELECTEDVALUE(DimProduct[CategoryLabel]) RETURN IF(ISINSCOPE(DimProduct[CategoryLabel]) && CONTAINS(Leaders, DimProduct[CategoryLabel], CurrentGroup), 1, 0)",
+      "formatString": "0",
+      "description": "Visual-only exact Top 10 by selected population volume; alphabetical tie-break. Never apply at page/report level."
+    },
+    {
+      "table": "FactReviews",
+      "name": "Show Review Top 10 States",
+      "expression": "VAR Candidates = FILTER(ADDCOLUMNS(ALLSELECTED(DimCustomerGeography[ApproximateState]), \"__Volume\", [Total Valid Reviews]), NOT ISBLANK(DimCustomerGeography[ApproximateState]) && [__Volume] > 0) VAR Leaders = TOPN(10, Candidates, [__Volume], DESC, DimCustomerGeography[ApproximateState], ASC) VAR CurrentGroup = SELECTEDVALUE(DimCustomerGeography[ApproximateState]) RETURN IF(ISINSCOPE(DimCustomerGeography[ApproximateState]) && CONTAINS(Leaders, DimCustomerGeography[ApproximateState], CurrentGroup), 1, 0)",
+      "formatString": "0",
+      "description": "Visual-only exact Top 10 by selected population volume; alphabetical tie-break. Never apply at page/report level."
+    },
+    {
+      "table": "FactReviews",
+      "name": "Show Review Top 10 Categories",
+      "expression": "VAR Candidates = FILTER(ADDCOLUMNS(ALLSELECTED(DimProduct[CategoryLabel]), \"__Volume\", [Category Valid Reviews]), NOT ISBLANK(DimProduct[CategoryLabel]) && [__Volume] > 0) VAR Leaders = TOPN(10, Candidates, [__Volume], DESC, DimProduct[CategoryLabel], ASC) VAR CurrentGroup = SELECTEDVALUE(DimProduct[CategoryLabel]) RETURN IF(ISINSCOPE(DimProduct[CategoryLabel]) && CONTAINS(Leaders, DimProduct[CategoryLabel], CurrentGroup), 1, 0)",
+      "formatString": "0",
+      "description": "Visual-only exact Top 10 by selected population volume; alphabetical tie-break. Never apply at page/report level."
+    }
+  ],
+  "columns": [
+    {
+      "table": "FactOrders",
+      "name": "Delivery Timeliness",
+      "expression": "IF(FactOrders[OnTimeEligible] = TRUE(), IF(FactOrders[IsOnTime] = TRUE(), \"On time\", \"Late\"), \"Not eligible\")",
+      "dataType": "string",
+      "description": "Calendar-date SLA classification. Not eligible includes undelivered or missing-date orders; never relabel them late."
+    },
+    {
+      "table": "FactOrders",
+      "name": "Delivery Duration Band",
+      "expression": "IF(FactOrders[DurationEligible] <> TRUE(), BLANK(), SWITCH(TRUE(), FactOrders[DeliveryDurationDays] < 7, \"01 | Under 7 days\", FactOrders[DeliveryDurationDays] < 14, \"02 | 7 to <14 days\", FactOrders[DeliveryDurationDays] < 21, \"03 | 14 to <21 days\", FactOrders[DeliveryDurationDays] < 30, \"04 | 21 to <30 days\", \"05 | 30+ days\"))",
+      "dataType": "string",
+      "description": "Elapsed-day duration bins, only for duration-eligible orders. Prefixes preserve chronological sort."
+    }
+  ]
+}

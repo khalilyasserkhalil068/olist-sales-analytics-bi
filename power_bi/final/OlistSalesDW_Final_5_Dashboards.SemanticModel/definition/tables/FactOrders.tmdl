@@ -1,0 +1,526 @@
+table FactOrders
+	lineageTag: 8f79cb02-6174-43b3-82a9-9216111a975f
+
+	/// Order-grain count. Responds to customer, status, purchase date and order; product/seller filters apply only to item measures.
+	measure 'Order Count' = COUNTROWS(FactOrders)
+		formatString: #,0
+		displayFolder: Validated KPIs
+		lineageTag: 4ffdb9bc-4a12-4505-857b-68fb7ea1a304
+
+	/// Sales-eligible orders at order grain.
+	measure 'Sales Order Count' = CALCULATE(COUNTROWS(FactOrders), KEEPFILTERS(FactOrders[SalesEligible]=TRUE()))
+		formatString: #,0
+		displayFolder: Validated KPIs
+		lineageTag: 81ca6f37-0118-490f-91f1-492e0de75453
+
+	/// Eligible on-time orders divided by eligible delivered orders; excludes missing/ineligible delivery records.
+	measure 'On Time Delivery Rate' = DIVIDE(CALCULATE(COUNTROWS(FactOrders),KEEPFILTERS(FactOrders[OnTimeEligible]=TRUE()),KEEPFILTERS(FactOrders[IsOnTime]=TRUE())),CALCULATE(COUNTROWS(FactOrders),KEEPFILTERS(FactOrders[OnTimeEligible]=TRUE())))
+		formatString: 0.00%
+		displayFolder: Validated KPIs
+		lineageTag: 7fd122e3-4077-4f21-9a04-ae4a2a6aa009
+
+	/// Average duration over duration-eligible orders only.
+	measure 'Average Delivery Days' = CALCULATE(AVERAGE(FactOrders[DeliveryDurationDays]),KEEPFILTERS(FactOrders[DurationEligible]=TRUE()))
+		formatString: 0.00
+		displayFolder: Validated KPIs
+		lineageTag: cb299ea2-aeeb-4808-9126-0e43411b5e74
+
+	/// Distinct known CustomerUniqueID identities with sales-eligible orders in the current selection. Filters FactOrders first, then transfers its customer keys to DimCustomer with TREATAS. Not distinct CustomerID, not unfiltered dimension population.
+	measure 'Unique Sales Customers' = VAR EligibleCustomerKeys = CALCULATETABLE(VALUES(FactOrders[CustomerKey]), KEEPFILTERS(FactOrders[SalesEligible] = TRUE())) RETURN COALESCE(CALCULATE(DISTINCTCOUNT(DimCustomer[CustomerUniqueID]), KEEPFILTERS(TREATAS(EligibleCustomerKeys, DimCustomer[CustomerKey])), KEEPFILTERS(DimCustomer[CustomerKey] <> 0), KEEPFILTERS(NOT ISBLANK(DimCustomer[CustomerUniqueID]))), 0)
+		formatString: #,0
+		displayFolder: Dashboard KPIs
+		lineageTag: 32ea1940-f608-4076-a452-864f880c6309
+
+	/// Known customer identities with at least two distinct sales-eligible OrderKey values within the current selected dates and geography. Observed repeat purchasing, not cohort retention or lifetime behavior.
+	measure 'Repeat Sales Customers' = VAR IdentityOrders = CALCULATETABLE(SUMMARIZE(FactOrders, DimCustomer[CustomerUniqueID], "__Orders", DISTINCTCOUNT(FactOrders[OrderKey])), KEEPFILTERS(FactOrders[SalesEligible] = TRUE()), KEEPFILTERS(DimCustomer[CustomerKey] <> 0), KEEPFILTERS(NOT ISBLANK(DimCustomer[CustomerUniqueID]))) RETURN COALESCE(COUNTROWS(FILTER(IdentityOrders, [__Orders] >= 2)), 0)
+		formatString: #,0
+		displayFolder: Dashboard KPIs
+		lineageTag: 4b5d2f7f-c6de-44f5-9447-158cffd4325d
+
+	/// Identities with exactly one eligible purchase in the current selection. One-time refers only to this selected observation window, not first-ever purchase or churn.
+	measure 'One-Time Sales Customers' = [Unique Sales Customers] - [Repeat Sales Customers]
+		formatString: #,0
+		displayFolder: Dashboard KPIs
+		lineageTag: a3baf3dc-a6d2-4d3a-8e28-baf3fd582e99
+
+	/// Repeat eligible identities divided by all known eligible identities within the current selection. Nonadditive across geography and time; not a retention rate.
+	measure 'Repeat Customer Rate' = DIVIDE([Repeat Sales Customers], [Unique Sales Customers])
+		formatString: 0.00%
+		displayFolder: Dashboard KPIs
+		lineageTag: da8a5b61-8d04-4330-8f6e-f809ff573ff0
+
+	/// Sales-eligible order count for known identities divided by unique eligible identities, within the selected observation window.
+	measure 'Customer Order Frequency' = DIVIDE(CALCULATE([Sales Order Count], KEEPFILTERS(DimCustomer[CustomerKey] <> 0), KEEPFILTERS(NOT ISBLANK(DimCustomer[CustomerUniqueID]))), [Unique Sales Customers])
+		formatString: 0.00
+		displayFolder: Dashboard KPIs
+		lineageTag: 33c7f1fa-ccd5-42cd-803b-8751d117f7a6
+
+	/// Eligible item revenue associated with known customer identities divided by distinct eligible identities. Preserves item-grain Sales Revenue; never sums order revenue into item revenue.
+	measure 'Sales Revenue per Customer' = DIVIDE(CALCULATE([Sales Revenue], KEEPFILTERS(DimCustomer[CustomerKey] <> 0), KEEPFILTERS(NOT ISBLANK(DimCustomer[CustomerUniqueID]))), [Unique Sales Customers])
+		formatString: "R$" #,0.00
+		displayFolder: Dashboard KPIs
+		lineageTag: d41632b8-2d6a-4f29-a680-41ab1672374a
+
+	/// Distinct nonblank approximate ZIP-lookup states with known eligible customer identities in the current selection. Unknown geography is retained in other visuals but is not counted as a state.
+	measure 'Customer States with Sales' = COALESCE(COUNTROWS(FILTER(VALUES(DimCustomerGeography[ApproximateState]), NOT ISBLANK(DimCustomerGeography[ApproximateState]) && [Unique Sales Customers] > 0)), 0)
+		formatString: #,0
+		displayFolder: Dashboard KPIs
+		lineageTag: 131fc245-608d-4ed3-a973-f8dbdb9ec252
+
+	/// Approximate customer state with the highest eligible item revenue in the current selection; deterministic alphabetical tie-break. Blank when there are no positive-revenue known states.
+	measure 'Top Customer State' = VAR StateRevenue = FILTER(ADDCOLUMNS(VALUES(DimCustomerGeography[ApproximateState]), "__Revenue", [Sales Revenue]), NOT ISBLANK(DimCustomerGeography[ApproximateState]) && [__Revenue] > 0) RETURN CONCATENATEX(TOPN(1, StateRevenue, [__Revenue], DESC, DimCustomerGeography[ApproximateState], ASC), DimCustomerGeography[ApproximateState], ", ")
+		displayFolder: Dashboard KPIs
+		lineageTag: 21882d2c-dc89-425c-b9f7-d7edb349d82b
+
+	/// Revenue of the top nonblank approximate customer state in the current selection; supporting tooltip for Top Customer State.
+	measure 'Top Customer State Revenue' = MAXX(FILTER(VALUES(DimCustomerGeography[ApproximateState]), NOT ISBLANK(DimCustomerGeography[ApproximateState])), [Sales Revenue])
+		formatString: "R$" #,0.00
+		displayFolder: Dashboard KPIs
+		lineageTag: e74a5035-d36b-4024-a728-5481b0748377
+
+	/// Regional eligible revenue divided by revenue across the selected visible regions, preserving purchase-date, state and city slicers. Requires the proposed Customer Region display attribute.
+	measure 'Customer Region Revenue Share' = DIVIDE([Sales Revenue], CALCULATE([Sales Revenue], ALLSELECTED(DimCustomerGeography[Customer Region])))
+		formatString: 0.0%
+		displayFolder: Dashboard KPIs
+		lineageTag: cc43f012-4d9f-4147-ad0d-5f25fcd423a6
+
+	/// Visual-only exact Top 10 city/state groups by eligible Sales Revenue within slicer selection, alphabetical tie-break. Use filter equals1 only on city visual, never page/report. Do not add other geography fields as tooltip grouping columns.
+	measure 'Show Top 10 Customer Cities' = VAR Candidates = FILTER(ADDCOLUMNS(ALLSELECTED(DimCustomerGeography[Customer City State]), "__Revenue", [Sales Revenue]), [__Revenue] > 0) VAR Leaders = TOPN(10, Candidates, [__Revenue], DESC, DimCustomerGeography[Customer City State], ASC) VAR ThisCity = SELECTEDVALUE(DimCustomerGeography[Customer City State]) RETURN IF(ISINSCOPE(DimCustomerGeography[Customer City State]) && CONTAINS(Leaders, DimCustomerGeography[Customer City State], ThisCity), 1, 0)
+		formatString: 0
+		displayFolder: Dashboard KPIs
+		lineageTag: e1e68905-7fd0-458d-b113-a1505633e4e6
+
+	/// All orders whose status is delivered. This includes delivered orders missing actual delivery dates; SLA eligibility is a separate denominator.
+	measure 'Delivered Orders' = CALCULATE(COUNTROWS(FactOrders), KEEPFILTERS(DimOrderStatus[OrderStatus] = "delivered"))
+		formatString: #,0
+		displayFolder: Completion KPIs
+		lineageTag: 9f7898b3-fa43-4fb1-827e-ab2daec2f352
+
+	/// Delivered orders with actual and estimated delivery timestamps, using the preserved warehouse eligibility contract.
+	measure 'Timeliness Eligible Orders' = CALCULATE(COUNTROWS(FactOrders), KEEPFILTERS(FactOrders[OnTimeEligible] = TRUE()))
+		formatString: #,0
+		displayFolder: Completion KPIs
+		lineageTag: 3da80ef0-a458-47f2-b8bc-88c0ed554ce3
+
+	/// Eligible orders delivered on or before estimated calendar date; preserves the original KPI.
+	measure 'On Time Deliveries' = CALCULATE([Timeliness Eligible Orders], KEEPFILTERS(FactOrders[IsOnTime] = TRUE()))
+		formatString: #,0
+		displayFolder: Completion KPIs
+		lineageTag: 80da46f7-39a1-4bbc-acf1-ce5036b763c8
+
+	/// Eligible delivered orders after the estimated calendar date. Undelivered orders never enter this count.
+	measure 'Late Deliveries' = CALCULATE([Timeliness Eligible Orders], KEEPFILTERS(FactOrders[IsOnTime] = FALSE()))
+		formatString: #,0
+		displayFolder: Completion KPIs
+		lineageTag: 18272e09-8107-4efe-8e6c-f787689757ad
+
+	/// Late deliveries / timeliness-eligible deliveries under the current filters.
+	measure 'Late Delivery Rate' = DIVIDE([Late Deliveries], [Timeliness Eligible Orders])
+		formatString: 0.00%
+		displayFolder: Completion KPIs
+		lineageTag: 7b947d9a-8c67-48cd-8eb9-5b810aed1d2c
+
+	/// Sum the once-per-order aggregated freight for delivered orders. Never join freight to reviews or items for this measure.
+	measure 'Delivered Freight Amount' = CALCULATE(SUM(FactOrders[FreightAmount]), KEEPFILTERS(DimOrderStatus[OrderStatus] = "delivered"))
+		formatString: "R$" #,0.00
+		displayFolder: Completion KPIs
+		lineageTag: a78f3d07-f035-41f3-8a27-114513455dd9
+
+	/// Delivered order freight divided by all delivered orders, including zero-freight orders.
+	measure 'Average Freight per Delivered Order' = DIVIDE([Delivered Freight Amount], [Delivered Orders])
+		formatString: "R$" #,0.00
+		displayFolder: Completion KPIs
+		lineageTag: 37e7c4c9-1a44-488d-856b-4029538003cb
+
+	/// Mean calendar-day lateness among eligible late orders. Different from elapsed purchase-to-delivery duration.
+	measure 'Average Late Delay Days' = AVERAGEX(FILTER(FactOrders, FactOrders[OnTimeEligible] = TRUE() && FactOrders[IsOnTime] = FALSE()), INT(FactOrders[ActualDeliveryTimestamp]) - INT(FactOrders[EstimatedDeliveryTimestamp]))
+		formatString: 0.00
+		displayFolder: Completion KPIs
+		lineageTag: 7f4db33a-3a43-40e6-bd6f-ddb7993944e9
+
+	/// Delivered orders with valid chronology and usable purchase and actual timestamps, matching the existing duration contract.
+	measure 'Duration Eligible Orders' = CALCULATE(COUNTROWS(FactOrders), KEEPFILTERS(FactOrders[DurationEligible] = TRUE()))
+		formatString: #,0
+		displayFolder: Completion KPIs
+		lineageTag: 2c4f8ccb-9ee6-4f5d-8e7f-bd908baa4b18
+
+	/// Distinct order-key semijoin from items to orders. A multi-category order contributes once to each applicable category; categories are non-additive.
+	measure 'Category On Time Delivery Rate' = VAR OrdersInCategory = VALUES(FactOrderItems[OrderKey]) RETURN CALCULATE([On Time Delivery Rate], KEEPFILTERS(TREATAS(OrdersInCategory, FactOrders[OrderKey])))
+		formatString: 0.00%
+		displayFolder: Completion KPIs
+		lineageTag: 2b3bae50-aef5-4e6c-afc2-6738281baa75
+
+	/// Timeliness denominator within each category using a distinct order-key semijoin.
+	measure 'Category Eligible Deliveries' = VAR OrdersInCategory = VALUES(FactOrderItems[OrderKey]) RETURN CALCULATE([Timeliness Eligible Orders], KEEPFILTERS(TREATAS(OrdersInCategory, FactOrders[OrderKey])))
+		formatString: #,0
+		displayFolder: Completion KPIs
+		lineageTag: 94ba5e49-be62-4054-bc88-451a5363ff08
+
+	/// Visual-only exact Top 10 by selected population volume; alphabetical tie-break. Never apply at page/report level.
+	measure 'Show Delivery Top 10 States' = VAR Candidates = FILTER(ADDCOLUMNS(ALLSELECTED(DimCustomerGeography[ApproximateState]), "__Volume", [Delivered Orders]), NOT ISBLANK(DimCustomerGeography[ApproximateState]) && [__Volume] > 0) VAR Leaders = TOPN(10, Candidates, [__Volume], DESC, DimCustomerGeography[ApproximateState], ASC) VAR CurrentGroup = SELECTEDVALUE(DimCustomerGeography[ApproximateState]) RETURN IF(ISINSCOPE(DimCustomerGeography[ApproximateState]) && CONTAINS(Leaders, DimCustomerGeography[ApproximateState], CurrentGroup), 1, 0)
+		formatString: 0
+		displayFolder: Completion KPIs
+		lineageTag: c26c170e-0f3b-4b9d-a175-9d5994c42985
+
+	/// Visual-only exact Top 10 by selected population volume; alphabetical tie-break. Never apply at page/report level.
+	measure 'Show Delivery Top 10 Categories' = VAR Candidates = FILTER(ADDCOLUMNS(ALLSELECTED(DimProduct[CategoryLabel]), "__Volume", [Category Eligible Deliveries]), NOT ISBLANK(DimProduct[CategoryLabel]) && [__Volume] > 0) VAR Leaders = TOPN(10, Candidates, [__Volume], DESC, DimProduct[CategoryLabel], ASC) VAR CurrentGroup = SELECTEDVALUE(DimProduct[CategoryLabel]) RETURN IF(ISINSCOPE(DimProduct[CategoryLabel]) && CONTAINS(Leaders, DimProduct[CategoryLabel], CurrentGroup), 1, 0)
+		formatString: 0
+		displayFolder: Completion KPIs
+		lineageTag: 5fa4159d-8de3-4393-b0b1-fc39413afdd8
+
+	column OrderKey
+		dataType: int64
+		formatString: 0
+		lineageTag: dd82d089-f248-489f-8a3f-6f827981f966
+		summarizeBy: count
+		sourceColumn: OrderKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderID
+		dataType: string
+		lineageTag: 859a4bb5-3e76-4fe3-860f-458de9166f33
+		summarizeBy: none
+		sourceColumn: OrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceCustomerID
+		dataType: string
+		lineageTag: 8a39c735-0f61-4768-beb3-cc43a17d38a7
+		summarizeBy: none
+		sourceColumn: SourceCustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 9cd198fe-8c0f-45ce-95d3-c0c4ec5a3c76
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerGeographyKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 92348e24-bcdd-461e-8c0e-8024c33c6fde
+		summarizeBy: count
+		sourceColumn: CustomerGeographyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderStatusKey
+		dataType: int64
+		formatString: 0
+		lineageTag: c52e08e2-c805-4601-bf21-d7ac0b7af743
+		summarizeBy: count
+		sourceColumn: OrderStatusKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PurchaseDateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: e0f6af37-7f09-4686-b9b6-336e7544c9ac
+		summarizeBy: count
+		sourceColumn: PurchaseDateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ApprovalDateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 41492db4-f893-464b-9e7a-5d67a179218e
+		summarizeBy: count
+		sourceColumn: ApprovalDateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CarrierDateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: d81c0bc9-b590-4c2e-8680-63c88c2cf70d
+		summarizeBy: count
+		sourceColumn: CarrierDateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ActualDeliveryDateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 033837d2-3a0b-462e-8797-9e1fc9a553bf
+		summarizeBy: count
+		sourceColumn: ActualDeliveryDateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column EstimatedDeliveryDateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: b375eb32-96f4-4243-957a-4046d1cffac0
+		summarizeBy: count
+		sourceColumn: EstimatedDeliveryDateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PurchaseTimestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0735c65c-995e-49f6-ae92-ff2844e2f961
+		summarizeBy: none
+		sourceColumn: PurchaseTimestamp
+
+		variation Variation
+			isDefault
+			relationship: 30ce5bbc-26cf-4611-b28e-3cc979971952
+			defaultHierarchy: LocalDateTable_49228ef8-33ec-479c-a777-57b2febd464f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ApprovalTimestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: bbc694ad-46f5-4c6b-ac35-03e0b7f11025
+		summarizeBy: none
+		sourceColumn: ApprovalTimestamp
+
+		variation Variation
+			isDefault
+			relationship: de980fa5-2ad6-4ba2-8274-994720d3652a
+			defaultHierarchy: LocalDateTable_5a46a3aa-0b4c-4dea-a844-41ada4eae72a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column CarrierTimestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9f4860ae-f5c2-42ac-a640-ed0a89af81c1
+		summarizeBy: none
+		sourceColumn: CarrierTimestamp
+
+		variation Variation
+			isDefault
+			relationship: 9a1e1109-aeb1-40ea-83f6-911db369d615
+			defaultHierarchy: LocalDateTable_b9d05030-7fc2-4b27-9911-ca339e7e4056.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ActualDeliveryTimestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d2e0dbaa-cc2d-4d1e-923e-0238b62e9966
+		summarizeBy: none
+		sourceColumn: ActualDeliveryTimestamp
+
+		variation Variation
+			isDefault
+			relationship: 73d6a815-1a15-4eae-b56c-41ee9910c0dc
+			defaultHierarchy: LocalDateTable_d93f9290-a870-45af-a9c8-e0d3f006046f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column EstimatedDeliveryTimestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 89f0efc4-eb3f-41eb-9692-fdb18aa9dc4f
+		summarizeBy: none
+		sourceColumn: EstimatedDeliveryTimestamp
+
+		variation Variation
+			isDefault
+			relationship: 13fb722a-ee65-45ca-943d-f1cea51514c7
+			defaultHierarchy: LocalDateTable_6535d1b8-86a8-44ea-87ee-276b456f1afe.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column MerchandiseRevenue
+		dataType: double
+		lineageTag: 6f061579-cf6f-402f-b314-b186659efad7
+		summarizeBy: sum
+		sourceColumn: MerchandiseRevenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FreightAmount
+		dataType: double
+		lineageTag: 647a6245-0369-46f3-ae14-5ba328774482
+		summarizeBy: sum
+		sourceColumn: FreightAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ItemCount
+		dataType: int64
+		formatString: 0
+		lineageTag: 471cdf08-5c53-445d-aa08-7421cd4d4d19
+		summarizeBy: sum
+		sourceColumn: ItemCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column PaymentRecordCount
+		dataType: int64
+		formatString: 0
+		lineageTag: d8d82690-4932-4199-a1d2-da4bae005050
+		summarizeBy: sum
+		sourceColumn: PaymentRecordCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReviewRecordCount
+		dataType: int64
+		formatString: 0
+		lineageTag: 3d1b324d-94f1-4552-a2d7-4079efd660f5
+		summarizeBy: sum
+		sourceColumn: ReviewRecordCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesEligible
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 45b50e70-cb10-4a2d-895e-c98c639e6adc
+		summarizeBy: none
+		sourceColumn: SalesEligible
+
+		annotation SummarizationSetBy = Automatic
+
+	column OnTimeEligible
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 6fe8adbc-7670-4993-94ec-2b6df1e4e70a
+		summarizeBy: none
+		sourceColumn: OnTimeEligible
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsOnTime
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a0ea6533-9264-482b-9af6-e916d823de0d
+		summarizeBy: none
+		sourceColumn: IsOnTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column DurationEligible
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 468bd8d3-64aa-450f-804d-27339e3120e5
+		summarizeBy: none
+		sourceColumn: DurationEligible
+
+		annotation SummarizationSetBy = Automatic
+
+	column DeliveryDurationDays
+		dataType: double
+		lineageTag: a242012f-d00c-4dea-bade-b1e8ac7c1e18
+		summarizeBy: sum
+		sourceColumn: DeliveryDurationDays
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column InvalidChronology
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1597d933-7902-401e-a32a-c32b555c0df5
+		summarizeBy: none
+		sourceColumn: InvalidChronology
+
+		annotation SummarizationSetBy = Automatic
+
+	column MissingPurchaseTimestamp
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 79afef76-1752-4fd5-813d-a9990c4ccba1
+		summarizeBy: none
+		sourceColumn: MissingPurchaseTimestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column MissingApprovalTimestamp
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 18ae49ea-e5c7-4b49-b306-91ff96f1b904
+		summarizeBy: none
+		sourceColumn: MissingApprovalTimestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column MissingCarrierTimestamp
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 258e0358-d9ac-4126-847f-c0b156bde56e
+		summarizeBy: none
+		sourceColumn: MissingCarrierTimestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column MissingActualDeliveryTimestamp
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 81d495ba-a05f-41ca-86b7-f8be0964dc30
+		summarizeBy: none
+		sourceColumn: MissingActualDeliveryTimestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column MissingEstimatedDeliveryTimestamp
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 54bc9360-dbbb-4473-9580-0424916afb2b
+		summarizeBy: none
+		sourceColumn: MissingEstimatedDeliveryTimestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceQualityFlagCount
+		dataType: int64
+		formatString: 0
+		lineageTag: fac52c79-d3bc-4d19-8325-3786cde17f98
+		summarizeBy: sum
+		sourceColumn: SourceQualityFlagCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoadID
+		dataType: string
+		lineageTag: d73e3bfc-ab13-4d74-acdb-3903f0d79db4
+		summarizeBy: none
+		sourceColumn: LoadID
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Calendar-date SLA classification. Not eligible includes undelivered or missing-date orders; never relabel them late.
+	column 'Delivery Timeliness' = IF(FactOrders[OnTimeEligible] = TRUE(), IF(FactOrders[IsOnTime] = TRUE(), "On time", "Late"), "Not eligible")
+		dataType: string
+		lineageTag: 9c1246e3-b98c-4317-beb8-e9a3d07c6574
+		summarizeBy: none
+
+	/// Elapsed-day duration bins, only for duration-eligible orders. Prefixes preserve chronological sort.
+	column 'Delivery Duration Band' = IF(FactOrders[DurationEligible] <> TRUE(), BLANK(), SWITCH(TRUE(), FactOrders[DeliveryDurationDays] < 7, "01 | Under 7 days", FactOrders[DeliveryDurationDays] < 14, "02 | 7 to <14 days", FactOrders[DeliveryDurationDays] < 21, "03 | 14 to <21 days", FactOrders[DeliveryDurationDays] < 30, "04 | 21 to <30 days", "05 | 30+ days"))
+		dataType: string
+		lineageTag: 57f835f4-281c-496f-a8ee-3f8f092ee766
+		summarizeBy: none
+
+	partition FactOrders = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("DESKTOP-GEUMHVT\SQLEXPRESS", "OlistSalesDW"),
+				    dw_FactOrders = Source{[Schema="dw",Item="FactOrders"]}[Data]
+				in
+				    dw_FactOrders
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

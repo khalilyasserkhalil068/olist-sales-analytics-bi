@@ -1,0 +1,74 @@
+/// Seller location only. Filters DimSeller and FactOrderItems; does not allocate order payments or reviews to sellers.
+table DimSellerGeography
+	lineageTag: b58ce3b1-e073-4d03-9e20-9135fd479079
+
+	column GeographyKey
+		lineageTag: 4a39496f-2dd9-4733-becc-1a6b91c0129d
+		isNameInferred
+		sourceColumn: DimCustomerGeography[GeographyKey]
+
+	column ZipCodePrefix
+		lineageTag: 3f727ff1-3d1a-4d86-995f-0e93fb4765d1
+		isNameInferred
+		sourceColumn: DimCustomerGeography[ZipCodePrefix]
+
+	column ApproximateCity
+		lineageTag: 236a1c66-948b-4c5b-a484-64a57c74a28a
+		isNameInferred
+		sourceColumn: DimCustomerGeography[ApproximateCity]
+
+	column ApproximateState
+		lineageTag: 1d1f12a7-4d0c-41bc-bd01-4a005ff836ad
+		isNameInferred
+		sourceColumn: DimCustomerGeography[ApproximateState]
+
+	column Latitude
+		lineageTag: 8510e029-17f6-4273-8257-c02c8820cc5c
+		isNameInferred
+		sourceColumn: DimCustomerGeography[Latitude]
+
+	column Longitude
+		lineageTag: b3fa740e-cc25-4a23-b674-4d849f502ba9
+		isNameInferred
+		sourceColumn: DimCustomerGeography[Longitude]
+
+	column LookupMatched
+		lineageTag: f2527ab0-b278-4215-847e-a4e2e5928b0d
+		isNameInferred
+		sourceColumn: DimCustomerGeography[LookupMatched]
+
+	column ConflictingCities
+		lineageTag: a219c02d-c658-443e-842f-67cc472aeb0a
+		isNameInferred
+		sourceColumn: DimCustomerGeography[ConflictingCities]
+
+	column ConflictingStates
+		lineageTag: 4493d3aa-2edc-4637-a53e-8472bcd89f8c
+		isNameInferred
+		sourceColumn: DimCustomerGeography[ConflictingStates]
+
+	column DistinctCityLabels
+		lineageTag: 390041a9-72d6-4857-94de-a944e9b51778
+		isNameInferred
+		sourceColumn: DimCustomerGeography[DistinctCityLabels]
+
+	column DistinctStateLabels
+		lineageTag: f5da94b0-1fab-4981-a82f-ce66843b4dd5
+		isNameInferred
+		sourceColumn: DimCustomerGeography[DistinctStateLabels]
+
+	column 'Customer Region'
+		isHidden
+		lineageTag: 1a6abf98-c719-4de9-883f-875db6093fd9
+		isNameInferred
+		sourceColumn: DimCustomerGeography[Customer Region]
+
+	column 'Customer City State'
+		isHidden
+		lineageTag: c6b61706-4344-4071-8ceb-547d0c36fbca
+		isNameInferred
+		sourceColumn: DimCustomerGeography[Customer City State]
+
+	partition DimSellerGeography = calculated
+		source = 'DimCustomerGeography'
+

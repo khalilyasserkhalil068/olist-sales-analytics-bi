@@ -1,0 +1,64 @@
+/// Purchase date for all facts. Separate active date role; missing dates appear under the relationship blank member.
+table DimDate
+	lineageTag: a50b3892-b6c0-4fcc-ad4c-75ebf2469aa8
+	dataCategory: Time
+
+	column DateKey
+		lineageTag: 18773ef1-8263-4160-a1b7-cf32f7fa00b3
+		isNameInferred
+		sourceColumn: DateKeyLookup[DateKey]
+
+	column FullDate
+		lineageTag: 56529511-7e98-42f1-879f-fc5577a14679
+		isNameInferred
+		sourceColumn: DateKeyLookup[FullDate]
+
+	column Day
+		lineageTag: 07bd11fa-3918-420a-8e74-5d107f24d166
+		isNameInferred
+		sourceColumn: DateKeyLookup[Day]
+
+	column Month
+		lineageTag: e5eae42a-69f5-4224-9360-4370b7aa7d88
+		isNameInferred
+		sourceColumn: DateKeyLookup[Month]
+
+	column MonthName
+		lineageTag: 15a1eeb5-1e41-4a81-b059-1cc5e214b6e1
+		isNameInferred
+		sourceColumn: DateKeyLookup[MonthName]
+		sortByColumn: Month
+
+	column Quarter
+		lineageTag: 583da5d0-7de4-43d3-a565-e5d003bc3237
+		isNameInferred
+		sourceColumn: DateKeyLookup[Quarter]
+
+	column Year
+		lineageTag: 2d6fe943-cd62-4ae9-b37c-ec5c7eca649e
+		isNameInferred
+		sourceColumn: DateKeyLookup[Year]
+
+	column YearMonth
+		lineageTag: 71467946-2bf4-4ed9-8663-e47e47fcffbe
+		isNameInferred
+		sourceColumn: DateKeyLookup[YearMonth]
+
+	column DayOfWeek
+		lineageTag: 8321ad29-5c9e-4766-8457-b1fe61dfcdf8
+		isNameInferred
+		sourceColumn: DateKeyLookup[DayOfWeek]
+
+	column DayName
+		lineageTag: 9937fd4c-4930-406f-b53e-c27568d638c6
+		isNameInferred
+		sourceColumn: DateKeyLookup[DayName]
+
+	column IsWeekend
+		lineageTag: 44fc4b6a-df41-495a-9e98-cb47f72554fc
+		isNameInferred
+		sourceColumn: DateKeyLookup[IsWeekend]
+
+	partition DimDate = calculated
+		source = FILTER(DateKeyLookup, NOT ISBLANK(DateKeyLookup[FullDate]))
+

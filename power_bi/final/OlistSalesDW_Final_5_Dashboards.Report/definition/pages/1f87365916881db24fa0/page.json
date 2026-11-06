@@ -1,0 +1,666 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "1f87365916881db24fa0",
+  "displayName": "01 | Executive Overview",
+  "displayOption": "FitToPage",
+  "height": 900,
+  "width": 1600,
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F3F6FA'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "p1_purchase_year",
+      "target": "p1_purchase_month",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_purchase_year",
+      "target": "p1_customer_state",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_purchase_year",
+      "target": "p1_order_status",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_purchase_year",
+      "target": "p1_sales_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_purchase_year",
+      "target": "p1_total_orders",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_purchase_year",
+      "target": "p1_aov",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_purchase_year",
+      "target": "p1_unique_customers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_purchase_year",
+      "target": "p1_on_time_rate",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_purchase_year",
+      "target": "p1_review_score",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_purchase_year",
+      "target": "p1_monthly_sales",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_purchase_year",
+      "target": "p1_category_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_purchase_year",
+      "target": "p1_orders_status",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_purchase_year",
+      "target": "p1_state_sales",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_purchase_year",
+      "target": "p1_year_sales",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_purchase_month",
+      "target": "p1_purchase_year",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_purchase_month",
+      "target": "p1_customer_state",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_purchase_month",
+      "target": "p1_order_status",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_purchase_month",
+      "target": "p1_sales_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_purchase_month",
+      "target": "p1_total_orders",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_purchase_month",
+      "target": "p1_aov",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_purchase_month",
+      "target": "p1_unique_customers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_purchase_month",
+      "target": "p1_on_time_rate",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_purchase_month",
+      "target": "p1_review_score",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_purchase_month",
+      "target": "p1_monthly_sales",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_purchase_month",
+      "target": "p1_category_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_purchase_month",
+      "target": "p1_orders_status",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_purchase_month",
+      "target": "p1_state_sales",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_purchase_month",
+      "target": "p1_year_sales",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_customer_state",
+      "target": "p1_purchase_year",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_customer_state",
+      "target": "p1_purchase_month",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_customer_state",
+      "target": "p1_order_status",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_customer_state",
+      "target": "p1_sales_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_customer_state",
+      "target": "p1_total_orders",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_customer_state",
+      "target": "p1_aov",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_customer_state",
+      "target": "p1_unique_customers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_customer_state",
+      "target": "p1_on_time_rate",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_customer_state",
+      "target": "p1_review_score",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_customer_state",
+      "target": "p1_monthly_sales",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_customer_state",
+      "target": "p1_category_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_customer_state",
+      "target": "p1_orders_status",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_customer_state",
+      "target": "p1_state_sales",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_customer_state",
+      "target": "p1_year_sales",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_order_status",
+      "target": "p1_purchase_year",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_order_status",
+      "target": "p1_purchase_month",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_order_status",
+      "target": "p1_customer_state",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_order_status",
+      "target": "p1_sales_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_order_status",
+      "target": "p1_total_orders",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_order_status",
+      "target": "p1_aov",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_order_status",
+      "target": "p1_unique_customers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_order_status",
+      "target": "p1_on_time_rate",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_order_status",
+      "target": "p1_review_score",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_order_status",
+      "target": "p1_monthly_sales",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_order_status",
+      "target": "p1_category_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_order_status",
+      "target": "p1_orders_status",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_order_status",
+      "target": "p1_state_sales",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_order_status",
+      "target": "p1_year_sales",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_monthly_sales",
+      "target": "p1_purchase_year",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p1_monthly_sales",
+      "target": "p1_purchase_month",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p1_monthly_sales",
+      "target": "p1_customer_state",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p1_monthly_sales",
+      "target": "p1_order_status",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p1_monthly_sales",
+      "target": "p1_sales_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_monthly_sales",
+      "target": "p1_total_orders",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_monthly_sales",
+      "target": "p1_aov",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_monthly_sales",
+      "target": "p1_unique_customers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_monthly_sales",
+      "target": "p1_on_time_rate",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_monthly_sales",
+      "target": "p1_review_score",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_monthly_sales",
+      "target": "p1_category_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_monthly_sales",
+      "target": "p1_orders_status",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_monthly_sales",
+      "target": "p1_state_sales",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_monthly_sales",
+      "target": "p1_year_sales",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_category_revenue",
+      "target": "p1_purchase_year",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p1_category_revenue",
+      "target": "p1_purchase_month",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p1_category_revenue",
+      "target": "p1_customer_state",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p1_category_revenue",
+      "target": "p1_order_status",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p1_category_revenue",
+      "target": "p1_sales_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_category_revenue",
+      "target": "p1_total_orders",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p1_category_revenue",
+      "target": "p1_aov",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_category_revenue",
+      "target": "p1_unique_customers",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p1_category_revenue",
+      "target": "p1_on_time_rate",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p1_category_revenue",
+      "target": "p1_review_score",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p1_category_revenue",
+      "target": "p1_monthly_sales",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_category_revenue",
+      "target": "p1_orders_status",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p1_category_revenue",
+      "target": "p1_state_sales",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_category_revenue",
+      "target": "p1_year_sales",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_orders_status",
+      "target": "p1_purchase_year",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p1_orders_status",
+      "target": "p1_purchase_month",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p1_orders_status",
+      "target": "p1_customer_state",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p1_orders_status",
+      "target": "p1_order_status",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p1_orders_status",
+      "target": "p1_sales_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_orders_status",
+      "target": "p1_total_orders",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_orders_status",
+      "target": "p1_aov",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_orders_status",
+      "target": "p1_unique_customers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_orders_status",
+      "target": "p1_on_time_rate",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_orders_status",
+      "target": "p1_review_score",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_orders_status",
+      "target": "p1_monthly_sales",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_orders_status",
+      "target": "p1_category_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_orders_status",
+      "target": "p1_state_sales",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_orders_status",
+      "target": "p1_year_sales",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_state_sales",
+      "target": "p1_purchase_year",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p1_state_sales",
+      "target": "p1_purchase_month",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p1_state_sales",
+      "target": "p1_customer_state",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p1_state_sales",
+      "target": "p1_order_status",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p1_state_sales",
+      "target": "p1_sales_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_state_sales",
+      "target": "p1_total_orders",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_state_sales",
+      "target": "p1_aov",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_state_sales",
+      "target": "p1_unique_customers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_state_sales",
+      "target": "p1_on_time_rate",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_state_sales",
+      "target": "p1_review_score",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_state_sales",
+      "target": "p1_monthly_sales",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_state_sales",
+      "target": "p1_category_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_state_sales",
+      "target": "p1_orders_status",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_state_sales",
+      "target": "p1_year_sales",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_year_sales",
+      "target": "p1_purchase_year",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p1_year_sales",
+      "target": "p1_purchase_month",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p1_year_sales",
+      "target": "p1_customer_state",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p1_year_sales",
+      "target": "p1_order_status",
+      "type": "NoFilter"
+    },
+    {
+      "source": "p1_year_sales",
+      "target": "p1_sales_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_year_sales",
+      "target": "p1_total_orders",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_year_sales",
+      "target": "p1_aov",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_year_sales",
+      "target": "p1_unique_customers",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_year_sales",
+      "target": "p1_on_time_rate",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_year_sales",
+      "target": "p1_review_score",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_year_sales",
+      "target": "p1_monthly_sales",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_year_sales",
+      "target": "p1_category_revenue",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_year_sales",
+      "target": "p1_orders_status",
+      "type": "DataFilter"
+    },
+    {
+      "source": "p1_year_sales",
+      "target": "p1_state_sales",
+      "type": "DataFilter"
+    }
+  ]
+}

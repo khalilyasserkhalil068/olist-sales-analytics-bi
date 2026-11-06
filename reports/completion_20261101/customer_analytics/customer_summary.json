@@ -1,0 +1,15 @@
+{
+  "eligible_orders": 96478,
+  "unique_customers": 93358,
+  "single_order_customers": 90557,
+  "repeat_customers": 2801,
+  "repeat_customer_rate_pct": 3.0002784978255748,
+  "orders_per_customer": 1.0334197390689603,
+  "merchandise_revenue_cents": 1322149811,
+  "snapshot_date": "2018-08-30",
+  "first_eligible_purchase": "2016-09-15 12:16:38",
+  "last_eligible_purchase": "2018-08-29 15:00:37",
+  "median_customer_revenue_brl": 89.73,
+  "top_decile_revenue_share_pct": 41.09991571900622,
+  "max_orders_per_customer": 15
+}

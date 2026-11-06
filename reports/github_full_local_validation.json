@@ -1,0 +1,71 @@
+{
+  "scope": "Full local delivery",
+  "limitations": "No DAX execution or UI automation; source-only mode excludes private inputs, PBIX and caches",
+  "excluded_local_assets": 0,
+  "passed": 9,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Curated project assets match recorded fingerprints",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "name": "Local Markdown references resolve",
+      "status": "PASS",
+      "details": {
+        "checked": 118,
+        "broken": []
+      }
+    },
+    {
+      "name": "Final PBIX package is intact",
+      "status": "PASS",
+      "details": {
+        "corruptMember": null,
+        "missingMembers": [],
+        "savedPages": 5
+      }
+    },
+    {
+      "name": "Saved native PBIX contains five unique pages",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "Five native pages and expected visual inventory",
+      "status": "PASS",
+      "details": {
+        "card": 30,
+        "clusteredBarChart": 14,
+        "slicer": 19,
+        "textbox": 21,
+        "lineChart": 5,
+        "pageNavigator": 5,
+        "clusteredColumnChart": 5,
+        "tableEx": 3,
+        "donutChart": 2
+      }
+    },
+    {
+      "name": "Native field, layout and interaction references",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "name": "31 semantic tables and 58 measure declarations",
+      "status": "PASS",
+      "details": null
+    },
+    {
+      "name": "37 relationships with no cycles, ambiguous paths or fact-to-fact filters",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "name": "Five valid executed notebooks without saved errors",
+      "status": "PASS",
+      "details": []
+    }
+  ]
+}
