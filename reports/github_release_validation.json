@@ -7,12 +7,17 @@
   "high_confidence_secret_findings": [],
   "scope_note": "Scoped text pattern scan; not a guarantee of absence of all sensitive content",
   "excluded_local_manifest_assets": 21,
-  "status": "PASS: staged public source verified in an isolated checkout; upload pending",
+  "status": "PUBLISHED: public main branch verified anonymously against all initial Git blobs",
   "staged_release_files": 339,
   "isolated_checkout_validation": {
     "passed": 7,
     "failed": 0,
     "excluded_local_assets": 21,
     "links_checked": 118
-  }
+  },
+  "initial_publication_commit": "be974f545b4f005325040290b9ea56ebf10eaee4",
+  "public_access_verified": true,
+  "published_initial_blob_count": 339,
+  "readme_public_bytes_verified": true,
+  "verified_utc": "2026-11-06T16:03:37.002796+00:00"
 }
