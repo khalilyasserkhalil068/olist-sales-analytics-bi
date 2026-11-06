@@ -65,7 +65,7 @@ The following five images are rendered from the **actual final native Power BI P
 
 ## Actual Desktop captures
 
-These two images were captured by the user in the reopened final report and visually verified. Delivery shows the application window; Reviews shows the report-canvas region. They were copied unchanged. [Capture evidence](../reports/completion_20261101/desktop_screenshots_20261102.json) records dimensions and hashes.
+These two images were captured by the user in the 2 November accepted report and visually verified. They predate the 6 November palette correction; current presentation previews above use the corrected native export. Delivery shows the application window; Reviews shows the report-canvas region. They were copied unchanged. [Capture evidence](../reports/completion_20261101/desktop_screenshots_20261102.json) records dimensions and hashes.
 
 ![Delivery — actual final Power BI Desktop application window](../power_bi/dashboards/04_delivery_logistics/screenshot.png)
 
@@ -78,3 +78,7 @@ The `screenshot.png` files for pages 01–03 belong to the previously accepted t
 Work on a copy, preserve the imported cache with the PBIP when offline use matters, and keep one writer for report edits. Validate measures and source structure, save through Desktop, close/reopen and repeat representative checks. Do not merge PBIX binaries.
 
 Existing source partitions include local connection settings. Change them in a working copy before a refresh on another machine. Local acceptance does not demonstrate Power BI Service deployment, scheduled refresh or full visual-performance benchmarking. See [validation](validation.md) and [maintenance](maintenance.md).
+
+## Monthly trend and categorical color correction — 6 November
+
+The sales-page Top-5 trend now uses explicit high-contrast category colors, a thinner legend and a continuous monthly date axis with sparse labels. The regional doughnut has separate region colors; delivery uses teal for On time and amber for Late. The native PDF was exported at 100% report zoom and inspected across all five pages. The three selected-period regression cases compare 206 month/category revenue values with the original monthly axis and preserve exactly five categories per selected period. [Current correction acceptance](../reports/visual_correction_20261106/acceptance.json).

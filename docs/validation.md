@@ -29,7 +29,7 @@ Foundation checks cover input fingerprints, cleaning transformations, missing/du
 
 DAX expectations are computed independently from SQL/Python populations. Counts use exact/declared comparisons; monetary and floating-point results use explicit case tolerances. Empty count results may be interpreted as zero only for specified count measures. Undefined rate denominators are not silently treated as successful zero rates.
 
-Regression compares the 33 retained measure definitions/formats and values, all 37 relationships, four fact counts and partition definitions. The final model adds 25 measures for a total of 58. Category/state gate tests validate exact group membership and order, including ties.
+The 2 November regression compares the 33 retained measure definitions/formats and values, all 37 relationships, four fact counts and partition definitions. Subsequent regression recognizes only the exact documented MonthStartDate context extension in the Top-5 trend gate; the other prior definitions and all original 13 business measures remain unchanged. The final model adds 25 measures for a total of 58. Category/state gate tests validate exact group membership and order, including ties.
 
 ## Corrections verified before final acceptance
 
@@ -60,7 +60,7 @@ The current Python run is saved in [cleanup JUnit](../reports/cleanup_tests.xml)
 - The foundation skip concerns authoritative geography and original timestamp timezone provenance. ZIP geography is an approximation.
 - UI evidence covers a representative user-tested flow, not exhaustive combinations or automated clicks.
 - A recorded DAX timing run had median 22.5 ms and maximum 299 ms. It was neither a controlled cold-cache benchmark nor visual-render timing.
-- Scrollable charts/tables can contain data outside a static PDF viewport. Some preserved baseline series share a teal palette and require tooltips for identification.
+- Scrollable charts/tables can contain data outside a static PDF viewport. The previous shared-color limitation was corrected on 6 November for the Top-5 trend and the region/delivery doughnuts.
 - The historical baseline whole-file PBIX hash differs from its earlier recorded checkpoint. Live definitions, relationships and values reconcile; this remains a provenance limitation rather than a hidden equality claim.
 - Snapshot boundaries, review coverage and delivered-status selection limit retention and causal interpretation. Category populations and distinct counts can overlap.
 - The exact downloaded-package license notice was not recovered. Retained publisher metadata indicates CC BY-NC-SA 4.0; see [attribution](dataset_attribution.md).
@@ -73,3 +73,7 @@ Use `python scripts/validate_project.py --source-only` on a checkout. It exclude
 ## Revalidation after edits
 
 Inspect changes before updating fingerprints. Run relevant Python checks and the local project validator; for semantic/report edits, rerun Desktop DAX comparisons and native save/close/reopen plus visual/UI review. A freshly generated source file is not equivalent to an accepted saved report. Preserve evidence in a new run directory rather than silently replacing historical acceptance.
+
+## Visual correction — 6 November
+
+[Correction acceptance](../reports/visual_correction_20261106/acceptance.json) records the corrected native PBIX, independent reopen, exact regression and image provenance. The display helper `DimDate.MonthStartDate` enables a continuous axis. The Top-5 gate has one explicitly permitted context extension, rather than a blanket baseline reset. Monthly/category membership and revenue match the previous axis across all-period, 2017 and 2018 cases: 206 numeric values and exactly five categories per case. The financial and review KPI definitions are unchanged. The malformed intermediate small-scale PDF was rejected; the accepted native export uses 100% report zoom and fills each page normally.

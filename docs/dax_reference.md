@@ -1,6 +1,6 @@
 # DAX implementation reference
 
-This reference contains all **58 measures** from the model independently reopened from the final saved PBIX: 33 retained measures, including the original 13, plus 25 additions. Expressions and format strings are preserved exactly. The documentation was consolidated on 6 November 2026; measure acceptance was recorded on 2 November 2026.
+This reference contains all **58 measures** from the model independently reopened from the final saved PBIX: 33 retained measures, including the original 13, plus 25 additions. Exact current expressions and format strings are listed below. The 6 November correction extends only the Top-5 trend gate with the new month-axis context; all other 57 expressions and the original 13 business measures remain unchanged. The documentation was consolidated on 6 November 2026; measure acceptance was recorded on 2 November 2026.
 
 Read [KPI definitions](kpi_definitions.md) for populations and exclusions. [Runtime results](../reports/completion_20261101/runtime_20261102_165640_295/results.json) record 86 passed cases. This reference is descriptive; editing Markdown does not update the semantic model. Editable definitions live in the final `.SemanticModel/definition/tables/` TMDL files.
 
@@ -153,7 +153,7 @@ Previous dashboard measure (preserved). Format: `0`.
 Trend inclusion flag; ranks categories over the current selected period and removes the individual month axis filter. Requires YearMonth on the axis. Verify constant category membership across months after integration.
 
 ```dax
-VAR CurrentCategory = SELECTEDVALUE(DimProduct[CategoryLabel]) VAR Candidates = FILTER(ADDCOLUMNS(ALLSELECTED(DimProduct[CategoryLabel]), "__PeriodRevenue", CALCULATE([Sales Revenue], ALLSELECTED(DimDate[YearMonth]))), NOT ISBLANK([__PeriodRevenue])) VAR Winners = TOPN(5, Candidates, [__PeriodRevenue], DESC, DimProduct[CategoryLabel], ASC) RETURN IF(NOT ISBLANK(CurrentCategory) && CONTAINS(Winners, DimProduct[CategoryLabel], CurrentCategory), 1, 0)
+VAR CurrentCategory = SELECTEDVALUE(DimProduct[CategoryLabel]) VAR Candidates = FILTER(ADDCOLUMNS(ALLSELECTED(DimProduct[CategoryLabel]), "__PeriodRevenue", CALCULATE([Sales Revenue], ALLSELECTED(DimDate[YearMonth], DimDate[MonthStartDate]))), NOT ISBLANK([__PeriodRevenue])) VAR Winners = TOPN(5, Candidates, [__PeriodRevenue], DESC, DimProduct[CategoryLabel], ASC) RETURN IF(NOT ISBLANK(CurrentCategory) && CONTAINS(Winners, DimProduct[CategoryLabel], CurrentCategory), 1, 0)
 ```
 
 ## FactOrders
@@ -610,3 +610,11 @@ Elapsed-day duration bins, only for duration-eligible orders. Prefixes preserve 
 IF(FactOrders[DurationEligible] <> TRUE(), BLANK(), SWITCH(TRUE(), FactOrders[DeliveryDurationDays] < 7, "01 | Under 7 days", FactOrders[DeliveryDurationDays] < 14, "02 | 7 to <14 days", FactOrders[DeliveryDurationDays] < 21, "03 | 14 to <21 days", FactOrders[DeliveryDurationDays] < 30, "04 | 21 to <30 days", "05 | 30+ days"))
 ```
 
+
+### DimDate[MonthStartDate]
+
+Hidden display helper for a continuous monthly trend axis. It groups existing purchase dates by the first day of their calendar month; monthly revenue and category membership reconcile to the original axis over three selected-period cases. Format: `MMM yy`.
+
+```dax
+DATE(DimDate[Year], DimDate[Month], 1)
+```

@@ -26,9 +26,13 @@ try {
     if(@($model.Tables | ForEach-Object {$_.Measures}).Count -ne 58){throw 'Expected 58 measures after loading the authored TMDL. Close and reopen the correct generated PBIP first.'}
     foreach($entry in $originals){
         $live=$model.Tables[$entry.Table].Measures[$entry.Name]
-        if(!$live -or $live.Expression -ne $entry.Expression -or [string]$live.FormatString -ne [string]$entry.Format){throw ('Original measure mismatch: '+$entry.Name)}
+        $expectedExpression=$entry.Expression
+        if($entry.Name -eq 'Show Top 5 Trend Categories' -and $model.Tables['DimDate'].Columns.Contains('MonthStartDate')){
+            $expectedExpression=$entry.Expression.Replace('ALLSELECTED(DimDate[YearMonth])','ALLSELECTED(DimDate[YearMonth], DimDate[MonthStartDate])')
+        }
+        if(!$live -or $live.Expression -ne $expectedExpression -or [string]$live.FormatString -ne [string]$entry.Format){throw ('Original measure mismatch: '+$entry.Name)}
     }
-    $modelChecks+=[pscustomobject]@{Name='31 tables, 37 relationships, 58 measures and 33 preserved measures';Status='PASS'}
+    $modelChecks+=[pscustomobject]@{Name='31 tables, 37 relationships, 58 measures; 32 unchanged prior measures and one exact monthly-axis gate extension';Status='PASS'}
     foreach($table in $model.Tables){
         foreach($measure in $table.Measures){if($measure.ErrorMessage){throw ('DAX model error: '+$table.Name+'['+$measure.Name+']: '+$measure.ErrorMessage)}}
         foreach($column in $table.Columns){if($column.ErrorMessage){throw ('Column error: '+$table.Name+'['+$column.Name+']: '+$column.ErrorMessage)}}

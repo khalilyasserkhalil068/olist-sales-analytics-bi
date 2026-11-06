@@ -59,6 +59,14 @@ table DimDate
 		isNameInferred
 		sourceColumn: DateKeyLookup[IsWeekend]
 
+	/// First calendar day of each purchase month; supports an uncluttered continuous monthly trend axis.
+	column MonthStartDate = DATE(DimDate[Year], DimDate[Month], 1)
+		dataType: dateTime
+		isHidden
+		formatString: MMM yy
+		lineageTag: 579f10ca-adbb-4e80-96fa-ff13be831668
+		summarizeBy: none
+
 	partition DimDate = calculated
 		source = FILTER(DateKeyLookup, NOT ISBLANK(DateKeyLookup[FullDate]))
 

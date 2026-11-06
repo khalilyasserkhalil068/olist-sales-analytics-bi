@@ -1,0 +1,22 @@
+[
+  {
+    "visual": "p3_region_contribution",
+    "change": "Remove single defaultColor override so the multi-series visual uses distinct theme colors"
+  },
+  {
+    "visual": "p4_chart0",
+    "change": "Remove single defaultColor override so the multi-series visual uses distinct theme colors"
+  },
+  {
+    "visual": "p2_category_trend",
+    "change": "Remove single defaultColor override so the multi-series visual uses distinct theme colors"
+  },
+  {
+    "visual": "p2_category_trend",
+    "change": "Reduce category-axis/legend crowding and minimum category width; retain unchanged monthly aggregation, Top-5 filter and sort"
+  },
+  {
+    "visual": "p2_category_trend",
+    "change": "Add hidden DimDate.MonthStartDate calculated display column and use it as the continuous monthly date axis. Existing DAX measures, monthly granularity and filters preserved."
+  }
+]

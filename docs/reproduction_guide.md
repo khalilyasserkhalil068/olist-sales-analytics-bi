@@ -134,3 +134,7 @@ After report changes, save through Desktop to a working PBIX, close/reopen it, r
 ## Public release
 
 Review [attribution](dataset_attribution.md), local paths and release selection. Raw/processed data, PBIX, ABF caches, database files, virtual environments and private settings are ignored. Aggregate images/PDFs still require an intentional release decision. The owner authorized the GitHub source release on 6 November 2026. The published selection contains source, aggregate evidence, notebooks and report previews; data inputs, PBIX and caches stay local. Power BI Service deployment remains outside scope.
+
+### Corrected monthly axis
+
+The current report includes hidden `DimDate.MonthStartDate`. The runtime/model-regression utilities allow only the exact documented Top-5 gate extension for that field and otherwise retain strict measure checks. When exporting a PDF from Desktop, set report zoom to 100% first; inspect the result because an intermediate export from reduced zoom produced an incorrectly scaled canvas on this local setup.

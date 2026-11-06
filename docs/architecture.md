@@ -42,7 +42,7 @@ The Python ETL verifies ownership of `OlistSalesDW`, validates expected objects 
 
 ## Power BI semantic model
 
-The accepted model has **31 tables, 37 single-direction relationships and 58 measures**. The 31 include date roles, helper tables and report-model extensions; they are not 31 warehouse business entities. The previous 33 measures, including the original 13, were preserved, and 25 measures were added for the final two pages.
+The accepted model has **31 tables, 37 single-direction relationships and 58 measures**. The 31 include date roles, helper tables and report-model extensions; they are not 31 warehouse business entities. The 2 November acceptance preserved the previous 33 measures, including the original 13, and added 25 measures for the final two pages. The 6 November visual correction retains all 58 measures and extends only the Top-5 trend gate to account for the new monthly date-axis field; the original 13 business measures remain unchanged.
 
 `DimOrder` supplies a common order identity. `DimCustomerGeography` and `DimSellerGeography` separate geographic roles. Purchase, approval, carrier, actual/estimated delivery, shipping-limit, review-creation and review-answer dates have distinct roles. Month labels sort by month number; multi-year trends use year-month.
 
@@ -50,7 +50,7 @@ The BI model avoids direct fact-to-fact filter relationships, bidirectional filt
 
 Product and seller selections naturally filter items. For category delivery/review charts, distinct order-category membership is explicitly transferred with `TREATAS`. Multi-category orders may contribute to several groups, so these counts are nonadditive. Enabling bidirectional filters would obscure this business definition.
 
-Two calculated display columns classify delivery timeliness and elapsed-day bands. They extend the semantic model and do not change the SQL schema. Exact measure expressions are in [DAX reference](dax_reference.md).
+Two calculated display columns classify delivery timeliness and elapsed-day bands. A third display helper, hidden `DimDate[MonthStartDate]`, supplies a continuous monthly axis without changing the original monthly sales granularity. They extend the semantic model and do not change the SQL schema. Exact measure expressions are in [DAX reference](dax_reference.md).
 
 ## Analysis and verification
 

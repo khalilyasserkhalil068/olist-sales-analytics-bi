@@ -2,7 +2,7 @@
 
 An end-to-end analytics project that transforms Brazilian marketplace transactions into a validated SQL Server warehouse, customer analysis and a five-page interactive Power BI report.
 
-**Local delivery:** complete. The final PBIX was saved, closed and independently reopened. Its model passed 86 DAX cases and 39 dashboard query batches. Documentation and repository cleanup were completed on 6 November 2026; the underlying report acceptance was recorded on 2 November 2026.
+**Local delivery:** complete. The final PBIX was saved, closed and independently reopened. Its model passed 86 DAX cases and 39 dashboard query batches. Documentation and repository cleanup were completed on 6 November 2026; initial report acceptance was recorded on 2 November 2026. A subsequent visual correction gives the monthly category trend explicit distinct colors and a continuous monthly date axis; regional and delivery doughnuts also use distinct colors. [Correction evidence](reports/visual_correction_20261106/acceptance.json) records the current saved file and regression checks.
 
 [Documentation](docs/README.md) · [Dashboard guide](docs/dashboard_guide.md) · [Reproduction](docs/reproduction_guide.md) · [Validation](docs/validation.md) · [Business findings](docs/business_insights.md)
 

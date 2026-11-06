@@ -1,0 +1,2296 @@
+﻿{
+    "Tables":  31,
+    "Relationships":  37,
+    "Measures":  58,
+    "BeforeExpression":  "VAR CurrentCategory = SELECTEDVALUE(DimProduct[CategoryLabel]) VAR Candidates = FILTER(ADDCOLUMNS(ALLSELECTED(DimProduct[CategoryLabel]), \"__PeriodRevenue\", CALCULATE([Sales Revenue], ALLSELECTED(DimDate[YearMonth]))), NOT ISBLANK([__PeriodRevenue])) VAR Winners = TOPN(5, Candidates, [__PeriodRevenue], DESC, DimProduct[CategoryLabel], ASC) RETURN IF(NOT ISBLANK(CurrentCategory) \u0026\u0026 CONTAINS(Winners, DimProduct[CategoryLabel], CurrentCategory), 1, 0)",
+    "AfterExpression":  "VAR CurrentCategory = SELECTEDVALUE(DimProduct[CategoryLabel]) VAR Candidates = FILTER(ADDCOLUMNS(ALLSELECTED(DimProduct[CategoryLabel]), \"__PeriodRevenue\", CALCULATE([Sales Revenue], ALLSELECTED(DimDate[YearMonth], DimDate[MonthStartDate]))), NOT ISBLANK([__PeriodRevenue])) VAR Winners = TOPN(5, Candidates, [__PeriodRevenue], DESC, DimProduct[CategoryLabel], ASC) RETURN IF(NOT ISBLANK(CurrentCategory) \u0026\u0026 CONTAINS(Winners, DimProduct[CategoryLabel], CurrentCategory), 1, 0)",
+    "Cases":  [
+                  {
+                      "Year":  0,
+                      "Before":  [
+                                     {
+                                         "DimDate[YearMonth]":  "2016-09",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  134.97,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2016-10",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  478.99,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2016-10",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  669.02,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2016-10",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  3439.2500000000005,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2016-10",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  2012.1500000000005,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2016-10",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  2711.07,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-01",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  3804.360000000001,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-01",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  3924.14,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-01",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  12366.439999999979,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-01",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  9212.139999999994,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-01",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  8086.5199999999995,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-02",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  15572.129999999965,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-02",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  11319.089999999989,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-02",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  22059.920000000067,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-02",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  15629.979999999981,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-02",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  10992.389999999998,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-03",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  25120.0200000001,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-03",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  28078.800000000105,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-03",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  25652.450000000095,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-03",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  25472.890000000076,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-03",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  24892.380000000005,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-04",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  24092.890000000058,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-04",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  18353.460000000021,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-04",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  22156.340000000109,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-04",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  22997.060000000078,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-04",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  23336.090000000011,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-05",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  32684.60000000017,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-05",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  44759.390000000145,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-05",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  46340.060000000012,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-05",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  34101.730000000156,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-05",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  36619.480000000025,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-06",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  33803.230000000156,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-06",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  36193.700000000128,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-06",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  31676.810000000209,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-06",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  32066.930000000164,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-06",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  27337.630000000016,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-07",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  62786.960000000261,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-07",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  38176.220000000227,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-07",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  34239.450000000164,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-07",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  36618.830000000249,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-07",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  33702.420000000042,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-08",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  56580.630000000208,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-08",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  33826.470000000227,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-08",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  49030.229999999974,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-08",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  40624.770000000251,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-08",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  36170.950000000077,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-09",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  52105.610000000241,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-09",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  28040.650000000136,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-09",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  50649.16000000004,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-09",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  48972.110000000241,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-09",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  44748.960000000086,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-10",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  46007.700000000164,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-10",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  42009.380000000187,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-10",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  40698.990000000042,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-10",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  48568.980000000134,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-10",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  64874.630000000048,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-11",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  87957.629999999452,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-11",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  69676.32,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-11",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  78274.4,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-11",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  62686.240000000282,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-11",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  95292.339999999822,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-12",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  50081.160000000265,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-12",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  37428.670000000151,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-12",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  60688.75000000008,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-12",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  58722.480000000258,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-12",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  69556.920000000071,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-01",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  75408.1300000002,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-01",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  80503.870000000054,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-01",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  71405.6,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-01",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  86172.829999999332,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-01",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  73521.239999999947,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-02",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  60366.290000000306,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-02",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  100131.98999999938,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-02",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  84576.5499999996,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-02",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  74540.949999999808,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-02",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  60725.310000000034,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-03",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  67786.350000000341,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-03",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  84708.389999999956,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-03",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  84488.569999999629,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-03",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  81656.959999999512,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-03",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  95661.179999999717,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-04",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  71379.610000000248,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-04",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  57370.900000000081,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-04",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  91058.450000000186,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-04",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  65793.52000000015,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-04",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  88623.069999999672,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-05",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  71265.070000000211,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-05",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  50631.830000000169,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-05",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  94534.380000000368,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-05",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  59209.920000000115,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-05",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  119364.97999999968,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-06",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  70857.08000000022,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-06",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  41806.370000000141,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-06",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  106745.72000000053,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-06",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  44916.0100000002,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-06",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  85027.569999999672,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-07",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  54405.230000000171,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-07",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  41063.310000000121,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-07",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  103524.22000000042,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-07",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  54015.890000000138,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-07",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  95164.789999999688,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-08",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  60891.090000000091,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-08",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  40052.640000000094,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-08",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  119391.00999999995,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-08",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  50860.180000000168,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-08",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  69767.060000000012,
+                                         "[Gate]":  1
+                                     }
+                                 ],
+                      "After":  [
+                                    {
+                                        "[YearMonth]":  "2016-09",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  134.97
+                                    },
+                                    {
+                                        "[YearMonth]":  "2016-10",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  478.99
+                                    },
+                                    {
+                                        "[YearMonth]":  "2016-10",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  669.02
+                                    },
+                                    {
+                                        "[YearMonth]":  "2016-10",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  3439.2500000000005
+                                    },
+                                    {
+                                        "[YearMonth]":  "2016-10",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  2012.1500000000005
+                                    },
+                                    {
+                                        "[YearMonth]":  "2016-10",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  2711.07
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-01",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  3804.360000000001
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-01",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  3924.14
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-01",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  12366.439999999979
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-01",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  9212.139999999994
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-01",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  8086.5199999999995
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-02",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  15572.129999999965
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-02",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  11319.089999999989
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-02",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  22059.920000000067
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-02",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  15629.979999999981
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-02",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  10992.389999999998
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-03",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  25120.0200000001
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-03",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  28078.800000000105
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-03",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  25652.450000000095
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-03",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  25472.890000000076
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-03",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  24892.380000000005
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-04",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  24092.890000000058
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-04",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  18353.460000000021
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-04",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  22156.340000000109
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-04",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  22997.060000000078
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-04",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  23336.090000000011
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-05",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  32684.60000000017
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-05",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  44759.390000000145
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-05",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  46340.060000000012
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-05",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  34101.730000000156
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-05",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  36619.480000000025
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-06",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  33803.230000000156
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-06",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  36193.700000000128
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-06",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  31676.810000000209
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-06",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  32066.930000000164
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-06",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  27337.630000000016
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-07",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  62786.960000000261
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-07",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  38176.220000000227
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-07",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  34239.450000000164
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-07",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  36618.830000000249
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-07",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  33702.420000000042
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-08",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  56580.630000000208
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-08",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  33826.470000000227
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-08",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  49030.229999999974
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-08",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  40624.770000000251
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-08",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  36170.950000000077
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-09",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  52105.610000000241
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-09",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  28040.650000000136
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-09",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  50649.16000000004
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-09",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  48972.110000000241
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-09",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  44748.960000000086
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-10",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  46007.700000000164
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-10",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  42009.380000000187
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-10",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  40698.990000000042
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-10",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  48568.980000000134
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-10",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  64874.630000000048
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-11",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  87957.629999999452
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-11",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  69676.32
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-11",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  78274.4
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-11",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  62686.240000000282
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-11",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  95292.339999999822
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-12",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  50081.160000000265
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-12",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  37428.670000000151
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-12",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  60688.75000000008
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-12",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  58722.480000000258
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-12",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  69556.920000000071
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-01",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  75408.1300000002
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-01",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  80503.870000000054
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-01",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  71405.6
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-01",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  86172.829999999332
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-01",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  73521.239999999947
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-02",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  60366.290000000306
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-02",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  100131.98999999938
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-02",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  84576.5499999996
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-02",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  74540.949999999808
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-02",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  60725.310000000034
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-03",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  67786.350000000341
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-03",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  84708.389999999956
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-03",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  84488.569999999629
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-03",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  81656.959999999512
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-03",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  95661.179999999717
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-04",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  71379.610000000248
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-04",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  57370.900000000081
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-04",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  91058.450000000186
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-04",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  65793.52000000015
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-04",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  88623.069999999672
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-05",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  71265.070000000211
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-05",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  50631.830000000169
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-05",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  94534.380000000368
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-05",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  59209.920000000115
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-05",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  119364.97999999968
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-06",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  70857.08000000022
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-06",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  41806.370000000141
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-06",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  106745.72000000053
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-06",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  44916.0100000002
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-06",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  85027.569999999672
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-07",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  54405.230000000171
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-07",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  41063.310000000121
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-07",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  103524.22000000042
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-07",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  54015.890000000138
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-07",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  95164.789999999688
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-08",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  60891.090000000091
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-08",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  40052.640000000094
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-08",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  119391.00999999995
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-08",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  50860.180000000168
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-08",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  69767.060000000012
+                                    }
+                                ]
+                  },
+                  {
+                      "Year":  2017,
+                      "Before":  [
+                                     {
+                                         "DimDate[YearMonth]":  "2017-01",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  3804.360000000001,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-01",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  3924.14,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-01",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  12366.439999999979,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-01",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  9212.139999999994,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-01",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  8086.5199999999995,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-02",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  15572.129999999965,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-02",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  11319.089999999989,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-02",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  22059.920000000067,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-02",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  15629.979999999981,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-02",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  10992.389999999998,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-03",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  25120.0200000001,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-03",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  28078.800000000105,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-03",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  25652.450000000095,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-03",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  25472.890000000076,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-03",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  24892.380000000005,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-04",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  24092.890000000058,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-04",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  18353.460000000021,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-04",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  22156.340000000109,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-04",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  22997.060000000078,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-04",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  23336.090000000011,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-05",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  32684.60000000017,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-05",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  44759.390000000145,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-05",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  46340.060000000012,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-05",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  34101.730000000156,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-05",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  36619.480000000025,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-06",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  33803.230000000156,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-06",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  36193.700000000128,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-06",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  31676.810000000209,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-06",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  32066.930000000164,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-06",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  27337.630000000016,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-07",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  62786.960000000261,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-07",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  38176.220000000227,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-07",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  34239.450000000164,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-07",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  36618.830000000249,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-07",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  33702.420000000042,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-08",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  56580.630000000208,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-08",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  33826.470000000227,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-08",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  49030.229999999974,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-08",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  40624.770000000251,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-08",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  36170.950000000077,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-09",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  52105.610000000241,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-09",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  28040.650000000136,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-09",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  50649.16000000004,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-09",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  48972.110000000241,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-09",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  44748.960000000086,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-10",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  46007.700000000164,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-10",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  42009.380000000187,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-10",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  40698.990000000042,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-10",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  48568.980000000134,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-10",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  64874.630000000048,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-11",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  87957.629999999452,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-11",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  69676.32,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-11",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  78274.4,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-11",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  62686.240000000282,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-11",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  95292.339999999822,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-12",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  50081.160000000265,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-12",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  37428.670000000151,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-12",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  60688.75000000008,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-12",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  58722.480000000258,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2017-12",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  69556.920000000071,
+                                         "[Gate]":  1
+                                     }
+                                 ],
+                      "After":  [
+                                    {
+                                        "[YearMonth]":  "2017-01",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  3804.360000000001
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-01",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  3924.14
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-01",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  12366.439999999979
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-01",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  9212.139999999994
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-01",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  8086.5199999999995
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-02",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  15572.129999999965
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-02",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  11319.089999999989
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-02",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  22059.920000000067
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-02",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  15629.979999999981
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-02",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  10992.389999999998
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-03",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  25120.0200000001
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-03",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  28078.800000000105
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-03",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  25652.450000000095
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-03",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  25472.890000000076
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-03",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  24892.380000000005
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-04",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  24092.890000000058
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-04",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  18353.460000000021
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-04",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  22156.340000000109
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-04",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  22997.060000000078
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-04",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  23336.090000000011
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-05",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  32684.60000000017
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-05",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  44759.390000000145
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-05",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  46340.060000000012
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-05",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  34101.730000000156
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-05",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  36619.480000000025
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-06",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  33803.230000000156
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-06",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  36193.700000000128
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-06",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  31676.810000000209
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-06",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  32066.930000000164
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-06",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  27337.630000000016
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-07",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  62786.960000000261
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-07",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  38176.220000000227
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-07",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  34239.450000000164
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-07",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  36618.830000000249
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-07",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  33702.420000000042
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-08",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  56580.630000000208
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-08",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  33826.470000000227
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-08",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  49030.229999999974
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-08",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  40624.770000000251
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-08",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  36170.950000000077
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-09",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  52105.610000000241
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-09",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  28040.650000000136
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-09",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  50649.16000000004
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-09",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  48972.110000000241
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-09",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  44748.960000000086
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-10",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  46007.700000000164
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-10",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  42009.380000000187
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-10",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  40698.990000000042
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-10",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  48568.980000000134
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-10",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  64874.630000000048
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-11",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  87957.629999999452
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-11",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  69676.32
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-11",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  78274.4
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-11",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  62686.240000000282
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-11",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  95292.339999999822
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-12",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  50081.160000000265
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-12",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  37428.670000000151
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-12",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  60688.75000000008
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-12",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  58722.480000000258
+                                    },
+                                    {
+                                        "[YearMonth]":  "2017-12",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  69556.920000000071
+                                    }
+                                ]
+                  },
+                  {
+                      "Year":  2018,
+                      "Before":  [
+                                     {
+                                         "DimDate[YearMonth]":  "2018-01",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  75408.1300000002,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-01",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  80503.870000000054,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-01",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  71405.6,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-01",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  86172.829999999332,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-01",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  73521.239999999947,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-02",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  60366.290000000306,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-02",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  100131.98999999938,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-02",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  84576.5499999996,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-02",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  74540.949999999808,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-02",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  60725.310000000034,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-03",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  67786.350000000341,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-03",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  84708.389999999956,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-03",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  84488.569999999629,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-03",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  81656.959999999512,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-03",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  95661.179999999717,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-04",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  71379.610000000248,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-04",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  57370.900000000081,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-04",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  91058.450000000186,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-04",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  65793.52000000015,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-04",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  88623.069999999672,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-05",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  71265.070000000211,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-05",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  50631.830000000169,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-05",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  94534.380000000368,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-05",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  59209.920000000115,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-05",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  119364.97999999968,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-06",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  70857.08000000022,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-06",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  41806.370000000141,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-06",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  106745.72000000053,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-06",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  44916.0100000002,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-06",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  85027.569999999672,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-07",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  54405.230000000171,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-07",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  41063.310000000121,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-07",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  103524.22000000042,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-07",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  54015.890000000138,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-07",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  95164.789999999688,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-08",
+                                         "DimProduct[CategoryLabel]":  "bed_bath_table",
+                                         "[Revenue]":  60891.090000000091,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-08",
+                                         "DimProduct[CategoryLabel]":  "computers_accessories",
+                                         "[Revenue]":  40052.640000000094,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-08",
+                                         "DimProduct[CategoryLabel]":  "health_beauty",
+                                         "[Revenue]":  119391.00999999995,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-08",
+                                         "DimProduct[CategoryLabel]":  "sports_leisure",
+                                         "[Revenue]":  50860.180000000168,
+                                         "[Gate]":  1
+                                     },
+                                     {
+                                         "DimDate[YearMonth]":  "2018-08",
+                                         "DimProduct[CategoryLabel]":  "watches_gifts",
+                                         "[Revenue]":  69767.060000000012,
+                                         "[Gate]":  1
+                                     }
+                                 ],
+                      "After":  [
+                                    {
+                                        "[YearMonth]":  "2018-01",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  75408.1300000002
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-01",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  80503.870000000054
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-01",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  71405.6
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-01",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  86172.829999999332
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-01",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  73521.239999999947
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-02",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  60366.290000000306
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-02",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  100131.98999999938
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-02",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  84576.5499999996
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-02",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  74540.949999999808
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-02",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  60725.310000000034
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-03",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  67786.350000000341
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-03",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  84708.389999999956
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-03",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  84488.569999999629
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-03",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  81656.959999999512
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-03",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  95661.179999999717
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-04",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  71379.610000000248
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-04",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  57370.900000000081
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-04",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  91058.450000000186
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-04",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  65793.52000000015
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-04",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  88623.069999999672
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-05",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  71265.070000000211
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-05",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  50631.830000000169
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-05",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  94534.380000000368
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-05",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  59209.920000000115
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-05",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  119364.97999999968
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-06",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  70857.08000000022
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-06",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  41806.370000000141
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-06",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  106745.72000000053
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-06",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  44916.0100000002
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-06",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  85027.569999999672
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-07",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  54405.230000000171
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-07",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  41063.310000000121
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-07",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  103524.22000000042
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-07",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  54015.890000000138
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-07",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  95164.789999999688
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-08",
+                                        "[Category]":  "bed_bath_table",
+                                        "[Revenue]":  60891.090000000091
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-08",
+                                        "[Category]":  "computers_accessories",
+                                        "[Revenue]":  40052.640000000094
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-08",
+                                        "[Category]":  "health_beauty",
+                                        "[Revenue]":  119391.00999999995
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-08",
+                                        "[Category]":  "sports_leisure",
+                                        "[Revenue]":  50860.180000000168
+                                    },
+                                    {
+                                        "[YearMonth]":  "2018-08",
+                                        "[Category]":  "watches_gifts",
+                                        "[Revenue]":  69767.060000000012
+                                    }
+                                ]
+                  }
+              ]
+}

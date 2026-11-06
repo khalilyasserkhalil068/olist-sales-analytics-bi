@@ -89,7 +89,7 @@ table FactOrderItems
 		lineageTag: 827a823d-febe-461f-8b54-924bcf66e6a3
 
 	/// Trend inclusion flag; ranks categories over the current selected period and removes the individual month axis filter. Requires YearMonth on the axis. Verify constant category membership across months after integration.
-	measure 'Show Top 5 Trend Categories' = VAR CurrentCategory = SELECTEDVALUE(DimProduct[CategoryLabel]) VAR Candidates = FILTER(ADDCOLUMNS(ALLSELECTED(DimProduct[CategoryLabel]), "__PeriodRevenue", CALCULATE([Sales Revenue], ALLSELECTED(DimDate[YearMonth]))), NOT ISBLANK([__PeriodRevenue])) VAR Winners = TOPN(5, Candidates, [__PeriodRevenue], DESC, DimProduct[CategoryLabel], ASC) RETURN IF(NOT ISBLANK(CurrentCategory) && CONTAINS(Winners, DimProduct[CategoryLabel], CurrentCategory), 1, 0)
+	measure 'Show Top 5 Trend Categories' = VAR CurrentCategory = SELECTEDVALUE(DimProduct[CategoryLabel]) VAR Candidates = FILTER(ADDCOLUMNS(ALLSELECTED(DimProduct[CategoryLabel]), "__PeriodRevenue", CALCULATE([Sales Revenue], ALLSELECTED(DimDate[YearMonth], DimDate[MonthStartDate]))), NOT ISBLANK([__PeriodRevenue])) VAR Winners = TOPN(5, Candidates, [__PeriodRevenue], DESC, DimProduct[CategoryLabel], ASC) RETURN IF(NOT ISBLANK(CurrentCategory) && CONTAINS(Winners, DimProduct[CategoryLabel], CurrentCategory), 1, 0)
 		formatString: 0
 		isHidden
 		displayFolder: Dashboard Helpers\Sales

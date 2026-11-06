@@ -1,0 +1,2438 @@
+﻿{
+    "Scope":  "READ-ONLY local Desktop model/DAX execution; UI rendering/interactions still require separate checks",
+    "ModelChecks":  [
+                        {
+                            "Name":  "31 tables, 37 relationships, 58 measures; 32 unchanged prior measures and one exact monthly-axis gate extension",
+                            "Status":  "PASS"
+                        }
+                    ],
+    "CasesPassed":  86,
+    "CasesFailed":  0,
+    "Error":  null,
+    "Cases":  [
+                  {
+                      "Name":  "Original KPI regression",
+                      "Status":  "PASS",
+                      "Milliseconds":  278,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Order Count]",
+                                         "Expected":  99441,
+                                         "Actual":  99441,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Sales Revenue]",
+                                         "Expected":  13221498.11,
+                                         "Actual":  13221498.110000018,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Average Sales Order Value]",
+                                         "Expected":  137.0415857501192,
+                                         "Actual":  137.0415857501194,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Unique Sales Customers]",
+                                         "Expected":  93358,
+                                         "Actual":  93358,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Repeat Sales Customers]",
+                                         "Expected":  2801,
+                                         "Actual":  2801,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Repeat Customer Rate]",
+                                         "Expected":  0.03000278497825575,
+                                         "Actual":  0.030002784978255748,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Item Revenue]",
+                                         "Expected":  13591643.7,
+                                         "Actual":  13591643.700000037,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Average Review Score]",
+                                         "Expected":  4.08642062404257,
+                                         "Actual":  4.08642062404257,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE ROW(\"c0\", [Order Count], \"c1\", [Sales Revenue], \"c2\", [Average Sales Order Value], \"c3\", [Unique Sales Customers], \"c4\", [Repeat Sales Customers], \"c5\", [Repeat Customer Rate], \"c6\", [Item Revenue], \"c7\", [Average Review Score])"
+                  },
+                  {
+                      "Name":  "Delivery totals",
+                      "Status":  "PASS",
+                      "Milliseconds":  24,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Delivered Orders]",
+                                         "Expected":  96478,
+                                         "Actual":  96478,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Timeliness Eligible Orders]",
+                                         "Expected":  96470,
+                                         "Actual":  96470,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[On Time Deliveries]",
+                                         "Expected":  89936,
+                                         "Actual":  89936,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Late Deliveries]",
+                                         "Expected":  6534,
+                                         "Actual":  6534,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[On Time Delivery Rate]",
+                                         "Expected":  0.9322690992018244,
+                                         "Actual":  0.93226909920182444,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Late Delivery Rate]",
+                                         "Expected":  0.06773090079817559,
+                                         "Actual":  0.067730900798175592,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Duration Eligible Orders]",
+                                         "Expected":  95097,
+                                         "Actual":  95097,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Average Delivery Days]",
+                                         "Expected":  12.6184859187,
+                                         "Actual":  12.618485918763787,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Average Late Delay Days]",
+                                         "Expected":  10.6201408019,
+                                         "Actual":  10.620140801958984,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Average Freight per Delivered Order]",
+                                         "Expected":  22.785253,
+                                         "Actual":  22.785253011049161,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries], \"c4\", [On Time Delivery Rate], \"c5\", [Late Delivery Rate], \"c6\", [Duration Eligible Orders], \"c7\", [Average Delivery Days], \"c8\", [Average Late Delay Days], \"c9\", [Average Freight per Delivered Order])"
+                  },
+                  {
+                      "Name":  "All valid review totals",
+                      "Status":  "PASS",
+                      "Milliseconds":  49,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Total Valid Reviews]",
+                                         "Expected":  99224,
+                                         "Actual":  99224,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Satisfaction Average Review Score]",
+                                         "Expected":  4.086420624,
+                                         "Actual":  4.08642062404257,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Positive Review Rate]",
+                                         "Expected":  0.7706804805289043,
+                                         "Actual":  0.77068048052890425,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Negative Review Rate]",
+                                         "Expected":  0.14688986535515602,
+                                         "Actual":  0.14688986535515602,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Five Star Review Rate]",
+                                         "Expected":  0.5777634443279852,
+                                         "Actual":  0.57776344432798521,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE ROW(\"c0\", [Total Valid Reviews], \"c1\", [Satisfaction Average Review Score], \"c2\", [Positive Review Rate], \"c3\", [Negative Review Rate], \"c4\", [Five Star Review Rate])"
+                  },
+                  {
+                      "Name":  "Review timeliness: On time",
+                      "Status":  "PASS",
+                      "Milliseconds":  24,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Total Valid Reviews]",
+                                         "Expected":  89944,
+                                         "Actual":  89944,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Satisfaction Average Review Score]",
+                                         "Expected":  4.2899804322,
+                                         "Actual":  4.2899804322689672,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Total Valid Reviews], \"c1\", [Satisfaction Average Review Score]), TREATAS({\"On time\"}, FactOrders[Delivery Timeliness]))"
+                  },
+                  {
+                      "Name":  "Review timeliness: Late",
+                      "Status":  "PASS",
+                      "Milliseconds":  19,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Total Valid Reviews]",
+                                         "Expected":  6409,
+                                         "Actual":  6409,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Satisfaction Average Review Score]",
+                                         "Expected":  2.2710251209,
+                                         "Actual":  2.2710251209237011,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Total Valid Reviews], \"c1\", [Satisfaction Average Review Score]), TREATAS({\"Late\"}, FactOrders[Delivery Timeliness]))"
+                  },
+                  {
+                      "Name":  "Review timeliness: Not eligible",
+                      "Status":  "PASS",
+                      "Milliseconds":  13,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Total Valid Reviews]",
+                                         "Expected":  2871,
+                                         "Actual":  2871,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Satisfaction Average Review Score]",
+                                         "Expected":  1.7617554858,
+                                         "Actual":  1.761755485893417,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Total Valid Reviews], \"c1\", [Satisfaction Average Review Score]), TREATAS({\"Not eligible\"}, FactOrders[Delivery Timeliness]))"
+                  },
+                  {
+                      "Name":  "Review score slicer 1",
+                      "Status":  "PASS",
+                      "Milliseconds":  29,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Total Valid Reviews]",
+                                         "Expected":  11424,
+                                         "Actual":  11424,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Positive Review Rate]",
+                                         "Expected":  0,
+                                         "Actual":  0,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Negative Review Rate]",
+                                         "Expected":  1,
+                                         "Actual":  1,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Five Star Review Rate]",
+                                         "Expected":  0,
+                                         "Actual":  0,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Total Valid Reviews], \"c1\", [Positive Review Rate], \"c2\", [Negative Review Rate], \"c3\", [Five Star Review Rate]), TREATAS({1}, FactReviews[ReviewScore]))"
+                  },
+                  {
+                      "Name":  "Review score slicer 2",
+                      "Status":  "PASS",
+                      "Milliseconds":  25,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Total Valid Reviews]",
+                                         "Expected":  3151,
+                                         "Actual":  3151,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Positive Review Rate]",
+                                         "Expected":  0,
+                                         "Actual":  0,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Negative Review Rate]",
+                                         "Expected":  1,
+                                         "Actual":  1,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Five Star Review Rate]",
+                                         "Expected":  0,
+                                         "Actual":  0,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Total Valid Reviews], \"c1\", [Positive Review Rate], \"c2\", [Negative Review Rate], \"c3\", [Five Star Review Rate]), TREATAS({2}, FactReviews[ReviewScore]))"
+                  },
+                  {
+                      "Name":  "Review score slicer 3",
+                      "Status":  "PASS",
+                      "Milliseconds":  58,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Total Valid Reviews]",
+                                         "Expected":  8179,
+                                         "Actual":  8179,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Positive Review Rate]",
+                                         "Expected":  0,
+                                         "Actual":  0,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Negative Review Rate]",
+                                         "Expected":  0,
+                                         "Actual":  0,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Five Star Review Rate]",
+                                         "Expected":  0,
+                                         "Actual":  0,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Total Valid Reviews], \"c1\", [Positive Review Rate], \"c2\", [Negative Review Rate], \"c3\", [Five Star Review Rate]), TREATAS({3}, FactReviews[ReviewScore]))"
+                  },
+                  {
+                      "Name":  "Review score slicer 4",
+                      "Status":  "PASS",
+                      "Milliseconds":  23,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Total Valid Reviews]",
+                                         "Expected":  19142,
+                                         "Actual":  19142,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Positive Review Rate]",
+                                         "Expected":  1,
+                                         "Actual":  1,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Negative Review Rate]",
+                                         "Expected":  0,
+                                         "Actual":  0,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Five Star Review Rate]",
+                                         "Expected":  0,
+                                         "Actual":  0,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Total Valid Reviews], \"c1\", [Positive Review Rate], \"c2\", [Negative Review Rate], \"c3\", [Five Star Review Rate]), TREATAS({4}, FactReviews[ReviewScore]))"
+                  },
+                  {
+                      "Name":  "Review score slicer 5",
+                      "Status":  "PASS",
+                      "Milliseconds":  22,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Total Valid Reviews]",
+                                         "Expected":  57328,
+                                         "Actual":  57328,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Positive Review Rate]",
+                                         "Expected":  1,
+                                         "Actual":  1,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Negative Review Rate]",
+                                         "Expected":  0,
+                                         "Actual":  0,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Five Star Review Rate]",
+                                         "Expected":  1,
+                                         "Actual":  1,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Total Valid Reviews], \"c1\", [Positive Review Rate], \"c2\", [Negative Review Rate], \"c3\", [Five Star Review Rate]), TREATAS({5}, FactReviews[ReviewScore]))"
+                  },
+                  {
+                      "Name":  "Duration band 02 | 7 to \u003c14 days",
+                      "Status":  "PASS",
+                      "Milliseconds":  5,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Duration Eligible Orders]",
+                                         "Expected":  39671,
+                                         "Actual":  39671,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Duration Eligible Orders]), TREATAS({\"02 | 7 to \u003c14 days\"}, FactOrders[Delivery Duration Band]))"
+                  },
+                  {
+                      "Name":  "Duration band 03 | 14 to \u003c21 days",
+                      "Status":  "PASS",
+                      "Milliseconds":  5,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Duration Eligible Orders]",
+                                         "Expected":  17594,
+                                         "Actual":  17594,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Duration Eligible Orders]), TREATAS({\"03 | 14 to \u003c21 days\"}, FactOrders[Delivery Duration Band]))"
+                  },
+                  {
+                      "Name":  "Duration band 04 | 21 to \u003c30 days",
+                      "Status":  "PASS",
+                      "Milliseconds":  5,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Duration Eligible Orders]",
+                                         "Expected":  7911,
+                                         "Actual":  7911,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Duration Eligible Orders]), TREATAS({\"04 | 21 to \u003c30 days\"}, FactOrders[Delivery Duration Band]))"
+                  },
+                  {
+                      "Name":  "Duration band 01 | Under 7 days",
+                      "Status":  "PASS",
+                      "Milliseconds":  4,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Duration Eligible Orders]",
+                                         "Expected":  25384,
+                                         "Actual":  25384,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Duration Eligible Orders]), TREATAS({\"01 | Under 7 days\"}, FactOrders[Delivery Duration Band]))"
+                  },
+                  {
+                      "Name":  "Duration band 05 | 30+ days",
+                      "Status":  "PASS",
+                      "Milliseconds":  5,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Duration Eligible Orders]",
+                                         "Expected":  4537,
+                                         "Actual":  4537,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Duration Eligible Orders]), TREATAS({\"05 | 30+ days\"}, FactOrders[Delivery Duration Band]))"
+                  },
+                  {
+                      "Name":  "Approximate state AC",
+                      "Status":  "PASS",
+                      "Milliseconds":  32,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Delivered Orders]",
+                                         "Expected":  80,
+                                         "Actual":  80,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Timeliness Eligible Orders]",
+                                         "Expected":  80,
+                                         "Actual":  80,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[On Time Deliveries]",
+                                         "Expected":  77,
+                                         "Actual":  77,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Late Deliveries]",
+                                         "Expected":  3,
+                                         "Actual":  3,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"AC\"}, DimCustomerGeography[ApproximateState]))"
+                  },
+                  {
+                      "Name":  "Approximate state AL",
+                      "Status":  "PASS",
+                      "Milliseconds":  29,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Delivered Orders]",
+                                         "Expected":  396,
+                                         "Actual":  396,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Timeliness Eligible Orders]",
+                                         "Expected":  396,
+                                         "Actual":  396,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[On Time Deliveries]",
+                                         "Expected":  311,
+                                         "Actual":  311,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Late Deliveries]",
+                                         "Expected":  85,
+                                         "Actual":  85,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"AL\"}, DimCustomerGeography[ApproximateState]))"
+                  },
+                  {
+                      "Name":  "Approximate state AM",
+                      "Status":  "PASS",
+                      "Milliseconds":  31,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Delivered Orders]",
+                                         "Expected":  145,
+                                         "Actual":  145,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Timeliness Eligible Orders]",
+                                         "Expected":  145,
+                                         "Actual":  145,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[On Time Deliveries]",
+                                         "Expected":  141,
+                                         "Actual":  141,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Late Deliveries]",
+                                         "Expected":  4,
+                                         "Actual":  4,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"AM\"}, DimCustomerGeography[ApproximateState]))"
+                  },
+                  {
+                      "Name":  "Approximate state AP",
+                      "Status":  "PASS",
+                      "Milliseconds":  30,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Delivered Orders]",
+                                         "Expected":  67,
+                                         "Actual":  67,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Timeliness Eligible Orders]",
+                                         "Expected":  67,
+                                         "Actual":  67,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[On Time Deliveries]",
+                                         "Expected":  65,
+                                         "Actual":  65,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Late Deliveries]",
+                                         "Expected":  2,
+                                         "Actual":  2,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"AP\"}, DimCustomerGeography[ApproximateState]))"
+                  },
+                  {
+                      "Name":  "Approximate state BA",
+                      "Status":  "PASS",
+                      "Milliseconds":  31,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Delivered Orders]",
+                                         "Expected":  3248,
+                                         "Actual":  3248,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Timeliness Eligible Orders]",
+                                         "Expected":  3248,
+                                         "Actual":  3248,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[On Time Deliveries]",
+                                         "Expected":  2855,
+                                         "Actual":  2855,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Late Deliveries]",
+                                         "Expected":  393,
+                                         "Actual":  393,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"BA\"}, DimCustomerGeography[ApproximateState]))"
+                  },
+                  {
+                      "Name":  "Approximate state CE",
+                      "Status":  "PASS",
+                      "Milliseconds":  34,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Delivered Orders]",
+                                         "Expected":  1275,
+                                         "Actual":  1275,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Timeliness Eligible Orders]",
+                                         "Expected":  1275,
+                                         "Actual":  1275,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[On Time Deliveries]",
+                                         "Expected":  1099,
+                                         "Actual":  1099,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Late Deliveries]",
+                                         "Expected":  176,
+                                         "Actual":  176,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"CE\"}, DimCustomerGeography[ApproximateState]))"
+                  },
+                  {
+                      "Name":  "Approximate state DF",
+                      "Status":  "PASS",
+                      "Milliseconds":  34,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Delivered Orders]",
+                                         "Expected":  1917,
+                                         "Actual":  1917,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Timeliness Eligible Orders]",
+                                         "Expected":  1917,
+                                         "Actual":  1917,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[On Time Deliveries]",
+                                         "Expected":  1807,
+                                         "Actual":  1807,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Late Deliveries]",
+                                         "Expected":  110,
+                                         "Actual":  110,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"DF\"}, DimCustomerGeography[ApproximateState]))"
+                  },
+                  {
+                      "Name":  "Approximate state ES",
+                      "Status":  "PASS",
+                      "Milliseconds":  33,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Delivered Orders]",
+                                         "Expected":  1989,
+                                         "Actual":  1989,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Timeliness Eligible Orders]",
+                                         "Expected":  1989,
+                                         "Actual":  1989,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[On Time Deliveries]",
+                                         "Expected":  1778,
+                                         "Actual":  1778,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Late Deliveries]",
+                                         "Expected":  211,
+                                         "Actual":  211,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"ES\"}, DimCustomerGeography[ApproximateState]))"
+                  },
+                  {
+                      "Name":  "Approximate state GO",
+                      "Status":  "PASS",
+                      "Milliseconds":  31,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Delivered Orders]",
+                                         "Expected":  1948,
+                                         "Actual":  1948,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Timeliness Eligible Orders]",
+                                         "Expected":  1948,
+                                         "Actual":  1948,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[On Time Deliveries]",
+                                         "Expected":  1820,
+                                         "Actual":  1820,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Late Deliveries]",
+                                         "Expected":  128,
+                                         "Actual":  128,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"GO\"}, DimCustomerGeography[ApproximateState]))"
+                  },
+                  {
+                      "Name":  "Approximate state MA",
+                      "Status":  "PASS",
+                      "Milliseconds":  33,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Delivered Orders]",
+                                         "Expected":  714,
+                                         "Actual":  714,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Timeliness Eligible Orders]",
+                                         "Expected":  714,
+                                         "Actual":  714,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[On Time Deliveries]",
+                                         "Expected":  591,
+                                         "Actual":  591,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Late Deliveries]",
+                                         "Expected":  123,
+                                         "Actual":  123,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"MA\"}, DimCustomerGeography[ApproximateState]))"
+                  },
+                  {
+                      "Name":  "Approximate state MG",
+                      "Status":  "PASS",
+                      "Milliseconds":  32,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Delivered Orders]",
+                                         "Expected":  11345,
+                                         "Actual":  11345,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Timeliness Eligible Orders]",
+                                         "Expected":  11345,
+                                         "Actual":  11345,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[On Time Deliveries]",
+                                         "Expected":  10828,
+                                         "Actual":  10828,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Late Deliveries]",
+                                         "Expected":  517,
+                                         "Actual":  517,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"MG\"}, DimCustomerGeography[ApproximateState]))"
+                  },
+                  {
+                      "Name":  "Approximate state MS",
+                      "Status":  "PASS",
+                      "Milliseconds":  28,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Delivered Orders]",
+                                         "Expected":  701,
+                                         "Actual":  701,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Timeliness Eligible Orders]",
+                                         "Expected":  701,
+                                         "Actual":  701,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[On Time Deliveries]",
+                                         "Expected":  633,
+                                         "Actual":  633,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Late Deliveries]",
+                                         "Expected":  68,
+                                         "Actual":  68,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"MS\"}, DimCustomerGeography[ApproximateState]))"
+                  },
+                  {
+                      "Name":  "Approximate state MT",
+                      "Status":  "PASS",
+                      "Milliseconds":  31,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Delivered Orders]",
+                                         "Expected":  884,
+                                         "Actual":  884,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Timeliness Eligible Orders]",
+                                         "Expected":  884,
+                                         "Actual":  884,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[On Time Deliveries]",
+                                         "Expected":  831,
+                                         "Actual":  831,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Late Deliveries]",
+                                         "Expected":  53,
+                                         "Actual":  53,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"MT\"}, DimCustomerGeography[ApproximateState]))"
+                  },
+                  {
+                      "Name":  "Approximate state PA",
+                      "Status":  "PASS",
+                      "Milliseconds":  30,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Delivered Orders]",
+                                         "Expected":  944,
+                                         "Actual":  944,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Timeliness Eligible Orders]",
+                                         "Expected":  944,
+                                         "Actual":  944,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[On Time Deliveries]",
+                                         "Expected":  838,
+                                         "Actual":  838,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Late Deliveries]",
+                                         "Expected":  106,
+                                         "Actual":  106,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"PA\"}, DimCustomerGeography[ApproximateState]))"
+                  },
+                  {
+                      "Name":  "Approximate state PB",
+                      "Status":  "PASS",
+                      "Milliseconds":  29,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Delivered Orders]",
+                                         "Expected":  515,
+                                         "Actual":  515,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Timeliness Eligible Orders]",
+                                         "Expected":  515,
+                                         "Actual":  515,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[On Time Deliveries]",
+                                         "Expected":  461,
+                                         "Actual":  461,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Late Deliveries]",
+                                         "Expected":  54,
+                                         "Actual":  54,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"PB\"}, DimCustomerGeography[ApproximateState]))"
+                  },
+                  {
+                      "Name":  "Approximate state PE",
+                      "Status":  "PASS",
+                      "Milliseconds":  31,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Delivered Orders]",
+                                         "Expected":  1589,
+                                         "Actual":  1589,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Timeliness Eligible Orders]",
+                                         "Expected":  1589,
+                                         "Actual":  1589,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[On Time Deliveries]",
+                                         "Expected":  1437,
+                                         "Actual":  1437,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Late Deliveries]",
+                                         "Expected":  152,
+                                         "Actual":  152,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"PE\"}, DimCustomerGeography[ApproximateState]))"
+                  },
+                  {
+                      "Name":  "Approximate state PI",
+                      "Status":  "PASS",
+                      "Milliseconds":  30,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Delivered Orders]",
+                                         "Expected":  473,
+                                         "Actual":  473,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Timeliness Eligible Orders]",
+                                         "Expected":  473,
+                                         "Actual":  473,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[On Time Deliveries]",
+                                         "Expected":  407,
+                                         "Actual":  407,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Late Deliveries]",
+                                         "Expected":  66,
+                                         "Actual":  66,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"PI\"}, DimCustomerGeography[ApproximateState]))"
+                  },
+                  {
+                      "Name":  "Approximate state PR",
+                      "Status":  "PASS",
+                      "Milliseconds":  32,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Delivered Orders]",
+                                         "Expected":  4912,
+                                         "Actual":  4912,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Timeliness Eligible Orders]",
+                                         "Expected":  4912,
+                                         "Actual":  4912,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[On Time Deliveries]",
+                                         "Expected":  4715,
+                                         "Actual":  4715,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Late Deliveries]",
+                                         "Expected":  197,
+                                         "Actual":  197,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"PR\"}, DimCustomerGeography[ApproximateState]))"
+                  },
+                  {
+                      "Name":  "Approximate state RJ",
+                      "Status":  "PASS",
+                      "Milliseconds":  28,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Delivered Orders]",
+                                         "Expected":  12337,
+                                         "Actual":  12337,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Timeliness Eligible Orders]",
+                                         "Expected":  12337,
+                                         "Actual":  12337,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[On Time Deliveries]",
+                                         "Expected":  10842,
+                                         "Actual":  10842,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Late Deliveries]",
+                                         "Expected":  1495,
+                                         "Actual":  1495,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"RJ\"}, DimCustomerGeography[ApproximateState]))"
+                  },
+                  {
+                      "Name":  "Approximate state RN",
+                      "Status":  "PASS",
+                      "Milliseconds":  30,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Delivered Orders]",
+                                         "Expected":  472,
+                                         "Actual":  472,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Timeliness Eligible Orders]",
+                                         "Expected":  472,
+                                         "Actual":  472,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[On Time Deliveries]",
+                                         "Expected":  429,
+                                         "Actual":  429,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Late Deliveries]",
+                                         "Expected":  43,
+                                         "Actual":  43,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"RN\"}, DimCustomerGeography[ApproximateState]))"
+                  },
+                  {
+                      "Name":  "Approximate state RO",
+                      "Status":  "PASS",
+                      "Milliseconds":  32,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Delivered Orders]",
+                                         "Expected":  241,
+                                         "Actual":  241,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Timeliness Eligible Orders]",
+                                         "Expected":  241,
+                                         "Actual":  241,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[On Time Deliveries]",
+                                         "Expected":  234,
+                                         "Actual":  234,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Late Deliveries]",
+                                         "Expected":  7,
+                                         "Actual":  7,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"RO\"}, DimCustomerGeography[ApproximateState]))"
+                  },
+                  {
+                      "Name":  "Approximate state RR",
+                      "Status":  "PASS",
+                      "Milliseconds":  28,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Delivered Orders]",
+                                         "Expected":  41,
+                                         "Actual":  41,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Timeliness Eligible Orders]",
+                                         "Expected":  41,
+                                         "Actual":  41,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[On Time Deliveries]",
+                                         "Expected":  36,
+                                         "Actual":  36,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Late Deliveries]",
+                                         "Expected":  5,
+                                         "Actual":  5,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"RR\"}, DimCustomerGeography[ApproximateState]))"
+                  },
+                  {
+                      "Name":  "Approximate state RS",
+                      "Status":  "PASS",
+                      "Milliseconds":  33,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Delivered Orders]",
+                                         "Expected":  5341,
+                                         "Actual":  5341,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Timeliness Eligible Orders]",
+                                         "Expected":  5340,
+                                         "Actual":  5340,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[On Time Deliveries]",
+                                         "Expected":  5016,
+                                         "Actual":  5016,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Late Deliveries]",
+                                         "Expected":  324,
+                                         "Actual":  324,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"RS\"}, DimCustomerGeography[ApproximateState]))"
+                  },
+                  {
+                      "Name":  "Approximate state SC",
+                      "Status":  "PASS",
+                      "Milliseconds":  32,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Delivered Orders]",
+                                         "Expected":  3546,
+                                         "Actual":  3546,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Timeliness Eligible Orders]",
+                                         "Expected":  3546,
+                                         "Actual":  3546,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[On Time Deliveries]",
+                                         "Expected":  3255,
+                                         "Actual":  3255,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Late Deliveries]",
+                                         "Expected":  291,
+                                         "Actual":  291,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"SC\"}, DimCustomerGeography[ApproximateState]))"
+                  },
+                  {
+                      "Name":  "Approximate state SE",
+                      "Status":  "PASS",
+                      "Milliseconds":  31,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Delivered Orders]",
+                                         "Expected":  334,
+                                         "Actual":  334,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Timeliness Eligible Orders]",
+                                         "Expected":  334,
+                                         "Actual":  334,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[On Time Deliveries]",
+                                         "Expected":  283,
+                                         "Actual":  283,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Late Deliveries]",
+                                         "Expected":  51,
+                                         "Actual":  51,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"SE\"}, DimCustomerGeography[ApproximateState]))"
+                  },
+                  {
+                      "Name":  "Approximate state SP",
+                      "Status":  "PASS",
+                      "Milliseconds":  48,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Delivered Orders]",
+                                         "Expected":  40487,
+                                         "Actual":  40487,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Timeliness Eligible Orders]",
+                                         "Expected":  40480,
+                                         "Actual":  40480,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[On Time Deliveries]",
+                                         "Expected":  38661,
+                                         "Actual":  38661,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Late Deliveries]",
+                                         "Expected":  1819,
+                                         "Actual":  1819,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"SP\"}, DimCustomerGeography[ApproximateState]))"
+                  },
+                  {
+                      "Name":  "Approximate state TO",
+                      "Status":  "PASS",
+                      "Milliseconds":  36,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Delivered Orders]",
+                                         "Expected":  273,
+                                         "Actual":  273,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Timeliness Eligible Orders]",
+                                         "Expected":  273,
+                                         "Actual":  273,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[On Time Deliveries]",
+                                         "Expected":  246,
+                                         "Actual":  246,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Late Deliveries]",
+                                         "Expected":  27,
+                                         "Actual":  27,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Delivered Orders], \"c1\", [Timeliness Eligible Orders], \"c2\", [On Time Deliveries], \"c3\", [Late Deliveries]), TREATAS({\"TO\"}, DimCustomerGeography[ApproximateState]))"
+                  },
+                  {
+                      "Name":  "Review category semijoin bed_bath_table",
+                      "Status":  "PASS",
+                      "Milliseconds":  17,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Category Valid Reviews]",
+                                         "Expected":  9432,
+                                         "Actual":  9432,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Category Average Review Score]",
+                                         "Expected":  3.9686174724,
+                                         "Actual":  3.9686174724342664,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Valid Reviews], \"c1\", [Category Average Review Score]), TREATAS({\"bed_bath_table\"}, DimProduct[CategoryLabel]))"
+                  },
+                  {
+                      "Name":  "Review category semijoin health_beauty",
+                      "Status":  "PASS",
+                      "Milliseconds":  17,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Category Valid Reviews]",
+                                         "Expected":  8826,
+                                         "Actual":  8826,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Category Average Review Score]",
+                                         "Expected":  4.182188987,
+                                         "Actual":  4.1821889870836166,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Valid Reviews], \"c1\", [Category Average Review Score]), TREATAS({\"health_beauty\"}, DimProduct[CategoryLabel]))"
+                  },
+                  {
+                      "Name":  "Review category semijoin sports_leisure",
+                      "Status":  "PASS",
+                      "Milliseconds":  16,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Category Valid Reviews]",
+                                         "Expected":  7721,
+                                         "Actual":  7721,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Category Average Review Score]",
+                                         "Expected":  4.1682424556,
+                                         "Actual":  4.1682424556404607,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Valid Reviews], \"c1\", [Category Average Review Score]), TREATAS({\"sports_leisure\"}, DimProduct[CategoryLabel]))"
+                  },
+                  {
+                      "Name":  "Review category semijoin computers_accessories",
+                      "Status":  "PASS",
+                      "Milliseconds":  15,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Category Valid Reviews]",
+                                         "Expected":  6702,
+                                         "Actual":  6702,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Category Average Review Score]",
+                                         "Expected":  4.02581319,
+                                         "Actual":  4.02581319009251,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Valid Reviews], \"c1\", [Category Average Review Score]), TREATAS({\"computers_accessories\"}, DimProduct[CategoryLabel]))"
+                  },
+                  {
+                      "Name":  "Review category semijoin furniture_decor",
+                      "Status":  "PASS",
+                      "Milliseconds":  18,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Category Valid Reviews]",
+                                         "Expected":  6457,
+                                         "Actual":  6457,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Category Average Review Score]",
+                                         "Expected":  4.0060399566,
+                                         "Actual":  4.0060399566362088,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Valid Reviews], \"c1\", [Category Average Review Score]), TREATAS({\"furniture_decor\"}, DimProduct[CategoryLabel]))"
+                  },
+                  {
+                      "Name":  "Review category semijoin housewares",
+                      "Status":  "PASS",
+                      "Milliseconds":  15,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Category Valid Reviews]",
+                                         "Expected":  5865,
+                                         "Actual":  5865,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Category Average Review Score]",
+                                         "Expected":  4.1423699914,
+                                         "Actual":  4.1423699914748511,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Valid Reviews], \"c1\", [Category Average Review Score]), TREATAS({\"housewares\"}, DimProduct[CategoryLabel]))"
+                  },
+                  {
+                      "Name":  "Review category semijoin watches_gifts",
+                      "Status":  "PASS",
+                      "Milliseconds":  16,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Category Valid Reviews]",
+                                         "Expected":  5586,
+                                         "Actual":  5586,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Category Average Review Score]",
+                                         "Expected":  4.0656999641,
+                                         "Actual":  4.0656999641962051,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Valid Reviews], \"c1\", [Category Average Review Score]), TREATAS({\"watches_gifts\"}, DimProduct[CategoryLabel]))"
+                  },
+                  {
+                      "Name":  "Review category semijoin telephony",
+                      "Status":  "PASS",
+                      "Milliseconds":  15,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Category Valid Reviews]",
+                                         "Expected":  4173,
+                                         "Actual":  4173,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Category Average Review Score]",
+                                         "Expected":  4.0040738078,
+                                         "Actual":  4.0040738078121256,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Valid Reviews], \"c1\", [Category Average Review Score]), TREATAS({\"telephony\"}, DimProduct[CategoryLabel]))"
+                  },
+                  {
+                      "Name":  "Review category semijoin auto",
+                      "Status":  "PASS",
+                      "Milliseconds":  14,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Category Valid Reviews]",
+                                         "Expected":  3895,
+                                         "Actual":  3895,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Category Average Review Score]",
+                                         "Expected":  4.0906290115,
+                                         "Actual":  4.0906290115532737,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Valid Reviews], \"c1\", [Category Average Review Score]), TREATAS({\"auto\"}, DimProduct[CategoryLabel]))"
+                  },
+                  {
+                      "Name":  "Review category semijoin toys",
+                      "Status":  "PASS",
+                      "Milliseconds":  14,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Category Valid Reviews]",
+                                         "Expected":  3861,
+                                         "Actual":  3861,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Category Average Review Score]",
+                                         "Expected":  4.1882931882,
+                                         "Actual":  4.188293188293188,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Valid Reviews], \"c1\", [Category Average Review Score]), TREATAS({\"toys\"}, DimProduct[CategoryLabel]))"
+                  },
+                  {
+                      "Name":  "Delivery category semijoin bed_bath_table",
+                      "Status":  "PASS",
+                      "Milliseconds":  11,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Category Eligible Deliveries]",
+                                         "Expected":  9272,
+                                         "Actual":  9272,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Category On Time Delivery Rate]",
+                                         "Expected":  0.9256902502157032,
+                                         "Actual":  0.92569025021570317,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Eligible Deliveries], \"c1\", [Category On Time Delivery Rate]), TREATAS({\"bed_bath_table\"}, DimProduct[CategoryLabel]))"
+                  },
+                  {
+                      "Name":  "Delivery category semijoin health_beauty",
+                      "Status":  "PASS",
+                      "Milliseconds":  10,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Category Eligible Deliveries]",
+                                         "Expected":  8647,
+                                         "Actual":  8647,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Category On Time Delivery Rate]",
+                                         "Expected":  0.9249450676535215,
+                                         "Actual":  0.92494506765352147,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Eligible Deliveries], \"c1\", [Category On Time Delivery Rate]), TREATAS({\"health_beauty\"}, DimProduct[CategoryLabel]))"
+                  },
+                  {
+                      "Name":  "Delivery category semijoin sports_leisure",
+                      "Status":  "PASS",
+                      "Milliseconds":  11,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Category Eligible Deliveries]",
+                                         "Expected":  7529,
+                                         "Actual":  7529,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Category On Time Delivery Rate]",
+                                         "Expected":  0.9342542170274937,
+                                         "Actual":  0.93425421702749367,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Eligible Deliveries], \"c1\", [Category On Time Delivery Rate]), TREATAS({\"sports_leisure\"}, DimProduct[CategoryLabel]))"
+                  },
+                  {
+                      "Name":  "Delivery category semijoin computers_accessories",
+                      "Status":  "PASS",
+                      "Milliseconds":  11,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Category Eligible Deliveries]",
+                                         "Expected":  6529,
+                                         "Actual":  6529,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Category On Time Delivery Rate]",
+                                         "Expected":  0.9361311073671312,
+                                         "Actual":  0.93613110736713123,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Eligible Deliveries], \"c1\", [Category On Time Delivery Rate]), TREATAS({\"computers_accessories\"}, DimProduct[CategoryLabel]))"
+                  },
+                  {
+                      "Name":  "Delivery category semijoin furniture_decor",
+                      "Status":  "PASS",
+                      "Milliseconds":  10,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Category Eligible Deliveries]",
+                                         "Expected":  6307,
+                                         "Actual":  6307,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Category On Time Delivery Rate]",
+                                         "Expected":  0.9288092595528777,
+                                         "Actual":  0.92880925955287774,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Eligible Deliveries], \"c1\", [Category On Time Delivery Rate]), TREATAS({\"furniture_decor\"}, DimProduct[CategoryLabel]))"
+                  },
+                  {
+                      "Name":  "Delivery category semijoin housewares",
+                      "Status":  "PASS",
+                      "Milliseconds":  12,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Category Eligible Deliveries]",
+                                         "Expected":  5743,
+                                         "Actual":  5743,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Category On Time Delivery Rate]",
+                                         "Expected":  0.9463694932961867,
+                                         "Actual":  0.94636949329618669,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Eligible Deliveries], \"c1\", [Category On Time Delivery Rate]), TREATAS({\"housewares\"}, DimProduct[CategoryLabel]))"
+                  },
+                  {
+                      "Name":  "Delivery category semijoin watches_gifts",
+                      "Status":  "PASS",
+                      "Milliseconds":  12,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Category Eligible Deliveries]",
+                                         "Expected":  5493,
+                                         "Actual":  5493,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Category On Time Delivery Rate]",
+                                         "Expected":  0.9260877480429638,
+                                         "Actual":  0.92608774804296379,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Eligible Deliveries], \"c1\", [Category On Time Delivery Rate]), TREATAS({\"watches_gifts\"}, DimProduct[CategoryLabel]))"
+                  },
+                  {
+                      "Name":  "Delivery category semijoin telephony",
+                      "Status":  "PASS",
+                      "Milliseconds":  12,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Category Eligible Deliveries]",
+                                         "Expected":  4093,
+                                         "Actual":  4093,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Category On Time Delivery Rate]",
+                                         "Expected":  0.928903005130711,
+                                         "Actual":  0.928903005130711,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Eligible Deliveries], \"c1\", [Category On Time Delivery Rate]), TREATAS({\"telephony\"}, DimProduct[CategoryLabel]))"
+                  },
+                  {
+                      "Name":  "Delivery category semijoin auto",
+                      "Status":  "PASS",
+                      "Milliseconds":  11,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Category Eligible Deliveries]",
+                                         "Expected":  3809,
+                                         "Actual":  3809,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Category On Time Delivery Rate]",
+                                         "Expected":  0.9270149645576267,
+                                         "Actual":  0.92701496455762666,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Eligible Deliveries], \"c1\", [Category On Time Delivery Rate]), TREATAS({\"auto\"}, DimProduct[CategoryLabel]))"
+                  },
+                  {
+                      "Name":  "Delivery category semijoin toys",
+                      "Status":  "PASS",
+                      "Milliseconds":  11,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Category Eligible Deliveries]",
+                                         "Expected":  3803,
+                                         "Actual":  3803,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Category On Time Delivery Rate]",
+                                         "Expected":  0.936103076518538,
+                                         "Actual":  0.936103076518538,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Category Eligible Deliveries], \"c1\", [Category On Time Delivery Rate]), TREATAS({\"toys\"}, DimProduct[CategoryLabel]))"
+                  },
+                  {
+                      "Name":  "Purchase month regression 2016-09",
+                      "Status":  "PASS",
+                      "Milliseconds":  7,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Sales Revenue]",
+                                         "Expected":  134.97,
+                                         "Actual":  134.97,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Sales Order Count]",
+                                         "Expected":  1,
+                                         "Actual":  1,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2016-09\"}, DimDate[YearMonth]))"
+                  },
+                  {
+                      "Name":  "Purchase month regression 2016-10",
+                      "Status":  "PASS",
+                      "Milliseconds":  7,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Sales Revenue]",
+                                         "Expected":  40325.11,
+                                         "Actual":  40325.110000000008,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Sales Order Count]",
+                                         "Expected":  265,
+                                         "Actual":  265,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2016-10\"}, DimDate[YearMonth]))"
+                  },
+                  {
+                      "Name":  "Purchase month regression 2016-12",
+                      "Status":  "PASS",
+                      "Milliseconds":  7,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Sales Revenue]",
+                                         "Expected":  10.9,
+                                         "Actual":  10.9,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Sales Order Count]",
+                                         "Expected":  1,
+                                         "Actual":  1,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2016-12\"}, DimDate[YearMonth]))"
+                  },
+                  {
+                      "Name":  "Purchase month regression 2017-01",
+                      "Status":  "PASS",
+                      "Milliseconds":  8,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Sales Revenue]",
+                                         "Expected":  111798.36,
+                                         "Actual":  111798.36000000004,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Sales Order Count]",
+                                         "Expected":  750,
+                                         "Actual":  750,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2017-01\"}, DimDate[YearMonth]))"
+                  },
+                  {
+                      "Name":  "Purchase month regression 2017-02",
+                      "Status":  "PASS",
+                      "Milliseconds":  7,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Sales Revenue]",
+                                         "Expected":  234223.4,
+                                         "Actual":  234223.40000000002,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Sales Order Count]",
+                                         "Expected":  1653,
+                                         "Actual":  1653,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2017-02\"}, DimDate[YearMonth]))"
+                  },
+                  {
+                      "Name":  "Purchase month regression 2017-03",
+                      "Status":  "PASS",
+                      "Milliseconds":  8,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Sales Revenue]",
+                                         "Expected":  359198.85,
+                                         "Actual":  359198.84999999974,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Sales Order Count]",
+                                         "Expected":  2546,
+                                         "Actual":  2546,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2017-03\"}, DimDate[YearMonth]))"
+                  },
+                  {
+                      "Name":  "Purchase month regression 2017-04",
+                      "Status":  "PASS",
+                      "Milliseconds":  10,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Sales Revenue]",
+                                         "Expected":  340669.68,
+                                         "Actual":  340669.67999999959,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Sales Order Count]",
+                                         "Expected":  2303,
+                                         "Actual":  2303,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2017-04\"}, DimDate[YearMonth]))"
+                  },
+                  {
+                      "Name":  "Purchase month regression 2017-05",
+                      "Status":  "PASS",
+                      "Milliseconds":  8,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Sales Revenue]",
+                                         "Expected":  489338.25,
+                                         "Actual":  489338.24999999959,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Sales Order Count]",
+                                         "Expected":  3546,
+                                         "Actual":  3546,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2017-05\"}, DimDate[YearMonth]))"
+                  },
+                  {
+                      "Name":  "Purchase month regression 2017-06",
+                      "Status":  "PASS",
+                      "Milliseconds":  7,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Sales Revenue]",
+                                         "Expected":  421923.37,
+                                         "Actual":  421923.36999999976,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Sales Order Count]",
+                                         "Expected":  3135,
+                                         "Actual":  3135,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2017-06\"}, DimDate[YearMonth]))"
+                  },
+                  {
+                      "Name":  "Purchase month regression 2017-07",
+                      "Status":  "PASS",
+                      "Milliseconds":  8,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Sales Revenue]",
+                                         "Expected":  481604.52,
+                                         "Actual":  481604.52000000014,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Sales Order Count]",
+                                         "Expected":  3872,
+                                         "Actual":  3872,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2017-07\"}, DimDate[YearMonth]))"
+                  },
+                  {
+                      "Name":  "Purchase month regression 2017-08",
+                      "Status":  "PASS",
+                      "Milliseconds":  8,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Sales Revenue]",
+                                         "Expected":  554699.7,
+                                         "Actual":  554699.69999999984,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Sales Order Count]",
+                                         "Expected":  4193,
+                                         "Actual":  4193,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2017-08\"}, DimDate[YearMonth]))"
+                  },
+                  {
+                      "Name":  "Purchase month regression 2017-09",
+                      "Status":  "PASS",
+                      "Milliseconds":  8,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Sales Revenue]",
+                                         "Expected":  607399.67,
+                                         "Actual":  607399.66999999946,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Sales Order Count]",
+                                         "Expected":  4150,
+                                         "Actual":  4150,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2017-09\"}, DimDate[YearMonth]))"
+                  },
+                  {
+                      "Name":  "Purchase month regression 2017-10",
+                      "Status":  "PASS",
+                      "Milliseconds":  7,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Sales Revenue]",
+                                         "Expected":  648247.65,
+                                         "Actual":  648247.64999999921,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Sales Order Count]",
+                                         "Expected":  4478,
+                                         "Actual":  4478,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2017-10\"}, DimDate[YearMonth]))"
+                  },
+                  {
+                      "Name":  "Purchase month regression 2017-11",
+                      "Status":  "PASS",
+                      "Milliseconds":  8,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Sales Revenue]",
+                                         "Expected":  987765.37,
+                                         "Actual":  987765.36999999883,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Sales Order Count]",
+                                         "Expected":  7289,
+                                         "Actual":  7289,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2017-11\"}, DimDate[YearMonth]))"
+                  },
+                  {
+                      "Name":  "Purchase month regression 2017-12",
+                      "Status":  "PASS",
+                      "Milliseconds":  7,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Sales Revenue]",
+                                         "Expected":  726033.19,
+                                         "Actual":  726033.1899999989,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Sales Order Count]",
+                                         "Expected":  5513,
+                                         "Actual":  5513,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2017-12\"}, DimDate[YearMonth]))"
+                  },
+                  {
+                      "Name":  "Purchase month regression 2018-01",
+                      "Status":  "PASS",
+                      "Milliseconds":  8,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Sales Revenue]",
+                                         "Expected":  924645.0,
+                                         "Actual":  924644.99999999884,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Sales Order Count]",
+                                         "Expected":  7069,
+                                         "Actual":  7069,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2018-01\"}, DimDate[YearMonth]))"
+                  },
+                  {
+                      "Name":  "Purchase month regression 2018-02",
+                      "Status":  "PASS",
+                      "Milliseconds":  7,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Sales Revenue]",
+                                         "Expected":  826437.13,
+                                         "Actual":  826437.12999999826,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Sales Order Count]",
+                                         "Expected":  6555,
+                                         "Actual":  6555,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2018-02\"}, DimDate[YearMonth]))"
+                  },
+                  {
+                      "Name":  "Purchase month regression 2018-03",
+                      "Status":  "PASS",
+                      "Milliseconds":  8,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Sales Revenue]",
+                                         "Expected":  953356.25,
+                                         "Actual":  953356.24999999849,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Sales Order Count]",
+                                         "Expected":  7003,
+                                         "Actual":  7003,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2018-03\"}, DimDate[YearMonth]))"
+                  },
+                  {
+                      "Name":  "Purchase month regression 2018-04",
+                      "Status":  "PASS",
+                      "Milliseconds":  9,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Sales Revenue]",
+                                         "Expected":  973534.09,
+                                         "Actual":  973534.08999999939,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Sales Order Count]",
+                                         "Expected":  6798,
+                                         "Actual":  6798,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2018-04\"}, DimDate[YearMonth]))"
+                  },
+                  {
+                      "Name":  "Purchase month regression 2018-05",
+                      "Status":  "PASS",
+                      "Milliseconds":  10,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Sales Revenue]",
+                                         "Expected":  977544.69,
+                                         "Actual":  977544.6899999989,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Sales Order Count]",
+                                         "Expected":  6749,
+                                         "Actual":  6749,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2018-05\"}, DimDate[YearMonth]))"
+                  },
+                  {
+                      "Name":  "Purchase month regression 2018-06",
+                      "Status":  "PASS",
+                      "Milliseconds":  9,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Sales Revenue]",
+                                         "Expected":  856077.86,
+                                         "Actual":  856077.85999999952,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Sales Order Count]",
+                                         "Expected":  6099,
+                                         "Actual":  6099,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2018-06\"}, DimDate[YearMonth]))"
+                  },
+                  {
+                      "Name":  "Purchase month regression 2018-07",
+                      "Status":  "PASS",
+                      "Milliseconds":  10,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Sales Revenue]",
+                                         "Expected":  867953.46,
+                                         "Actual":  867953.46000000066,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Sales Order Count]",
+                                         "Expected":  6159,
+                                         "Actual":  6159,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2018-07\"}, DimDate[YearMonth]))"
+                  },
+                  {
+                      "Name":  "Purchase month regression 2018-08",
+                      "Status":  "PASS",
+                      "Milliseconds":  9,
+                      "Checks":  [
+                                     {
+                                         "Expression":  "[Sales Revenue]",
+                                         "Expected":  838576.64,
+                                         "Actual":  838576.6400000006,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     },
+                                     {
+                                         "Expression":  "[Sales Order Count]",
+                                         "Expected":  6351,
+                                         "Actual":  6351,
+                                         "BlankCountTreatedAsZero":  false,
+                                         "Status":  "PASS"
+                                     }
+                                 ],
+                      "DAX":  "EVALUATE CALCULATETABLE(ROW(\"c0\", [Sales Revenue], \"c1\", [Sales Order Count]), TREATAS({\"2018-08\"}, DimDate[YearMonth]))"
+                  }
+              ]
+}

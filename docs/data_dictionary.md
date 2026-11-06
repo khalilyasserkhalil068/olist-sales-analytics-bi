@@ -517,3 +517,7 @@ The report adds a shared `DimOrder`, separate customer/seller geography, role-pl
 `FactOrders[Delivery Timeliness]` displays On time, Late or Not eligible from the existing SLA flags. `FactOrders[Delivery Duration Band]` displays five ordered elapsed-day bins only for duration-eligible orders. These calculated display columns do not modify SQL. Review month labels sort by month number.
 
 All 58 measures and the two display-column expressions are in [DAX reference](dax_reference.md). The [schema diagram](../sql/schema/olist_sales_dw.mmd) describes the physical warehouse; [architecture](architecture.md) explains how its relationships differ from the semantic filter graph.
+
+### DimDate.MonthStartDate (6 November visual correction)
+
+A hidden calculated `dateTime` column with expression `DATE(DimDate[Year], DimDate[Month], 1)` and `MMM yy` format. It supplies the continuous monthly trend axis. The Top-5 gate removes the current YearMonth/MonthStartDate axis context together while retaining selected-period filters. No SQL field or warehouse schema changed.
